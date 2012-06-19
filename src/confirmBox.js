@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 
     var $ = require('$'),
-        AnimDialog = require('../src/animDialog');
+        AnimDialog = require('animDialog');
 
     // ConfirmBox
     // -------
