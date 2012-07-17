@@ -2,8 +2,14 @@
     "name": "dialog",
     "version": "0.9.0",
     "dist": {
-        "base-dialog.js": "default",
-        "anim-dialog.js": "default",
-        "confirm-box.js": "default"
+        "base-dialog.js": ["base-dialog.js"],
+        "anim-dialog.js": ["anim-dialog.js"],
+        "confirm-box.js": ["confirm-box.js"]
+    },
+    "moduleDependencies": {
+        "overlay": "overlay/0.9.7/overlay",
+        "easing": "easing/0.9.3/easing",
+        "mask": "overlay/0.9.7/mask",
+        "events": "events/0.9.1/events"
     }
 }
