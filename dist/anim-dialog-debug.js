@@ -1,7 +1,7 @@
-define("#dialog/0.9.0/anim-dialog-debug", ["./base-dialog-debug", "#easing/0.9.3/easing-debug", "#jquery/1.7.2/jquery-debug", "#events/0.9.1/events-debug", "#overlay/0.9.7/overlay-debug", "#iframe-shim/0.9.2/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#widget/0.9.16/daparser-debug", "#widget/0.9.16/auto-render-debug", "#base/0.9.16/base-debug", "base/0.9.16/aspect-debug", "base/0.9.16/attribute-debug", "#class/0.9.2/class-debug", "#overlay/0.9.7/mask-debug", "widget/0.9.16/daparser-debug", "widget/0.9.16/auto-render-debug"], function(require, exports, module) {
+define("#dialog/0.9.0/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "#events/0.9.1/events-debug", "#overlay/0.9.8/mask-debug", "#overlay/0.9.8/overlay-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#class/0.9.2/class-debug", "#easing/0.9.3/easing-debug"], function(require, exports, module) {
 
-    var $ = require('#jquery/1.7.2/jquery-debug'),
-        Overlay = require('#overlay/0.9.7/overlay-debug'),
+    var $ = require('$-debug'),
+        Overlay = require('#overlay/0.9.8/overlay-debug'),
         easing = require('#easing/0.9.3/easing-debug'),
         BaseDialog = require('./base-dialog-debug');
 

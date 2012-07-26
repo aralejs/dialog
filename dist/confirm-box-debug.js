@@ -1,6 +1,6 @@
-define("#dialog/0.9.0/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog-debug", "#jquery/1.7.2/jquery-debug", "#overlay/0.9.7/overlay-debug", "#iframe-shim/0.9.2/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#widget/0.9.16/daparser-debug", "#widget/0.9.16/auto-render-debug", "#base/0.9.16/base-debug", "base/0.9.16/aspect-debug", "base/0.9.16/attribute-debug", "#class/0.9.2/class-debug", "#events/0.9.1/events-debug", "#overlay/0.9.7/mask-debug", "widget/0.9.16/daparser-debug", "widget/0.9.16/auto-render-debug", "#easing/0.9.3/easing-debug"], function(require, exports, module) {
+define("#dialog/0.9.0/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog-debug", "$-debug", "#overlay/0.9.8/overlay-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug", "#overlay/0.9.8/mask-debug", "#easing/0.9.3/easing-debug"], function(require, exports, module) {
 
-    var $ = require('#jquery/1.7.2/jquery-debug'),
+    var $ = require('$-debug'),
         AnimDialog = require('./anim-dialog-debug');
 
     // ConfirmBox

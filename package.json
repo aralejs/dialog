@@ -7,10 +7,10 @@
         "confirm-box.js": ["confirm-box.js"]
     },
     "dependencies": {
-        "$":"jquery/1.7.2/jquery",
-        "overlay": "overlay/0.9.7/overlay",
+        "$":"$",
+        "overlay": "overlay/0.9.8/overlay",
+        "mask": "overlay/0.9.8/mask",
         "easing": "easing/0.9.3/easing",
-        "mask": "overlay/0.9.7/mask",
         "events": "events/0.9.1/events"
     }
 }
