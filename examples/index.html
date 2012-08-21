@@ -1,35 +1,41 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dialog</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/base.css" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/style.css" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/pygments.css" />
-        <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.0/sea.js"></script>
-        
-<script src="http://aralejs.github.com/tools/seajs-help.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>Dialog</title>
+<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
 
-        <!--[if lt IE 9]>
-        <script type="text/javascript" src="http://aralejs.github.com/assets/html5shiv.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <header id="header">
-            <h1 id="brand"><a href="http://aralejs.org/">Arale</a></h1>
-            <nav id="nav" role="navigation">
-                <a href="../">Dialog</a>
-                <a href="../examples/">Examples</a>
-                
-                
-            </nav>
-        </header>
+<script src="http://seajs.org/dist/sea.js"></script>
+<script src="http://aralejs.org/tools/seajs-helper.js"></script>
 
-        <div id="main">
-            <div class="container">
+<!--[if lt IE 9]>
+<script src="http://aralejs.org/assets/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="container fn-clear">
 
-<h1>Dialog</h1>
+    <a href="../" >Dialog</a>
+    <a href="../examples/" class="current">Examples</a>
+    
+    
+
+
+        <nav role="navigation" id="nav">
+            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
+            <a class="icon-github" href="https://github.com/aralejs/dialog">Code</a>
+        </nav>
+    </div>
+</header>
+
+<div id="main">
+    <div class="container">
+
+<div class="markdown-body">
+    <h1>Dialog</h1>
 
 <h2>Example</h2>
 <p><link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
@@ -556,10 +562,12 @@ seajs.use(['../src/confirm-box', 'jquery'], function(ConfirmBox, $) {
 });
 </script>
 
+</div>
 
-            </div>
-        </div>
-        <hr class="end" />
-        <a id="github" href="https://github.com/aralejs/dialog" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:999" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-    </body>
+    </div>
+</div>
+<hr class="end">
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+</body>
 </html>
