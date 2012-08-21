@@ -1,13 +1,17 @@
-# Dialog
-
-## Example
-
 <link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
 <style>
     .overlay {
         width: 500px;
         height: 300px;
         background: #7F96C8;
+        text-align:center;        
+    }
+    .overlay div {
+        font-size:14px;
+        margin:10px 0;
+    }
+    .overlay input {
+        margin-top:20px;
     }
     input {
         display:block;
@@ -15,14 +19,14 @@
     }
 </style>
 
-### BaseDialog: 无样式的抽象对话框组件
+## BaseDialog: 无样式的抽象对话框组件
 
 <div class="cell">
     <input type="button" id="trigger1" value="点击打开对话框" />
 </div>
 
-```javascript
-seajs.use(['../src/base-dialog'], function(BaseDialog) {
+````javascript
+seajs.use(['base-dialog'], function(BaseDialog) {
     var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var dialogTpl = '<div class="overlay"><div id="dialog-title"></div><div id="dialog-content"></div><button id="confirm">确认按钮</button><button id="close">点击关闭</button></div>';
 
@@ -51,9 +55,9 @@ seajs.use(['../src/base-dialog'], function(BaseDialog) {
     d1.set('content', '改变的内容');
     d1.set('width', 500);
 });
-```
+````
 
-### AnimDialog: 动画对话框组件
+## AnimDialog: 动画对话框组件
 
 * 淡入淡出对话框: fade
 
@@ -61,8 +65,8 @@ seajs.use(['../src/base-dialog'], function(BaseDialog) {
     <input type="button" id="trigger2" value="点击打开对话框" />
 </div>
 
-```javascript
-seajs.use(['../src/anim-dialog'], function(AnimDialog) {
+````javascript
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
 
     var d2 = new AnimDialog({
@@ -79,7 +83,7 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
         }
     });
 });
-```
+````
 
 * 展开对话框: slide
 
@@ -88,8 +92,8 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
     <input type="button" id="trigger4" value="垂直展开对话框" />    
 </div>
 
-```javascript
-seajs.use(['../src/anim-dialog'], function(AnimDialog) {
+````javascript
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d3 = new AnimDialog({
         trigger: '#trigger3',
@@ -120,7 +124,7 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
         }
     });
 });
-```
+````
 
 * 移入移出对话框: move
 
@@ -131,8 +135,8 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
     <input type="button" id="trigger8" value="从下移入对话框" />
 </div>
 
-```javascript
-seajs.use(['../src/anim-dialog'], function(AnimDialog) {
+````javascript
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d5 = new AnimDialog({
         trigger: '#trigger5',
@@ -191,7 +195,7 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
         }
     });
 });
-```
+````
 
 * 混合动画对话框
 
@@ -200,8 +204,8 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
     <input type="button" id="trigger10" value="混合动画对话框二" />
 </div>
 
-```javascript
-seajs.use(['../src/anim-dialog'], function(AnimDialog) {
+````javascript
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d9 = new AnimDialog({
         trigger: '#trigger9',
@@ -238,16 +242,16 @@ seajs.use(['../src/anim-dialog'], function(AnimDialog) {
         }
     });
 });
-```
+````
 
-### ConfirmBox: 带有默认样式的对话框
+## ConfirmBox: 带有默认样式的对话框
 
 <div class="cell">
     <input type="button" id="trigger11" value="默认样式对话框" />
 </div>
 
-```javascript
-seajs.use(['../src/confirm-box'], function(ConfirmBox) {
+````javascript
+seajs.use(['confirm-box'], function(ConfirmBox) {
     var d11 = new ConfirmBox({
         trigger: '#trigger11',
         title: function() {
@@ -268,7 +272,7 @@ seajs.use(['../src/confirm-box'], function(ConfirmBox) {
         }
     });
 });
-```
+````
 
 * ConfirmBox 的静态方法
 
@@ -278,8 +282,8 @@ seajs.use(['../src/confirm-box'], function(ConfirmBox) {
     <input type="button" id="trigger14" value="ConfirmBox.message()" />    
 </div>
 
-```javascript
-seajs.use(['../src/confirm-box', 'jquery'], function(ConfirmBox, $) {
+````javascript
+seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
     $('#trigger12').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.alert');
     });
@@ -296,4 +300,4 @@ seajs.use(['../src/confirm-box', 'jquery'], function(ConfirmBox, $) {
         ConfirmBox.message('此消息将在四秒后消失');
     });
 });
-```
+````
