@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>Dialog</title>
+<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<script src="http://seajs.org/dist/sea.js"></script>
+<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+
+
+<!--[if lt IE 9]>
+<script src="http://aralejs.org/assets/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="container fn-clear">
+
+    <a href="../"  class="current">Dialog</a>
+    <a href="../examples/" >演示</a>
+    
+    
+
+
+        <nav role="navigation" id="nav">
+            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
+            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
+        </nav>
+    </div>
+</header>
+
+<div id="main">
+    <div class="container">
+<div class="document-body">
+  
+  <nav id="side-nav">
+    <a href="../">README</a>
+    
+    <a href="../docs/animDialog.html">animDialog</a>
+    
+    <a href="../docs/confirmBox.html">confirmBox</a>
+    
+  </nav>
+  
+
+  <div class="markdown-body">
+    <h2>confirmBox 对话框</h2>
+<p>confirmBox 是具有默认样式和完善功能的对话框，可直接使用。</p>
+<p>继承自 arale.animDialog 组件。</p>
+
+<ul>
+<li><p><code>hasTitle</code> : {boolean}</p>
+<p>是否显示标题栏，默认为 true。</p></li>
+<li><p><code>hasOk</code> : {boolean}</p>
+<p>是否显示确定按钮，默认为 true。</p></li>
+<li><p><code>hasCancel</code> : {boolean}</p>
+<p>是否显示取消按钮，默认为 true。</p></li>
+<li><p><code>hasCloseX</code> : {boolean}</p>
+<p>是否显示关闭 X 按钮，默认为 true。</p></li>
+</ul>
+<p>进行如下调用即可在页面中央显示一个对话框。</p>
+
+<pre><code>new ConfirmBox({
+    trigger: '#trigger',
+    title: '我是标题',
+    content: '我是内容',
+    onConfirm: function() {            
+        this.hide();
+    }
+}).show();</code></pre>
+<p>组件还提供下面三个静态方法，方便调用。</p>
+
+<ul>
+<li><p><code>ConfirmBox.alert(msg, callback)</code></p>
+<p>弹出信息确认框。</p></li>
+<li><p><code>ConfirmBox.confirm(msg, title, confirmCallback, cancelCallback)</code></p>
+<p>弹出信息确认取消框。</p></li>
+<li><p><code>ConfirmBox.message(msg, time)</code></p>
+<p>在页面顶部弹出提示条，默认四秒后自动消失。</p></li>
+</ul>
+
+  </div>
+</div>
+
+    </div>
+</div>
+<hr class="end">
+<script src="http://aralejs.org/tools/nico-helper.js"></script>
+</body>
+</html>
