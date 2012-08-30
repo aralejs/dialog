@@ -1,25 +1,12 @@
-<link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
-<style>
-    .overlay {
-        width: 500px;
-        height: 300px;
-        background: #7F96C8;
-        text-align:center;        
-    }
-    .overlay div {
-        font-size:14px;
-        margin:10px 0;
-    }
-    .overlay input {
-        margin-top:20px;
-    }
-    input {
-        display:block;
-        margin:10px;
-    }
-</style>
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
 ## ConfirmBox: 带有默认样式的对话框
+
+需要载入样式`ui-confirmXbox`和`ui-xbox`。
+
+* http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
+* http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
 
 <div class="cell">
     <input type="button" id="trigger11" value="默认样式对话框" />
@@ -54,7 +41,7 @@ seajs.use(['confirm-box'], function(ConfirmBox) {
 <div class="cell">
     <input type="button" id="trigger12" value="ConfirmBox.alert()" />    
     <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
-    <input type="button" id="trigger14" value="ConfirmBox.message()" />    
+    <input type="button" id="trigger14" value="ConfirmBox.show()" />    
 </div>
 
 ````javascript
@@ -72,7 +59,7 @@ seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
     });
 
     $('#trigger14').click(function() {
-        ConfirmBox.message('此消息将在四秒后消失');
+        ConfirmBox.show('只是显示一些信息，右上角关闭');
     });
 });
 ````

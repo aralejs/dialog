@@ -1,45 +1,55 @@
-<link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
-    .overlay {
-        width: 500px;
-        height: 300px;
-        background: #7F96C8;
-        text-align:center;        
-    }
-    .overlay div {
-        font-size:14px;
-        margin:10px 0;
-    }
-    .overlay input {
-        margin-top:20px;
-    }
-    input {
-        display:block;
-        margin:10px;
-    }
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
 </style>
 
-## BaseDialog: 无样式的抽象对话框组件
+## BaseDialog: 最基本的抽象对话框组件
 
 <div class="cell">
     <input type="button" id="trigger1" value="点击打开对话框" />
 </div>
 
+<div class="ui-xbox fn-hide" id="confirmBox">
+    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
+    <div class="ui-xbox-content">
+        <!-- ui-confirmXbox -->
+        <div class="ui-confirmXbox fn-clear">
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
+                <h2>测试标题</h2>
+            </div>
+            <div class="ui-confirmXbox-container">
+                <div class="ui-confirmXbox-content" data-role="content">
+                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
+                </div>
+                <div class="ui-confirmXbox-operation">
+                    <div class="ui-button ui-button-sorange" data-role="confirm">
+                        <a href="javascript:;" class="ui-button-text">确定</a>
+                    </div>
+                    <div class="ui-button ui-button-swhite" data-role="cancel">
+                        <a href="javascript:;" class="ui-button-text">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ui-confirmXbox end -->
+    </div>
+</div>
+
+
 ````javascript
 seajs.use(['base-dialog'], function(BaseDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
-    var dialogTpl = '<div class="overlay"><div id="dialog-title"></div><div id="dialog-content"></div><button id="confirm">确认按钮</button><button id="close">点击关闭</button></div>';
-
     var d1 = new BaseDialog({
         trigger: '#trigger1',
-        template: dialogTpl,
+        element: '#confirmBox',
         width: 300,
-        height: 200,
-        confirmElement: '#confirm',
-        closeElement: '#close',
-        titleElement: '#dialog-title',
         title: '我是标题',
-        contentElement: '#dialog-content',
         content: '我是内容',
         onConfirm: function() {
             alert('点击了确定按钮');

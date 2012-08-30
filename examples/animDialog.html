@@ -48,26 +48,43 @@
   
 
   <div class="markdown-body">
-    <p><link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
+    <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
-    .overlay {
-        width: 500px;
-        height: 300px;
-        background: #7F96C8;
-        text-align:center;<br/>
-    }
-    .overlay div {
-        font-size:14px;
-        margin:10px 0;
-    }
-    .overlay input {
-        margin-top:20px;
-    }
-    input {
-        display:block;
-        margin:10px;
-    }
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
 </style></p>
+
+<div class="ui-xbox fn-hide" id="confirmBox">
+    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
+    <div class="ui-xbox-content">
+        <!-- ui-confirmXbox -->
+        <div class="ui-confirmXbox fn-clear">
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
+                <h2>测试标题</h2>
+            </div>
+            <div class="ui-confirmXbox-container">
+                <div class="ui-confirmXbox-content" data-role="content">
+                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
+                </div>
+                <div class="ui-confirmXbox-operation">
+                    <div class="ui-button ui-button-sorange" data-role="confirm">
+                        <a href="javascript:;" class="ui-button-text">确定</a>
+                    </div>
+                    <div class="ui-button ui-button-swhite" data-role="cancel">
+                        <a href="javascript:;" class="ui-button-text">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ui-confirmXbox end -->
+    </div>
+</div>
 
 <h2>AnimDialog: 动画对话框组件</h2>
 
@@ -80,15 +97,32 @@
 </div>
 
 <script>
-seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
+var template =  
+    '<div class="ui-xbox">\
+        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
+        <div class="ui-xbox-content">\
+            <div class="ui-confirmXbox">\
+                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2>我是标题</h2></div>\
+                <div class="ui-confirmXbox-container">\
+                    <div class="ui-confirmXbox-content" data-role="content">我是内容</div>\
+                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
+                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                        </div>\
+                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
+                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>';
 
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var d2 = new AnimDialog({
         trigger: '#trigger2',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -98,15 +132,32 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">closeDialogTpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;p&gt;肯定是房间里萨的看法金克拉束带结发&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span>  
+    <span class="s1">&#39;&lt;div class=&quot;ui-xbox&quot;&gt;\</span>
+<span class="s1">        &lt;div class=&quot;ui-xbox-action&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;ui-xbox-close&quot; data-role=&quot;close&quot; title=&quot;关闭&quot;&gt;×&lt;/a&gt;&lt;/div&gt;\</span>
+<span class="s1">        &lt;div class=&quot;ui-xbox-content&quot;&gt;\</span>
+<span class="s1">            &lt;div class=&quot;ui-confirmXbox&quot;&gt;\</span>
+<span class="s1">                &lt;div class=&quot;ui-confirmXbox-title sl-linear-light&quot; data-role=&quot;title&quot;&gt;&lt;h2&gt;我是标题&lt;/h2&gt;&lt;/div&gt;\</span>
+<span class="s1">                &lt;div class=&quot;ui-confirmXbox-container&quot;&gt;\</span>
+<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-content&quot; data-role=&quot;content&quot;&gt;我是内容&lt;/div&gt;\</span>
+<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-operation&quot; data-role=&quot;operation&quot;&gt;\</span>
+<span class="s1">                        &lt;div class=&quot;ui-button ui-button-sorange ui-confirmXbox-confirm&quot; data-role=&quot;confirm&quot;&gt;\</span>
+<span class="s1">                            &lt;a href=&quot;javascript:;&quot; class=&quot;ui-button-text&quot;&gt;确定&lt;/a&gt;\</span>
+<span class="s1">                        &lt;/div&gt;\</span>
+<span class="s1">                        &lt;div class=&quot;ui-button ui-button-swhite ui-confirmXbox-cancel&quot; data-role=&quot;cancel&quot;&gt;\</span>
+<span class="s1">                            &lt;a href=&quot;javascript:;&quot; class=&quot;ui-button-text&quot;&gt;取消&lt;/a&gt;\</span>
+<span class="s1">                        &lt;/div&gt;\</span>
+<span class="s1">                    &lt;/div&gt;\</span>
+<span class="s1">                &lt;/div&gt;\</span>
+<span class="s1">            &lt;/div&gt;\</span>
+<span class="s1">        &lt;/div&gt;\</span>
+<span class="s1">    &lt;/div&gt;&#39;</span><span class="p">;</span>
 
+<span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger2&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -128,13 +179,11 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 <script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d3 = new AnimDialog({
         trigger: '#trigger3',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
+        height: 150,
         align: {
             baseXY: [400, 200]
         },
@@ -145,10 +194,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d4 = new AnimDialog({
         trigger: '#trigger4',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -160,13 +207,11 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 </script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">closeDialogTpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;p&gt;肯定是房间里萨的看法金克拉束带结发&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger3&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">150</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -177,10 +222,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     <span class="p">});</span>
     <span class="kd">var</span> <span class="nx">d4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger4&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -205,13 +248,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 <script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d5 = new AnimDialog({
         trigger: '#trigger5',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -222,10 +262,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d6 = new AnimDialog({
         trigger: '#trigger6',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -236,10 +274,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d7 = new AnimDialog({
         trigger: '#trigger7',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -250,10 +286,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d8 = new AnimDialog({
         trigger: '#trigger8',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -265,13 +299,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 </script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">closeDialogTpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;p&gt;肯定是房间里萨的看法金克拉束带结发&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">d5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger5&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -282,10 +313,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     <span class="p">});</span>
     <span class="kd">var</span> <span class="nx">d6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger6&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -296,10 +325,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     <span class="p">});</span>
     <span class="kd">var</span> <span class="nx">d7</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger7&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -310,10 +337,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     <span class="p">});</span>
     <span class="kd">var</span> <span class="nx">d8</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger8&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -336,13 +361,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 <script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d9 = new AnimDialog({
         trigger: '#trigger9',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -356,10 +378,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d10 = new AnimDialog({
         trigger: '#trigger10',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -374,13 +394,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 </script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">closeDialogTpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;p&gt;肯定是房间里萨的看法金克拉束带结发&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">d9</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger9&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>
@@ -394,10 +411,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     <span class="p">});</span>
     <span class="kd">var</span> <span class="nx">d10</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger10&#39;</span><span class="p">,</span>
-        <span class="nx">template</span><span class="o">:</span> <span class="nx">closeDialogTpl</span><span class="p">,</span>
-        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
-        <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="nx">closeElement</span><span class="o">:</span> <span class="s1">&#39;#close&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
         <span class="p">},</span>

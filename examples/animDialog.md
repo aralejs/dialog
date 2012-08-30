@@ -1,23 +1,40 @@
-<link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
-    .overlay {
-        width: 500px;
-        height: 300px;
-        background: #7F96C8;
-        text-align:center;        
-    }
-    .overlay div {
-        font-size:14px;
-        margin:10px 0;
-    }
-    .overlay input {
-        margin-top:20px;
-    }
-    input {
-        display:block;
-        margin:10px;
-    }
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
 </style>
+
+<div class="ui-xbox fn-hide" id="confirmBox">
+    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
+    <div class="ui-xbox-content">
+        <!-- ui-confirmXbox -->
+        <div class="ui-confirmXbox fn-clear">
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
+                <h2>测试标题</h2>
+            </div>
+            <div class="ui-confirmXbox-container">
+                <div class="ui-confirmXbox-content" data-role="content">
+                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
+                </div>
+                <div class="ui-confirmXbox-operation">
+                    <div class="ui-button ui-button-sorange" data-role="confirm">
+                        <a href="javascript:;" class="ui-button-text">确定</a>
+                    </div>
+                    <div class="ui-button ui-button-swhite" data-role="cancel">
+                        <a href="javascript:;" class="ui-button-text">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ui-confirmXbox end -->
+    </div>
+</div>
 
 ## AnimDialog: 动画对话框组件
 
@@ -28,15 +45,32 @@
 </div>
 
 ````javascript
-seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
+var template =  
+    '<div class="ui-xbox">\
+        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
+        <div class="ui-xbox-content">\
+            <div class="ui-confirmXbox">\
+                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2>我是标题</h2></div>\
+                <div class="ui-confirmXbox-container">\
+                    <div class="ui-confirmXbox-content" data-role="content">我是内容</div>\
+                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
+                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                        </div>\
+                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
+                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>';
 
+seajs.use(['anim-dialog'], function(AnimDialog) {
     var d2 = new AnimDialog({
         trigger: '#trigger2',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -56,13 +90,11 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 ````javascript
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d3 = new AnimDialog({
         trigger: '#trigger3',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
+        height: 150,
         align: {
             baseXY: [400, 200]
         },
@@ -73,10 +105,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d4 = new AnimDialog({
         trigger: '#trigger4',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -99,13 +129,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 ````javascript
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d5 = new AnimDialog({
         trigger: '#trigger5',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -116,10 +143,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d6 = new AnimDialog({
         trigger: '#trigger6',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -130,10 +155,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d7 = new AnimDialog({
         trigger: '#trigger7',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -144,10 +167,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d8 = new AnimDialog({
         trigger: '#trigger8',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -168,13 +189,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 
 ````javascript
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    var closeDialogTpl = '<div class="overlay"><button id="close">点击关闭</button><p>肯定是房间里萨的看法金克拉束带结发</p></div>';
     var d9 = new AnimDialog({
         trigger: '#trigger9',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },
@@ -188,10 +206,8 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d10 = new AnimDialog({
         trigger: '#trigger10',
-        template: closeDialogTpl,
-        width: 300,
-        height: 200,
-        closeElement: '#close',
+        template: template,
+        width: 500,
         align: {
             baseXY: [400, 200]
         },

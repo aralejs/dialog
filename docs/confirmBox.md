@@ -4,6 +4,13 @@ confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 
 继承自 arale.animDialog 组件。
 
+需要载入样式`ui-confirmXbox`和`ui-xbox`。
+
+* http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
+* http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
+
+## 配置说明
+
 * `hasTitle` : {boolean}
 
     是否显示标题栏，默认为 true。
@@ -19,6 +26,8 @@ confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 * `hasCloseX` : {boolean}
 
     是否显示关闭 X 按钮，默认为 true。
+
+## 最佳实践
 
 进行如下调用即可在页面中央显示一个对话框。
 
@@ -41,7 +50,7 @@ confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 
     弹出信息确认取消框。
 
-* `ConfirmBox.message(msg, time)`
+* `ConfirmBox.show(msg, callback)`
 
-    在页面顶部弹出提示条，默认四秒后自动消失。
+    弹出信息框，右上角有关闭 X 。
 

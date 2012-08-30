@@ -26,29 +26,9 @@
 
     对话框触发方式，可选 click|hover|focus ，默认为click。
 
-* `confirmElement` : {element|$}
-
-    确定或提交按钮。
-
-* `cancelElement` : {element|$}
-
-    取消按钮。
-
-* `closeElement` : {element|$}
-
-    关闭按钮。
-
-* `titleElement` : {string}
-
-    指定标题元素。
-
 * `title` : {string|function}
 
     指定标题内容。
-
-* `contentElement` : {string}
-
-    指定内容元素。
 
 * `content` : {string|function}
 
@@ -80,11 +60,10 @@
         template: '<div class="overlay"><button id="close">点击关闭</button></div>',
         width: 300,
         height: 200,
-        closeElement: '#close',
         position: {
             baseXY: [100, 100]
         },
         hasMask: true
     });
 
-
+注意，需要用`data-role="title"`这样的属性来标示 html 节点的作用，目前支持的 role 有`title`(标题节点)、`content`(内容节点)、`confirm`(确定按钮)、`cancel`(取消按钮)、`close`(关闭按钮)。
