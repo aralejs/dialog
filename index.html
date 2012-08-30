@@ -69,18 +69,8 @@
 <p>对话框触发点。</p></li>
 <li><p><code>triggerType</code> : {string}</p>
 <p>对话框触发方式，可选 click|hover|focus ，默认为click。</p></li>
-<li><p><code>confirmElement</code> : {element|$}</p>
-<p>确定或提交按钮。</p></li>
-<li><p><code>cancelElement</code> : {element|$}</p>
-<p>取消按钮。</p></li>
-<li><p><code>closeElement</code> : {element|$}</p>
-<p>关闭按钮。</p></li>
-<li><p><code>titleElement</code> : {string}</p>
-<p>指定标题元素。</p></li>
 <li><p><code>title</code> : {string|function}</p>
 <p>指定标题内容。</p></li>
-<li><p><code>contentElement</code> : {string}</p>
-<p>指定内容元素。</p></li>
 <li><p><code>content</code> : {string|function}</p>
 <p>指定内容的html。</p></li>
 <li><p><code>onConfirm</code> : {function}</p>
@@ -102,12 +92,12 @@
     template: '&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;/div&gt;',
     width: 300,
     height: 200,
-    closeElement: '#close',
     position: {
         baseXY: [100, 100]
     },
     hasMask: true
 });</code></pre>
+<p>注意，需要用<code>data-role=&quot;title&quot;</code>这样的属性来标示 html 节点的作用，目前支持的 role 有<code>title</code>(标题节点)、<code>content</code>(内容节点)、<code>confirm</code>(确定按钮)、<code>cancel</code>(取消按钮)、<code>close</code>(关闭按钮)。</p>
 
   </div>
 </div>
