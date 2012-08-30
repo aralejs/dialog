@@ -1,5 +1,6 @@
 {
     "name": "dialog",
+    "root": "#",
     "version": "0.9.0",
     "output": {
         "base-dialog.js": ["base-dialog.js"],
@@ -8,9 +9,9 @@
     },
     "dependencies": {
         "$":"$",
-        "overlay": "overlay/0.9.8/overlay",
-        "mask": "overlay/0.9.8/mask",
-        "easing": "easing/0.9.3/easing",
-        "events": "events/0.9.1/events"
+        "overlay": "overlay/0.9.9/overlay",
+        "mask": "overlay/0.9.9/mask",
+        "easing": "easing/1.0.0/easing",
+        "events": "events/1.0.0/events"
     }
 }
