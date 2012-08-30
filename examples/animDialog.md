@@ -1,3 +1,24 @@
+<link rel="stylesheet" href="https://a.alipayobjects.com/u/css/201206/3OW4k7WsaR.css" type="text/css" charset="utf-8">
+<style>
+    .overlay {
+        width: 500px;
+        height: 300px;
+        background: #7F96C8;
+        text-align:center;        
+    }
+    .overlay div {
+        font-size:14px;
+        margin:10px 0;
+    }
+    .overlay input {
+        margin-top:20px;
+    }
+    input {
+        display:block;
+        margin:10px;
+    }
+</style>
+
 ## AnimDialog: 动画对话框组件
 
 * 淡入淡出对话框: fade
