@@ -55,7 +55,6 @@ define(function(require, exports, module) {
             AnimDialog.superclass.setup.call(this);
 
             if (!this.get('hasTitle')) {
-                console.log(this.$('[data-role=title]')[0]);
                 this.$('[data-role=title]').remove();
             }
             if (!this.get('hasOk')) {
