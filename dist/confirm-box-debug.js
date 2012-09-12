@@ -9,28 +9,30 @@ define("#dialog/0.9.0/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog
 
     var ConfirmBox = AnimDialog.extend({
 
-        template: 
-                '<div class="ui-xbox">\
-                    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
-                    <div class="ui-xbox-content">\
-                        <div class="ui-confirmXbox">\
-                            <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
-                            <div class="ui-confirmXbox-container">\
-                                <div class="ui-confirmXbox-content" data-role="content"></div>\
-                                <div class="ui-confirmXbox-operation" data-role="operation">\
-                                    <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
-                                        <a href="javascript:;" class="ui-button-text">确定</a>\
-                                    </div>\
-                                    <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
-                                        <a href="javascript:;" class="ui-button-text">取消</a>\
+        attrs: {
+
+            // 默认模板，不要覆盖
+            template:
+                    '<div class="ui-xbox">\
+                        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
+                        <div class="ui-xbox-content">\
+                            <div class="ui-confirmXbox">\
+                                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
+                                <div class="ui-confirmXbox-container">\
+                                    <div class="ui-confirmXbox-content" data-role="content"></div>\
+                                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
+                                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                                        </div>\
+                                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
+                                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>\
                         </div>\
-                    </div>\
-                </div>',
-
-        attrs: {
+                    </div>',
+        
             // 指定标题内容
             title: '默认标题',
             // 指定内容的 html
