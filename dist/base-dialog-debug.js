@@ -1,9 +1,9 @@
-define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#events/0.9.1/events-debug", "#overlay/0.9.8/mask-debug", "#overlay/0.9.8/overlay-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
+define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-debug", "#position/0.9.2/position-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "widget/1.0.0/widget-debug", "#overlay/0.9.9/mask-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Overlay = require('#overlay/0.9.8/overlay-debug'),
-        mask = require('#overlay/0.9.8/mask-debug'),
-        Events = require('#events/0.9.1/events-debug');
+        Overlay = require('#overlay/0.9.9/overlay-debug'),
+        mask = require('#overlay/0.9.9/mask-debug'),
+        Events = require('#events/1.0.0/events-debug');
 
 
     // BaseDialog
@@ -16,26 +16,17 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#events/0.9.1/events-debu
         attrs: {
             // 对话框触发点
             trigger: null,
+
             // 对话框触发方式
             triggerType: 'click',
 
+            // 不用解释了吧
             zIndex: 999,
 
-            // 确定或提交按钮
-            confirmElement: null,
-            // 取消按钮
-            cancelElement: null,
-            // 关闭按钮
-            closeElement: null,
-
-            // 指定标题元素
-            titleElement: null,
             // 指定标题内容
             title: '',
 
             // 指定内容元素
-            contentElement: null,
-            // 指定内容的 html
             content: '',
 
             // 是否有背景遮罩层
@@ -53,17 +44,14 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#events/0.9.1/events-debu
 
             // 绑定额外的 dom 元素
             this.set('trigger', $(this.get('trigger')));
-            this.set('confirmElement', this.$(this.get('confirmElement')));
-            this.set('cancelElement', this.$(this.get('cancelElement')));
-            this.set('closeElement', this.$(this.get('closeElement')));
-            this.set('titleElement', this.$(this.get('titleElement')));
-            this.set('contentElement', this.$(this.get('contentElement')));
+            this.set('titleElement', this.$('[data-role=title] h2'));
+            this.set('contentElement', this.$('[data-role=content]'));
         },
 
         events : {
-            'click {{attrs.confirmElement}}' : '_confirmHandler',
-            'click {{attrs.cancelElement}}' : '_closeHandler',
-            'click {{attrs.closeElement}}' : '_closeHandler'
+            'click [data-role=confirm]' : '_confirmHandler',
+            'click [data-role=cancel]' : '_closeHandler',
+            'click [data-role=close]' : '_closeHandler'
         },
 
         _confirmHandler : function() {
@@ -80,9 +68,8 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#events/0.9.1/events-debu
 
         delegateEvents: function() {
             BaseDialog.superclass.delegateEvents.call(this);
-
             var that = this;
-            
+
             // 绑定触发对话框出现的事件
             this.get('trigger').bind(this.get('triggerType'), function(e) {
                 e.preventDefault();
