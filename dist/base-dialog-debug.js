@@ -1,9 +1,9 @@
-define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-debug", "#position/0.9.2/position-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "widget/1.0.0/widget-debug", "#overlay/0.9.9/mask-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
+define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug", "#overlay/0.9.9/mask-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Overlay = require('#overlay/0.9.9/overlay-debug'),
         mask = require('#overlay/0.9.9/mask-debug'),
-        Events = require('#events/1.0.0/events-debug');
+        Events = require('#events/0.9.1/events-debug');
 
 
     // BaseDialog
@@ -48,17 +48,17 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-de
             this.set('contentElement', this.$('[data-role=content]'));
         },
 
-        events : {
+        events: {
             'click [data-role=confirm]' : '_confirmHandler',
             'click [data-role=cancel]' : '_closeHandler',
             'click [data-role=close]' : '_closeHandler'
         },
 
-        _confirmHandler : function() {
+        _confirmHandler: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler : function() {
+        _closeHandler: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
@@ -71,12 +71,10 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-de
             var that = this;
 
             // 绑定触发对话框出现的事件
-            this.get('trigger').bind(this.get('triggerType'), function(e) {
+            this.get('trigger').on(this.get('triggerType'), function(e) {
                 e.preventDefault();
-                that.activeTrigger = this;
+                that.activeTrigger = this; 
                 that.show();
-                // 在ie下依然有bug，解决不了，先注释掉
-                //that.element.focus();
             });
 
             // 绑定确定和关闭事件到 dom 元素上，以供全局调用
@@ -86,15 +84,18 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-de
         },
 
         show: function() {
-            return BaseDialog.superclass.show.call(this);
+            BaseDialog.superclass.show.call(this);
+            this.element.focus();
+            return this;
         },
 
         hide: function() {
-            return BaseDialog.superclass.hide.call(this);            
+            return BaseDialog.superclass.hide.call(this);
         },
         
         setup: function() {
             this._setupMask();
+            this._setupKeyEvents();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
@@ -105,6 +106,18 @@ define("#dialog/0.9.0/base-dialog-debug", ["$-debug", "#overlay/0.9.9/overlay-de
             });
             this.before('hide', function() {
                 this.get('hasMask') && mask.hide();
+            });
+        },
+
+        _setupKeyEvents: function() {
+            var that = this;
+            $(this.element).on('keyup', function(e) {
+                if (e.keyCode === 27) {
+                    that._closeHandler();
+                }
+                else if (e.keyCode === 13) {
+                    that._confirmHandler();
+                }
             });
         },
 

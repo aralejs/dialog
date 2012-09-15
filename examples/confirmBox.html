@@ -6,10 +6,9 @@
 <title>Dialog</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+
 <script src="http://seajs.org/dist/sea.js"></script>
 <script src="http://aralejs.org/tools/seajs-helper.js"></script>
-
 
 <!--[if lt IE 9]>
 <script src="http://aralejs.org/assets/html5shiv.js"></script>
@@ -20,23 +19,22 @@
     <div class="container fn-clear">
 
     <a href="../" >Dialog</a>
-    <a href="../examples/" class="current">演示</a>
+    <a href="../examples/" class="current">Examples</a>
     
     
 
 
         <nav role="navigation" id="nav">
-            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
-            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
+            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
+            <a class="icon-github" href="https://github.com/aralejs/dialog">Code</a>
         </nav>
     </div>
 </header>
 
 <div id="main">
     <div class="container">
-<div class="document-body">
-  
-  <nav id="side-nav">
+
+<nav id="side-nav">
     
     <a href="../examples/animDialog.html">animDialog</a>
     
@@ -44,10 +42,9 @@
     
     <a href="../examples/index.html">index</a>
     
-  </nav>
-  
+</nav>
 
-  <div class="markdown-body">
+<div class="markdown-body">
     <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet"></p>
 
@@ -62,30 +59,6 @@
 <div class="cell">
     <input type="button" id="trigger11" value="默认样式对话框" />
 </div>
-
-<script>
-seajs.use(['confirm-box'], function(ConfirmBox) {
-    var d11 = new ConfirmBox({
-        trigger: '#trigger11',
-        title: function() {
-            return '我真是标题啊';
-        },
-        content: '我是内容 我是内容',
-        effect: {
-            type: 'move',
-            from: 'up'
-        },
-        onConfirm: function() {
-            var that = this;
-            this.set('title', '三秒后关闭对话框');
-            this.set('content', '不要啊！！');            
-            setTimeout(function() {
-                that.hide();
-            }, 3000);
-        }
-    });
-});
-</script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;confirm-box&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ConfirmBox</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">d11</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConfirmBox</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger11&#39;</span><span class="p">,</span>
@@ -109,6 +82,30 @@ seajs.use(['confirm-box'], function(ConfirmBox) {
 <span class="p">});</span>
 </pre></div>
 
+<script type="text/javascript">
+seajs.use(['confirm-box'], function(ConfirmBox) {
+    var d11 = new ConfirmBox({
+        trigger: '#trigger11',
+        title: function() {
+            return '我真是标题啊';
+        },
+        content: '我是内容 我是内容',
+        effect: {
+            type: 'move',
+            from: 'up'
+        },
+        onConfirm: function() {
+            var that = this;
+            this.set('title', '三秒后关闭对话框');
+            this.set('content', '不要啊！！');            
+            setTimeout(function() {
+                that.hide();
+            }, 3000);
+        }
+    });
+});
+</script>
+
 <ul>
 <li>ConfirmBox 的静态方法</li>
 </ul>
@@ -118,26 +115,6 @@ seajs.use(['confirm-box'], function(ConfirmBox) {
     <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
     <input type="button" id="trigger14" value="ConfirmBox.show()" />    
 </div>
-
-<script>
-seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
-    $('#trigger12').click(function() {
-        ConfirmBox.alert('静态方法ConfirmBox.alert');
-    });
-
-    $('#trigger13').click(function() {
-        ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
-            alert('点击了确定按钮');
-        }, function() {
-            alert('点击了取消按钮');            
-        });
-    });
-
-    $('#trigger14').click(function() {
-        ConfirmBox.show('只是显示一些信息，右上角关闭');
-    });
-});
-</script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;confirm-box&#39;</span><span class="p">,</span> <span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ConfirmBox</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trigger12&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">ConfirmBox</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;静态方法ConfirmBox.alert&#39;</span><span class="p">);</span>
@@ -157,12 +134,32 @@ seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
 <span class="p">});</span>
 </pre></div>
 
-  </div>
+<script type="text/javascript">
+seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
+    $('#trigger12').click(function() {
+        ConfirmBox.alert('静态方法ConfirmBox.alert');
+    });
+
+    $('#trigger13').click(function() {
+        ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
+            alert('点击了确定按钮');
+        }, function() {
+            alert('点击了取消按钮');            
+        });
+    });
+
+    $('#trigger14').click(function() {
+        ConfirmBox.show('只是显示一些信息，右上角关闭');
+    });
+});
+</script>
+
 </div>
 
     </div>
 </div>
 <hr class="end">
-<script src="http://aralejs.org/tools/nico-helper.js"></script>
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
 </body>
 </html>

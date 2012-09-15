@@ -48,17 +48,17 @@ define(function(require, exports, module) {
             this.set('contentElement', this.$('[data-role=content]'));
         },
 
-        events : {
+        events: {
             'click [data-role=confirm]' : '_confirmHandler',
             'click [data-role=cancel]' : '_closeHandler',
             'click [data-role=close]' : '_closeHandler'
         },
 
-        _confirmHandler : function() {
+        _confirmHandler: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler : function() {
+        _closeHandler: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
@@ -71,12 +71,10 @@ define(function(require, exports, module) {
             var that = this;
 
             // 绑定触发对话框出现的事件
-            this.get('trigger').bind(this.get('triggerType'), function(e) {
+            this.get('trigger').on(this.get('triggerType'), function(e) {
                 e.preventDefault();
-                that.activeTrigger = this;
+                that.activeTrigger = this; 
                 that.show();
-                // 在ie下依然有bug，解决不了，先注释掉
-                //that.element.focus();
             });
 
             // 绑定确定和关闭事件到 dom 元素上，以供全局调用
@@ -86,15 +84,18 @@ define(function(require, exports, module) {
         },
 
         show: function() {
-            return BaseDialog.superclass.show.call(this);
+            BaseDialog.superclass.show.call(this);
+            this.element.focus();
+            return this;
         },
 
         hide: function() {
-            return BaseDialog.superclass.hide.call(this);            
+            return BaseDialog.superclass.hide.call(this);
         },
         
         setup: function() {
             this._setupMask();
+            this._setupKeyEvents();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
@@ -105,6 +106,18 @@ define(function(require, exports, module) {
             });
             this.before('hide', function() {
                 this.get('hasMask') && mask.hide();
+            });
+        },
+
+        _setupKeyEvents: function() {
+            var that = this;
+            $(this.element).on('keyup', function(e) {
+                if (e.keyCode === 27) {
+                    that._closeHandler();
+                }
+                else if (e.keyCode === 13) {
+                    that._confirmHandler();
+                }
             });
         },
 

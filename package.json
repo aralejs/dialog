@@ -1,7 +1,7 @@
 {
     "name": "dialog",
     "root": "#",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "output": {
         "base-dialog.js": ["base-dialog.js"],
         "anim-dialog.js": ["anim-dialog.js"],
@@ -12,6 +12,6 @@
         "overlay": "overlay/0.9.9/overlay",
         "mask": "overlay/0.9.9/mask",
         "easing": "easing/1.0.0/easing",
-        "events": "events/1.0.0/events"
+        "events": "events/0.9.1/events"
     }
 }
