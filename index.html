@@ -6,6 +6,9 @@
 <title>Dialog</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<script src="http://seajs.org/dist/sea.js"></script>
+<script src="http://aralejs.org/tools/seajs-helper.js"></script>
 
 
 <!--[if lt IE 9]>
@@ -17,31 +20,33 @@
     <div class="container fn-clear">
 
     <a href="./"  class="current">Dialog</a>
-    <a href="./examples/" >Examples</a>
+    <a href="./examples/" >演示</a>
     
     
 
 
         <nav role="navigation" id="nav">
-            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
-            <a class="icon-github" href="https://github.com/aralejs/dialog">Code</a>
+            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
+            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
         </nav>
     </div>
 </header>
 
 <div id="main">
     <div class="container">
-
-<nav id="side-nav">
+<div class="document-body">
+  
+  <nav id="side-nav">
     <a href="./">README</a>
     
     <a href="./docs/animDialog.html">animDialog</a>
     
     <a href="./docs/confirmBox.html">confirmBox</a>
     
-</nav>
+  </nav>
+  
 
-<div class="markdown-body">
+  <div class="markdown-body">
     <h1>baseDialog</h1>
 <p>基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。</p>
 <p>继承自 arale.overlay 组件。</p>
@@ -94,12 +99,12 @@
 });</code></pre>
 <p>注意，需要用<code>data-role=&quot;title&quot;</code>这样的属性来标示 html 节点的作用，目前支持的 role 有<code>title</code>(标题节点)、<code>content</code>(内容节点)、<code>confirm</code>(确定按钮)、<code>cancel</code>(取消按钮)、<code>close</code>(关闭按钮)。</p>
 
+  </div>
 </div>
 
     </div>
 </div>
 <hr class="end">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+<script src="http://aralejs.org/tools/nico-helper.js"></script>
 </body>
 </html>

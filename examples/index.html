@@ -6,9 +6,10 @@
 <title>Dialog</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
 <script src="http://seajs.org/dist/sea.js"></script>
 <script src="http://aralejs.org/tools/seajs-helper.js"></script>
+
 
 <!--[if lt IE 9]>
 <script src="http://aralejs.org/assets/html5shiv.js"></script>
@@ -19,22 +20,23 @@
     <div class="container fn-clear">
 
     <a href="../" >Dialog</a>
-    <a href="../examples/" class="current">Examples</a>
+    <a href="../examples/" class="current">演示</a>
     
     
 
 
         <nav role="navigation" id="nav">
-            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
-            <a class="icon-github" href="https://github.com/aralejs/dialog">Code</a>
+            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
+            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
         </nav>
     </div>
 </header>
 
 <div id="main">
     <div class="container">
-
-<nav id="side-nav">
+<div class="document-body">
+  
+  <nav id="side-nav">
     
     <a href="../examples/animDialog.html">animDialog</a>
     
@@ -42,9 +44,10 @@
     
     <a href="../examples/index.html">index</a>
     
-</nav>
+  </nav>
+  
 
-<div class="markdown-body">
+  <div class="markdown-body">
     <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
@@ -88,6 +91,30 @@
         <!-- ui-confirmXbox end -->
     </div>
 </div>
+
+<script>
+seajs.use(['base-dialog'], function(BaseDialog) {
+    var d1 = new BaseDialog({
+        trigger: '#trigger1',
+        element: '#confirmBox',
+        width: 300,
+        title: '我是标题',
+        content: '我是内容',
+        onConfirm: function() {
+            alert('点击了确定按钮');
+        },
+        onClose: function() {
+            alert('点击了关闭按钮');
+        },
+        align: {
+            baseXY: [200, 200]
+        },
+        hasMask: true
+    });
+    d1.set('content', '改变的内容');
+    d1.set('width', 500);
+});
+</script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;base-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">BaseDialog</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BaseDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger1&#39;</span><span class="p">,</span>
@@ -111,36 +138,12 @@
 <span class="p">});</span>
 </pre></div>
 
-<script type="text/javascript">
-seajs.use(['base-dialog'], function(BaseDialog) {
-    var d1 = new BaseDialog({
-        trigger: '#trigger1',
-        element: '#confirmBox',
-        width: 300,
-        title: '我是标题',
-        content: '我是内容',
-        onConfirm: function() {
-            alert('点击了确定按钮');
-        },
-        onClose: function() {
-            alert('点击了关闭按钮');
-        },
-        align: {
-            baseXY: [200, 200]
-        },
-        hasMask: true
-    });
-    d1.set('content', '改变的内容');
-    d1.set('width', 500);
-});
-</script>
-
+  </div>
 </div>
 
     </div>
 </div>
 <hr class="end">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+<script src="http://aralejs.org/tools/nico-helper.js"></script>
 </body>
 </html>
