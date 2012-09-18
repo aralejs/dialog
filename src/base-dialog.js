@@ -94,6 +94,8 @@ define(function(require, exports, module) {
         },
         
         setup: function() {
+            BaseDialog.superclass.setup.call(this);
+
             this._setupMask();
             this._setupKeyEvents();
             toTabed(this.element);

@@ -9,9 +9,9 @@
     },
     "dependencies": {
         "$":"$",
-        "overlay": "overlay/0.9.9/overlay",
-        "mask": "overlay/0.9.9/mask",
+        "overlay": "overlay/0.9.10/overlay",
+        "mask": "overlay/0.9.10/mask",
         "easing": "easing/1.0.0/easing",
-        "events": "events/0.9.1/events"
+        "events": "events/1.0.0/events"
     }
 }
