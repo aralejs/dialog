@@ -9,39 +9,32 @@ define(function(require, exports, module) {
 
     var ConfirmBox = AnimDialog.extend({
 
-        template: '<div class="ui-confirmBox">\
-                    <div class="ui-confirmBox-action">\
-                        <a title="关闭" class="ui-confirmBox-close" href="javascript:;">×</a>\
-                    </div>\
-                    <div class="ui-confirmBox-box">\
-                        <div class="ui-confirmBox-title sl-linear-light"><h2></h2></div>\
-                        <div class="ui-confirmBox-container">\
-                            <div class="ui-confirmBox-content"></div>\
-                            <div class="ui-confirmBox-operation">\
-                                <div class="ui-button ui-button-sorange ui-confirmBox-confirm">\
-                                    <a href="javascript:;" class="ui-button-text">确定</a>\
-                                </div>\
-                                <div class="ui-button ui-button-swhite ui-confirmBox-cancel">\
-                                    <a href="javascript:;" class="ui-button-text">取消</a>\
+        attrs: {
+
+            // 默认模板，不要覆盖
+            template:
+                    '<div class="ui-xbox">\
+                        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
+                        <div class="ui-xbox-content">\
+                            <div class="ui-confirmXbox">\
+                                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
+                                <div class="ui-confirmXbox-container">\
+                                    <div class="ui-confirmXbox-content" data-role="content"></div>\
+                                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
+                                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                                        </div>\
+                                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
+                                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                                        </div>\
+                                    </div>\
                                 </div>\
                             </div>\
                         </div>\
-                    </div>\
-               </div>',
-
-        attrs: {
-            // 确定或提交按钮
-            confirmElement: '.ui-confirmBox-confirm',
-            // 取消按钮
-            cancelElement: '.ui-confirmBox-cancel',
-            // 关闭按钮
-            closeElement: '.ui-confirmBox-close',
-            // 指定标题元素
-            titleElement: '.ui-confirmBox-title h2',
+                    </div>',
+        
             // 指定标题内容
             title: '默认标题',
-            // 指定内容元素
-            contentElement: '.ui-confirmBox-content',
             // 指定内容的 html
             content: '默认内容',
 
@@ -64,54 +57,22 @@ define(function(require, exports, module) {
             AnimDialog.superclass.setup.call(this);
 
             if (!this.get('hasTitle')) {
-                this.$('.ui-confirmBox-title').remove();
+                this.$('[data-role=title]').remove();
             }
-            if (!this.get('hasOk') && this.get('confirmElement')) {
-                this.get('confirmElement').remove();
+            if (!this.get('hasOk')) {
+                this.$('[data-role=confirm]').remove();
             }
-            if (!this.get('hasCancel') && this.get('cancelElement')) {
-                this.get('cancelElement').remove();
+            if (!this.get('hasCancel')) {
+                this.$('[data-role=cancel]').remove();
             }
-            if (!this.get('hasCloseX') && this.get('closeElement')) {
-                this.get('closeElement').remove();
+            if (!this.get('hasCloseX')) {
+                this.$('[data-role=close]').remove();
             }
             if (!this.get('hasOk') && !this.get('hasCancel')) {
-                this.$('.ui-confirmBox-operation').remove();
+                this.$('[data-role=operation]').remove();
             }
         }
     });
-
-    ConfirmBox.message = function(content, time) {
-        var cb = new ConfirmBox({
-            content: content,
-            className: 'ui-confirmBox-message',
-            hasTitle: false,
-            hasOk: false,
-            hasCancel: false,
-            hasCloseX: false,
-            hasMask: false,
-            effect: {
-                type: 'slide'
-            },
-            width: 'auto',
-            align: {
-                selfXY: ['50%', '0%'],
-                baseXY: ['50%', '0%']
-            }
-        }).show();
-
-        // 模拟 fixed 效果
-        $(window).resize(function() {
-            cb.set('align', cb.get('align'));
-        }).scroll(function() {
-            cb.set('align', cb.get('align'));
-        });
-        
-        // 四秒后自动隐藏
-        setTimeout(function() {
-            cb.hide();
-        }, time || 4000);
-    };
 
     ConfirmBox.alert = function(content, callback) {
         new ConfirmBox({
@@ -137,6 +98,20 @@ define(function(require, exports, module) {
             },
             onClose: function() {
                 cancelCb && cancelCb();            
+            }
+        }).show();
+    };
+
+    ConfirmBox.show = function(content, callback) {
+        new ConfirmBox({
+            content: content,
+            hasTitle: false,
+            hasOk: false,            
+            hasCancel: false,
+            hasCloseX: true,
+            onConfirm: function() {
+                callback && callback();
+                this.hide();
             }
         }).show();
     };

@@ -16,26 +16,17 @@ define(function(require, exports, module) {
         attrs: {
             // 对话框触发点
             trigger: null,
+
             // 对话框触发方式
             triggerType: 'click',
 
+            // 不用解释了吧
             zIndex: 999,
 
-            // 确定或提交按钮
-            confirmElement: null,
-            // 取消按钮
-            cancelElement: null,
-            // 关闭按钮
-            closeElement: null,
-
-            // 指定标题元素
-            titleElement: null,
             // 指定标题内容
             title: '',
 
             // 指定内容元素
-            contentElement: null,
-            // 指定内容的 html
             content: '',
 
             // 是否有背景遮罩层
@@ -53,24 +44,21 @@ define(function(require, exports, module) {
 
             // 绑定额外的 dom 元素
             this.set('trigger', $(this.get('trigger')));
-            this.set('confirmElement', this.$(this.get('confirmElement')));
-            this.set('cancelElement', this.$(this.get('cancelElement')));
-            this.set('closeElement', this.$(this.get('closeElement')));
-            this.set('titleElement', this.$(this.get('titleElement')));
-            this.set('contentElement', this.$(this.get('contentElement')));
+            this.set('titleElement', this.$('[data-role=title] h2'));
+            this.set('contentElement', this.$('[data-role=content]'));
         },
 
-        events : {
-            'click {{attrs.confirmElement}}' : '_confirmHandler',
-            'click {{attrs.cancelElement}}' : '_closeHandler',
-            'click {{attrs.closeElement}}' : '_closeHandler'
+        events: {
+            'click [data-role=confirm]' : '_confirmHandler',
+            'click [data-role=cancel]' : '_closeHandler',
+            'click [data-role=close]' : '_closeHandler'
         },
 
-        _confirmHandler : function() {
+        _confirmHandler: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler : function() {
+        _closeHandler: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
@@ -80,16 +68,13 @@ define(function(require, exports, module) {
 
         delegateEvents: function() {
             BaseDialog.superclass.delegateEvents.call(this);
-
             var that = this;
-            
+
             // 绑定触发对话框出现的事件
-            this.get('trigger').bind(this.get('triggerType'), function(e) {
+            this.get('trigger').on(this.get('triggerType'), function(e) {
                 e.preventDefault();
-                that.activeTrigger = this;
+                that.activeTrigger = this; 
                 that.show();
-                // 在ie下依然有bug，解决不了，先注释掉
-                //that.element.focus();
             });
 
             // 绑定确定和关闭事件到 dom 元素上，以供全局调用
@@ -99,15 +84,20 @@ define(function(require, exports, module) {
         },
 
         show: function() {
-            return BaseDialog.superclass.show.call(this);
+            BaseDialog.superclass.show.call(this);
+            this.element.focus();
+            return this;
         },
 
         hide: function() {
-            return BaseDialog.superclass.hide.call(this);            
+            return BaseDialog.superclass.hide.call(this);
         },
         
         setup: function() {
+            BaseDialog.superclass.setup.call(this);
+
             this._setupMask();
+            this._setupKeyEvents();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
@@ -118,6 +108,18 @@ define(function(require, exports, module) {
             });
             this.before('hide', function() {
                 this.get('hasMask') && mask.hide();
+            });
+        },
+
+        _setupKeyEvents: function() {
+            var that = this;
+            $(this.element).on('keyup', function(e) {
+                if (e.keyCode === 27) {
+                    that._closeHandler();
+                }
+                else if (e.keyCode === 13) {
+                    that._confirmHandler();
+                }
             });
         },
 

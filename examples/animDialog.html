@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>Dialog</title>
+<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<script src="http://seajs.org/dist/sea.js"></script>
+<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+
+
+<!--[if lt IE 9]>
+<script src="http://aralejs.org/assets/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="container fn-clear">
+
+    <a href="../" >Dialog</a>
+    <a href="../examples/" class="current">演示</a>
+    
+    
+
+
+        <nav role="navigation" id="nav">
+            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
+            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
+        </nav>
+    </div>
+</header>
+
+<div id="main">
+    <div class="container">
+<div class="document-body">
+  
+  <nav id="side-nav">
+    
+    <a href="../examples/animDialog.html">animDialog</a>
+    
+    <a href="../examples/confirmBox.html">confirmBox</a>
+    
+    <a href="../examples/index.html">index</a>
+    
+  </nav>
+  
+
+  <div class="markdown-body">
+    <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<style>
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
+</style></p>
+
+<div class="ui-xbox fn-hide" id="confirmBox">
+    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
+    <div class="ui-xbox-content">
+        <!-- ui-confirmXbox -->
+        <div class="ui-confirmXbox fn-clear">
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
+                <h2>测试标题</h2>
+            </div>
+            <div class="ui-confirmXbox-container">
+                <div class="ui-confirmXbox-content" data-role="content">
+                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
+                </div>
+                <div class="ui-confirmXbox-operation">
+                    <div class="ui-button ui-button-sorange" data-role="confirm">
+                        <a href="javascript:;" class="ui-button-text">确定</a>
+                    </div>
+                    <div class="ui-button ui-button-swhite" data-role="cancel">
+                        <a href="javascript:;" class="ui-button-text">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ui-confirmXbox end -->
+    </div>
+</div>
+
+<h2>AnimDialog: 动画对话框组件</h2>
+
+<ul>
+<li>淡入淡出对话框: fade</li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger2" value="点击打开对话框" />
+</div>
+
+<script>
+var template =  
+    '<div class="ui-xbox">\
+        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
+        <div class="ui-xbox-content">\
+            <div class="ui-confirmXbox">\
+                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2>我是标题</h2></div>\
+                <div class="ui-confirmXbox-container">\
+                    <div class="ui-confirmXbox-content" data-role="content">我是内容</div>\
+                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
+                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                        </div>\
+                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
+                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>';
+
+seajs.use(['anim-dialog'], function(AnimDialog) {
+    var d2 = new AnimDialog({
+        trigger: '#trigger2',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'fade'
+        }
+    });
+});
+</script>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span>  
+    <span class="s1">&#39;&lt;div class=&quot;ui-xbox&quot;&gt;\</span>
+<span class="s1">        &lt;div class=&quot;ui-xbox-action&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;ui-xbox-close&quot; data-role=&quot;close&quot; title=&quot;关闭&quot;&gt;×&lt;/a&gt;&lt;/div&gt;\</span>
+<span class="s1">        &lt;div class=&quot;ui-xbox-content&quot;&gt;\</span>
+<span class="s1">            &lt;div class=&quot;ui-confirmXbox&quot;&gt;\</span>
+<span class="s1">                &lt;div class=&quot;ui-confirmXbox-title sl-linear-light&quot; data-role=&quot;title&quot;&gt;&lt;h2&gt;我是标题&lt;/h2&gt;&lt;/div&gt;\</span>
+<span class="s1">                &lt;div class=&quot;ui-confirmXbox-container&quot;&gt;\</span>
+<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-content&quot; data-role=&quot;content&quot;&gt;我是内容&lt;/div&gt;\</span>
+<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-operation&quot; data-role=&quot;operation&quot;&gt;\</span>
+<span class="s1">                        &lt;div class=&quot;ui-button ui-button-sorange ui-confirmXbox-confirm&quot; data-role=&quot;confirm&quot;&gt;\</span>
+<span class="s1">                            &lt;a href=&quot;javascript:;&quot; class=&quot;ui-button-text&quot;&gt;确定&lt;/a&gt;\</span>
+<span class="s1">                        &lt;/div&gt;\</span>
+<span class="s1">                        &lt;div class=&quot;ui-button ui-button-swhite ui-confirmXbox-cancel&quot; data-role=&quot;cancel&quot;&gt;\</span>
+<span class="s1">                            &lt;a href=&quot;javascript:;&quot; class=&quot;ui-button-text&quot;&gt;取消&lt;/a&gt;\</span>
+<span class="s1">                        &lt;/div&gt;\</span>
+<span class="s1">                    &lt;/div&gt;\</span>
+<span class="s1">                &lt;/div&gt;\</span>
+<span class="s1">            &lt;/div&gt;\</span>
+<span class="s1">        &lt;/div&gt;\</span>
+<span class="s1">    &lt;/div&gt;&#39;</span><span class="p">;</span>
+
+<span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger2&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;fade&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<ul>
+<li>展开对话框: slide</li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger3" value="水平展开对话框" />
+    <input type="button" id="trigger4" value="垂直展开对话框" />    
+</div>
+
+<script>
+seajs.use(['anim-dialog'], function(AnimDialog) {
+    var d3 = new AnimDialog({
+        trigger: '#trigger3',
+        template: template,
+        width: 500,
+        height: 150,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'slide',
+            from: 'left'
+        }
+    });
+    var d4 = new AnimDialog({
+        trigger: '#trigger4',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'slide',
+            from: 'up'
+        }
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger3&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">150</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;slide&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;left&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">d4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger4&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;slide&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;up&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<ul>
+<li>移入移出对话框: move</li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger5" value="从左移入对话框" />
+    <input type="button" id="trigger6" value="从右移入对话框" />
+    <input type="button" id="trigger7" value="从上移入对话框" />
+    <input type="button" id="trigger8" value="从下移入对话框" />
+</div>
+
+<script>
+seajs.use(['anim-dialog'], function(AnimDialog) {
+    var d5 = new AnimDialog({
+        trigger: '#trigger5',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'move',
+            from: 'left'
+        }
+    });
+    var d6 = new AnimDialog({
+        trigger: '#trigger6',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'move',
+            from: 'right'
+        }
+    });
+    var d7 = new AnimDialog({
+        trigger: '#trigger7',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'move',
+            from: 'up'
+        }
+    });
+    var d8 = new AnimDialog({
+        trigger: '#trigger8',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        effect: {
+            type: 'move',
+            from: 'down'
+        }
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger5&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;left&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">d6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger6&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">d7</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger7&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;up&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">d8</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger8&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;down&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<ul>
+<li>混合动画对话框</li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger9" value="混合动画对话框一" />
+    <input type="button" id="trigger10" value="混合动画对话框二" />
+</div>
+
+<script>
+seajs.use(['anim-dialog'], function(AnimDialog) {
+    var d9 = new AnimDialog({
+        trigger: '#trigger9',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        showEffect: {
+            type: 'move',
+            from: 'down'
+        },
+        hideEffect: {
+            type: 'fade'
+        }
+    });
+    var d10 = new AnimDialog({
+        trigger: '#trigger10',
+        template: template,
+        width: 500,
+        align: {
+            baseXY: [400, 200]
+        },
+        showEffect: {
+            type: 'none'
+        },
+        hideEffect: {
+            type: 'move',
+            from: 'left'
+        }
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d9</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger9&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">showEffect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;down&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">hideEffect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;fade&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">d10</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger10&#39;</span><span class="p">,</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">showEffect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">hideEffect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;left&#39;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+  </div>
+</div>
+
+    </div>
+</div>
+<hr class="end">
+<script src="http://aralejs.org/tools/nico-helper.js"></script>
+</body>
+</html>

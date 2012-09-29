@@ -1,8 +1,8 @@
-define("#dialog/0.9.0/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "#events/0.9.1/events-debug", "#overlay/0.9.8/mask-debug", "#overlay/0.9.8/overlay-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#class/0.9.2/class-debug", "#easing/0.9.3/easing-debug"], function(require, exports, module) {
+define("#dialog/0.9.1/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "#overlay/0.9.10/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "position/1.0.0/position-debug", "#widget/1.0.0/widget-debug", "#base/1.0.0/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#easing/1.0.0/easing-debug", "#overlay/0.9.10/mask-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Overlay = require('#overlay/0.9.8/overlay-debug'),
-        easing = require('#easing/0.9.3/easing-debug'),
+        Overlay = require('#overlay/0.9.10/overlay-debug'),
+        easing = require('#easing/1.0.0/easing-debug'),
         BaseDialog = require('./base-dialog-debug');
 
     // AnimDialog
@@ -40,11 +40,11 @@ define("#dialog/0.9.0/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "#e
 
             // 无动画
             if (ef.type === 'none') {
-                elem.show();
+                elem.show().focus();
             }
             // 淡入淡出
             else if (ef.type === 'fade') {
-                elem.hide().fadeIn(ef.duration, ef.easing);
+                elem.hide().fadeIn(ef.duration, ef.easing).focus();
             }
             // 滑动
             else if (ef.type === 'slide') {
@@ -54,13 +54,14 @@ define("#dialog/0.9.0/anim-dialog-debug", ["./base-dialog-debug", "$-debug", "#e
                 elem.hide().animate(properties, {
                     duration: ef.duration,
                     easing: ef.easing
-                });
+                }).focus();
             }
             // 移动
             else if (ef.type === 'move') {
                 // 避免当 elem.focus() 时的一个诡异的定位 bug
                 // http://jsfiddle.net/ukKfH/1/
                 elem.removeAttr('tabindex');
+                elem.blur();
                 
                 // 确保目标元素为 block 对象，以便创建窗口层
                 elem.css({ display:'block' });

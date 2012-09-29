@@ -40,11 +40,11 @@ define(function(require, exports, module) {
 
             // 无动画
             if (ef.type === 'none') {
-                elem.show();
+                elem.show().focus();
             }
             // 淡入淡出
             else if (ef.type === 'fade') {
-                elem.hide().fadeIn(ef.duration, ef.easing);
+                elem.hide().fadeIn(ef.duration, ef.easing).focus();
             }
             // 滑动
             else if (ef.type === 'slide') {
@@ -54,13 +54,14 @@ define(function(require, exports, module) {
                 elem.hide().animate(properties, {
                     duration: ef.duration,
                     easing: ef.easing
-                });
+                }).focus();
             }
             // 移动
             else if (ef.type === 'move') {
                 // 避免当 elem.focus() 时的一个诡异的定位 bug
                 // http://jsfiddle.net/ukKfH/1/
                 elem.removeAttr('tabindex');
+                elem.blur();
                 
                 // 确保目标元素为 block 对象，以便创建窗口层
                 elem.css({ display:'block' });

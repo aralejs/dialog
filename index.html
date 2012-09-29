@@ -6,6 +6,9 @@
 <title>Dialog</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
+<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
+<script src="http://seajs.org/dist/sea.js"></script>
+<script src="http://aralejs.org/tools/seajs-helper.js"></script>
 
 
 <!--[if lt IE 9]>
@@ -17,22 +20,33 @@
     <div class="container fn-clear">
 
     <a href="./"  class="current">Dialog</a>
-    <a href="./examples/" >Examples</a>
+    <a href="./examples/" >演示</a>
     
     
 
 
         <nav role="navigation" id="nav">
-            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
-            <a class="icon-github" href="https://github.com/aralejs/dialog">Code</a>
+            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
+            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
         </nav>
     </div>
 </header>
 
 <div id="main">
     <div class="container">
+<div class="document-body">
+  
+  <nav id="side-nav">
+    <a href="./">README</a>
+    
+    <a href="./docs/animDialog.html">animDialog</a>
+    
+    <a href="./docs/confirmBox.html">confirmBox</a>
+    
+  </nav>
+  
 
-<div class="markdown-body">
+  <div class="markdown-body">
     <h1>baseDialog</h1>
 <p>基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。</p>
 <p>继承自 arale.overlay 组件。</p>
@@ -55,18 +69,8 @@
 <p>对话框触发点。</p></li>
 <li><p><code>triggerType</code> : {string}</p>
 <p>对话框触发方式，可选 click|hover|focus ，默认为click。</p></li>
-<li><p><code>confirmElement</code> : {element|$}</p>
-<p>确定或提交按钮。</p></li>
-<li><p><code>cancelElement</code> : {element|$}</p>
-<p>取消按钮。</p></li>
-<li><p><code>closeElement</code> : {element|$}</p>
-<p>关闭按钮。</p></li>
-<li><p><code>titleElement</code> : {string}</p>
-<p>指定标题元素。</p></li>
 <li><p><code>title</code> : {string|function}</p>
 <p>指定标题内容。</p></li>
-<li><p><code>contentElement</code> : {string}</p>
-<p>指定内容元素。</p></li>
 <li><p><code>content</code> : {string|function}</p>
 <p>指定内容的html。</p></li>
 <li><p><code>onConfirm</code> : {function}</p>
@@ -88,74 +92,19 @@
     template: '&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;/div&gt;',
     width: 300,
     height: 200,
-    closeElement: '#close',
     position: {
         baseXY: [100, 100]
     },
     hasMask: true
 });</code></pre>
+<p>注意，需要用<code>data-role=&quot;title&quot;</code>这样的属性来标示 html 节点的作用，目前支持的 role 有<code>title</code>(标题节点)、<code>content</code>(内容节点)、<code>confirm</code>(确定按钮)、<code>cancel</code>(取消按钮)、<code>close</code>(关闭按钮)。</p>
 
-<h2>animDialog 动画对话框</h2>
-<p>animDialog 对话框组件，提供了对话框弹出的动画效果。目前支持的动画效果有四种：无动画，渐隐，滑动，移动。</p>
-<p>继承自 arale.baseDialog 组件。</p>
-
-<ul>
-<li><p><code>effect</code> : {object}</p>
-<p>显隐效果配置，形似</p>
-
-<pre><code>{
-    type: 'move',       // 动画种类，可选 none|fade|slide|move
-    duration: 400,      // 动画时长
-    from: 'up',         // 动画方向，当 type 为 slide|move 时有效
-    easing: 'easeOut'   // 支持常用的平滑函数
-}</code></pre></li>
-<li><p><code>showEffect</code> : {object}</p>
-<p>显示时的动画效果，若设为 null，则表示动画种类为 none。</p></li>
-<li><p><code>hideHffect</code> : {object}</p>
-<p>隐藏时的动画效果，若设为 null，则表示动画种类为 none。</p></li>
-</ul>
-
-<h2>confirmBox 对话框</h2>
-<p>confirmBox 是具有默认样式和完善功能的对话框，可直接使用。</p>
-<p>继承自 arale.animDialog 组件。</p>
-
-<ul>
-<li><p><code>hasTitle</code> : {boolean}</p>
-<p>是否显示标题栏，默认为 true。</p></li>
-<li><p><code>hasOk</code> : {boolean}</p>
-<p>是否显示确定按钮，默认为 true。</p></li>
-<li><p><code>hasCancel</code> : {boolean}</p>
-<p>是否显示取消按钮，默认为 true。</p></li>
-<li><p><code>hasCloseX</code> : {boolean}</p>
-<p>是否显示关闭 X 按钮，默认为 true。</p></li>
-</ul>
-<p>进行如下调用即可在页面中央显示一个对话框。</p>
-
-<pre><code>new ConfirmBox({
-    trigger: '#trigger',
-    title: '我是标题',
-    content: '我是内容',
-    onConfirm: function() {            
-        this.hide();
-    }
-}).show();</code></pre>
-<p>组件还提供下面三个静态方法，方便调用。</p>
-
-<ul>
-<li><p><code>ConfirmBox.alert(msg, callback)</code></p>
-<p>弹出信息确认框。</p></li>
-<li><p><code>ConfirmBox.confirm(msg, title, confirmCallback, cancelCallback)</code></p>
-<p>弹出信息确认取消框。</p></li>
-<li><p><code>ConfirmBox.message(msg, time)</code></p>
-<p>在页面顶部弹出提示条，默认四秒后自动消失。</p></li>
-</ul>
-
+  </div>
 </div>
 
     </div>
 </div>
 <hr class="end">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+<script src="http://aralejs.org/tools/nico-helper.js"></script>
 </body>
 </html>
