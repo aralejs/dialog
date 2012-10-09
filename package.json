@@ -2,6 +2,7 @@
     "name": "dialog",
     "root": "#",
     "version": "0.9.1",
+    "tag": "widget",
     "output": {
         "base-dialog.js": ["base-dialog.js"],
         "anim-dialog.js": ["anim-dialog.js"],
