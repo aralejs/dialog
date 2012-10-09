@@ -66,42 +66,39 @@ define(function(require, exports, module) {
             this.get('trigger').focus();
         },
 
-        delegateEvents: function() {
-            BaseDialog.superclass.delegateEvents.call(this);
-            var that = this;
-
-            // 绑定触发对话框出现的事件
-            this.get('trigger').on(this.get('triggerType'), function(e) {
-                e.preventDefault();
-                that.activeTrigger = this; 
-                that.show();
-            });
-
-            // 绑定确定和关闭事件到 dom 元素上，以供全局调用
-            Events.mixTo(this.element[0]);
-            this.element[0].on('confirm', this._confirmHandler, this);
-            this.element[0].on('close cancel', this._closeHandler, this); 
-        },
-
         show: function() {
             BaseDialog.superclass.show.call(this);
             this.element.focus();
             return this;
         },
 
-        hide: function() {
-            return BaseDialog.superclass.hide.call(this);
+        destroy: function() {
+            this.get('trigger').off(this.get('triggerType'));
+            return BaseDialog.superclass.destroy.call(this);            
         },
-        
+
         setup: function() {
             BaseDialog.superclass.setup.call(this);
 
+            this._setupTrigger();
             this._setupMask();
             this._setupKeyEvents();
+            this._setupGlobalHandler();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
 
+        // 绑定触发对话框出现的事件
+        _setupTrigger: function() {
+            var that = this;
+            this.get('trigger').on(this.get('triggerType'), function(e) {
+                e.preventDefault();
+                that.activeTrigger = this; 
+                that.show();
+            });
+        },
+
+        // 绑定遮罩层事件
         _setupMask: function() {
             this.before('show', function() {
                 this.get('hasMask') && mask.show();
@@ -111,6 +108,7 @@ define(function(require, exports, module) {
             });
         },
 
+        // 绑定键盘事件，ESC关闭窗口，回车确定
         _setupKeyEvents: function() {
             var that = this;
             $(this.element).on('keyup', function(e) {
@@ -121,6 +119,15 @@ define(function(require, exports, module) {
                     that._confirmHandler();
                 }
             });
+        },
+
+        // 绑定确定和关闭事件到 dom 元素上，以供全局调用
+        // 这样在拿不到实例对象时也可以调用关闭和确定方法
+        // $('#dialog').trigger('close');
+        _setupGlobalHandler: function() {
+            Events.mixTo(this.element[0]);
+            this.element[0].on('confirm', this._confirmHandler, this);
+            this.element[0].on('close cancel', this._closeHandler, this);
         },
 
         _onRenderTitle: function(val) {
