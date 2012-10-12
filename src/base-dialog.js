@@ -110,13 +110,12 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口，回车确定
         _setupKeyEvents: function() {
-            var that = this;
-            $(this.element).on('keyup', function(e) {
+            this.delegateEvents('keyup', function(e) {
                 if (e.keyCode === 27) {
-                    that._closeHandler();
+                    this._closeHandler();
                 }
                 else if (e.keyCode === 13) {
-                    that._confirmHandler();
+                    this._confirmHandler();
                 }
             });
         },
