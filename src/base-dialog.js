@@ -3,7 +3,9 @@ define(function(require, exports, module) {
     var $ = require('$'),
         Overlay = require('overlay'),
         mask = require('mask'),
-        Events = require('events');
+        Events = require('events'),
+        
+        TRIGGER_EVENT_NS = '.trigger-events-';
 
 
     // BaseDialog
@@ -73,7 +75,7 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            this.get('trigger').off(this.get('triggerType'));
+            this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
             return BaseDialog.superclass.destroy.call(this);            
         },
 
@@ -91,7 +93,7 @@ define(function(require, exports, module) {
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
             var that = this;
-            this.get('trigger').on(this.get('triggerType'), function(e) {
+            this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 that.activeTrigger = this; 
                 that.show();
