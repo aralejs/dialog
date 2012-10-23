@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <title>Dialog - None</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <title>Dialog - ConfirmBox: 带有默认样式的对话框演示</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
     <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
     <script src="http://seajs.org/dist/sea.js"></script>
     <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
@@ -37,8 +37,125 @@
     <div id="main">
       <div class="container fn-clear">
 <div class="markdown-body">
-  <h1 class="entry-title"><a id="back-to-module" href="../">Dialog</a> - None</h1>
-  
+  <h1 class="entry-title"><a id="back-to-module" href="../">Dialog</a> - ConfirmBox: 带有默认样式的对话框演示</h1>
+  <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<style>
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
+</style></p>
+
+<h2 id="toc_0">ConfirmBox: 带有默认样式的对话框</h2>
+<p>需要载入样式<code>ui-confirmXbox</code>和<code>ui-xbox</code>。</p>
+
+<ul>
+<li><a href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css">dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css</a></li>
+<li><a href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css">dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css</a></li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger11" value="默认样式对话框" />
+</div>
+
+<script>
+seajs.use(['confirm-box'], function(ConfirmBox) {
+    var d11 = new ConfirmBox({
+        trigger: '#trigger11',
+        title: function() {
+            return '我真是标题啊';
+        },
+        content: '我是内容 我是内容',
+        effect: {
+            type: 'move',
+            from: 'up'
+        },
+        onConfirm: function() {
+            var that = this;
+            this.set('title', '三秒后关闭对话框');
+            this.set('content', '不要啊！！');            
+            setTimeout(function() {
+                that.hide();
+            }, 3000);
+        }
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;confirm-box&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ConfirmBox</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d11</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConfirmBox</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger11&#39;</span><span class="p">,</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">&#39;我真是标题啊&#39;</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">content</span><span class="o">:</span> <span class="s1">&#39;我是内容 我是内容&#39;</span><span class="p">,</span>
+        <span class="nx">effect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">,</span>
+            <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;up&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">onConfirm</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;三秒后关闭对话框&#39;</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;不要啊！！&#39;</span><span class="p">);</span>            
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">that</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+            <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<ul>
+<li>ConfirmBox 的静态方法</li>
+</ul>
+
+<div class="cell">
+    <input type="button" id="trigger12" value="ConfirmBox.alert()" />    
+    <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
+    <input type="button" id="trigger14" value="ConfirmBox.show()" />    
+</div>
+
+<script>
+seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
+    $('#trigger12').click(function() {
+        ConfirmBox.alert('静态方法ConfirmBox.alert');
+    });
+
+    $('#trigger13').click(function() {
+        ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
+            alert('点击了确定按钮');
+        }, function() {
+            alert('点击了取消按钮');            
+        });
+    });
+
+    $('#trigger14').click(function() {
+        ConfirmBox.show('只是显示一些信息，右上角关闭');
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;confirm-box&#39;</span><span class="p">,</span> <span class="s1">&#39;jquery&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ConfirmBox</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trigger12&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ConfirmBox</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;静态方法ConfirmBox.alert&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trigger13&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ConfirmBox</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;静态方法ConfirmBox.confirm&#39;</span><span class="p">,</span> <span class="s1">&#39;自定义标题&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;点击了确定按钮&#39;</span><span class="p">);</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;点击了取消按钮&#39;</span><span class="p">);</span>            
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trigger14&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ConfirmBox</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;只是显示一些信息，右上角关闭&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
 </div>
 <div class="sidebar sidebar-components"></div>
       </div>

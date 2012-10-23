@@ -65,7 +65,7 @@ define(function(require, exports, module) {
             this.hide();
             // 关于网页中浮层消失后的焦点处理
             // http://www.qt06.com/post/280/
-            this.activeTrigger.focus();
+            this.activeTrigger && this.activeTrigger.focus();
         },
 
         show: function() {
@@ -104,7 +104,7 @@ define(function(require, exports, module) {
             this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this); 
+                that.activeTrigger = $(this);
                 that.show();
             });
         },

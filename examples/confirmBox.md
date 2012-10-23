@@ -1,5 +1,20 @@
+# ConfirmBox: 带有默认样式的对话框演示
+
+- order: 3
+
+---
+
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<style>
+.ui-confirmXbox h2 {
+    margin:0;
+    padding:0;
+    margin-left:20px;
+    border:none;
+    font-size:16px;
+}
+</style>
 
 ## ConfirmBox: 带有默认样式的对话框
 

@@ -1,22 +1,13 @@
 
-# baseDialog
+# Dialog
 
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
-继承自 arale.overlay 组件。
-
 ---
 
+下面是`base-dialog`是的说明文档。
 
-## 模块依赖
-
- - [seajs](seajs/README.md)
- - [jquery](jquery/README.md)
- - [overlay](overlay/README.md)
- - [easing](easing/README.md)
-
-
-## 配置说明
+## API
 
 * `trigger` : {element}
 

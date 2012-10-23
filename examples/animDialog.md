@@ -1,3 +1,9 @@
+# AnimDialog: 动画对话框演示
+
+- order: 2
+
+---
+
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
@@ -15,14 +21,14 @@
     <div class="ui-xbox-content">
         <!-- ui-confirmXbox -->
         <div class="ui-confirmXbox fn-clear">
-            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
-                <h2>测试标题</h2>
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
+                <h2 data-role="title">测试标题</h2>
             </div>
             <div class="ui-confirmXbox-container">
                 <div class="ui-confirmXbox-content" data-role="content">
                     <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
                 </div>
-                <div class="ui-confirmXbox-operation">
+                <div class="ui-confirmXbox-foot">
                     <div class="ui-button ui-button-sorange" data-role="confirm">
                         <a href="javascript:;" class="ui-button-text">确定</a>
                     </div>
@@ -36,9 +42,7 @@
     </div>
 </div>
 
-## AnimDialog: 动画对话框组件
-
-* 淡入淡出对话框: fade
+## 淡入淡出对话框: fade
 
 <div class="cell">
     <input type="button" id="trigger2" value="点击打开对话框" />
@@ -50,10 +54,10 @@ var template =
         <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
         <div class="ui-xbox-content">\
             <div class="ui-confirmXbox">\
-                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2>我是标题</h2></div>\
+                <div class="ui-confirmXbox-title sl-linear-light" data-role="head"><h2 data-role="title">我是标题</h2></div>\
                 <div class="ui-confirmXbox-container">\
                     <div class="ui-confirmXbox-content" data-role="content">我是内容</div>\
-                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                    <div class="ui-confirmXbox-foot" data-role="foot">\
                         <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
                             <a href="javascript:;" class="ui-button-text">确定</a>\
                         </div>\
@@ -67,6 +71,7 @@ var template =
     </div>';
 
 seajs.use(['anim-dialog'], function(AnimDialog) {
+    console.log(AnimDialog);
     var d2 = new AnimDialog({
         trigger: '#trigger2',
         template: template,
@@ -81,7 +86,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 ````
 
-* 展开对话框: slide
+## 展开对话框: slide
 
 <div class="cell">
     <input type="button" id="trigger3" value="水平展开对话框" />
@@ -118,7 +123,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 ````
 
-* 移入移出对话框: move
+## 移入移出对话框: move
 
 <div class="cell">
     <input type="button" id="trigger5" value="从左移入对话框" />
@@ -180,7 +185,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 });
 ````
 
-* 混合动画对话框
+## 混合动画对话框
 
 <div class="cell">
     <input type="button" id="trigger9" value="混合动画对话框一" />

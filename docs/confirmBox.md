@@ -1,15 +1,19 @@
-## confirmBox 对话框
+# ConfirmBox 使用文档
 
-confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
+- order: 2
 
-继承自 arale.animDialog 组件。
+---
 
-需要载入样式`ui-confirmXbox`和`ui-xbox`。
+> confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
+
+> 继承自 anim-dialog 组件。
+
+> 需要载入样式`ui-confirmXbox`和`ui-xbox`。
 
 * http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
 * http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
 
-## 配置说明
+## API
 
 * `hasTitle` : {boolean}
 

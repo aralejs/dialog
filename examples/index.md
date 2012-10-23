@@ -1,4 +1,6 @@
-# BaseDialog: 基础对话框组件
+# BaseDialog: 基础对话框演示
+
+- order: 1
 
 ---
 
@@ -70,8 +72,8 @@ seajs.use(['base-dialog'], function(BaseDialog) {
 
 ## 动态的 title 和 content
 
-<input type="button" class="trigger2" value="动态1" />
-<input type="button" class="trigger2" value="动态2" />
+<input type="button" class="trigger2" value="这是按钮一" />
+<input type="button" class="trigger2" value="这是按钮二" />
 
 <div class="ui-xbox fn-hide" id="confirmBox2">
     <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
@@ -106,10 +108,10 @@ seajs.use(['base-dialog'], function(BaseDialog) {
         element: '#confirmBox2',
         width: 300,
         title: function() {
-            return this.activeTrigger.val() + ' 标题';
+            return this.activeTrigger.val() + '的标题';
         },
         content: function() {
-            return this.activeTrigger.val() + ' 内容';
+            return this.activeTrigger.val() + '的内容';
         },
         align: {
             baseXY: [200, 200]
