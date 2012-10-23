@@ -1,9 +1,11 @@
-define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.10/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "position/1.0.0/position-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#overlay/0.9.10/mask-debug"], function(require, exports, module) {
+define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#overlay/0.9.11/mask-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Overlay = require('#overlay/0.9.10/overlay-debug'),
-        mask = require('#overlay/0.9.10/mask-debug'),
-        Events = require('#events/1.0.0/events-debug');
+        Overlay = require('#overlay/0.9.11/overlay-debug'),
+        mask = require('#overlay/0.9.11/mask-debug'),
+        Events = require('#events/1.0.0/events-debug'),
+        
+        TRIGGER_EVENT_NS = '.trigger-events-';
 
 
     // BaseDialog
@@ -44,37 +46,46 @@ define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.10/overlay-d
 
             // 绑定额外的 dom 元素
             this.set('trigger', $(this.get('trigger')));
-            this.set('titleElement', this.$('[data-role=title] h2'));
+            this.set('titleElement', this.$('[data-role=title]'));
             this.set('contentElement', this.$('[data-role=content]'));
         },
 
         events: {
-            'click [data-role=confirm]' : '_confirmHandler',
-            'click [data-role=cancel]' : '_closeHandler',
-            'click [data-role=close]' : '_closeHandler'
+            'click [data-role=confirm]' : 'confirm',
+            'click [data-role=cancel]' : 'close',
+            'click [data-role=close]' : 'close'
         },
 
-        _confirmHandler: function() {
+        confirm: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler: function() {
+        close: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
             // http://www.qt06.com/post/280/
-            this.get('trigger').focus();
+            this.activeTrigger && this.activeTrigger.focus();
         },
 
         show: function() {
             BaseDialog.superclass.show.call(this);
+            
+            // 处理动态绑定的 content 和 title
+            if (this._contentFunction) {
+                this.get('contentElement').html(this._contentFunction.call(this));                
+            }
+            if (this._titleFunction) {
+                this.get('titleElement').html(this._titleFunction.call(this));                
+            }
+
             this.element.focus();
             return this;
         },
 
         destroy: function() {
-            this.get('trigger').off(this.get('triggerType'));
-            return BaseDialog.superclass.destroy.call(this);            
+            this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
+            return BaseDialog.superclass.destroy.call(this);
         },
 
         setup: function() {
@@ -83,7 +94,6 @@ define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.10/overlay-d
             this._setupTrigger();
             this._setupMask();
             this._setupKeyEvents();
-            this._setupGlobalHandler();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
@@ -91,9 +101,10 @@ define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.10/overlay-d
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
             var that = this;
-            this.get('trigger').on(this.get('triggerType'), function(e) {
+            this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
-                that.activeTrigger = this; 
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
                 that.show();
             });
         },
@@ -110,40 +121,32 @@ define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.10/overlay-d
 
         // 绑定键盘事件，ESC关闭窗口，回车确定
         _setupKeyEvents: function() {
-            var that = this;
-            $(this.element).on('keyup', function(e) {
+            this.delegateEvents('keyup', function(e) {
                 if (e.keyCode === 27) {
-                    that._closeHandler();
+                    this.close();
                 }
                 else if (e.keyCode === 13) {
-                    that._confirmHandler();
+                    this.confirm();
                 }
             });
         },
 
-        // 绑定确定和关闭事件到 dom 元素上，以供全局调用
-        // 这样在拿不到实例对象时也可以调用关闭和确定方法
-        // $('#dialog').trigger('close');
-        _setupGlobalHandler: function() {
-            Events.mixTo(this.element[0]);
-            this.element[0].on('confirm', this._confirmHandler, this);
-            this.element[0].on('close cancel', this._closeHandler, this);
-        },
-
         _onRenderTitle: function(val) {
             if($.isFunction(val)) {
-                this.get('titleElement').html(val.call(this));
+                this._titleFunction = val;
             }
             else {
+                this._titleFunction = null;                
                 this.get('titleElement').html(val);
             }
         },
 
         _onRenderContent: function(val) {
             if($.isFunction(val)) {
-                this.get('contentElement').html(val.call(this));
+                this._contentFunction = val;
             }
             else {
+                this._contentFunction = null;
                 this.get('contentElement').html(val);
             }
         }
