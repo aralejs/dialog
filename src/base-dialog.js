@@ -46,7 +46,7 @@ define(function(require, exports, module) {
 
             // 绑定额外的 dom 元素
             this.set('trigger', $(this.get('trigger')));
-            this.set('titleElement', this.$('[data-role=title] h2'));
+            this.set('titleElement', this.$('[data-role=title]'));
             this.set('contentElement', this.$('[data-role=content]'));
         },
 
