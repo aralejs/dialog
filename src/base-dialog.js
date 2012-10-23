@@ -65,18 +65,27 @@ define(function(require, exports, module) {
             this.hide();
             // 关于网页中浮层消失后的焦点处理
             // http://www.qt06.com/post/280/
-            this.get('trigger').focus();
+            this.activeTrigger.focus();
         },
 
         show: function() {
             BaseDialog.superclass.show.call(this);
+            
+            // 处理动态绑定的 content 和 title
+            if (this._contentFunction) {
+                this.get('contentElement').html(this._contentFunction.call(this));                
+            }
+            if (this._titleFunction) {
+                this.get('titleElement').html(this._titleFunction.call(this));                
+            }
+
             this.element.focus();
             return this;
         },
 
         destroy: function() {
             this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
-            return BaseDialog.superclass.destroy.call(this);            
+            return BaseDialog.superclass.destroy.call(this);
         },
 
         setup: function() {
@@ -94,7 +103,8 @@ define(function(require, exports, module) {
             var that = this;
             this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
-                that.activeTrigger = this; 
+                // 标识当前点击的元素
+                that.activeTrigger = $(this); 
                 that.show();
             });
         },
@@ -123,18 +133,20 @@ define(function(require, exports, module) {
 
         _onRenderTitle: function(val) {
             if($.isFunction(val)) {
-                this.get('titleElement').html(val.call(this));
+                this._titleFunction = val;
             }
             else {
+                this._titleFunction = null;                
                 this.get('titleElement').html(val);
             }
         },
 
         _onRenderContent: function(val) {
             if($.isFunction(val)) {
-                this.get('contentElement').html(val.call(this));
+                this._contentFunction = val;
             }
             else {
+                this._contentFunction = null;
                 this.get('contentElement').html(val);
             }
         }

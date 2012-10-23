@@ -17,10 +17,10 @@ define(function(require, exports, module) {
                         <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
                         <div class="ui-xbox-content">\
                             <div class="ui-confirmXbox">\
-                                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
+                                <div class="ui-confirmXbox-title sl-linear-light" data-role="head"><h2 data-role="title"></h2></div>\
                                 <div class="ui-confirmXbox-container">\
                                     <div class="ui-confirmXbox-content" data-role="content"></div>\
-                                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                                    <div class="ui-confirmXbox-operation" data-role="foot">\
                                         <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
                                             <a href="javascript:;" class="ui-button-text">确定</a>\
                                         </div>\
