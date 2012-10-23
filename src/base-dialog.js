@@ -51,16 +51,16 @@ define(function(require, exports, module) {
         },
 
         events: {
-            'click [data-role=confirm]' : '_confirmHandler',
-            'click [data-role=cancel]' : '_closeHandler',
-            'click [data-role=close]' : '_closeHandler'
+            'click [data-role=confirm]' : 'confirm',
+            'click [data-role=cancel]' : 'close',
+            'click [data-role=close]' : 'close'
         },
 
-        _confirmHandler: function() {
+        confirm: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler: function() {
+        close: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
@@ -85,7 +85,6 @@ define(function(require, exports, module) {
             this._setupTrigger();
             this._setupMask();
             this._setupKeyEvents();
-            this._setupGlobalHandler();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
@@ -114,21 +113,12 @@ define(function(require, exports, module) {
         _setupKeyEvents: function() {
             this.delegateEvents('keyup', function(e) {
                 if (e.keyCode === 27) {
-                    this._closeHandler();
+                    this.close();
                 }
                 else if (e.keyCode === 13) {
-                    this._confirmHandler();
+                    this.confirm();
                 }
             });
-        },
-
-        // 绑定确定和关闭事件到 dom 元素上，以供全局调用
-        // 这样在拿不到实例对象时也可以调用关闭和确定方法
-        // $('#dialog').trigger('close');
-        _setupGlobalHandler: function() {
-            Events.mixTo(this.element[0]);
-            this.element[0].on('confirm', this._confirmHandler, this);
-            this.element[0].on('close cancel', this._closeHandler, this);
         },
 
         _onRenderTitle: function(val) {
