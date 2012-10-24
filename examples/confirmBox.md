@@ -4,8 +4,8 @@
 
 ---
 
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
 .ui-confirmXbox h2 {
     margin:0;
@@ -20,8 +20,8 @@
 
 需要载入样式`ui-confirmXbox`和`ui-xbox`。
 
-* http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
-* http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
+* https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css
+* https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css
 
 <div class="cell">
     <input type="button" id="trigger11" value="默认样式对话框" />
