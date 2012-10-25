@@ -1,4 +1,4 @@
-define("#dialog/0.9.1/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog-debug", "$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#easing/1.0.0/easing-debug", "#overlay/0.9.11/mask-debug", "#widget/1.0.2/templatable-debug", "#handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+define("#dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-dialog-debug", "$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#easing/1.0.0/easing-debug", "#overlay/0.9.11/mask-debug", "#widget/1.0.2/templatable-debug", "#handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         AnimDialog = require('./anim-dialog-debug'),
