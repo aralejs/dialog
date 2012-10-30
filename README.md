@@ -46,15 +46,17 @@
 
 ## 最佳实践
 
-    var o = new Dialog({
-        trigger: '#trigger',
-        template: '<div class="overlay"><button id="close">点击关闭</button></div>',
-        width: 300,
-        height: 200,
-        position: {
-            baseXY: [100, 100]
-        },
-        hasMask: true
-    });
+```js
+var o = new Dialog({
+    trigger: '#trigger',
+    template: '<div class="overlay"><button id="close">点击关闭</button></div>',
+    width: 300,
+    height: 200,
+    position: {
+        baseXY: [100, 100]
+    },
+    hasMask: true
+});
+```
 
 注意，需要用`data-role="title"`这样的属性来标示 html 节点的作用，目前支持的 role 有`title`(标题节点)、`content`(内容节点)、`confirm`(确定按钮)、`cancel`(取消按钮)、`close`(关闭按钮)。
