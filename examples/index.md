@@ -4,19 +4,12 @@
 
 ---
 
+## 基础使用
+
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
 <link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
-<style>
-.ui-confirmXbox h2 {
-    margin:0;
-    padding:0;
-    margin-left:20px;
-    border:none;
-    font-size:16px;
-}
-</style>
-
-## 基础使用
 
 <input type="button" id="trigger1" value="点击打开对话框" />
 
@@ -46,7 +39,7 @@
     </div>
 </div>
 
-````javascript
+<script>
 seajs.use(['base-dialog'], function(BaseDialog) {
     var d1 = new BaseDialog({
         trigger: '#trigger1',
@@ -61,16 +54,23 @@ seajs.use(['base-dialog'], function(BaseDialog) {
             alert('点击了关闭按钮');
         },
         align: {
-            baseXY: [200, 200]
+            baseXY: [100, 50]
         },
         hasMask: true
     });
     d1.set('content', '改变的内容');
     d1.set('width', 500);
 });
+</script>
 ````
 
 ## 动态的 title 和 content
+
+
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
 <input type="button" class="trigger2" value="这是按钮一" />
 <input type="button" class="trigger2" value="这是按钮二" />
@@ -101,7 +101,7 @@ seajs.use(['base-dialog'], function(BaseDialog) {
     </div>
 </div>
 
-````javascript
+<script>
 seajs.use(['base-dialog'], function(BaseDialog) {
     new BaseDialog({
         trigger: '.trigger2',
@@ -114,10 +114,11 @@ seajs.use(['base-dialog'], function(BaseDialog) {
             return this.activeTrigger.val() + '的内容';
         },
         align: {
-            baseXY: [200, 200]
+            baseXY: [100, 50]
         },
         hasMask: true
     });
 });
+</script>
 ````
 

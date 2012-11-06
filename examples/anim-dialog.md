@@ -6,15 +6,6 @@
 
 <link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
 <link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
-<style>
-.ui-confirmXbox h2 {
-    margin:0;
-    padding:0;
-    margin-left:20px;
-    border:none;
-    font-size:16px;
-}
-</style>
 
 <div class="ui-xbox fn-hide" id="confirmBox">
     <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
