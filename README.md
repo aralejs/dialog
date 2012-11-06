@@ -1,11 +1,11 @@
 
 # Dialog
 
+---
+
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
 ---
-
-下面是`base-dialog`是的说明文档。
 
 ## API
 
@@ -52,7 +52,7 @@ var o = new Dialog({
     template: '<div class="overlay"><button id="close">点击关闭</button></div>',
     width: 300,
     height: 200,
-    position: {
+    align: {
         baseXY: [100, 100]
     },
     hasMask: true

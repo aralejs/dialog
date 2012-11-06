@@ -20,8 +20,8 @@
     },
     "dependencies": {
         "$":"$",
-        "overlay": "overlay/0.9.11/overlay",
-        "mask": "overlay/0.9.11/mask",
+        "overlay": "overlay/0.9.12/overlay",
+        "mask": "overlay/0.9.12/mask",
         "easing": "easing/1.0.0/easing",
         "events": "events/1.0.0/events",
         "templatable": "widget/1.0.2/templatable"

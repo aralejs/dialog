@@ -4,43 +4,8 @@
 
 ---
 
-<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
-
-<div class="ui-xbox fn-hide" id="confirmBox">
-    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
-    <div class="ui-xbox-content">
-        <!-- ui-confirmXbox -->
-        <div class="ui-confirmXbox fn-clear">
-            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
-                <h2 data-role="title">测试标题</h2>
-            </div>
-            <div class="ui-confirmXbox-container">
-                <div class="ui-confirmXbox-content" data-role="content">
-                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
-                </div>
-                <div class="ui-confirmXbox-foot">
-                    <div class="ui-button ui-button-sorange" data-role="confirm">
-                        <a href="javascript:;" class="ui-button-text">确定</a>
-                    </div>
-                    <div class="ui-button ui-button-swhite" data-role="cancel">
-                        <a href="javascript:;" class="ui-button-text">取消</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ui-confirmXbox end -->
-    </div>
-</div>
-
-## 淡入淡出对话框: fade
-
-<div class="cell">
-    <input type="button" id="trigger2" value="点击打开对话框" />
-</div>
-
-````javascript
-var template =  
+<script>
+window.template =  
     '<div class="ui-xbox">\
         <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
         <div class="ui-xbox-content">\
@@ -60,39 +25,53 @@ var template =
             </div>\
         </div>\
     </div>';
+</script>
 
+## 淡入淡出对话框: fade
+
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+
+<input type="button" id="trigger2" value="淡入淡出对话框" />
+
+<script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
-    console.log(AnimDialog);
     var d2 = new AnimDialog({
         trigger: '#trigger2',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'fade'
         }
     });
 });
+</script>
 ````
 
 ## 展开对话框: slide
 
-<div class="cell">
-    <input type="button" id="trigger3" value="水平展开对话框" />
-    <input type="button" id="trigger4" value="垂直展开对话框" />    
-</div>
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
-````javascript
+<input type="button" id="trigger3" value="水平展开对话框" />
+<input type="button" id="trigger4" value="垂直展开对话框" />    
+
+<script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
     var d3 = new AnimDialog({
         trigger: '#trigger3',
-        template: template,
+        template: parent.template,
         width: 500,
         height: 150,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'slide',
@@ -101,10 +80,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d4 = new AnimDialog({
         trigger: '#trigger4',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'slide',
@@ -112,25 +91,29 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
         }
     });
 });
+</script>
 ````
 
 ## 移入移出对话框: move
 
-<div class="cell">
-    <input type="button" id="trigger5" value="从左移入对话框" />
-    <input type="button" id="trigger6" value="从右移入对话框" />
-    <input type="button" id="trigger7" value="从上移入对话框" />
-    <input type="button" id="trigger8" value="从下移入对话框" />
-</div>
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
-````javascript
+<input type="button" id="trigger5" value="从左移入对话框" />
+<input type="button" id="trigger6" value="从右移入对话框" />
+<input type="button" id="trigger7" value="从上移入对话框" />
+<input type="button" id="trigger8" value="从下移入对话框" />
+
+<script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
     var d5 = new AnimDialog({
         trigger: '#trigger5',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'move',
@@ -139,10 +122,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d6 = new AnimDialog({
         trigger: '#trigger6',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'move',
@@ -151,10 +134,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d7 = new AnimDialog({
         trigger: '#trigger7',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'move',
@@ -163,10 +146,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d8 = new AnimDialog({
         trigger: '#trigger8',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         effect: {
             type: 'move',
@@ -174,23 +157,27 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
         }
     });
 });
+</script>
 ````
 
 ## 混合动画对话框
 
-<div class="cell">
-    <input type="button" id="trigger9" value="混合动画对话框一" />
-    <input type="button" id="trigger10" value="混合动画对话框二" />
-</div>
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
-````javascript
+<input type="button" id="trigger9" value="混合动画对话框一" />
+<input type="button" id="trigger10" value="混合动画对话框二" />
+
+<script>
 seajs.use(['anim-dialog'], function(AnimDialog) {
     var d9 = new AnimDialog({
         trigger: '#trigger9',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         showEffect: {
             type: 'move',
@@ -202,10 +189,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
     });
     var d10 = new AnimDialog({
         trigger: '#trigger10',
-        template: template,
+        template: parent.template,
         width: 500,
         align: {
-            baseXY: [400, 200]
+            baseXY: [50, 50]
         },
         showEffect: {
             type: 'none'
@@ -216,5 +203,6 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
         }
     });
 });
+</script>
 ````
 
