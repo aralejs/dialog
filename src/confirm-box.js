@@ -1,7 +1,8 @@
 define(function(require, exports, module) {
 
     var $ = require('$'),
-        AnimDialog = require('./anim-dialog');
+        AnimDialog = require('./anim-dialog'),
+        Templatable = require('templatable');
 
     // ConfirmBox
     // -------
@@ -9,30 +10,12 @@ define(function(require, exports, module) {
 
     var ConfirmBox = AnimDialog.extend({
 
+        Implements: Templatable,
+
         attrs: {
 
             // 默认模板，不要覆盖
-            template:
-                    '<div class="ui-xbox">\
-                        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
-                        <div class="ui-xbox-content">\
-                            <div class="ui-confirmXbox">\
-                                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
-                                <div class="ui-confirmXbox-container">\
-                                    <div class="ui-confirmXbox-content" data-role="content"></div>\
-                                    <div class="ui-confirmXbox-operation" data-role="operation">\
-                                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
-                                            <a href="javascript:;" class="ui-button-text">确定</a>\
-                                        </div>\
-                                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
-                                            <a href="javascript:;" class="ui-button-text">取消</a>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                    </div>',
-        
+            template: require('./confirm-box.tpl'),        
             // 指定标题内容
             title: '默认标题',
             // 指定内容的 html
@@ -53,25 +36,19 @@ define(function(require, exports, module) {
             hasCloseX: true
         },
 
-        setup: function() {
-            AnimDialog.superclass.setup.call(this);
-
-            if (!this.get('hasTitle')) {
-                this.$('[data-role=title]').remove();
+        parseElement: function() {
+            this.model = {
+                title: this.get('title'),
+                content: this.get('content'),
+                hasTitle: this.get('hasTitle'),
+                hasOk: this.get('hasOk'),
+                hasCancel: this.get('hasCancel'),
+                hasCloseX: this.get('hasCloseX'),
+                hasFoot: this.get('hasOk') || this.get('hasCancel')
             }
-            if (!this.get('hasOk')) {
-                this.$('[data-role=confirm]').remove();
-            }
-            if (!this.get('hasCancel')) {
-                this.$('[data-role=cancel]').remove();
-            }
-            if (!this.get('hasCloseX')) {
-                this.$('[data-role=close]').remove();
-            }
-            if (!this.get('hasOk') && !this.get('hasCancel')) {
-                this.$('[data-role=operation]').remove();
-            }
+            AnimDialog.superclass.parseElement.call(this);
         }
+
     });
 
     ConfirmBox.alert = function(content, callback) {

@@ -1,7 +1,8 @@
-define("#dialog/0.9.1/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog-debug", "$-debug", "#overlay/0.9.10/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "position/1.0.0/position-debug", "#widget/1.0.0/widget-debug", "#base/1.0.0/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#easing/1.0.0/easing-debug", "#overlay/0.9.10/mask-debug"], function(require, exports, module) {
+define("#dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-dialog-debug", "$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#easing/1.0.0/easing-debug", "#overlay/0.9.11/mask-debug", "#widget/1.0.2/templatable-debug", "#handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        AnimDialog = require('./anim-dialog-debug');
+        AnimDialog = require('./anim-dialog-debug'),
+        Templatable = require('#widget/1.0.2/templatable-debug');
 
     // ConfirmBox
     // -------
@@ -9,30 +10,12 @@ define("#dialog/0.9.1/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog
 
     var ConfirmBox = AnimDialog.extend({
 
+        Implements: Templatable,
+
         attrs: {
 
             // 默认模板，不要覆盖
-            template:
-                    '<div class="ui-xbox">\
-                        <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
-                        <div class="ui-xbox-content">\
-                            <div class="ui-confirmXbox">\
-                                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2></h2></div>\
-                                <div class="ui-confirmXbox-container">\
-                                    <div class="ui-confirmXbox-content" data-role="content"></div>\
-                                    <div class="ui-confirmXbox-operation" data-role="operation">\
-                                        <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
-                                            <a href="javascript:;" class="ui-button-text">确定</a>\
-                                        </div>\
-                                        <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">\
-                                            <a href="javascript:;" class="ui-button-text">取消</a>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                    </div>',
-        
+            template: '<div class="ui-xbox"><div class="ui-xbox-action">{{#if hasCloseX}}<a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a>{{/if}}</div><div class="ui-xbox-content"><div class="ui-confirmXbox">{{#if hasTitle}}<div class="ui-confirmXbox-title sl-linear-light" data-role="head"><h2 data-role="title">{{title}}</h2></div>{{/if}}<div class="ui-confirmXbox-container"><div class="ui-confirmXbox-content" data-role="content">{{content}}</div>{{#if hasFoot}}       <div class="ui-confirmXbox-operation" data-role="foot">{{#if hasOk}}<div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm"><a href="javascript:;" class="ui-button-text">确定</a></div>{{/if}}{{#if hasCancel}}<div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel"><a href="javascript:;" class="ui-button-text">取消</a></div>{{/if}}</div>{{/if}}</div></div></div></div>',        
             // 指定标题内容
             title: '默认标题',
             // 指定内容的 html
@@ -53,25 +36,19 @@ define("#dialog/0.9.1/confirm-box-debug", ["./base-dialog-debug", "./anim-dialog
             hasCloseX: true
         },
 
-        setup: function() {
-            AnimDialog.superclass.setup.call(this);
-
-            if (!this.get('hasTitle')) {
-                this.$('[data-role=title]').remove();
+        parseElement: function() {
+            this.model = {
+                title: this.get('title'),
+                content: this.get('content'),
+                hasTitle: this.get('hasTitle'),
+                hasOk: this.get('hasOk'),
+                hasCancel: this.get('hasCancel'),
+                hasCloseX: this.get('hasCloseX'),
+                hasFoot: this.get('hasOk') || this.get('hasCancel')
             }
-            if (!this.get('hasOk')) {
-                this.$('[data-role=confirm]').remove();
-            }
-            if (!this.get('hasCancel')) {
-                this.$('[data-role=cancel]').remove();
-            }
-            if (!this.get('hasCloseX')) {
-                this.$('[data-role=close]').remove();
-            }
-            if (!this.get('hasOk') && !this.get('hasCancel')) {
-                this.$('[data-role=operation]').remove();
-            }
+            AnimDialog.superclass.parseElement.call(this);
         }
+
     });
 
     ConfirmBox.alert = function(content, callback) {

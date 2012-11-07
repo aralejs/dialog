@@ -1,68 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<title>Dialog</title>
-<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<script src="http://seajs.org/dist/sea.js"></script>
-<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Dialog</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
+    <script src="http://seajs.org/dist/sea.js"></script>
+    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        <a title="Home" class="icon-home" href="/" id="logo">Arale</a>
+        <div class="wrapper fn-clear">
+          
+          <nav class="global-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="developer-guides"><a href="/developer-guides/">开发指南</a></li>
+              <li class="user-guides"><a href="/components/">组件文档</a> • <a style="padding-left:0;" href="/mapping.html">Map</a></li>
+            </ul>
+          </nav>
+          <nav class="top-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="first"><a target="_blank" href="http://seajs.org">SeaJS</a></li>
+              <li class="last"><a target="_blank" href="https://github.com/seajs/spm/wiki">SPM</a></li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </header>
 
-
-<!--[if lt IE 9]>
-<script src="http://aralejs.org/assets/html5shiv.js"></script>
-<![endif]-->
-</head>
-<body>
-<header id="header">
-    <div class="container fn-clear">
-
-    <a href="./"  class="current">Dialog</a>
-    <a href="./examples/" >演示</a>
-    
-    
-
-
-        <nav role="navigation" id="nav">
-            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
-            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
-        </nav>
-    </div>
-</header>
-
-<div id="main">
-    <div class="container">
-<div class="document-body">
+    <div id="main">
+      <div class="container fn-clear">
+<div class="markdown-body">
+  <h1 class="entry-title">Dialog</h1>
+  <div class="other-info">
+    <a href="history.html">历史</a>
+    <a target="_blank" href="https://github.com/aralejs/dialog/">源码</a>
+  </div>
+  <p class="entry-description">基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。</p>
+  <p class="entry-cdn" data-name="dialog"></p>
   
-  <nav id="side-nav">
-    <a href="./">README</a>
-    
-    <a href="./docs/animDialog.html">animDialog</a>
-    
-    <a href="./docs/confirmBox.html">confirmBox</a>
-    
-  </nav>
+  <hr />
+
   
-
-  <div class="markdown-body">
-    <h1>baseDialog</h1>
-<p>基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。</p>
-<p>继承自 arale.overlay 组件。</p>
-
-<hr/>
-
-<h2>模块依赖</h2>
-
+<h2>演示</h2>
 <ul>
-<li><a href="seajs/README.md">seajs</a></li>
-<li><a href="jquery/README.md">jquery</a></li>
-<li><a href="overlay/README.md">overlay</a></li>
-<li><a href="easing/README.md">easing</a></li>
+  <li><a href="./examples/">BaseDialog: 基础对话框演示</a></li>
+  <li><a href="./examples/anim-dialog.html">AnimDialog: 动画对话框演示</a></li>
+  <li><a href="./examples/confirm-box.html">ConfirmBox: 带有默认样式的对话框演示</a></li>
 </ul>
+<h2>文档</h2>
+<ul>
+  <li><a href="./docs/animdialog.html">AnimDialog 使用文档</a></li>
+  <li><a href="./docs/confirmbox.html">ConfirmBox 使用文档</a></li>
+</ul><p>下面是<code>base-dialog</code>是的说明文档。</p>
 
-<h2>配置说明</h2>
+<h2 id="toc_0">API</h2>
 
 <ul>
 <li><p><code>trigger</code> : {element}</p>
@@ -82,29 +80,42 @@
 </ul>
 <p>其他配置参照<a href="overlay/README.md">overlay</a>。</p>
 
-<h2>实例方法</h2>
+<h2 id="toc_1">实例方法</h2>
 <p>参照<a href="overlay/README.md">overlay</a>。</p>
 
-<h2>最佳实践</h2>
-
-<pre><code>var o = new Dialog({
-    trigger: '#trigger',
-    template: '&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;/div&gt;',
-    width: 300,
-    height: 200,
-    position: {
-        baseXY: [100, 100]
-    },
-    hasMask: true
-});</code></pre>
+<h2 id="toc_2">最佳实践</h2>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dialog</span><span class="p">({</span>
+    <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger&#39;</span><span class="p">,</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;button id=&quot;close&quot;&gt;点击关闭&lt;/button&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">position</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">hasMask</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre></div>
 <p>注意，需要用<code>data-role=&quot;title&quot;</code>这样的属性来标示 html 节点的作用，目前支持的 role 有<code>title</code>(标题节点)、<code>content</code>(内容节点)、<code>confirm</code>(确定按钮)、<code>cancel</code>(取消按钮)、<code>close</code>(关闭按钮)。</p>
 
-  </div>
-</div>
 
-    </div>
+  <h2>用例</h2>
+  <p><a href="./tests/runner.html">测试用例</a></p>
+
+  <h2>讨论</h2>
+  <p>有任何疑问，欢迎发送邮件到 <a href="https://groups.google.com/forum/?fromgroups#!forum/aralejs">aralejs@googlegroups.com</a></p>
+  <p>发现 bug？请提交 <a href="https://github.com/aralejs/dialog/issues/new">Issue</a></p>
 </div>
-<hr class="end">
-<script src="http://aralejs.org/tools/nico-helper.js"></script>
-</body>
+<div class="sidebar sidebar-components"></div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2012 aralejs.org</p>
+          <p>除非另有声明，本站所有代码遵循 MIT 协议</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

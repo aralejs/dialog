@@ -3,7 +3,9 @@ define(function(require, exports, module) {
     var $ = require('$'),
         Overlay = require('overlay'),
         mask = require('mask'),
-        Events = require('events');
+        Events = require('events'),
+        
+        TRIGGER_EVENT_NS = '.trigger-events-';
 
 
     // BaseDialog
@@ -44,64 +46,70 @@ define(function(require, exports, module) {
 
             // 绑定额外的 dom 元素
             this.set('trigger', $(this.get('trigger')));
-            this.set('titleElement', this.$('[data-role=title] h2'));
+            this.set('titleElement', this.$('[data-role=title]'));
             this.set('contentElement', this.$('[data-role=content]'));
         },
 
         events: {
-            'click [data-role=confirm]' : '_confirmHandler',
-            'click [data-role=cancel]' : '_closeHandler',
-            'click [data-role=close]' : '_closeHandler'
+            'click [data-role=confirm]' : 'confirm',
+            'click [data-role=cancel]' : 'close',
+            'click [data-role=close]' : 'close'
         },
 
-        _confirmHandler: function() {
+        confirm: function() {
             this.trigger('confirm');
         },
 
-        _closeHandler: function() {
+        close: function() {
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理
             // http://www.qt06.com/post/280/
-            this.get('trigger').focus();
-        },
-
-        delegateEvents: function() {
-            BaseDialog.superclass.delegateEvents.call(this);
-            var that = this;
-
-            // 绑定触发对话框出现的事件
-            this.get('trigger').on(this.get('triggerType'), function(e) {
-                e.preventDefault();
-                that.activeTrigger = this; 
-                that.show();
-            });
-
-            // 绑定确定和关闭事件到 dom 元素上，以供全局调用
-            Events.mixTo(this.element[0]);
-            this.element[0].on('confirm', this._confirmHandler, this);
-            this.element[0].on('close cancel', this._closeHandler, this); 
+            this.activeTrigger && this.activeTrigger.focus();
         },
 
         show: function() {
             BaseDialog.superclass.show.call(this);
+            
+            // 处理动态绑定的 content 和 title
+            if (this._contentFunction) {
+                this.get('contentElement').html(this._contentFunction.call(this));                
+            }
+            if (this._titleFunction) {
+                this.get('titleElement').html(this._titleFunction.call(this));                
+            }
+
             this.element.focus();
             return this;
         },
 
-        hide: function() {
-            return BaseDialog.superclass.hide.call(this);
+        destroy: function() {
+            this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
+            return BaseDialog.superclass.destroy.call(this);
         },
-        
+
         setup: function() {
             BaseDialog.superclass.setup.call(this);
 
+            this._setupTrigger();
             this._setupMask();
             this._setupKeyEvents();
             toTabed(this.element);
             toTabed(this.get('trigger'));
         },
 
+        // 绑定触发对话框出现的事件
+        _setupTrigger: function() {
+            var that = this;
+            this.get('trigger').on(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid, function(e) {
+                e.preventDefault();
+                // 标识当前点击的元素
+                that.activeTrigger = $(this);
+                that.show();
+            });
+        },
+
+        // 绑定遮罩层事件
         _setupMask: function() {
             this.before('show', function() {
                 this.get('hasMask') && mask.show();
@@ -111,32 +119,34 @@ define(function(require, exports, module) {
             });
         },
 
+        // 绑定键盘事件，ESC关闭窗口，回车确定
         _setupKeyEvents: function() {
-            var that = this;
-            $(this.element).on('keyup', function(e) {
+            this.delegateEvents('keyup', function(e) {
                 if (e.keyCode === 27) {
-                    that._closeHandler();
+                    this.close();
                 }
                 else if (e.keyCode === 13) {
-                    that._confirmHandler();
+                    this.confirm();
                 }
             });
         },
 
         _onRenderTitle: function(val) {
             if($.isFunction(val)) {
-                this.get('titleElement').html(val.call(this));
+                this._titleFunction = val;
             }
             else {
+                this._titleFunction = null;                
                 this.get('titleElement').html(val);
             }
         },
 
         _onRenderContent: function(val) {
             if($.isFunction(val)) {
-                this.get('contentElement').html(val.call(this));
+                this._contentFunction = val;
             }
             else {
+                this._contentFunction = null;
                 this.get('contentElement').html(val);
             }
         }

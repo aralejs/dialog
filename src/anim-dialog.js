@@ -25,9 +25,9 @@ define(function(require, exports, module) {
         },
 
         show: function() {
-            if (!this._rendered) {
-                this.render();
-            }
+            AnimDialog.superclass.show.call(this);
+            this.element.hide();
+            
             var elem = this.element,
                 that = this,
                 ef = this.get('showEffect');
@@ -119,6 +119,9 @@ define(function(require, exports, module) {
         },
 
         hide: function() {
+            AnimDialog.superclass.hide.call(this);
+            this.element.show();
+
             var elem = this.element,
                 that = this,
                 ef = this.get('hideEffect');

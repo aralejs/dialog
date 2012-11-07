@@ -1,55 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<title>Dialog</title>
-<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<script src="http://seajs.org/dist/sea.js"></script>
-<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Dialog - BaseDialog: 基础对话框演示</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
+    <script src="http://seajs.org/dist/sea.js"></script>
+    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        <a title="Home" class="icon-home" href="/" id="logo">Arale</a>
+        <div class="wrapper fn-clear">
+          
+          <nav class="global-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="developer-guides"><a href="/developer-guides/">开发指南</a></li>
+              <li class="user-guides"><a href="/components/">组件文档</a> • <a style="padding-left:0;" href="/mapping.html">Map</a></li>
+            </ul>
+          </nav>
+          <nav class="top-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="first"><a target="_blank" href="http://seajs.org">SeaJS</a></li>
+              <li class="last"><a target="_blank" href="https://github.com/seajs/spm/wiki">SPM</a></li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </header>
 
-
-<!--[if lt IE 9]>
-<script src="http://aralejs.org/assets/html5shiv.js"></script>
-<![endif]-->
-</head>
-<body>
-<header id="header">
-    <div class="container fn-clear">
-
-    <a href="../" >Dialog</a>
-    <a href="../examples/" class="current">演示</a>
-    
-    
-
-
-        <nav role="navigation" id="nav">
-            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
-            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
-        </nav>
-    </div>
-</header>
-
-<div id="main">
-    <div class="container">
-<div class="document-body">
-  
-  <nav id="side-nav">
-    
-    <a href="../examples/animDialog.html">animDialog</a>
-    
-    <a href="../examples/confirmBox.html">confirmBox</a>
-    
-    <a href="../examples/index.html">index</a>
-    
-  </nav>
-  
-
-  <div class="markdown-body">
-    <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+    <div id="main">
+      <div class="container fn-clear">
+<div class="markdown-body">
+  <h1 class="entry-title"><a id="back-to-module" href="../">Dialog</a> - BaseDialog: 基础对话框演示</h1>
+  <p><link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
 .ui-confirmXbox h2 {
     margin:0;
@@ -60,25 +50,22 @@
 }
 </style></p>
 
-<h2>BaseDialog: 最基本的抽象对话框组件</h2>
+<h2 id="toc_0">基础使用</h2>
+<p><input type="button" id="trigger1" value="点击打开对话框" /></p>
 
-<div class="cell">
-    <input type="button" id="trigger1" value="点击打开对话框" />
-</div>
-
-<div class="ui-xbox fn-hide" id="confirmBox">
+<div class="ui-xbox fn-hide" id="confirmBox1">
     <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
     <div class="ui-xbox-content">
         <!-- ui-confirmXbox -->
         <div class="ui-confirmXbox fn-clear">
-            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
-                <h2>测试标题</h2>
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
+                <h2 data-role="title">测试标题</h2>
             </div>
             <div class="ui-confirmXbox-container">
                 <div class="ui-confirmXbox-content" data-role="content">
                     <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
                 </div>
-                <div class="ui-confirmXbox-operation">
+                <div class="ui-confirmXbox-foot">
                     <div class="ui-button ui-button-sorange" data-role="confirm">
                         <a href="javascript:;" class="ui-button-text">确定</a>
                     </div>
@@ -96,7 +83,7 @@
 seajs.use(['base-dialog'], function(BaseDialog) {
     var d1 = new BaseDialog({
         trigger: '#trigger1',
-        element: '#confirmBox',
+        element: '#confirmBox1',
         width: 300,
         title: '我是标题',
         content: '我是内容',
@@ -118,7 +105,7 @@ seajs.use(['base-dialog'], function(BaseDialog) {
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;base-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">BaseDialog</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BaseDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger1&#39;</span><span class="p">,</span>
-        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#confirmBox&#39;</span><span class="p">,</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#confirmBox1&#39;</span><span class="p">,</span>
         <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
         <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;我是标题&#39;</span><span class="p">,</span>
         <span class="nx">content</span><span class="o">:</span> <span class="s1">&#39;我是内容&#39;</span><span class="p">,</span>
@@ -138,12 +125,86 @@ seajs.use(['base-dialog'], function(BaseDialog) {
 <span class="p">});</span>
 </pre></div>
 
-  </div>
-</div>
+<h2 id="toc_1">动态的 title 和 content</h2>
+<p><input type="button" class="trigger2" value="这是按钮一" />
+<input type="button" class="trigger2" value="这是按钮二" /></p>
 
+<div class="ui-xbox fn-hide" id="confirmBox2">
+    <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>
+    <div class="ui-xbox-content">
+        <!-- ui-confirmXbox -->
+        <div class="ui-confirmXbox fn-clear">
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
+                <h2 data-role="title">测试标题</h2>
+            </div>
+            <div class="ui-confirmXbox-container">
+                <div class="ui-confirmXbox-content" data-role="content">
+                    <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
+                </div>
+                <div class="ui-confirmXbox-foot">
+                    <div class="ui-button ui-button-sorange" data-role="confirm">
+                        <a href="javascript:;" class="ui-button-text">确定</a>
+                    </div>
+                    <div class="ui-button ui-button-swhite" data-role="cancel">
+                        <a href="javascript:;" class="ui-button-text">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ui-confirmXbox end -->
     </div>
 </div>
-<hr class="end">
-<script src="http://aralejs.org/tools/nico-helper.js"></script>
-</body>
+
+<script>
+seajs.use(['base-dialog'], function(BaseDialog) {
+    new BaseDialog({
+        trigger: '.trigger2',
+        element: '#confirmBox2',
+        width: 300,
+        title: function() {
+            return this.activeTrigger.val() + '的标题';
+        },
+        content: function() {
+            return this.activeTrigger.val() + '的内容';
+        },
+        align: {
+            baseXY: [200, 200]
+        },
+        hasMask: true
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;base-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">BaseDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="nx">BaseDialog</span><span class="p">({</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;.trigger2&#39;</span><span class="p">,</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#confirmBox2&#39;</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeTrigger</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;的标题&#39;</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">content</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeTrigger</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;的内容&#39;</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nx">hasMask</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+<div class="sidebar sidebar-components"></div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2012 aralejs.org</p>
+          <p>除非另有声明，本站所有代码遵循 MIT 协议</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

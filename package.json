@@ -2,7 +2,17 @@
     "name": "dialog",
     "root": "#",
     "version": "0.9.1",
+    "description": "基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。",
     "tag": "widget",
+    "author": "afc163 <afc163@gmail.com>",
+    "homepage": "http://aralejs.org/dialog",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aralejs/dialog"
+    },
+    "bugs": {
+        "url": "https://github.com/aralejs/dialog/issues"
+    },
     "output": {
         "base-dialog.js": ["base-dialog.js"],
         "anim-dialog.js": ["anim-dialog.js"],
@@ -10,9 +20,10 @@
     },
     "dependencies": {
         "$":"$",
-        "overlay": "overlay/0.9.10/overlay",
-        "mask": "overlay/0.9.10/mask",
+        "overlay": "overlay/0.9.12/overlay",
+        "mask": "overlay/0.9.12/mask",
         "easing": "easing/1.0.0/easing",
-        "events": "events/1.0.0/events"
+        "events": "events/1.0.0/events",
+        "templatable": "widget/1.0.2/templatable"
     }
 }

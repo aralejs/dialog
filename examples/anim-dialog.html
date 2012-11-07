@@ -1,55 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<title>Dialog</title>
-<link rel="stylesheet" href="http://aralejs.org/assets/base.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-<link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
-<script src="http://seajs.org/dist/sea.js"></script>
-<script src="http://aralejs.org/tools/seajs-helper.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Dialog - AnimDialog: 动画对话框演示</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
+    <script src="http://seajs.org/dist/sea.js"></script>
+    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header id="header">
+      <div class="container">
+        <a title="Home" class="icon-home" href="/" id="logo">Arale</a>
+        <div class="wrapper fn-clear">
+          
+          <nav class="global-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="developer-guides"><a href="/developer-guides/">开发指南</a></li>
+              <li class="user-guides"><a href="/components/">组件文档</a> • <a style="padding-left:0;" href="/mapping.html">Map</a></li>
+            </ul>
+          </nav>
+          <nav class="top-nav" role="navigation">
+            <ul class="fn-clear">
+              <li class="first"><a target="_blank" href="http://seajs.org">SeaJS</a></li>
+              <li class="last"><a target="_blank" href="https://github.com/seajs/spm/wiki">SPM</a></li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </header>
 
-
-<!--[if lt IE 9]>
-<script src="http://aralejs.org/assets/html5shiv.js"></script>
-<![endif]-->
-</head>
-<body>
-<header id="header">
-    <div class="container fn-clear">
-
-    <a href="../" >Dialog</a>
-    <a href="../examples/" class="current">演示</a>
-    
-    
-
-
-        <nav role="navigation" id="nav">
-            <a title="Home" class="icon-home" href="/" id="logo">首页</a>
-            <a id="code-link" class="icon-github" href="https://github.com/aralejs/dialog">源码</a>
-        </nav>
-    </div>
-</header>
-
-<div id="main">
-    <div class="container">
-<div class="document-body">
-  
-  <nav id="side-nav">
-    
-    <a href="../examples/animDialog.html">animDialog</a>
-    
-    <a href="../examples/confirmBox.html">confirmBox</a>
-    
-    <a href="../examples/index.html">index</a>
-    
-  </nav>
-  
-
-  <div class="markdown-body">
-    <p><link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+    <div id="main">
+      <div class="container fn-clear">
+<div class="markdown-body">
+  <h1 class="entry-title"><a id="back-to-module" href="../">Dialog</a> - AnimDialog: 动画对话框演示</h1>
+  <p><link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 <style>
 .ui-confirmXbox h2 {
     margin:0;
@@ -65,14 +55,14 @@
     <div class="ui-xbox-content">
         <!-- ui-confirmXbox -->
         <div class="ui-confirmXbox fn-clear">
-            <div class="ui-confirmXbox-title sl-linear-light" data-role="title">
-                <h2>测试标题</h2>
+            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
+                <h2 data-role="title">测试标题</h2>
             </div>
             <div class="ui-confirmXbox-container">
                 <div class="ui-confirmXbox-content" data-role="content">
                     <p>测试内容测试内容测试内容测试内容测试内容测试内容。</p>
                 </div>
-                <div class="ui-confirmXbox-operation">
+                <div class="ui-confirmXbox-foot">
                     <div class="ui-button ui-button-sorange" data-role="confirm">
                         <a href="javascript:;" class="ui-button-text">确定</a>
                     </div>
@@ -86,11 +76,7 @@
     </div>
 </div>
 
-<h2>AnimDialog: 动画对话框组件</h2>
-
-<ul>
-<li>淡入淡出对话框: fade</li>
-</ul>
+<h2 id="toc_0">淡入淡出对话框: fade</h2>
 
 <div class="cell">
     <input type="button" id="trigger2" value="点击打开对话框" />
@@ -102,10 +88,10 @@ var template =
         <div class="ui-xbox-action"><a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a></div>\
         <div class="ui-xbox-content">\
             <div class="ui-confirmXbox">\
-                <div class="ui-confirmXbox-title sl-linear-light" data-role="title"><h2>我是标题</h2></div>\
+                <div class="ui-confirmXbox-title sl-linear-light" data-role="head"><h2 data-role="title">我是标题</h2></div>\
                 <div class="ui-confirmXbox-container">\
                     <div class="ui-confirmXbox-content" data-role="content">我是内容</div>\
-                    <div class="ui-confirmXbox-operation" data-role="operation">\
+                    <div class="ui-confirmXbox-foot" data-role="foot">\
                         <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">\
                             <a href="javascript:;" class="ui-button-text">确定</a>\
                         </div>\
@@ -119,6 +105,7 @@ var template =
     </div>';
 
 seajs.use(['anim-dialog'], function(AnimDialog) {
+    console.log(AnimDialog);
     var d2 = new AnimDialog({
         trigger: '#trigger2',
         template: template,
@@ -137,10 +124,10 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="s1">        &lt;div class=&quot;ui-xbox-action&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;ui-xbox-close&quot; data-role=&quot;close&quot; title=&quot;关闭&quot;&gt;×&lt;/a&gt;&lt;/div&gt;\</span>
 <span class="s1">        &lt;div class=&quot;ui-xbox-content&quot;&gt;\</span>
 <span class="s1">            &lt;div class=&quot;ui-confirmXbox&quot;&gt;\</span>
-<span class="s1">                &lt;div class=&quot;ui-confirmXbox-title sl-linear-light&quot; data-role=&quot;title&quot;&gt;&lt;h2&gt;我是标题&lt;/h2&gt;&lt;/div&gt;\</span>
+<span class="s1">                &lt;div class=&quot;ui-confirmXbox-title sl-linear-light&quot; data-role=&quot;head&quot;&gt;&lt;h2 data-role=&quot;title&quot;&gt;我是标题&lt;/h2&gt;&lt;/div&gt;\</span>
 <span class="s1">                &lt;div class=&quot;ui-confirmXbox-container&quot;&gt;\</span>
 <span class="s1">                    &lt;div class=&quot;ui-confirmXbox-content&quot; data-role=&quot;content&quot;&gt;我是内容&lt;/div&gt;\</span>
-<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-operation&quot; data-role=&quot;operation&quot;&gt;\</span>
+<span class="s1">                    &lt;div class=&quot;ui-confirmXbox-foot&quot; data-role=&quot;foot&quot;&gt;\</span>
 <span class="s1">                        &lt;div class=&quot;ui-button ui-button-sorange ui-confirmXbox-confirm&quot; data-role=&quot;confirm&quot;&gt;\</span>
 <span class="s1">                            &lt;a href=&quot;javascript:;&quot; class=&quot;ui-button-text&quot;&gt;确定&lt;/a&gt;\</span>
 <span class="s1">                        &lt;/div&gt;\</span>
@@ -154,6 +141,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="s1">    &lt;/div&gt;&#39;</span><span class="p">;</span>
 
 <span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;anim-dialog&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">AnimDialog</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimDialog</span><span class="p">({</span>
         <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;#trigger2&#39;</span><span class="p">,</span>
         <span class="nx">template</span><span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
@@ -168,9 +156,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="p">});</span>
 </pre></div>
 
-<ul>
-<li>展开对话框: slide</li>
-</ul>
+<h2 id="toc_1">展开对话框: slide</h2>
 
 <div class="cell">
     <input type="button" id="trigger3" value="水平展开对话框" />
@@ -235,9 +221,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="p">});</span>
 </pre></div>
 
-<ul>
-<li>移入移出对话框: move</li>
-</ul>
+<h2 id="toc_2">移入移出对话框: move</h2>
 
 <div class="cell">
     <input type="button" id="trigger5" value="从左移入对话框" />
@@ -350,9 +334,7 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="p">});</span>
 </pre></div>
 
-<ul>
-<li>混合动画对话框</li>
-</ul>
+<h2 id="toc_3">混合动画对话框</h2>
 
 <div class="cell">
     <input type="button" id="trigger9" value="混合动画对话框一" />
@@ -427,12 +409,18 @@ seajs.use(['anim-dialog'], function(AnimDialog) {
 <span class="p">});</span>
 </pre></div>
 
-  </div>
 </div>
-
+<div class="sidebar sidebar-components"></div>
+      </div>
     </div>
-</div>
-<hr class="end">
-<script src="http://aralejs.org/tools/nico-helper.js"></script>
-</body>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2012 aralejs.org</p>
+          <p>除非另有声明，本站所有代码遵循 MIT 协议</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

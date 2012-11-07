@@ -1,18 +1,22 @@
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+# ConfirmBox: 带有默认样式的对话框演示
+
+- order: 3
+
+---
 
 ## ConfirmBox: 带有默认样式的对话框
 
-需要载入样式`ui-confirmXbox`和`ui-xbox`。
+需要载入样式 [ui-confirmXbox](https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css) 和 [ui-xbox](https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css
+)。
 
-* http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
-* http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
-<div class="cell">
-    <input type="button" id="trigger11" value="默认样式对话框" />
-</div>
+<input type="button" id="trigger11" value="默认样式对话框" />
 
-````javascript
+<script>
 seajs.use(['confirm-box'], function(ConfirmBox) {
     var d11 = new ConfirmBox({
         trigger: '#trigger11',
@@ -34,17 +38,21 @@ seajs.use(['confirm-box'], function(ConfirmBox) {
         }
     });
 });
+</script>
 ````
 
-* ConfirmBox 的静态方法
+## ConfirmBox 的静态方法
 
-<div class="cell">
-    <input type="button" id="trigger12" value="ConfirmBox.alert()" />    
-    <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
-    <input type="button" id="trigger14" value="ConfirmBox.show()" />    
-</div>
+````iframe:250
+<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
 
-````javascript
+<input type="button" id="trigger12" value="ConfirmBox.alert()" />    
+<input type="button" id="trigger13" value="ConfirmBox.confirm()" />
+<input type="button" id="trigger14" value="ConfirmBox.show()" />    
+
+<script>
 seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
     $('#trigger12').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.alert');
@@ -62,4 +70,5 @@ seajs.use(['confirm-box', 'jquery'], function(ConfirmBox, $) {
         ConfirmBox.show('只是显示一些信息，右上角关闭');
     });
 });
+</script>
 ````
