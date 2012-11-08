@@ -1,9 +1,9 @@
-define("#dialog/0.9.1/base-dialog-debug", ["$-debug", "#overlay/0.9.11/overlay-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug", "#overlay/0.9.11/mask-debug"], function(require, exports, module) {
+define("arale/dialog/0.9.1/base-dialog-debug", ["$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.12/mask-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Overlay = require('#overlay/0.9.11/overlay-debug'),
-        mask = require('#overlay/0.9.11/mask-debug'),
-        Events = require('#events/1.0.0/events-debug'),
+        Overlay = require('arale/overlay/0.9.12/overlay-debug'),
+        mask = require('arale/overlay/0.9.12/mask-debug'),
+        Events = require('arale/events/1.0.0/events-debug'),
         
         TRIGGER_EVENT_NS = '.trigger-events-';
 

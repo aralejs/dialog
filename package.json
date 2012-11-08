@@ -1,6 +1,6 @@
 {
     "name": "dialog",
-    "root": "#",
+    "root": "arale",
     "version": "0.9.1",
     "description": "基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。",
     "tag": "widget",
@@ -8,7 +8,7 @@
     "homepage": "http://aralejs.org/dialog",
     "repository": {
         "type": "git",
-        "url": "https://github.com/aralejs/dialog"
+        "url": "https://github.com/aralejs/dialog.git"
     },
     "bugs": {
         "url": "https://github.com/aralejs/dialog/issues"
@@ -19,11 +19,11 @@
         "confirm-box.js": ["confirm-box.js"]
     },
     "dependencies": {
-        "$":"$",
-        "overlay": "overlay/0.9.12/overlay",
-        "mask": "overlay/0.9.12/mask",
-        "easing": "easing/1.0.0/easing",
-        "events": "events/1.0.0/events",
-        "templatable": "widget/1.0.2/templatable"
+        "$": "$",
+        "overlay": "arale/overlay/0.9.12/overlay",
+        "mask": "arale/overlay/0.9.12/mask",
+        "easing": "arale/easing/1.0.0/easing",
+        "events": "arale/events/1.0.0/events",
+        "templatable": "arale/widget/1.0.2/templatable"
     }
 }

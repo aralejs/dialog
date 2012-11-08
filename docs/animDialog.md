@@ -4,11 +4,13 @@
 
 ---
 
->  动画对话框组件，提供了对话框弹出的动画效果。目前支持的动画效果有四种：无动画，渐隐，滑动，移动。
+动画对话框组件，提供了对话框弹出的动画效果。目前支持的动画效果有四种：无动画，渐隐，滑动，移动。
 
-## API
+---
 
-* `effect` : {object}
+## 配置说明
+
+### effect *object*
 
     显隐效果配置，形似
 
@@ -19,11 +21,11 @@
             easing: 'easeOut'   // 支持常用的平滑函数
         }
 
-* `showEffect` : {object}
+### showEffect *object*
 
     显示时的动画效果，若设为 null，则表示动画种类为 none。
 
-* `hideHffect` : {object}
+### hideHffect *object*
 
     隐藏时的动画效果，若设为 null，则表示动画种类为 none。
 

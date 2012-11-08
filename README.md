@@ -7,35 +7,37 @@
 
 ---
 
-## API
+## 配置说明
 
-* `trigger` : {element}
+### trigger *element*
 
-    对话框触发点。
+对话框触发点。
 
-* `triggerType` : {string}
+### triggerType *string*
 
-    对话框触发方式，可选 click|hover|focus ，默认为click。
+对话框触发方式，可选 click|hover|focus ，默认为click。
 
-* `title` : {string|function}
+### title *string|function*
 
-    指定标题内容。
+指定标题内容。
 
-* `content` : {string|function}
+### content *string|function*
 
-    指定内容的html。
+指定内容的html。
 
-* `onConfirm` : {function}
+### onConfirm *function*
 
-    确定时的操作，可在函数内使用this.activeTrigger得到触发节点，下同。
+确定时的操作，可在函数内使用this.activeTrigger得到触发节点，下同。
 
-* `onClose` : {function}
+### onClose *function*
 
-    关闭时的操作。
+关闭时的操作。
 
-* `hasMask` : {boolean}
+### hasMask *boolean*
 
-    是否有背景遮罩层。
+是否有背景遮罩层。
+
+
 
 其他配置参照[overlay](overlay/README.md)。
 
