@@ -119,14 +119,11 @@ define(function(require, exports, module) {
             });
         },
 
-        // 绑定键盘事件，ESC关闭窗口，回车确定
+        // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
             this.delegateEvents('keyup', function(e) {
                 if (e.keyCode === 27) {
                     this.close();
-                }
-                else if (e.keyCode === 13) {
-                    this.confirm();
                 }
             });
         },
