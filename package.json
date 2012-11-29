@@ -14,9 +14,9 @@
         "url": "https://github.com/aralejs/dialog/issues"
     },
     "output": {
-        "base-dialog.js": ["base-dialog.js"],
-        "anim-dialog.js": ["anim-dialog.js"],
-        "confirm-box.js": ["confirm-box.js"]
+        "base-dialog.js": ["./base-dialog.js"],
+        "anim-dialog.js": ["./anim-dialog.js"],
+        "confirm-box.js": ["./confirm-box.js"]
     },
     "dependencies": {
         "$": "$",
