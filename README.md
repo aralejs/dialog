@@ -39,12 +39,12 @@
 
 
 
-其他配置参照[overlay](overlay/README.md)。
+其他配置参照[overlay](/overlay/)。
 
 
 ## 实例方法
 
-参照[overlay](overlay/README.md)。
+参照[overlay](/overlay/)。
 
 ## 最佳实践
 
