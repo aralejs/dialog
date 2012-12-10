@@ -4,9 +4,9 @@
 
 ## 0.9.2
 
-`tag:changed` [#10](https://github.com/aralejs/dialog/issues/10) confirmBox.confirm 等静态方法的参数调整，支持自定义参数。
+`tag:changed` [#10](https://github.com/aralejs/dialog/issues/10) ConfirmBox.confirm 等静态方法的参数调整，支持传自定义参数。
 
-`tag:improved` confirmBox 隐藏后销毁自身。
+`tag:improved` ConfirmBox 隐藏后销毁自身。
 
 `tag:improved` overlay 依赖升级到 0.9.13。
 

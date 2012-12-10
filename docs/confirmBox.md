@@ -48,15 +48,45 @@ new ConfirmBox({
 
 组件还提供下面三个静态方法，方便调用。
 
-### ConfirmBox.alert(msg, callback)
+### ConfirmBox.alert(msg, callback, options?) `static`
 
 弹出信息确认框。
 
-### ConfirmBox.confirm(msg, title, confirmCallback, cancelCallback)
+### ConfirmBox.confirm(msg, title, callback, options?) `static`
 
 弹出信息确认取消框。
 
-### ConfirmBox.show(msg, callback)
+### ConfirmBox.show(msg, callback, options?) `static`
 
 弹出信息框，右上角有关闭 X 。
 
+如弹出一个确认框：
+
+```js
+ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+    console.log('点击了确认按钮');
+});
+```
+
+还可以利用 options 参数进行一些个性化定制，options 和 ConfirmBox 的配置项一致，并且优先级大于静态方法前面的参数。
+
+```js
+ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+    console.log('点击了确认按钮');
+}, {
+    onClose: function() {
+        console.log('点击了确认按钮');
+    },
+    hasCloseX: true,    // 有关闭的 X 按钮
+    hasMask: false,     // 没有遮罩层
+    width: 300          // 宽度设置为 300 px
+});
+```
+
+```js
+ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+    console.log('点击了确认按钮');
+}, {    
+    title: '对话框' // 标题将改为 对话框
+});
+```

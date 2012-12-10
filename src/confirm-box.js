@@ -51,8 +51,8 @@ define(function(require, exports, module) {
 
     });
 
-    ConfirmBox.alert = function(content, callback) {
-        new ConfirmBox({
+    ConfirmBox.alert = function(content, callback, options) {
+        var defaults = {
             content: content,
             hasTitle: false,
             hasCancel: false,
@@ -61,30 +61,33 @@ define(function(require, exports, module) {
                 callback && callback();
                 this.hide();
             }
-        }).show().after('confirm close', function() {
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
             this.destroy();
         });
     };
 
-    ConfirmBox.confirm = function(content, title, confirmCb, cancelCb) {
-        new ConfirmBox({
+    ConfirmBox.confirm = function(content, title, callback, options) {
+        var defaults = {
             content: content,
             title: title || '确认框',
             hasCloseX: false,
             onConfirm: function() {
-                confirmCb && confirmCb();
+                callback && callback();
                 this.hide();
-            },
-            onClose: function() {
-                cancelCb && cancelCb();
             }
-        }).show().after('confirm close', function() {
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
             this.destroy();
         });
     };
 
-    ConfirmBox.show = function(content, callback) {
-        new ConfirmBox({
+    ConfirmBox.show = function(content, callback, options) {
+        var defaults = {
             content: content,
             hasTitle: false,
             hasOk: false,
@@ -94,7 +97,10 @@ define(function(require, exports, module) {
                 callback && callback();
                 this.hide();
             }
-        }).show().after('confirm close', function() {
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
             this.destroy();
         });
     };
