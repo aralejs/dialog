@@ -85,6 +85,7 @@ define(function(require, exports, module) {
 
         destroy: function() {
             this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
+            this.element.remove();
             return BaseDialog.superclass.destroy.call(this);
         },
 

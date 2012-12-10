@@ -119,6 +119,10 @@ define(function(require, exports, module) {
         },
 
         hide: function() {
+            if (!this.element) {
+                return this;
+            }
+            
             AnimDialog.superclass.hide.call(this);
             this.element.show();
 

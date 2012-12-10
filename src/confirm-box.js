@@ -32,7 +32,7 @@ define(function(require, exports, module) {
 
             hasTitle: true,
             hasOk: true,
-            hasCancel: true,            
+            hasCancel: true,
             hasCloseX: true
         },
 
@@ -61,7 +61,9 @@ define(function(require, exports, module) {
                 callback && callback();
                 this.hide();
             }
-        }).show();
+        }).show().after('confirm close', function() {
+            this.destroy();
+        });
     };
 
     ConfirmBox.confirm = function(content, title, confirmCb, cancelCb) {
@@ -74,23 +76,27 @@ define(function(require, exports, module) {
                 this.hide();
             },
             onClose: function() {
-                cancelCb && cancelCb();            
+                cancelCb && cancelCb();
             }
-        }).show();
+        }).show().after('confirm close', function() {
+            this.destroy();
+        });
     };
 
     ConfirmBox.show = function(content, callback) {
         new ConfirmBox({
             content: content,
             hasTitle: false,
-            hasOk: false,            
+            hasOk: false,
             hasCancel: false,
             hasCloseX: true,
             onConfirm: function() {
                 callback && callback();
                 this.hide();
             }
-        }).show();
+        }).show().after('confirm close', function() {
+            this.destroy();
+        });
     };
 
     module.exports = ConfirmBox;
