@@ -1,4 +1,4 @@
-define("arale/dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-dialog-debug", "$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/easing/1.0.0/easing-debug", "arale/overlay/0.9.12/mask-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
+define("arale/dialog/0.9.2/confirm-box-debug", ["./anim-dialog-debug", "./base-dialog-debug", "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/easing/1.0.0/easing-debug", "arale/overlay/0.9.13/mask-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         AnimDialog = require('./anim-dialog-debug'),
@@ -32,7 +32,7 @@ define("arale/dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-d
 
             hasTitle: true,
             hasOk: true,
-            hasCancel: true,            
+            hasCancel: true,
             hasCloseX: true
         },
 
@@ -51,8 +51,8 @@ define("arale/dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-d
 
     });
 
-    ConfirmBox.alert = function(content, callback) {
-        new ConfirmBox({
+    ConfirmBox.alert = function(content, callback, options) {
+        var defaults = {
             content: content,
             hasTitle: false,
             hasCancel: false,
@@ -61,36 +61,48 @@ define("arale/dialog/0.9.1/confirm-box-debug", ["./anim-dialog-debug", "./base-d
                 callback && callback();
                 this.hide();
             }
-        }).show();
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
+            this.destroy();
+        });
     };
 
-    ConfirmBox.confirm = function(content, title, confirmCb, cancelCb) {
-        new ConfirmBox({
+    ConfirmBox.confirm = function(content, title, callback, options) {
+        var defaults = {
             content: content,
             title: title || '确认框',
             hasCloseX: false,
             onConfirm: function() {
-                confirmCb && confirmCb();
+                callback && callback();
                 this.hide();
-            },
-            onClose: function() {
-                cancelCb && cancelCb();            
             }
-        }).show();
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
+            this.destroy();
+        });
     };
 
-    ConfirmBox.show = function(content, callback) {
-        new ConfirmBox({
+    ConfirmBox.show = function(content, callback, options) {
+        var defaults = {
             content: content,
             hasTitle: false,
-            hasOk: false,            
+            hasOk: false,
             hasCancel: false,
             hasCloseX: true,
             onConfirm: function() {
                 callback && callback();
                 this.hide();
             }
-        }).show();
+        };
+        new ConfirmBox($.extend(null, defaults, options))
+        .show()
+        .after('confirm close', function() {
+            this.destroy();
+        });
     };
 
     module.exports = ConfirmBox;

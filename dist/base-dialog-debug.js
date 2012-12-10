@@ -1,8 +1,8 @@
-define("arale/dialog/0.9.1/base-dialog-debug", ["$-debug", "arale/overlay/0.9.12/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.12/mask-debug"], function(require, exports, module) {
+define("arale/dialog/0.9.2/base-dialog-debug", ["$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.13/mask-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Overlay = require('arale/overlay/0.9.12/overlay-debug'),
-        mask = require('arale/overlay/0.9.12/mask-debug'),
+        Overlay = require('arale/overlay/0.9.13/overlay-debug'),
+        mask = require('arale/overlay/0.9.13/mask-debug'),
         Events = require('arale/events/1.0.0/events-debug'),
         
         TRIGGER_EVENT_NS = '.trigger-events-';
@@ -85,6 +85,7 @@ define("arale/dialog/0.9.1/base-dialog-debug", ["$-debug", "arale/overlay/0.9.12
 
         destroy: function() {
             this.get('trigger').off(this.get('triggerType') + TRIGGER_EVENT_NS + this.cid);
+            this.element.remove();
             return BaseDialog.superclass.destroy.call(this);
         },
 
