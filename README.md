@@ -37,7 +37,7 @@
 
 ### onConfirm *function*
 
-确定时的操作，可在函数内使用this.activeTrigger得到触发节点，下同。
+确定时的操作，可在函数内使用`this.activeTrigger`得到触发节点，下同。
 
 ### onClose *function*
 
@@ -58,7 +58,13 @@
 
 ## 事件说明
 
-以下两个事件和配置中的 `onConfirm` 和 `onClose` 作用相同。
+以下两个事件和配置中的 `onConfirm` 和 `onClose` 作用相同，调用方式不同。
+
+```js
+dialogInstanse.on('confirm', function() {
+    // ...
+});
+```
 
 ### confirm 
 
