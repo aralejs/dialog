@@ -37,9 +37,11 @@ ConfirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 
 ### confirm
 
+点击确定按钮时触发。
+
 ```js
 confirmBox.on('confirm', function() {
-    // 点击了确定按钮时
+    // 比如提交表单
 });
 ```
 

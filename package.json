@@ -2,7 +2,7 @@
     "name": "dialog",
     "root": "arale",
     "version": "1.0.0",
-    "description": "Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。",
+    "description": "Dialog 是通用对话框容器，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义以及模态对话框等功能。",
     "tag": "widget",
     "author": "afc163 <afc163@gmail.com>",
     "homepage": "http://aralejs.org/dialog",
