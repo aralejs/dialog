@@ -59,7 +59,7 @@ define(function(require, exports, module) {
             height: null,
 
             // 简单的动画效果 none | fade
-            effect: 'fade',
+            effect: 'none',
 
             // 不用解释了吧
             zIndex: 999,
@@ -94,7 +94,7 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                this.set('height', DefaultHeight);
+                this.element.css('height', DefaultHeight);
                 this._showIframe();
             }
 
@@ -231,7 +231,7 @@ define(function(require, exports, module) {
             // 开始请求 iframe
             this.iframe.attr({
                 src: this.get('content'),
-                name: 'xbox-iframe' + new Date().getTime()
+                name: 'dialog-iframe' + new Date().getTime()
             });
 
             this.iframe[0].onload = function(a) {
@@ -241,7 +241,6 @@ define(function(require, exports, module) {
                         that._syncHeight();
                     }, 500);
                 }
-
                 that._syncHeight();
                 that._setPosition();
 
@@ -251,6 +250,8 @@ define(function(require, exports, module) {
         },
 
         _createIframe: function() {
+            var that = this;
+
             if (this._type !== 'iframe') {
                 return;
             }

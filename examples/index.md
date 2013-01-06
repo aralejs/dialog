@@ -1,8 +1,10 @@
-# 演示文档
+# Dialog - 基础调用
 
 - order: 1
 
 ---
+
+主要演示传入各种 content，以及传入 url 的自动识别和高度管理。
 
 <style>
 .fn-hide {
@@ -29,7 +31,7 @@ seajs.use(['dialog'], function(Dialog) {
 
 ### 2. 内容可传入 DOM 对象
 
-<button id="example2">内容传入$('#example2-dom')</button>
+<button id="example2">内容传入DOM 对象</button>
 <div class="fn-hide">
     <div id="example2-dom" style="padding:50px">传入了DOM</div>
 </div>
@@ -57,9 +59,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 
 ### 3. 内容可传入 html 标签
 
-<div class="cell">
-    <button id="example3">content: '&lt;div&gt;传入了 html 标签&lt;/div&gt;'</button>
-</div>
+<button id="example3">传入了 html 标签</button>
 
 ````javascript
 seajs.use(['dialog','$'], function(Dialog, $) {
@@ -72,21 +72,18 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 
 ### 4. 内容可传入 url，自动判断是否为 url
 
-<div class="cell">
-    <button id="example4">content: 'iframe.html'</button>
-</div>
+<button id="example4">内嵌 iframe</button>
 
 ````javascript
 seajs.use(['dialog','$'], function(Dialog, $) {
     new Dialog({
         trigger: '#example4',
-        autoFit: false,
-        content: 'http://www.baidu.com'
+        content: './iframe.html'
     });
 });
 ````
 
-在 iframe 页面这样设置关闭按钮
+在 iframe 页面可以这样绑定关闭按钮
 
 ```
 document.getElementById('close').onclick = function(){
@@ -135,22 +132,17 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 });
 ````
 
-### 7. 关闭链接可以自定义
 
-<button id="example7-1">closeTpl: '自定义的关闭链接'</button>
-<button id="example7-2">还可以动态改变它</button>
+### 7. 能够自动管理内嵌 iframe 的高度。
+
+<button id="example7">打开一个高度变化的iframe</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
-    var example = new Dialog({
-        trigger: '#example7-1',
-        closeTpl: '点我可以关闭对话框',
-        height: '450px'
-    });
-
-    $('#example7-2').click(function(e) {
-        e.preventDefault();
-        example.show().set('closeTpl', '改变后的关闭链接');
+seajs.use(['dialog'], function(Dialog) {
+    new Dialog({
+        trigger: '#example7',
+        content: './heightChange.html'
     });
 });
 ````
+

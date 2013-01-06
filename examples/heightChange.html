@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>Xbox</title>
+<style>
+#example {
+    height: 600px;
+    background: #FF835B;
+    border-radius: 5px 5px;
+    padding: 20px;
+}
+</style>
+</head>
+<body>
+<div id="example">
+    我的高度每两秒变化一次
+</div>
+<script type="text/javascript">
+    var example = document.getElementById('example');
+    setInterval(function() {
+        if (example.style.height === '600px') {
+            example.style.height = '400px';
+        } else {
+            example.style.height = '600px';            
+        }
+    }, 2000);
+</script>
+</body>
+</html>

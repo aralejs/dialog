@@ -5,6 +5,10 @@
 
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
+本模块分为两个子组件：Dialog 和 ConfirmBox，前者提供基础容器功能，后者在前者的基础上提供模态对话框的功能。Dialog 组件自带模板和样式，直接使用即可。
+
+本页主要介绍 Dialog，ConifrmBox 文档请访问[这里](http://aralejs.org/dialog/docs/confirmbox.html)。
+
 ![对话框图](https://raw.github.com/slowhost/upload/1355909213528/123.png)
 
 ---
@@ -15,82 +19,84 @@
 
 对话框触发元素，可传递选择器。
 
-### triggerType *string*
+### content *string|element*
 
-对话框触发方式，可选 click|hover|focus ，默认为click。
-
-### element *element*
-
-对话框的浮层元素。
-
-### template *string*
-
-对话框的浮层模板，和 `element` 参数二选其一即可（注：confirm-box 有自带模板）。
-
-### title *string|function*
-
-指定标题，可以是 html 字符串。
-
-### content *string|function*
-
-指定内容，可以是 html 字符串（甚至包括 `<iframe src="test.html">`）。
-
-### onConfirm *function*
-
-确定时的操作，可在函数内使用`this.activeTrigger`得到触发节点，下同。
-
-### onClose *function*
-
-关闭时的操作。
+容器的内容，可以是纯字符串、dom对象、jQuery对象、html标签字符串、以及 URL 地址。当 content 为 URL 地址时，本组件将内嵌目标页面的 Iframe。
 
 ### hasMask *boolean*
 
 是否有背景遮罩层。
 
+### classPrefix *string*
 
-其他配置参照[overlay](/overlay/)。
+统一样式前缀，默认为 `ui-dialog`。
+
+### closeTpl *string*
+
+右上角的关闭链接，默认为`<a href="#" class="ui-dialog-x">×</a>`。
+
+### width *number|string*
+
+对话框宽度，默认 500px。
+
+### width *number|string*
+
+对话框宽度，默认 500px。
+
+### height *number|string*
+
+对话框高度，当设置这个属性时，下面的 autoFit 强制为 false。
+
+### autoFit *boolean*
+
+内嵌 Iframe 页面时是否自适应高度，默认为 true。
+
+### effect *string*
+
+简单的动画效果，none 为无动画，fade 为渐入效果。默认为 none。
+
+
+其他配置如定位参数 `align` 等请参照[overlay](http://aralejs.org/overlay/)。
 
 
 ## 实例方法
 
-参照[overlay](/overlay/)。
+主要有 show、hide、render 等方法，请参照[overlay](http://aralejs.org/overlay/)。
 
 
 ## 事件说明
 
-以下两个事件和配置中的 `onConfirm` 和 `onClose` 作用相同，调用方式不同。
+### complete:show
+
+本事件在当 content 为 URL 地址时 Iframe 载入完毕后触发。
 
 ```js
-dialogInstanse.on('confirm', function() {
-    // ...
+dialogInstanse.on('complete:show', function() {
+    // Iframe 载入完毕
 });
 ```
-
-### confirm 
-
-点击确定时的操作。
-
-### close
-
-关闭时的操作。
 
 ---
 
 ## 最佳实践
 
 ```js
-seajs.use('arale/dialog/{{版本号}/base-dialog}', function(BaseDialog) {
-    var o = new BaseDialog({
+seajs.use('dialog', function(Dialog) {
+    var o = new Dialog({
         trigger: '#trigger',
-        template: '<div class="overlay"><button id="close">点击关闭</button></div>',
-        width: 300,
-        height: 200,
-        align: {
-            baseXY: [100, 100]
-        },
-        hasMask: true
+        content: '<div>这是 dialog 容器的内容</div>',
     });
 };
 ```
 
-注意，需要用`data-role="title"`这样的属性来标示 html 节点的作用，目前支持的 role 有`title`(标题节点)、`content`(内容节点)、`confirm`(确定按钮)、`cancel`(取消按钮)、`close`(关闭按钮)。
+内嵌 Iframe：
+
+```js
+seajs.use('dialog', function(Dialog) {
+    var o = new Dialog({
+        trigger: '#trigger',
+        content: 'https://www.alipay.com/',
+    });
+};
+```
+

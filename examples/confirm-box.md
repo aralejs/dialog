@@ -1,6 +1,6 @@
-# ConfirmBox: 带有默认样式的对话框演示
+# ConfirmBox - 标准模态对话框
 
-- order: 3
+- order: 4
 
 ---
 

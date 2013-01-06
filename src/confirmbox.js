@@ -1,21 +1,21 @@
 define(function(require, exports, module) {
 
     var $ = require('$'),
-        AnimDialog = require('./anim-dialog'),
+        Dialog = require('./anim-dialog'),
         Templatable = require('templatable');
 
     // ConfirmBox
     // -------
     // ConfirmBox 是一个有基础模板和样式的对话框组件。
 
-    var ConfirmBox = AnimDialog.extend({
+    var ConfirmBox = Dialog.extend({
 
         Implements: Templatable,
 
         attrs: {
 
             // 默认模板，不要覆盖
-            template: require('./confirm-box.tpl'),        
+            template: require('./confirmbox.tpl'),
             // 指定标题内容
             title: '默认标题',
             // 指定内容的 html
@@ -46,7 +46,7 @@ define(function(require, exports, module) {
                 hasCloseX: this.get('hasCloseX'),
                 hasFoot: this.get('hasOk') || this.get('hasCancel')
             }
-            AnimDialog.superclass.parseElement.call(this);
+            Dialog.superclass.parseElement.call(this);
         }
 
     });
