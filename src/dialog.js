@@ -75,7 +75,6 @@ define(function(require, exports, module) {
         },
 
         parseElement: function() {
-            var that = this;
             this.model = {
                 classPrefix: this.get('classPrefix')
             };
@@ -237,7 +236,7 @@ define(function(require, exports, module) {
                 name: 'dialog-iframe' + new Date().getTime()
             });
 
-            this.iframe[0].onload = function(a) {
+            this.iframe[0].onload = function() {
                 if (that.get('autoFit')) {
                     clearInterval(that._interval);
                     that._interval = setInterval(function() {

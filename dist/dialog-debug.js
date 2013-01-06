@@ -51,7 +51,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             }
         },
         parseElement: function() {
-            var that = this;
             this.model = {
                 classPrefix: this.get("classPrefix")
             };
@@ -192,7 +191,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 src: this._fixUrl(),
                 name: "dialog-iframe" + new Date().getTime()
             });
-            this.iframe[0].onload = function(a) {
+            this.iframe[0].onload = function() {
                 if (that.get("autoFit")) {
                     clearInterval(that._interval);
                     that._interval = setInterval(function() {
