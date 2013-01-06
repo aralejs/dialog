@@ -1,8 +1,11 @@
 define(function(require, exports, module) {
 
     var $ = require('$'),
-        Dialog = require('./anim-dialog'),
-        Templatable = require('templatable');
+        Templatable = require('templatable'),
+        Handlebars = require('handlebars'),
+        Dialog = require('./dialog');
+
+    require('./confirmbox.css');
 
     // ConfirmBox
     // -------
@@ -13,50 +16,67 @@ define(function(require, exports, module) {
         Implements: Templatable,
 
         attrs: {
+            // 指定内容模板
+            content: require('./confirmbox.tpl'),
 
-            // 默认模板，不要覆盖
-            template: require('./confirmbox.tpl'),
-            // 指定标题内容
             title: '默认标题',
-            // 指定内容的 html
-            content: '默认内容',
 
-            width: 500,
-            hasMask: true,
-            effect: null,
+            confirmTpl: '确定',
 
-            align: {
-                selfXY: ['50%', '50%'],
-                baseXY: ['50%', '38%']
-            },
+            cancelTpl: '取消',
 
-            hasTitle: true,
-            hasOk: true,
-            hasCancel: true,
-            hasCloseX: true
+            message: '默认内容'
         },
 
         parseElement: function() {
-            this.model = {
+            var model = {
+                classPrefix: this.get('classPrefix'),
+                message: this.get('message'),
                 title: this.get('title'),
-                content: this.get('content'),
-                hasTitle: this.get('hasTitle'),
-                hasOk: this.get('hasOk'),
-                hasCancel: this.get('hasCancel'),
-                hasCloseX: this.get('hasCloseX'),
-                hasFoot: this.get('hasOk') || this.get('hasCancel')
+                confirmTpl: this.get('confirmTpl'),
+                cancelTpl: this.get('cancelTpl'),
+                hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
+            };
+            var template = Handlebars.compile(this.get('content'));
+            this.set('content', template(model));
+            ConfirmBox.superclass.parseElement.call(this);
+        },
+
+        events: {
+            'click [data-role=confirm]': function(e) {
+                e.preventDefault();
+                this.trigger('confirm');
+            },
+            'click [data-role=cancel]': function(e) {
+                e.preventDefault();
+                this.hide();
             }
-            Dialog.superclass.parseElement.call(this);
+        },
+
+        _onRenderMessage: function(val) {
+            this.$('[data-role=message]').html(val);
+        },
+
+        _onRenderTitle: function(val) {
+            this.$('[data-role=title]').html(val);
+        },
+
+        _onRenderConfirmTpl: function(val) {
+            this.$('[data-role=confirm] a').html(val);
+        },
+
+        _onRenderCancelTpl: function(val) {
+            this.$('[data-role=cancel] a').html(val);
         }
 
     });
 
-    ConfirmBox.alert = function(content, callback, options) {
+    ConfirmBox.alert = function(message, callback, options) {
         var defaults = {
-            content: content,
-            hasTitle: false,
-            hasCancel: false,
-            hasCloseX: false,
+            message: message,
+            title: '',
+            cancelTpl: '',
+            closeTpl: '',
             onConfirm: function() {
                 callback && callback();
                 this.hide();
@@ -69,11 +89,11 @@ define(function(require, exports, module) {
         });
     };
 
-    ConfirmBox.confirm = function(content, title, callback, options) {
+    ConfirmBox.confirm = function(message, title, callback, options) {
         var defaults = {
-            content: content,
+            message: message,
             title: title || '确认框',
-            hasCloseX: false,
+            closeTpl: '',
             onConfirm: function() {
                 callback && callback();
                 this.hide();
@@ -86,13 +106,12 @@ define(function(require, exports, module) {
         });
     };
 
-    ConfirmBox.show = function(content, callback, options) {
+    ConfirmBox.show = function(message, callback, options) {
         var defaults = {
-            content: content,
-            hasTitle: false,
-            hasOk: false,
-            hasCancel: false,
-            hasCloseX: true,
+            message: message,
+            title: '',
+            confirmTpl: false,
+            cancelTpl: false,
             onConfirm: function() {
                 callback && callback();
                 this.hide();

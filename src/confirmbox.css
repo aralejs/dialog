@@ -1,0 +1,34 @@
+.ui-dialog-title {
+    height:45px;
+    font-size:16px;
+    font-family:'微软雅黑','黑体',Arial;
+    line-height:46px;
+    border-bottom:1px solid #E1E1E1;
+    color:#4d4d4d;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#f9f9f9));
+    background: -moz-linear-gradient(top, #fcfcfc, #f9f9f9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');
+    background:-o-linear-gradient(top, #fcfcfc, #f9f9f9);
+    background: linear-gradient(top, #fcfcfc, #f9f9f9);
+}
+
+.ui-dialog-title h2 {
+    margin-left:20px;
+}
+
+.ui-dialog-container {
+    padding:15px 20px 20px;
+}
+
+.ui-dialog-message {
+    margin-bottom:15px;
+}
+
+.ui-dialog-operation {
+    zoom:1;
+}
+
+.ui-dialog-operation .ui-button {
+    margin-right:6px;
+}

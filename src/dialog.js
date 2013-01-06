@@ -111,6 +111,7 @@ define(function(require, exports, module) {
                 });
             }
 
+            this.trigger('close');
             Dialog.superclass.hide.call(this);
             return this;
         },

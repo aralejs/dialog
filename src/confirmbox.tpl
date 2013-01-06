@@ -1,31 +1,22 @@
-<div class="ui-xbox">
-    <div class="ui-xbox-action">
-        {{#if hasCloseX}}<a href="javascript:;" class="ui-xbox-close" data-role="close" title="关闭">×</a>{{/if}}
+    {{#if title}}
+    <div class="{{classPrefix}}-title" data-role="head">
+        <h2 data-role="title">{{title}}</h2>
     </div>
-    <div class="ui-xbox-content">
-        <div class="ui-confirmXbox">
-            {{#if hasTitle}}
-            <div class="ui-confirmXbox-title sl-linear-light" data-role="head">
-                <h2 data-role="title">{{title}}</h2>
+    {{/if}}
+    <div class="{{classPrefix}}-container">
+        <div class="{{classPrefix}}-message" data-role="message">{{message}}</div>
+        {{#if hasFoot}}        
+        <div class="{{classPrefix}}-operation" data-role="foot">
+            {{#if confirmTpl}}
+            <div class="ui-button ui-button-sorange {{classPrefix}}-confirm" data-role="confirm">
+                <a href="javascript:;" class="ui-button-text">{{confirmTpl}}</a>
             </div>
             {{/if}}
-            <div class="ui-confirmXbox-container">
-                <div class="ui-confirmXbox-content" data-role="content">{{content}}</div>
-                {{#if hasFoot}}        
-                <div class="ui-confirmXbox-operation" data-role="foot">
-                    {{#if hasOk}}
-                    <div class="ui-button ui-button-sorange ui-confirmXbox-confirm" data-role="confirm">
-                        <a href="javascript:;" class="ui-button-text">确定</a>
-                    </div>
-                    {{/if}}
-                    {{#if hasCancel}}
-                    <div class="ui-button ui-button-swhite ui-confirmXbox-cancel" data-role="cancel">
-                        <a href="javascript:;" class="ui-button-text">取消</a>
-                    </div>
-                    {{/if}}
-                </div>
-                {{/if}}
+            {{#if cancelTpl}}
+            <div class="ui-button ui-button-swhite {{classPrefix}}-cancel" data-role="cancel">
+                <a href="javascript:;" class="ui-button-text">{{cancelTpl}}</a>
             </div>
+            {{/if}}
         </div>
+        {{/if}}
     </div>
-</div>

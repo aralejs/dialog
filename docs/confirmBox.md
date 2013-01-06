@@ -4,32 +4,46 @@
 
 ---
 
-confirmBox 是具有默认样式和完善功能的对话框，可直接使用。
+ConfirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 
-继承自 anim-dialog 组件，需要载入样式`ui-confirmXbox`和`ui-xbox`。
+继承自 Dialog 组件，需要使用样式`ui-button-orange`和`ui-button-white`。
 
-* http://dev.assets.alipay.net/al/alice.components.ui-confirmXbox-1.0-full.css
-* http://dev.assets.alipay.net/al/alice.components.ui-xbox-1.3-src.css
+* https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css
+* https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css
 
 ---
 
 ## 配置说明
 
-### hasTitle *boolean*
+### title *string*
 
-是否显示标题栏，默认为 true。
+标题栏内容，为空则无标题栏。
 
-### hasOk *boolean*
+### message *string*
 
-是否显示确定按钮，默认为 true。
+消息区域内容，可为 html 字符串。
 
-### hasCancel *boolean*
+### confirmTpl *string*
 
-是否显示取消按钮，默认为 true。
+确定按钮的文案。
 
-### hasCloseX *boolean*
+### cancelTpl *string*
 
-是否显示关闭 X 按钮，默认为 true。
+取消按钮的文案。
+
+其他属性请参照 [Dialog](http://aralejs.org/dialog/)。
+
+## 事件说明
+
+### confirm
+
+```js
+confirmBox.on('confirm', function() {
+    // 点击了确定按钮时
+});
+```
+
+### close *继承自 Dialog*
 
 ## 最佳实践
 
