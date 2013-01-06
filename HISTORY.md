@@ -10,7 +10,7 @@
 
 `tag:changed` 去掉 AnimDialog，改为只支持简单的渐入效果。
 
-`tag:changed` ConfirmBox API 重构，定位为标准模态对话框。
+`tag:changed` ConfirmBox API 大幅重构，定位为标准模态对话框。
 
 ## 0.9.2
 
