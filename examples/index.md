@@ -81,7 +81,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
     new Dialog({
         trigger: '#example4',
         autoFit: false,
-        content: './iframe.html'
+        content: 'http://www.baidu.com'
     });
 });
 ````
@@ -105,7 +105,6 @@ document.getElementById('close').onclick = function(){
 ````javascript
 seajs.use(['dialog','$'], function(Dialog, $) {
     new Dialog({
-        type: 'iframe',
         trigger: '#example5 button',
         height: '400px'
     }).before('show',function() {
@@ -152,25 +151,6 @@ seajs.use(['dialog','$'], function(Dialog, $) {
     $('#example7-2').click(function(e) {
         e.preventDefault();
         example.show().set('closeTpl', '改变后的关闭链接');
-    })
-});
-````
-
-### 8. 在 iframe 请求中关闭 dialog 时不会再触发 load
-
-<button id="example8">点击后开启马上关闭</button>
-
-````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
-    var dialog = new Dialog({
-        trigger: '#example8',
-        content: 'http://www.baidu.com',
-        height: '200px'
-    }).after('show', function() {
-        setTimeout(function() {
-            dialog.hide();
-        },50);
     });
 });
 ````
-

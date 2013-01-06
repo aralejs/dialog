@@ -2,7 +2,7 @@
     "name": "dialog",
     "root": "arale",
     "version": "1.0.0",
-    "description": "基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。",
+    "description": "Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。",
     "tag": "widget",
     "author": "afc163 <afc163@gmail.com>",
     "homepage": "http://aralejs.org/dialog",
@@ -14,7 +14,7 @@
         "url": "https://github.com/aralejs/dialog/issues"
     },
     "output": {
-        "dialog.js": [".dialog.js"],
+        "dialog.js": ["./dialog.js"],
         "confirmbox.js": ["./confirmbox.js"]
     },
     "dependencies": {

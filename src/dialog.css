@@ -9,6 +9,7 @@
     top: 50%;
     width: 500px;
     background-color: rgba(0, 0, 0, 0.5);
+    border: none;
     FILTER: progid: DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
     padding: 6px;
 }
