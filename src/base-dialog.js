@@ -56,11 +56,17 @@ define(function(require, exports, module) {
             'click [data-role=close]' : 'close'
         },
 
-        confirm: function() {
+        confirm: function(e) {
+            if (e) {
+                e.preventDefault();
+            }
             this.trigger('confirm');
         },
 
-        close: function() {
+        close: function(e) {
+            if (e) {
+                e.preventDefault();
+            }
             this.trigger('close');
             this.hide();
             // 关于网页中浮层消失后的焦点处理

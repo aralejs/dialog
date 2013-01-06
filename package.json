@@ -1,7 +1,7 @@
 {
     "name": "dialog",
     "root": "arale",
-    "version": "0.9.2",
+    "version": "0.9.3",
     "description": "基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。",
     "tag": "widget",
     "author": "afc163 <afc163@gmail.com>",

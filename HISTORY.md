@@ -2,6 +2,10 @@
 
 ---
 
+## 0.9.3
+
+`tag:improved` AnimDialog 增加 confirm 和 close 的事件阻止，防止打断可能出现的异步请求。
+
 ## 0.9.2
 
 `tag:changed` [#10](https://github.com/aralejs/dialog/issues/10) ConfirmBox.confirm 等静态方法的参数调整，支持传自定义参数。
