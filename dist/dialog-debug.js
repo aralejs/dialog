@@ -9,7 +9,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         Implements: Templatable,
         attrs: {
             // 模板
-            template: '<div class="{{classPrefix}}">\n<div class="{{classPrefix}}-close" title="关闭本框" data-role="close"></div>\n<div class="{{classPrefix}}-content"  data-role="content">\n</div>\n</div>',
+            template: '<div class="{{classPrefix}}">\n<div class="{{classPrefix}}-close" title="关闭本框" data-role="close"></div>\n<div class="{{classPrefix}}-content"  data-role="content"></div>\n</div>',
             // 对话框触发点
             trigger: {
                 value: null,
@@ -84,6 +84,8 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             }
             this.trigger("close");
             Dialog.superclass.hide.call(this);
+            clearInterval(this._interval);
+            delete this._interval;
             return this;
         },
         destroy: function() {
@@ -187,7 +189,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             }
             // 开始请求 iframe
             this.iframe.attr({
-                src: this.get("content"),
+                src: this._fixUrl(),
                 name: "dialog-iframe" + new Date().getTime()
             });
             this.iframe[0].onload = function(a) {
@@ -203,6 +205,12 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 that.trigger("complete:show");
             };
         },
+        _fixUrl: function() {
+            var s = this.get("content").match(/([^?#]*)(\?[^#]*)?(#.*)?/);
+            s.shift();
+            s[1] = (s[1] && s[1] !== "?" ? s[1] + "&" : "?") + "t=" + new Date().getTime();
+            return s.join("");
+        },
         _createIframe: function() {
             var that = this;
             if (this._type !== "iframe") {
@@ -216,6 +224,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 css: {
                     border: "none",
                     width: "100%",
+                    display: "block",
                     height: "100%"
                 }
             }).appendTo(this.contentElement);
@@ -234,12 +243,15 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                     h = getIframeHeight(this.iframe) + "px";
                 } catch (err) {
                     // 获取失败则给默认高度 300px
+                    // 跨域会抛错进入这个流程
                     h = DefaultHeight;
                     clearInterval(this._interval);
+                    delete this._interval;
                 }
                 this.element.css("height", h);
             } else {
                 clearInterval(this._interval);
+                delete this._interval;
             }
         }
     });
