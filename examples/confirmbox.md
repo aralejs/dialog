@@ -1,6 +1,6 @@
-# ConfirmBox: 带有默认样式的对话框演示
+# ConfirmBox - 标准模态对话框
 
-- order: 3
+- order: 4
 
 ---
 
@@ -11,27 +11,21 @@
 
 ````iframe:250
 <link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
 
 <input type="button" id="trigger11" value="默认样式对话框" />
 
 <script>
-seajs.use(['confirm-box'], function(ConfirmBox) {
+seajs.use(['confirmbox'], function(ConfirmBox) {
     var d11 = new ConfirmBox({
         trigger: '#trigger11',
-        title: function() {
-            return '我真是标题啊';
-        },
-        content: '我是内容 我是内容',
-        effect: {
-            type: 'move',
-            from: 'up'
-        },
+        title: '我真是标题啊',
+        message: '我是内容 我是内容',
         onConfirm: function() {
             var that = this;
             this.set('title', '三秒后关闭对话框');
-            this.set('content', '不要啊！！');            
+            this.set('message', '不要啊！！');            
             setTimeout(function() {
                 that.hide();
             }, 3000);
@@ -45,15 +39,15 @@ seajs.use(['confirm-box'], function(ConfirmBox) {
 
 ````iframe:250
 <link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
 
 <input type="button" id="trigger12" value="ConfirmBox.alert()" />    
 <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
 <input type="button" id="trigger14" value="ConfirmBox.show()" />    
 
 <script>
-seajs.use(['confirm-box', '$'], function(ConfirmBox, $) {
+seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
     $('#trigger12').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.alert');
     });
@@ -77,15 +71,15 @@ seajs.use(['confirm-box', '$'], function(ConfirmBox, $) {
 
 ````iframe:250
 <link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-confirmXbox-1.0-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-xbox-1.3-src.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
+<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
 
 <input type="button" id="trigger1" value="ConfirmBox.alert() 宽度300" />    
 <input type="button" id="trigger2" value="ConfirmBox.confirm() 有关闭的X" />
 <input type="button" id="trigger3" value="ConfirmBox.show() 没有mask" />
 
 <script>
-seajs.use(['confirm-box', '$'], function(ConfirmBox, $) {
+seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 
     $('#trigger1').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.confirm', function() {
@@ -106,7 +100,7 @@ seajs.use(['confirm-box', '$'], function(ConfirmBox, $) {
                 alert('点击了取消按钮');
             },
             title: '改过的自定义标题',
-            hasCloseX: true
+            closeTpl: '<a href="#" class="ui-dialog-x">×</a>'
         });
     });
 

@@ -1,0 +1,47 @@
+.ui-dialog,
+.ui-dialog-close {
+    position: absolute;
+    top: 0;
+}
+.ui-dialog {
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    FILTER: progid: DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
+    padding: 6px;
+}
+:root .ui-dialog {
+    FILTER: none\9;
+}
+.ui-dialog-close {
+    display: block;
+    right: 16px;
+    top: 16px;
+    z-index: 10;
+    cursor: pointer;
+}
+.ui-dialog-content {
+    background: #fff;
+    height: 100%;
+    *zoom: 1;
+}
+.ui-dialog-x {
+    color: #999;
+    font-family: tahoma;
+    font-size: 24px;
+    line-height: 14px;
+    height: 18px;
+    width: 18px;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    font-weight: bold;
+}
+.ui-dialog-x:hover {
+    color: #666;
+    text-shadow: 0 0 2px #aaa;
+}

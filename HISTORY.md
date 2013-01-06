@@ -1,6 +1,16 @@
-# 历史
+# 历史记录
 
 ---
+
+## 1.0.0
+
+本版本对 dialog 进行了毁灭性的重构，API 和定位都发生了大量变化，基本和之前的版本没什么关系。若要查看旧版本的文档，请到仓库中 clone 对应的 tag 到本地进行查看。
+
+`tag:changed` BaseDialog 改名为 Dialog，定位为对话框容器，支持 Iframe 内嵌，自带模板以及样式内联。
+
+`tag:changed` 去掉 AnimDialog，改为只支持简单的渐入效果。
+
+`tag:changed` ConfirmBox API 大幅重构，定位为标准模态对话框。
 
 ## 0.9.3
 
