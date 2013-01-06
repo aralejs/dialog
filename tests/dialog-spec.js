@@ -54,8 +54,8 @@ define(function(require) {
 
                 var iframe = example.$('iframe');
                 expect(iframe.length).to.be(1);
-                expect(iframe.attr('src').replace(/&t=\d*$/, ''))
-                    .to.be('./height300px.html?_dialog=true');
+                expect(iframe.attr('src').replace(/\?t=\d*$/, ''))
+                    .to.be('./height300px.html');
             });
 
             it('is absolute url', function() {
@@ -66,8 +66,8 @@ define(function(require) {
 
                 var iframe = example.$('iframe');
                 expect(iframe.length).to.be(1);
-                expect(iframe.attr('src').replace(/&t=\d*$/, ''))
-                    .to.be('http://www.alipay.com?_dialog=true');
+                expect(iframe.attr('src').replace(/\?t=\d*$/, ''))
+                    .to.be('https://www.alipay.com');
             });
 
             it('is invalid url', function() {
@@ -131,19 +131,13 @@ define(function(require) {
                     content: './height300px.html'
                 });
 
-                var spy = sinon.spy(example, '_onRenderHeight');
-
                 example.show();
 
                 setTimeout(function() {
-                    expect(example._onRenderHeight)
-                        .to.be.called.withArgs('300px');
-
                     $('iframe')[0].contentWindow.document
                         .getElementById('container').style.height = '400px';
                     example._syncHeight();
-                    expect(spy).to.be.called.withArgs('400px');
-                    spy.restore();
+                    expect(example.element.height()).to.be(400);
                     done();
                 }, 500);
             });
@@ -205,30 +199,39 @@ define(function(require) {
 
         it('bind close event', function() {
             example = new Dialog({
-                content: 'http://www.alipay.com'
+                content: 'https://www.alipay.com'
             });
+            example.show();
+            expect(example.get('visible')).to.be.ok();
             var iframe = example.$('iframe')[0];
             iframe.trigger('close');
             expect(example.get('visible')).not.to.be.ok();
         });
 
-        it('get top with long height', function() {
+        it('bind key close event', function() {
             example = new Dialog({
-                height: '1500px',
-                content: 'test'
-            }).show();
-            expect(example.element.css('top')).to.be('30px');
+                content: 'xxxx'
+            });
+            example.show();
+            expect(example.get('visible')).to.be.ok();
+            // 模拟一个键盘事件
+            var e = $.Event('keyup');
+            e.keyCode = 27;
+            example.element.trigger(e);
+            expect(example.get('visible')).not.to.be.ok();
         });
 
-        it('get top with golden ratio', function() {
+        it('bind key close event when iframe', function() {
             example = new Dialog({
-                height: '100px',
-                content: 'test'
+                content: 'https://www.alipay.com'
             });
-
-            example.render().show();
-            expect(example.get('align').selfXY).to.eql(['50%', '50%']);
-            expect(example.get('align').baseXY).to.eql(['50%', '38%']);
+            example.show();
+            expect(example.get('visible')).to.be.ok();
+            // 模拟一个键盘事件
+            var e = $.Event('keyup');
+            e.keyCode = 27;
+            example.element.trigger(e);
+            expect(example.get('visible')).not.to.be.ok();
         });
 
         it('before show set content', function() {
@@ -250,7 +253,7 @@ define(function(require) {
             }).render().show();
 
             var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
-            expect(url).to.be('http://baidu.com/index.html?param=aa&_dialog=true#');
+            expect(url).to.be('http://baidu.com/index.html?param=aa#');
         });
 
         it('should call onload once', function(done) {
@@ -259,16 +262,15 @@ define(function(require) {
             });
 
             var syncHeight = sinon.spy(example, '_syncHeight');
-            var syncTop = sinon.spy(example, '_syncTop');
+            var syncTop = sinon.spy(example, '_setPosition');
             var onRenderHeight = sinon.spy(example, '_onRenderHeight');
 
             example.show();
 
             setTimeout(function() {
                 expect(syncHeight).to.be.called.once();
-                expect(syncTop).to.be.called.twice();
-                console.dir(onRenderHeight);
-                expect(onRenderHeight).to.be.called.twice();
+                expect(syncTop.callCount).to.be(3);
+                expect(onRenderHeight.callCount).to.be(0);
                 done();
             }, 500);
         });

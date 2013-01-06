@@ -113,6 +113,8 @@ define(function(require, exports, module) {
 
             this.trigger('close');
             Dialog.superclass.hide.call(this);
+            clearInterval(this._interval);
+            delete this._interval;
             return this;
         },
 
@@ -231,7 +233,7 @@ define(function(require, exports, module) {
             }
             // 开始请求 iframe
             this.iframe.attr({
-                src: this.get('content'),
+                src: this._fixUrl(),
                 name: 'dialog-iframe' + new Date().getTime()
             });
 
@@ -250,6 +252,14 @@ define(function(require, exports, module) {
             };
         },
 
+        _fixUrl: function() {
+            var s = this.get('content').match(/([^?#]*)(\?[^#]*)?(#.*)?/);
+            s.shift();
+            s[1] = ((s[1] && s[1] !== '?') ? (s[1] + '&') : '?') +
+            't=' + new Date().getTime();
+            return s.join('');
+        },
+
         _createIframe: function() {
             var that = this;
 
@@ -265,6 +275,7 @@ define(function(require, exports, module) {
                 css: {
                     border: 'none',
                     width: '100%',
+                    display: 'block',
                     height: '100%'
                 }
             }).appendTo(this.contentElement);
@@ -285,12 +296,15 @@ define(function(require, exports, module) {
                     h = getIframeHeight(this.iframe) + 'px';
                 } catch (err) {
                     // 获取失败则给默认高度 300px
+                    // 跨域会抛错进入这个流程
                     h = DefaultHeight;
                     clearInterval(this._interval);
+                    delete this._interval;
                 }
                 this.element.css('height', h);
             } else {
                 clearInterval(this._interval);
+                delete this._interval;
             }
         }
 
