@@ -6,6 +6,8 @@
 
 无需 trigger，直接显示在页面上。
 
+<link href="for-demo.css" rel="stylesheet">
+
 ---
 
 ````javascript

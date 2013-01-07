@@ -5,7 +5,7 @@
 
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
-本模块分为两个子组件：Dialog 和 ConfirmBox，前者提供基础容器功能，后者在前者的基础上提供模态对话框的功能。Dialog 组件自带模板和样式，直接使用即可。
+本模块分为两个子组件：Dialog 和 ConfirmBox，前者提供抽象的基础容器功能，无绑定 UI 样式，后者在前者的基础上提供模态对话框的功能并提供完善的 UI 样式。
 
 本页主要介绍 Dialog，ConifrmBox 文档请访问[这里](http://aralejs.org/dialog/docs/confirmbox.html)。
 

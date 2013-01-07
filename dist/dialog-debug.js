@@ -1,6 +1,5 @@
 define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.13/mask-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/0.9.13/overlay-debug"), mask = require("arale/overlay/0.9.13/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.2/templatable-debug"), EVENT_NS = ".dialog", DefaultHeight = "300px";
-    seajs.importStyle(".ui-dialog,.ui-dialog-close{position:absolute;top:0}.ui-dialog{z-index:999;left:50%;top:50%;width:500px;background-color:rgba(0,0,0,.5);border:0;FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);padding:6px}:root .ui-dialog{FILTER:none9}.ui-dialog-close{display:block;right:16px;top:16px;z-index:10;cursor:pointer}.ui-dialog-content{background:#fff;height:100%;*zoom:1}.ui-dialog-x{color:#999;font-family:tahoma;font-size:24px;line-height:14px;height:18px;width:18px;text-decoration:none;display:block;overflow:hidden;cursor:pointer;font-weight:700}.ui-dialog-x:hover{color:#666;text-shadow:0 0 2px #aaa}", "arale/dialog/1.0.0/dialog.css");
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -33,7 +32,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             // 是否有背景遮罩层
             hasMask: true,
             // 关闭按钮可以自定义
-            closeTpl: '<a href="#" class="ui-dialog-x">×</a>',
+            closeTpl: "×",
             // 默认宽度
             width: 500,
             // 默认高度
@@ -56,6 +55,12 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             };
             Dialog.superclass.parseElement.call(this);
             this.contentElement = this.$("[data-role=content]");
+            // 必要的样式
+            this.contentElement.css({
+                background: "#fff",
+                height: "100%",
+                zoom: 1
+            });
         },
         events: {
             "click [data-role=close]": function(e) {

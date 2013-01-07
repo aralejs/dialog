@@ -8,8 +8,6 @@ define(function(require, exports, module) {
         EVENT_NS = '.dialog',
         DefaultHeight = '300px';
 
-    require('./dialog.css');
-
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -50,7 +48,7 @@ define(function(require, exports, module) {
             hasMask: true,
 
             // 关闭按钮可以自定义
-            closeTpl: '<a href="#" class="ui-dialog-x">×</a>',
+            closeTpl: '×',
 
             // 默认宽度
             width: 500,
@@ -80,6 +78,12 @@ define(function(require, exports, module) {
             };
             Dialog.superclass.parseElement.call(this);
             this.contentElement = this.$('[data-role=content]');
+            // 必要的样式
+            this.contentElement.css({
+                background: '#fff',
+                height: '100%',
+                zoom: 1
+            });
         },
 
         events: {

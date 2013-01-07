@@ -4,7 +4,9 @@
 
 ---
 
-主要演示各种属性的使用。
+主要演示各种属性的使用。本页面载入了一份预设样式 [for-demo.css](for-demo.css)。
+
+<link href="for-demo.css" rel="stylesheet">
 
 ---
 

@@ -1,3 +1,33 @@
+.ui-dialog {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
+    padding: 6px;
+}
+:root .ui-dialog {
+    FILTER: none\9;
+}
+.ui-dialog-close {
+    position: absolute;
+    display: block;
+    z-index: 10;
+    color: #999;
+    top: 16px;
+    right: 16px;
+    font-family: tahoma;
+    font-size: 24px;
+    line-height: 14px;
+    height: 18px;
+    width: 18px;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    font-weight: bold;
+}
+.ui-dialog-close:hover {
+    color: #666;
+    text-shadow: 0 0 2px #aaa;
+}
 .ui-dialog-title {
     height:45px;
     font-size:16px;
