@@ -201,7 +201,7 @@ define(function(require, exports, module) {
             this.before('show', function() {
                 this.get('hasMask') && mask.show();
             });
-            this.before('hide', function() {
+            this.after('hide', function() {
                 this.get('hasMask') && mask.hide();
             });
         },
