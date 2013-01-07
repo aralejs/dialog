@@ -39,13 +39,14 @@
 
 对话框宽度，默认 500px。
 
-### width *number|string*
-
-对话框宽度，默认 500px。
 
 ### height *number|string*
 
 对话框高度，当设置这个属性时，下面的 autoFit 强制为 false。
+
+### zIndex *number*
+
+对话框 z-index 层级，默认 999。
 
 ### autoFit *boolean*
 
