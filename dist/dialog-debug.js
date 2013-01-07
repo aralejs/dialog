@@ -131,8 +131,8 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         _onRenderVisible: function(val) {
             if (val) {
                 if (this.get("effect") === "fade") {
-                    // 固定 200 的动画时长，暂不可定制
-                    this.element.fadeIn(200);
+                    // 固定 300 的动画时长，暂不可定制
+                    this.element.fadeIn(300);
                 } else {
                     this.element.show();
                 }
