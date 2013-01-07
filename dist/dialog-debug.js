@@ -224,7 +224,8 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                     border: "none",
                     width: "100%",
                     display: "block",
-                    height: "100%"
+                    height: "100%",
+                    overflow: "hidden"
                 }
             }).appendTo(this.contentElement);
             // 给 iframe 绑一个 close 事件
