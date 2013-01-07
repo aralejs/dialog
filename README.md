@@ -33,7 +33,7 @@
 
 ### closeTpl *string*
 
-右上角的关闭链接，默认为`<a href="#" class="ui-dialog-x">×</a>`。
+右上角的关闭链接，默认为`×`。
 
 ### width *number|string*
 
