@@ -6,7 +6,7 @@ define(function(require, exports, module) {
         Events = require('events'),
         Templatable = require('templatable'),
         EVENT_NS = '.dialog',
-        DefaultHeight = '300px';
+        DEFAULT_HEIGHT = '300px';
 
     // Dialog
     // ---
@@ -97,7 +97,7 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                if(!this.get('height')) this.element.css('height', DefaultHeight);
+                !this.get('height') && this.element.css('height', DEFAULT_HEIGHT);
                 this._showIframe();
             }
 
@@ -301,7 +301,7 @@ define(function(require, exports, module) {
                 } catch (err) {
                     // 获取失败则给默认高度 300px
                     // 跨域会抛错进入这个流程
-                    h = DefaultHeight;
+                    h = DEFAULT_HEIGHT;
                     clearInterval(this._interval);
                     delete this._interval;
                 }
