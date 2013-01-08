@@ -97,7 +97,7 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                this.element.css('height', DefaultHeight);
+                if(!this.get('height')) this.element.css('height', DefaultHeight);
                 this._showIframe();
             }
 
