@@ -100,6 +100,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         },
         destroy: function() {
             this.get("trigger").off("click" + EVENT_NS + this.cid);
+            $(document).off("keyup." + EVENT_NS + this.cid);
             this.element.remove();
             mask.hide();
             clearInterval(this._interval);
@@ -189,9 +190,10 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         },
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents("keyup", function(e) {
+            var that = this;
+            $(document).on("keyup." + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    this.hide();
+                    that.get("visible") && that.hide();
                 }
             });
         },
@@ -211,7 +213,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                     clearInterval(that._interval);
                     that._interval = setInterval(function() {
                         that._syncHeight();
-                    }, 500);
+                    }, 300);
                 }
                 that._syncHeight();
                 that._setPosition();
