@@ -139,7 +139,7 @@ define(function(require) {
                     example._syncHeight();
                     expect(example.element.height()).to.be(400);
                     done();
-                }, 500);
+                }, 800);
             });
         });
 
@@ -155,7 +155,7 @@ define(function(require) {
                     example.hide();
                     expect(example._interval).to.be(undefined);
                     done();
-                }, 500);
+                }, 800);
             });
 
             it('should stop when set height', function(done) {
@@ -258,7 +258,8 @@ define(function(require) {
 
         it('should call onload once', function(done) {
             example = new Dialog({
-                content: './height200px.html'
+                content: './height200px.html',
+                autoFit: false
             });
 
             var syncHeight = sinon.spy(example, '_syncHeight');
@@ -272,7 +273,7 @@ define(function(require) {
                 expect(syncTop.callCount).to.be(3);
                 expect(onRenderHeight.callCount).to.be(0);
                 done();
-            }, 500);
+            }, 600);
         });
     });
 });
