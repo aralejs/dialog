@@ -275,5 +275,16 @@ define(function(require) {
                 done();
             }, 600);
         });
+
+        it('should hide close link', function() {
+            example = new Dialog({
+                content: 'xxx',
+                closeTpl: ''
+            });
+            example.show();
+            expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);
+            example.set('closeTpl', 'X');
+            expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
+        });
     });
 });

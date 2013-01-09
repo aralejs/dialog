@@ -1,5 +1,5 @@
 define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.2/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/0.9.13/mask-debug", "arale/widget/1.0.2/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/0.9.13/overlay-debug"), mask = require("arale/overlay/0.9.13/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.2/templatable-debug"), EVENT_NS = ".dialog", DefaultHeight = "300px";
+    var $ = require("$-debug"), Overlay = require("arale/overlay/0.9.13/overlay-debug"), mask = require("arale/overlay/0.9.13/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.2/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -61,6 +61,12 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 height: "100%",
                 zoom: 1
             });
+            // 关闭按钮先隐藏
+            // 后面当 onRenderCloseTpl 时，如果 closeTpl 不为空，会显示出来
+            // 这样写是为了回避 arale.base 的一个问题：
+            // 当属性初始值为''时，不会进入 onRender 方法
+            // https://github.com/aralejs/base/issues/7
+            this.$("[data-role=close]").hide();
         },
         events: {
             "click [data-role=close]": function(e) {
@@ -72,7 +78,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             // iframe 要在载入完成才显示
             if (this._type === "iframe") {
                 // iframe 还未请求完，先设置一个固定高度
-                this.element.css("height", DefaultHeight);
+                !this.get("height") && this.element.css("height", DEFAULT_HEIGHT);
                 this._showIframe();
             }
             Dialog.superclass.show.call(this);
@@ -130,7 +136,11 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         },
         _onRenderCloseTpl: function(val) {
             val = val.replace("ui-dialog", this.get("classPrefix"));
-            this.$("[data-role=close]").html(val);
+            if (val === "") {
+                this.$("[data-role=close]").html(val).hide();
+            } else {
+                this.$("[data-role=close]").html(val).show();
+            }
         },
         // 覆盖 overlay，提供动画
         _onRenderVisible: function(val) {
@@ -249,7 +259,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 } catch (err) {
                     // 获取失败则给默认高度 300px
                     // 跨域会抛错进入这个流程
-                    h = DefaultHeight;
+                    h = DEFAULT_HEIGHT;
                     clearInterval(this._interval);
                     delete this._interval;
                 }

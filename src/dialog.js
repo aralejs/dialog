@@ -84,6 +84,12 @@ define(function(require, exports, module) {
                 height: '100%',
                 zoom: 1
             });
+            // 关闭按钮先隐藏
+            // 后面当 onRenderCloseTpl 时，如果 closeTpl 不为空，会显示出来
+            // 这样写是为了回避 arale.base 的一个问题：
+            // 当属性初始值为''时，不会进入 onRender 方法
+            // https://github.com/aralejs/base/issues/7
+            this.$('[data-role=close]').hide();
         },
 
         events: {
@@ -165,7 +171,11 @@ define(function(require, exports, module) {
 
         _onRenderCloseTpl: function(val) {
             val = val.replace('ui-dialog', this.get('classPrefix'));
-            this.$('[data-role=close]').html(val);
+            if (val === '') {
+                this.$('[data-role=close]').html(val).hide();
+            } else {
+                this.$('[data-role=close]').html(val).show();
+            }
         },
 
         // 覆盖 overlay，提供动画
