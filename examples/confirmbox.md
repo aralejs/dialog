@@ -100,7 +100,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
                 alert('点击了取消按钮');
             },
             title: '改过的自定义标题',
-            closeTpl: '<a href="#" class="ui-dialog-x">×</a>'
+            closeTpl: '×'
         });
     });
 
