@@ -278,10 +278,6 @@ define(function(require, exports, module) {
         _createIframe: function() {
             var that = this;
 
-            if (this._type !== 'iframe') {
-                return;
-            }
-
             this.iframe = $('<iframe>', {
                 src: 'javascript:\'\';',
                 scrolling: 'no',

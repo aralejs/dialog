@@ -197,94 +197,125 @@ define(function(require) {
             });
         });
 
-        it('bind close event', function() {
-            example = new Dialog({
-                content: 'https://www.alipay.com'
-            });
-            example.show();
-            expect(example.get('visible')).to.be.ok();
-            var iframe = example.$('iframe')[0];
-            iframe.trigger('close');
-            expect(example.get('visible')).not.to.be.ok();
-        });
+        describe('events: show and close', function() {
 
-        it('bind key close event', function() {
-            example = new Dialog({
-                content: 'xxxx'
-            });
-            example.show();
-            expect(example.get('visible')).to.be.ok();
-            // 模拟一个键盘事件
-            var e = $.Event('keyup');
-            e.keyCode = 27;
-            example.element.trigger(e);
-            expect(example.get('visible')).not.to.be.ok();
-        });
-
-        it('bind key close event when iframe', function() {
-            example = new Dialog({
-                content: 'https://www.alipay.com'
-            });
-            example.show();
-            expect(example.get('visible')).to.be.ok();
-            // 模拟一个键盘事件
-            var e = $.Event('keyup');
-            e.keyCode = 27;
-            example.element.trigger(e);
-            expect(example.get('visible')).not.to.be.ok();
-        });
-
-        it('before show set content', function() {
-            example = new Dialog()
-                .before('show', function() {
-                    this.set('content', 'test');
-                }).render();
-
-            expect(example.$('.ui-dialog-content').html()).to.be('');
-
-            example.show();
-
-            expect(example.$('.ui-dialog-content').html()).to.be('test');
-        });
-
-        it('fixUrl support hash #25', function() {
-            example = new Dialog({
-                content: 'http://baidu.com/index.html?param=aa#'
-            }).render().show();
-
-            var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
-            expect(url).to.be('http://baidu.com/index.html?param=aa#');
-        });
-
-        it('should call onload once', function(done) {
-            example = new Dialog({
-                content: './height200px.html',
-                autoFit: false
+            it('click trigger to show', function() {
+                var test = $('<div id="test"></div>');
+                test.appendTo('body');
+                example = new Dialog({
+                    content: 'xxx',
+                    trigger: '#test'
+                });
+                expect(example.get('visible')).not.to.be.ok();
+                test.click();
+                expect(example.get('visible')).to.be.ok();
+                test.remove();
             });
 
-            var syncHeight = sinon.spy(example, '_syncHeight');
-            var syncTop = sinon.spy(example, '_setPosition');
-            var onRenderHeight = sinon.spy(example, '_onRenderHeight');
-
-            example.show();
-
-            setTimeout(function() {
-                expect(syncHeight).to.be.called.once();
-                expect(syncTop.callCount).to.be(3);
-                expect(onRenderHeight.callCount).to.be(0);
-                done();
-            }, 600);
-        });
-
-        it('should hide close link', function() {
-            example = new Dialog({
-                content: 'xxx',
-                closeTpl: ''
+            it('click close to hide', function() {
+                example = new Dialog({
+                    content: 'https://www.alipay.com'
+                });
+                expect(example.get('visible')).not.to.be.ok();
+                example.show();
+                expect(example.get('visible')).to.be.ok();
+                example.element.find('[data-role=close]').click();
+                expect(example.get('visible')).not.to.be.ok();
             });
-            example.show();
-            expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);
-            example.set('closeTpl', 'X');
-            expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
+
+            it('bind close event', function() {
+                example = new Dialog({
+                    content: 'https://www.alipay.com'
+                });
+                example.show();
+                expect(example.get('visible')).to.be.ok();
+                var iframe = example.$('iframe')[0];
+                iframe.trigger('close');
+                expect(example.get('visible')).not.to.be.ok();
+            });
+
+            it('bind key close event', function() {
+                example = new Dialog({
+                    content: 'xxxx'
+                });
+                example.show();
+                expect(example.get('visible')).to.be.ok();
+                // 模拟一个键盘事件
+                var e = $.Event('keyup');
+                e.keyCode = 27;
+                example.element.trigger(e);
+                expect(example.get('visible')).not.to.be.ok();
+            });
+
+            it('bind key close event when iframe', function() {
+                example = new Dialog({
+                    content: 'https://www.alipay.com'
+                });
+                example.show();
+                expect(example.get('visible')).to.be.ok();
+                // 模拟一个键盘事件
+                var e = $.Event('keyup');
+                e.keyCode = 27;
+                example.element.trigger(e);
+                expect(example.get('visible')).not.to.be.ok();
+            });
+
+            it('before show set content', function() {
+                example = new Dialog()
+                    .before('show', function() {
+                        this.set('content', 'test');
+                    }).render();
+
+                expect(example.$('.ui-dialog-content').html()).to.be('');
+
+                example.show();
+
+                expect(example.$('.ui-dialog-content').html()).to.be('test');
+            });
+
+            it('fixUrl support hash #25', function() {
+                example = new Dialog({
+                    content: 'http://baidu.com/index.html?param=aa#'
+                }).render().show();
+
+                var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
+                expect(url).to.be('http://baidu.com/index.html?param=aa#');
+            });
+
+            it('should call onload once', function(done) {
+                example = new Dialog({
+                    content: './height200px.html',
+                    autoFit: false
+                });
+
+                var syncHeight = sinon.spy(example, '_syncHeight');
+                var syncTop = sinon.spy(example, '_setPosition');
+                var onRenderHeight = sinon.spy(example, '_onRenderHeight');
+
+                example.show();
+
+                setTimeout(function() {
+                    expect(syncHeight).to.be.called.once();
+                    expect(syncTop.callCount).to.be(3);
+                    expect(onRenderHeight.callCount).to.be(0);
+                    done();
+                }, 600);
+            });
+
+            it('should hide close link', function() {
+                example = new Dialog({
+                    content: 'xxx',
+                    closeTpl: ''
+                });
+                example.show();
+                expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);
+                example.set('closeTpl', 'X');
+                expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
+                example.set('closeTpl', '');            
+                expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);            
+            });
+
         });
+
     });
 });
