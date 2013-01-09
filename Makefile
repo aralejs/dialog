@@ -1,7 +1,7 @@
 THEME = $(HOME)/.spm/themes/arale
 
 build-doc:
-	@nico build -C $(THEME)/nico.js
+	@nico build -v -C $(THEME)/nico.js
 
 debug:
 	@nico server -C $(THEME)/nico.js --watch debug
@@ -23,13 +23,14 @@ clean:
 reporter = spec
 url = tests/runner.html
 test:
-	@mocha-phantomjs --reporter=${reporter} http://127.0.0.1:8000/$(url)
+	@mocha-phantomjs --timeout=999999 --reporter=${reporter} http://127.0.0.1:8000/$(url)
 
+output = _site/coverage.html
 coverage:
 	@rm -fr _site/src-cov
 	@jscoverage --encoding=utf8 src _site/src-cov
-	@$(MAKE) test reporter=json-cov url=tests/runner.html?coverage=1 | node $(THEME)/html-cov.js > coverage.html
-	@echo "Build coverage to coverage.html"
+	@$(MAKE) test reporter=json-cov url=tests/runner.html?coverage=1 | node $(THEME)/html-cov.js > ${output}
+	@echo "Build coverage to ${output}"
 
 
 .PHONY: build-doc debug server publish clean test coverage
