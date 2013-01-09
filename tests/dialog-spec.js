@@ -183,6 +183,21 @@ define(function(require) {
                 }, 500);
             });
 
+            it('should be fixed height when set height', function(done) {
+                example = new Dialog({
+                    content: 'https://www.alipay.com',
+                    height: 200,
+                    autoFit: true
+                });
+                expect(example.get('height')).to.be(200);
+                example.show();
+                expect(example.element.height()).to.be(200);
+                setTimeout(function() {
+                    expect(example.element.height()).to.be(200);
+                    done();
+                }, 500);
+            });
+
             it('should stop when autoFit is false', function(done) {
                 var isComplete = false;
                 example = new Dialog({
