@@ -129,6 +129,7 @@ define(function(require, exports, module) {
 
         destroy: function() {
             this.get('trigger').off('click' + EVENT_NS + this.cid);
+            $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
             mask.hide();
             clearInterval(this._interval);
@@ -230,9 +231,10 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents('keyup', function(e) {
+            var that = this;
+            $(document).on('keyup.' + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    this.hide();
+                    that.get('visible') && that.hide();
                 }
             });
         },
@@ -255,7 +257,7 @@ define(function(require, exports, module) {
                     clearInterval(that._interval);
                     that._interval = setInterval(function() {
                         that._syncHeight();
-                    }, 500);
+                    }, 300);
                 }
                 that._syncHeight();
                 that._setPosition();
