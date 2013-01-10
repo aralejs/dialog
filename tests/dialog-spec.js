@@ -216,7 +216,7 @@ define(function(require) {
             });
         });
 
-        describe('events: show and close', function() {
+        describe('events: show and hide', function() {
 
             it('click trigger to show', function() {
                 var test = $('<div id="test"></div>');
@@ -304,6 +304,7 @@ define(function(require) {
             it('should call onload once', function(done) {
                 example = new Dialog({
                     content: './height200px.html',
+                    hasMask: false,
                     autoFit: false
                 });
 
@@ -315,8 +316,7 @@ define(function(require) {
 
                 setTimeout(function() {
                     expect(syncHeight).to.be.called.once();
-                    console.log(setPosition.callCount);
-                    expect(setPosition.callCount).to.be(3);
+                    expect(setPosition.callCount).to.above(2);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
                 }, 600);
@@ -336,6 +336,28 @@ define(function(require) {
             });
 
         });
+
+        describe('other attributes', function() {
+            
+            it('should have mask', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                expect($('.ui-mask').is(':visible')).to.be(true);
+            });
+
+            it('should not have mask', function() {
+                example = new Dialog({
+                    content: 'xxx',
+                    hasMask: false
+                });
+                example.show();
+                expect($('.ui-mask').is(':visible')).to.be(false);
+            });
+
+            
+        });        
 
     });
 });
