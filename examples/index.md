@@ -32,17 +32,6 @@ seajs.use(['dialog'], function(Dialog) {
     <div id="example2-dom" style="padding:50px">传入了DOM</div>
 </div>
 
-<span class="alieditContainer" >
-    <object id="password_ie" name="password_ie" tabindex="2" classid="clsid:488A4255-3236-44B3-8F27-FA1AECAA8844" codebase="https://download.alipay.com/aliedit/aliedit/2401/aliedit.cab#Version=1,0,0,1" width="200" height="24">
-        <param name="wmode" value="opaque" />
-        <param name="cm5ts" value="5120914918" />
-        <param name="cm5pk" value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDS92pDVyWNT7dzG9zH0opH44z9FayCZTX5iqGUxUjPi667IkyaqrsmDPqKsJp47lJ29lzs+Qv8zjPPdmnxjFteMrfpc4ui24gL1iZnchwX87Ox/+Xrm8HFmKlhmUO9n/QgTT+Nz1RGMEN1+HijvsoAhS0TS8XjSfzRkrwvK2pJQIDAQAB" />
-        <param name="PasswordMode" value="1">
-        <param name="CryptoMode" value="4" />
-        <embed type="application/aliedit" id="password_noie" name="password_noie" data="https://securitycenter.alipay.com/sc/aliedit/intro.htm" tabindex="2"  width="200" height="24" />
-    </object>
-</span>
-
 ````javascript
 seajs.use(['dialog','$'], function(Dialog, $) {
     new Dialog({

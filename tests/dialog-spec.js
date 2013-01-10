@@ -1,6 +1,10 @@
 define(function(require) {
     var Dialog = require('../src/dialog');
     var $ = require('$');
+    
+    if ($.browser.msie) {
+        mocha.setup({ignoreLeaks: true});
+    }
 
     describe('dialog', function() {
         var example;
@@ -155,7 +159,7 @@ define(function(require) {
                     example.hide();
                     expect(example._interval).to.be(undefined);
                     done();
-                }, 800);
+                }, 600);
             });
 
             it('should stop when set height', function(done) {
@@ -304,14 +308,15 @@ define(function(require) {
                 });
 
                 var syncHeight = sinon.spy(example, '_syncHeight');
-                var syncTop = sinon.spy(example, '_setPosition');
+                var setPosition = sinon.spy(example, '_setPosition');
                 var onRenderHeight = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
 
                 setTimeout(function() {
                     expect(syncHeight).to.be.called.once();
-                    expect(syncTop.callCount).to.be(3);
+                    console.log(setPosition.callCount);
+                    expect(setPosition.callCount).to.be(3);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
                 }, 600);
