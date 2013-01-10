@@ -87,7 +87,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         hide: function() {
             // 把 iframe 状态复原
             if (this._type === "iframe" && this.iframe) {
-                this.iframe[0].onload = null;
                 this.iframe.attr({
                     src: "javascript:'';"
                 });
@@ -208,7 +207,16 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 src: this._fixUrl(),
                 name: "dialog-iframe" + new Date().getTime()
             });
-            this.iframe[0].onload = function() {
+            // 因为在 IE 下 onload 无法触发
+            // http://my.oschina.net/liangrockman/blog/24015
+            // 所以使用 jquery 的 one 函数来代替 onload
+            // one 比 on 好，因为它只执行一次，并在执行后自动销毁
+            this.iframe.one("load", function() {
+                // 如果 dialog 已经隐藏了，就不需要触发 onload
+                if (!that.get("visible")) {
+                    return;
+                }
+                // 绑定自动处理高度的事件
                 if (that.get("autoFit")) {
                     clearInterval(that._interval);
                     that._interval = setInterval(function() {
@@ -217,9 +225,8 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
                 }
                 that._syncHeight();
                 that._setPosition();
-                that.iframe[0].onload = null;
                 that.trigger("complete:show");
-            };
+            });
         },
         _fixUrl: function() {
             var s = this.get("content").match(/([^?#]*)(\?[^#]*)?(#.*)?/);
