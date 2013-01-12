@@ -8,7 +8,7 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
         Implements: Templatable,
         attrs: {
             // 模板
-            template: '<div class="{{classPrefix}}">\n<div class="{{classPrefix}}-close" title="关闭本框" data-role="close"></div>\n<div class="{{classPrefix}}-content"  data-role="content"></div>\n</div>',
+            template: '<div class="{{classPrefix}}">\n<div class="{{classPrefix}}-close" title="关闭本框" data-role="close"></div>\n<div class="{{classPrefix}}-content" data-role="content"></div>\n</div>',
             // 对话框触发点
             trigger: {
                 value: null,
