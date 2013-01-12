@@ -4,9 +4,12 @@
 
 ---
 
-主要演示传入各种 content，以及传入 url 的自动识别和高度管理。本页面载入了一份预设样式 [for-demo.css](for-demo.css)。
+主要演示传入各种 content，以及传入 url 的自动识别和高度管理。本页面载入了一份预设样式 [dialog.css](../src/dialog.css)。
 
-<link href="for-demo.css" rel="stylesheet">
+<link href="../src/dialog.css" rel="stylesheet">
+<style>
+.fn-hide {display:none;}
+</style>
 
 ---
 

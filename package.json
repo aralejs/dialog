@@ -15,7 +15,8 @@
     },
     "output": {
         "dialog.js": ["./dialog.js"],
-        "confirmbox.js": ["./confirmbox.js"]
+        "confirmbox.js": ["./confirmbox.js"],
+        "dialog.css" : ["./dialog.css"]
     },
     "dependencies": {
         "$": "$",

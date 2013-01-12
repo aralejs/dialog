@@ -6,7 +6,10 @@
 
 无需 trigger，直接显示在页面上。
 
-<link href="for-demo.css" rel="stylesheet">
+<link href="../src/dialog.css" rel="stylesheet">
+<style>
+.fn-hide {display:none;}
+</style>
 
 ---
 

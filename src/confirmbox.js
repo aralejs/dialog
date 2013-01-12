@@ -5,7 +5,7 @@ define(function(require, exports, module) {
         Handlebars = require('handlebars'),
         Dialog = require('./dialog');
 
-    require('./confirmbox.css');
+    require('./dialog.css');
 
     // ConfirmBox
     // -------
@@ -21,9 +21,13 @@ define(function(require, exports, module) {
 
             title: '默认标题',
 
-            confirmTpl: '确定',
+            confirmTpl: '<div class="ui-button ui-button-sorange">\
+                            <a href="javascript:;" class="ui-button-text">确定</a>\
+                         </div>',
 
-            cancelTpl: '取消',
+            cancelTpl: '<div class="ui-button ui-button-swhite">\
+                            <a href="javascript:;" class="ui-button-text">取消</a>\
+                        </div>',
 
             message: '默认内容'
         },
@@ -53,20 +57,20 @@ define(function(require, exports, module) {
             }
         },
 
-        _onRenderMessage: function(val) {
+        _onChangeMessage: function(val) {
             this.$('[data-role=message]').html(val);
         },
 
-        _onRenderTitle: function(val) {
+        _onChangeTitle: function(val) {
             this.$('[data-role=title]').html(val);
         },
 
-        _onRenderConfirmTpl: function(val) {
-            this.$('[data-role=confirm] a').html(val);
+        _onChangeConfirmTpl: function(val) {
+            this.$('[data-role=confirm]').html(val);
         },
 
-        _onRenderCancelTpl: function(val) {
-            this.$('[data-role=cancel] a').html(val);
+        _onChangeCancelTpl: function(val) {
+            this.$('[data-role=cancel]').html(val);
         }
 
     });
