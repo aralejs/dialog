@@ -171,7 +171,6 @@ define(function(require, exports, module) {
         },
 
         _onRenderCloseTpl: function(val) {
-            val = val.replace('ui-dialog', this.get('classPrefix'));
             if (val === '') {
                 this.$('[data-role=close]').html(val).hide();
             } else {
