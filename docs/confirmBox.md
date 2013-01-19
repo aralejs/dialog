@@ -4,12 +4,7 @@
 
 ---
 
-ConfirmBox 是具有默认样式和完善功能的对话框，可直接使用。
-
-继承自 Dialog 组件，需要额外使用样式`ui-button-orange`和`ui-button-white`。
-
-* https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css
-* https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css
+ConfirmBox 继承自 Dialog 组件，是具有默认样式和完善功能的对话框，可直接使用。
 
 ---
 
@@ -25,22 +20,18 @@ ConfirmBox 是具有默认样式和完善功能的对话框，可直接使用。
 
 ### confirmTpl *string*
 
-确定按钮的 html。默认为以下结构，需要 ui-button-orange 的样式。
+确定按钮的 html。默认为以下结构。
 
 ```html
-<div class="ui-button ui-button-sorange">
-    <a href="javascript:;" class="ui-button-text">确定</a>
-</div>
+<a class="ui-dialog-button-orange">确定</a>
 ```
 
 ### cancelTpl *string*
 
-取消按钮的 html。默认为以下结构，需要 ui-button-white 的样式。
+取消按钮的 html。默认为以下结构。
 
 ```html
-<div class="ui-button ui-button-swhite">
-    <a href="javascript:;" class="ui-button-text">取消</a>
-</div>
+<a class="ui-dialog-button-white">取消</a>
 ```
 
 其他属性请参照 [Dialog](http://aralejs.org/dialog/)。

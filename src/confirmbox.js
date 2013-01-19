@@ -21,13 +21,9 @@ define(function(require, exports, module) {
 
             title: '默认标题',
 
-            confirmTpl: '<div class="ui-button ui-button-sorange">\
-                            <a href="javascript:;" class="ui-button-text">确定</a>\
-                         </div>',
+            confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
 
-            cancelTpl: '<div class="ui-button ui-button-swhite">\
-                            <a href="javascript:;" class="ui-button-text">取消</a>\
-                        </div>',
+            cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
 
             message: '默认内容'
         },

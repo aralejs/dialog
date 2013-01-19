@@ -8,10 +8,6 @@
 
 
 ````iframe:250
-<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
-
 <input type="button" id="trigger1" value="默认样式对话框" />
 
 <script>
@@ -55,10 +51,6 @@ seajs.use(['confirmbox'], function(ConfirmBox) {
 ## ConfirmBox 的静态方法 `常用`
 
 ````iframe:250
-<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
-
 <input type="button" id="trigger12" value="ConfirmBox.alert()" />    
 <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
 <input type="button" id="trigger14" value="ConfirmBox.show()" />    
@@ -87,10 +79,6 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 ## ConfirmBox 的静态方法自定义参数
 
 ````iframe:250
-<link href="https://a.alipayobjects.com/al/alice.base-1.2.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-orange-1.3-full.css" rel="stylesheet">
-<link href="https://a.alipayobjects.com/al/alice.components.ui-button-white-1.3-full.css" rel="stylesheet">
-
 <input type="button" id="trigger1" value="ConfirmBox.alert() 宽度300" />    
 <input type="button" id="trigger2" value="ConfirmBox.confirm() 有关闭的X" />
 <input type="button" id="trigger3" value="ConfirmBox.show() 没有mask" />
