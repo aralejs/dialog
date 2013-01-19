@@ -136,7 +136,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/0.9.13/ove
             }
         },
         _onRenderCloseTpl: function(val) {
-            val = val.replace("ui-dialog", this.get("classPrefix"));
             if (val === "") {
                 this.$("[data-role=close]").html(val).hide();
             } else {
