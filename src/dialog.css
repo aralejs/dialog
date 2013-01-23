@@ -97,7 +97,7 @@ a.ui-dialog-button-white:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#F5A620), to(#F09611));
     background: -moz-linear-gradient(top, #F5A620, #F09611);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5A620', endColorstr='#F09611');
-    background:-o-linear-gradient(top, #F5A620, #F09611);
+    background: -o-linear-gradient(top, #F5A620, #F09611);
     background: linear-gradient(top, #F5A620, #F09611);
     box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.33) inset;
 }
@@ -115,11 +115,11 @@ a.ui-dialog-button-white:hover {
 .ui-dialog-button-white {
     border:1px solid #B3B3B3;
     color:#595959;
-    background-color: ##F2F2F2;
+    background-color: #F2F2F2;
     background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#ECECEC));
     background: -moz-linear-gradient(top, #FEFEFE, #ECECEC);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#ECECEC');
-    background:-o-linear-gradient(top, #FEFEFE, #ECECEC);
+    background: -o-linear-gradient(top, #FEFEFE, #ECECEC);
     background: linear-gradient(top, #FEFEFE, #ECECEC);
     box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.33) inset;
 }
@@ -130,6 +130,6 @@ a.ui-dialog-button-white:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#F0F0F0));
     background: -moz-linear-gradient(top, #FEFEFE, #F0F0F0);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F0F0F0');
-    background:-o-linear-gradient(top, #FEFEFE, #F0F0F0);
+    background: -o-linear-gradient(top, #FEFEFE, #F0F0F0);
     background: linear-gradient(top, #FEFEFE, #F0F0F0);
 }
