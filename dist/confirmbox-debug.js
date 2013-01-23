@@ -8,7 +8,7 @@ define("arale/dialog/1.0.0/confirmbox-debug", [ "./dialog-debug", "$-debug", "ar
         Implements: Templatable,
         attrs: {
             // 指定内容模板
-            content: '{{#if title}}\n<div class="{{classPrefix}}-title" data-role="head">{{{title}}}</div>\n{{/if}}\n<div class="{{classPrefix}}-container">\n<div class="{{classPrefix}}-message" data-role="message">{{{message}}}</div>\n{{#if hasFoot}}\n<div class="{{classPrefix}}-operation" data-role="foot">\n{{#if confirmTpl}}\n<div class="{{classPrefix}}-confirm" data-role="confirm">\n{{{confirmTpl}}}\n</div>\n{{/if}}\n{{#if cancelTpl}}\n<div class="{{classPrefix}}-cancel" data-role="cancel">\n{{{cancelTpl}}}\n</div>\n{{/if}}\n</div>\n{{/if}}\n</div>',
+            content: '{{#if title}}\n<div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>\n{{/if}}\n<div class="{{classPrefix}}-container">\n<div class="{{classPrefix}}-message" data-role="message">{{{message}}}</div>\n{{#if hasFoot}}\n<div class="{{classPrefix}}-operation" data-role="foot">\n{{#if confirmTpl}}\n<div class="{{classPrefix}}-confirm" data-role="confirm">\n{{{confirmTpl}}}\n</div>\n{{/if}}\n{{#if cancelTpl}}\n<div class="{{classPrefix}}-cancel" data-role="cancel">\n{{{cancelTpl}}}\n</div>\n{{/if}}\n</div>\n{{/if}}\n</div>',
             title: "默认标题",
             confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
             cancelTpl: '<a class="ui-dialog-button-white">取消</a>',

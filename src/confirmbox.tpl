@@ -1,5 +1,5 @@
 {{#if title}}
-<div class="{{classPrefix}}-title" data-role="head">{{{title}}}</div>
+<div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>
 {{/if}}
 <div class="{{classPrefix}}-container">
     <div class="{{classPrefix}}-message" data-role="message">{{{message}}}</div>
