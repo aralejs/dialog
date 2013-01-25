@@ -6,6 +6,8 @@
 
 ConfirmBox 继承自 Dialog 组件，是具有默认样式和完善功能的对话框，可直接使用。
 
+[演示](http://aralejs.org/dialog/examples/confirmbox.html)
+
 ---
 
 ## 配置说明
