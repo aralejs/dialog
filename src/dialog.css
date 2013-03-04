@@ -10,21 +10,19 @@
 }
 
 .ui-dialog-close {
-    position: absolute;
-    display: block;
-    z-index: 10;
     color: #999;
-    top: 16px;
-    right: 16px;
+    cursor: pointer;
+    display: block;
     font-family: tahoma;
     font-size: 24px;
-    line-height: 14px;
-    height: 18px;
-    width: 18px;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
     font-weight: bold;
+    height: 18px;
+    line-height: 14px;
+    position: absolute;
+    right: 16px;
+    text-decoration: none;
+    top: 16px;
+    z-index: 10;
 }
 .ui-dialog-close:hover {
     color: #666;
