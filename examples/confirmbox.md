@@ -4,7 +4,11 @@
 
 ---
 
-## ConfirmBox: 带有默认样式的对话框
+[文档](http://aralejs.org/dialog/docs/confirmbox.html)
+
+---
+
+## 带有默认样式的对话框
 
 
 ````iframe:250
