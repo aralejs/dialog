@@ -60,7 +60,7 @@ confirmBox.on('confirm', function() {
 new ConfirmBox({
     trigger: '#trigger',
     title: '我是标题',
-    content: '我是内容',
+    message: '我是内容',
     onConfirm: function() {            
         this.hide();
     }
@@ -98,7 +98,7 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
     onClose: function() {
         console.log('点击了确认按钮');
     },
-    hasCloseX: true,    // 有关闭的 X 按钮
+    closeTpl: '',       // 关闭的按钮设置为空
     hasMask: false,     // 没有遮罩层
     width: 300          // 宽度设置为 300 px
 });
