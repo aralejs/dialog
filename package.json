@@ -21,11 +21,11 @@
     },
     "dependencies": {
         "$": "$",
-        "overlay": "arale/overlay/0.9.13/overlay",
-        "mask": "arale/overlay/0.9.13/mask",
+        "overlay": "arale/overlay/1.0.0/overlay",
+        "mask": "arale/overlay/1.0.0/mask",
         "easing": "arale/easing/1.0.0/easing",
         "events": "arale/events/1.0.0/events",
-        "templatable": "arale/widget/1.0.2/templatable",
+        "templatable": "arale/widget/1.0.3/templatable",
         "handlebars": "gallery/handlebars/1.0.0/handlebars"
     }
 }

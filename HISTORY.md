@@ -12,6 +12,10 @@
 
 `tag:changed` ConfirmBox API 大幅重构，定位为标准模态对话框。
 
+`tag:changed` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0
+
+`tag:changed` 对 arale/widget 的依赖从 1.0.2 升级到 1.0.3
+
 ## 0.9.3
 
 `tag:improved` AnimDialog 增加 confirm 和 close 的事件阻止，防止打断可能出现的异步请求。
