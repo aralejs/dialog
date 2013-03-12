@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
         attrs: {
             // 模板
-            template: require('./dialog-tpl.js'),
+            template: require('./dialog.tpl'),
 
             // 对话框触发点
             trigger: {
@@ -190,6 +190,13 @@ define(function(require, exports, module) {
             } else {
                 this.element.hide();
             }
+        },
+
+        _onRenderZIndex: function(val) {
+            mask.set('zIndex', parseInt(val, 10) - 1);
+            console.log(mask.get('zIndex'));
+            console.log(parseInt(val, 10) - 1);
+            return Dialog.superclass._onRenderZIndex.call(this, val);
         },
 
         // 私有方法
