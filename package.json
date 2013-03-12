@@ -15,7 +15,7 @@
     },
     "tests": ["dialog", "confirmbox"], 
     "output": {
-        "dialog.js": ["./dialog.js"],
+        "dialog.js": ".",
         "confirmbox.js": ["./confirmbox.js"],
         "dialog.css" : ["./dialog.css"]
     },
