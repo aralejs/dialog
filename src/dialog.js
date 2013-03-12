@@ -194,8 +194,6 @@ define(function(require, exports, module) {
 
         _onRenderZIndex: function(val) {
             mask.set('zIndex', parseInt(val, 10) - 1);
-            console.log(mask.get('zIndex'));
-            console.log(parseInt(val, 10) - 1);
             return Dialog.superclass._onRenderZIndex.call(this, val);
         },
 

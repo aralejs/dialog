@@ -157,8 +157,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
         },
         _onRenderZIndex: function(val) {
             mask.set("zIndex", parseInt(val, 10) - 1);
-            console.log(mask.get("zIndex"));
-            console.log(parseInt(val, 10) - 1);
             return Dialog.superclass._onRenderZIndex.call(this, val);
         },
         // 私有方法
