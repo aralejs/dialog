@@ -16,6 +16,8 @@
 
 `tag:changed` 对 arale/widget 的依赖从 1.0.2 升级到 1.0.3
 
+`tag:improved` 自动计算 mask 遮罩层的 z-index 。
+
 ## 0.9.3
 
 `tag:improved` AnimDialog 增加 confirm 和 close 的事件阻止，防止打断可能出现的异步请求。
