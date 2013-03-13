@@ -261,13 +261,18 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
             // 如果未传 height，才会自动获取
             if (!this.get("height")) {
                 try {
+                    this._errCount = 0;
                     h = getIframeHeight(this.iframe) + "px";
                 } catch (err) {
-                    // 获取失败则给默认高度 300px
-                    // 跨域会抛错进入这个流程
-                    h = DEFAULT_HEIGHT;
-                    clearInterval(this._interval);
-                    delete this._interval;
+                    // 页面跳转也会抛错，最多失败6次
+                    this._errCount = (this._errCount || 0) + 1;
+                    if (this._errCount >= 6) {
+                        // 获取失败则给默认高度 300px
+                        // 跨域会抛错进入这个流程
+                        h = DEFAULT_HEIGHT;
+                        clearInterval(this._interval);
+                        delete this._interval;
+                    }
                 }
                 this.element.css("height", h);
             } else {
