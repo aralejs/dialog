@@ -16,6 +16,8 @@
 
 `tag:changed` 对 arale/widget 的依赖从 1.0.2 升级到 1.0.3
 
+`tag:fixed` 修复页面跳转会停止自适应高度的问题
+
 ## 0.9.3
 
 `tag:improved` AnimDialog 增加 confirm 和 close 的事件阻止，防止打断可能出现的异步请求。
