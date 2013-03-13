@@ -98,7 +98,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
             return this;
         },
         destroy: function() {
-            this.hide();
             this.get("trigger").off("click" + EVENT_NS + this.cid);
             $(document).off("keyup." + EVENT_NS + this.cid);
             this.element.remove();
@@ -154,6 +153,10 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
             } else {
                 this.element.hide();
             }
+        },
+        _onRenderZIndex: function(val) {
+            mask.set("zIndex", parseInt(val, 10) - 1);
+            return Dialog.superclass._onRenderZIndex.call(this, val);
         },
         // 私有方法
         // ---
