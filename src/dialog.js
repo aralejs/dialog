@@ -127,7 +127,6 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            //this.hide();
             this.get('trigger').off('click' + EVENT_NS + this.cid);
             $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
