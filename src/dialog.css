@@ -70,6 +70,7 @@
 .ui-dialog-button-white {
     display: inline-block;
     *display: inline;
+    *zoom: 1;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -81,6 +82,7 @@
     padding: 0 12px;
     line-height:23px;
     height:23px;
+    *overflow: visible; /* for a ie6/7 bug http://blog.csdn.net/jyy_12/article/details/6636099 */ 
 }
 
 a.ui-dialog-button-orange:hover,
