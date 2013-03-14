@@ -61,7 +61,7 @@ define("arale/dialog/1.0.0/confirmbox-debug", [ "./dialog-debug", "$-debug", "ar
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().after("confirm close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
             this.destroy();
         });
     };
@@ -75,7 +75,7 @@ define("arale/dialog/1.0.0/confirmbox-debug", [ "./dialog-debug", "$-debug", "ar
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().after("confirm close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
             this.destroy();
         });
     };
@@ -90,7 +90,7 @@ define("arale/dialog/1.0.0/confirmbox-debug", [ "./dialog-debug", "$-debug", "ar
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().after("confirm close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
             this.destroy();
         });
     };

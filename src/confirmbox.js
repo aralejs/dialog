@@ -84,7 +84,7 @@ define(function(require, exports, module) {
         };
         new ConfirmBox($.extend(null, defaults, options))
         .show()
-        .after('confirm close', function() {
+        .on('close', function() {
             this.destroy();
         });
     };
@@ -101,7 +101,7 @@ define(function(require, exports, module) {
         };
         new ConfirmBox($.extend(null, defaults, options))
         .show()
-        .after('confirm close', function() {
+        .on('close', function() {
             this.destroy();
         });
     };
@@ -119,7 +119,7 @@ define(function(require, exports, module) {
         };
         new ConfirmBox($.extend(null, defaults, options))
         .show()
-        .after('confirm close', function() {
+        .on('close', function() {
             this.destroy();
         });
     };

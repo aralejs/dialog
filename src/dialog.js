@@ -127,7 +127,10 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            this.get('trigger').off('click' + EVENT_NS + this.cid);
+            console.log('destroy');
+            if (this.get('trigger')) { 
+                this.get('trigger').off('click' + EVENT_NS + this.cid);
+            }
             $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
             mask.hide();
