@@ -127,7 +127,6 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            console.log('destroy');
             if (this.get('trigger')) { 
                 this.get('trigger').off('click' + EVENT_NS + this.cid);
             }

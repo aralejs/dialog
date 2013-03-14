@@ -98,7 +98,6 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
             return this;
         },
         destroy: function() {
-            console.log("destroy");
             if (this.get("trigger")) {
                 this.get("trigger").off("click" + EVENT_NS + this.cid);
             }
