@@ -329,6 +329,9 @@ define(function(require, exports, module) {
                     }
                 }
                 this.element.css('height', h);
+                // force to reflow in ie6
+                // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
+                this.element[0].className = this.element[0].className;
             } else {
                 clearInterval(this._interval);
                 delete this._interval;
