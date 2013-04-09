@@ -2,6 +2,14 @@
 
 ---
 
+## 1.0.1
+
+`tag:fixed` [#21](https://github.com/aralejs/dialog/issues/21) 修复 IE6 下内容区域的高度撑不开的问题。
+
+`tag:fixed` [#20](https://github.com/aralejs/dialog/issues/20) 修复 IE6 下换不同 url 时会产生 404 页面的问题。
+
+`tag:improved` 对 arale/overlay 的依赖升级到 1.0.1。
+
 ## 1.0.0
 
 本版本对 dialog 进行了毁灭性的重构，API 和定位都发生了大量变化，基本和之前的版本没什么关系。若要查看旧版本的文档，请到仓库中 clone 对应的 tag 到本地进行查看。
@@ -12,9 +20,9 @@
 
 `tag:changed` ConfirmBox API 大幅重构，定位为标准模态对话框。
 
-`tag:changed` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0
+`tag:improved` 对 arale/overlay 的依赖从 0.9.13 升级到 1.0.0
 
-`tag:changed` 对 arale/widget 的依赖从 1.0.2 升级到 1.0.3
+`tag:improved` 对 arale/widget 的依赖从 1.0.2 升级到 1.0.3
 
 `tag:improved` 自动计算 mask 遮罩层的 z-index 。
 

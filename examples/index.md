@@ -83,8 +83,8 @@ document.getElementById('close').onclick = function(){
 
 <div id="example5" class="cell">
     <button data-src="http://baidu.com">百度</button>
-    <button data-src="http://qq.com">腾讯</button>
-    <button data-src="http://www.alipay.com">支付宝</button>
+    <button data-src="http://douban.com">豆瓣</button>
+    <button data-src="https://www.alipay.com">支付宝</button>
 </div>
 
 ````javascript

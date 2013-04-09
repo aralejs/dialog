@@ -117,6 +117,10 @@ define(function(require, exports, module) {
                 this.iframe.attr({
                     src: 'javascript:\'\';'
                 });
+                // 原来只是将 iframe 的状态复原
+                // 但是发现在 IE6 下，将 src 置为 javascript:''; 会出现 404 页面
+                this.iframe.remove();
+                this.iframe = null;
             }
 
             this.trigger('close');

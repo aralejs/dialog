@@ -1,5 +1,5 @@
-define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.0/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.0.0/overlay-debug"), mask = require("arale/overlay/1.0.0/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.0.1/overlay-debug"), mask = require("arale/overlay/1.0.1/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -90,6 +90,10 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
                 this.iframe.attr({
                     src: "javascript:'';"
                 });
+                // 原来只是将 iframe 的状态复原
+                // 但是发现在 IE6 下，将 src 置为 javascript:''; 会出现 404 页面
+                this.iframe.remove();
+                this.iframe = null;
             }
             this.trigger("close");
             Dialog.superclass.hide.call(this);
@@ -280,6 +284,9 @@ define("arale/dialog/1.0.0/dialog-debug", [ "$-debug", "arale/overlay/1.0.0/over
                     }
                 }
                 this.element.css("height", h);
+                // force to reflow in ie6
+                // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
+                this.element[0].className = this.element[0].className;
             } else {
                 clearInterval(this._interval);
                 delete this._interval;
