@@ -69,16 +69,6 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 ## 事件说明
 
-### close
-
-关闭时触发。
-
-```js
-dialogInstanse.on('close', function() {
-    // ...
-});
-```
-
 ### complete:show
 
 本事件在当 content 为 URL 地址时 Iframe 载入完毕后触发。
@@ -88,6 +78,8 @@ dialogInstanse.on('complete:show', function() {
     // Iframe 载入完毕
 });
 ```
+
+> close 事件已经删除，可以使用 `after('hide', function() {})` 来代替。
 
 ---
 

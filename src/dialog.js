@@ -123,7 +123,6 @@ define(function(require, exports, module) {
                 this.iframe = null;
             }
 
-            this.trigger('close');
             Dialog.superclass.hide.call(this);
             clearInterval(this._interval);
             delete this._interval;

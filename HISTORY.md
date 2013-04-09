@@ -8,6 +8,8 @@
 
 `tag:fixed` [#20](https://github.com/aralejs/dialog/issues/20) 修复 IE6 下换不同 url 时会产生 404 页面的问题。
 
+`tag:changed` 去掉 close 自定义事件，可以用 before/after('hide') 来代替。
+
 `tag:improved` 对 arale/overlay 的依赖升级到 1.0.1。
 
 ## 1.0.0

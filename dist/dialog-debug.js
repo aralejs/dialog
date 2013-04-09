@@ -95,7 +95,6 @@ define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
                 this.iframe.remove();
                 this.iframe = null;
             }
-            this.trigger("close");
             Dialog.superclass.hide.call(this);
             clearInterval(this._interval);
             delete this._interval;
