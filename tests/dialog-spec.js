@@ -175,18 +175,6 @@ define(function(require) {
                 }, 500);
             });
 
-            it('should stop when crossdomain', function(done) {
-                var isComplete = false;
-                example = new Dialog({
-                    content: 'http://www.baidu.com'
-                }).show();
-
-                setTimeout(function() {
-                    expect(example._interval).to.be(undefined);
-                    done();
-                }, 500);
-            });
-
             it('should be fixed height when set height', function(done) {
                 example = new Dialog({
                     content: 'https://www.alipay.com',
