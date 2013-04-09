@@ -2,9 +2,7 @@ define(function(require) {
     var Dialog = require('../src/dialog');
     var $ = require('$');
     
-    if ($.browser.msie) {
-        mocha.setup({ignoreLeaks: true});
-    }
+    mocha.setup({ignoreLeaks: true});
 
     describe('dialog', function() {
         var example;
