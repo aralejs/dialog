@@ -136,7 +136,7 @@ define(function(require) {
                 example.show();
 
                 setTimeout(function() {
-                    $('iframe')[0].contentWindow.document
+                    example.$('iframe')[0].contentWindow.document
                         .getElementById('container').style.height = '400px';
                     example._syncHeight();
                     expect(example.element.height()).to.be(400);
