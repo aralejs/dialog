@@ -1,4 +1,4 @@
-define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
+define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-tpl-debug.js" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.0.1/overlay-debug"), mask = require("arale/overlay/1.0.1/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
@@ -8,7 +8,7 @@ define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         Implements: Templatable,
         attrs: {
             // 模板
-            template: '<div class="{{classPrefix}}">\n<div class="{{classPrefix}}-close" title="关闭本框" data-role="close"></div>\n<div class="{{classPrefix}}-content" data-role="content"></div>\n</div>',
+            template: require("./dialog-tpl-debug"),
             // 对话框触发点
             trigger: {
                 value: null,
@@ -312,4 +312,49 @@ define("arale/dialog/1.0.1/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
             return D.body.scrollHeight;
         }
     }
+});
+
+define("arale/dialog/1.0.1/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
+    var Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug");
+    (function() {
+        var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+        module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
+            this.compilerInfo = [ 2, ">= 1.0.0-rc.3" ];
+            helpers = helpers || Handlebars.helpers;
+            data = data || {};
+            var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression;
+            buffer += '<div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '">\n    <div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-close" title="关闭本框" data-role="close"></div>\n    <div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-content" data-role="content"></div>\n</div>\n';
+            return buffer;
+        });
+    })();
 });

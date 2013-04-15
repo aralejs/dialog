@@ -1,9 +1,11 @@
 {
     "name": "dialog",
-    "root": "arale",
+    "family": "arale",
     "version": "1.0.1",
     "description": "Dialog 是通用对话框容器，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义以及模态对话框等功能。",
-    "tag": "widget",
+    "keywords": [
+        "widget"
+    ],
     "author": "afc163 <afc163@gmail.com>",
     "homepage": "http://aralejs.org/dialog",
     "repository": {
@@ -14,18 +16,16 @@
         "url": "https://github.com/aralejs/dialog/issues"
     },
     "tests": ["dialog", "confirmbox"], 
-    "output": {
-        "dialog.js": ".",
-        "confirmbox.js": ["./confirmbox.js"],
-        "dialog.css" : ["./dialog.css"]
-    },
-    "dependencies": {
-        "$": "$",
-        "overlay": "arale/overlay/1.0.1/overlay",
-        "mask": "arale/overlay/1.0.1/mask",
-        "easing": "arale/easing/1.0.0/easing",
-        "events": "arale/events/1.0.0/events",
-        "templatable": "arale/widget/1.0.3/templatable",
-        "handlebars": "gallery/handlebars/1.0.0/handlebars"
+    "spm": {
+        "alias": {
+            "$": "$",
+            "overlay": "arale/overlay/1.0.1/overlay",
+            "mask": "arale/overlay/1.0.1/mask",
+            "easing": "arale/easing/1.0.0/easing",
+            "events": "arale/events/1.0.0/events",
+            "templatable": "arale/widget/1.0.3/templatable",
+            "handlebars": "gallery/handlebars/1.0.0/handlebars"
+        },
+        "output": ["dialog.js", "confirmbox.js", "dialog.css"]
     }
 }

@@ -1,5 +1,7 @@
 define(function(require) {
     var Dialog = require('../src/dialog');
+    var expect = require('puerh');
+    var sinon = require('sinon');
     var $ = require('$');
     
     mocha.setup({ignoreLeaks: true});

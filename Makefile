@@ -12,9 +12,8 @@ server:
 watch:
 	@nico server -C $(THEME)/nico.js --watch
 
-publish: clean build-doc
-	@ghp-import _site
-	@git push origin gh-pages
+publish-doc: clean build-doc
+	@spm publish --doc _site
 
 clean:
 	@rm -fr _site
@@ -22,15 +21,22 @@ clean:
 
 reporter = spec
 url = tests/runner.html
-test:
-	@mocha-phantomjs --timeout=999999 --reporter=${reporter} http://127.0.0.1:8000/$(url)
+test-task:
+	@mocha-phantomjs --reporter=${reporter} http://127.0.0.1:8000/${url}
 
-output = _site/coverage.html
+test-src:
+	@node $(THEME)/server.js _site $(MAKE) test-task
+
+test-dist:
+	@$(MAKE) test-src url=tests/runner.html?dist
+
+test: test-src test-dist
+
 coverage:
 	@rm -fr _site/src-cov
 	@jscoverage --encoding=utf8 src _site/src-cov
-	@$(MAKE) test reporter=json-cov url=tests/runner.html?coverage=1 | node $(THEME)/html-cov.js > ${output}
-	@echo "Build coverage to ${output}"
+	@$(MAKE) test-dist reporter=json-cov url=tests/runner.html?cov | node $(THEME)/html-cov.js > tests/coverage.html
+	@echo "Build coverage to tests/coverage.html"
 
 
 .PHONY: build-doc debug server publish clean test coverage
