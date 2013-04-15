@@ -1,26 +1,15 @@
 language: node_js
 
-notifications:
-    email:
-        - aralejs@gmail.com
-
 node_js:
   - 0.8
 
+install:
+  - npm install node-static mocha-phantomjs
+  - npm install nico@ninja
+
 before_script:
-  - git clone https://github.com/aralejs/liquidluck-theme-arale2.git ../liquidluck-theme-arale2
-  - cp -r ../liquidluck-theme-arale2/static tests/
-  - mkdir tests/templates
-  - cp ../liquidluck-theme-arale2/templates/mocha-runner.html tests/templates/runner.html
-  - cp -r ../liquidluck-theme-arale2/test-travis.js tests/
-  - nohup node tests/test-travis.js &
+  - git clone -b new-nico git://github.com/aralejs/nico-arale.git _theme
+  - node_modules/.bin/nico build --theme _theme -C _theme/nico.js
 
-install: 
-  - git clone https://github.com/spmjs/spm.git ../spm
-  - npm install ../spm
-  - npm install node-static swig mocha-phantomjs
-  - spm env --init
-  - sed -i 's/\[/[\"modules.spmjs.org\",/g' ~/.spm/config.json
-  - spm install
-
-script: ./node_modules/.bin/mocha-phantomjs http://127.0.0.1:8000/tests/runner.html
+script:
+  - node _theme/server.js _site node_modules/.bin/mocha-phantomjs http://127.0.0.1:8000/tests/runner.html
