@@ -1,4 +1,4 @@
-define("arale/dialog/1.0.1/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "./dialog-tpl-debug.js" ], function(require, exports, module) {
+define("arale/dialog/1.0.2/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "./dialog-tpl-debug.js" ], function(require, exports, module) {
     var $ = require("$-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug"), Dialog = require("./dialog-debug");
     require("./dialog-debug.css");
     // ConfirmBox
@@ -61,7 +61,7 @@ define("arale/dialog/1.0.1/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/t
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().after("hide", function() {
             this.destroy();
         });
     };
@@ -75,7 +75,7 @@ define("arale/dialog/1.0.1/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/t
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().after("hide", function() {
             this.destroy();
         });
     };
@@ -90,14 +90,14 @@ define("arale/dialog/1.0.1/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/t
                 this.hide();
             }
         };
-        new ConfirmBox($.extend(null, defaults, options)).show().on("close", function() {
+        new ConfirmBox($.extend(null, defaults, options)).show().after("hide", function() {
             this.destroy();
         });
     };
     module.exports = ConfirmBox;
 });
 
-define("arale/dialog/1.0.1/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
+define("arale/dialog/1.0.2/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug");
     (function() {
         var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
@@ -142,6 +142,6 @@ define("arale/dialog/1.0.1/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handle
     })();
 });
 
-define("arale/dialog/1.0.1/dialog-debug.css", [], function() {
+define("arale/dialog/1.0.2/dialog-debug.css", [], function() {
     seajs.importStyle(".ui-dialog{background-color:rgba(0,0,0,.5);border:0;FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);padding:6px}:root .ui-dialog{FILTER:none\\9}.ui-dialog-close{color:#999;cursor:pointer;display:block;font-family:tahoma;font-size:24px;font-weight:700;height:18px;line-height:14px;position:absolute;right:16px;text-decoration:none;top:16px;z-index:10}.ui-dialog-close:hover{color:#666;text-shadow:0 0 2px #aaa}.ui-dialog-title{height:45px;font-size:16px;font-family:'微软雅黑','黑体',Arial;line-height:46px;border-bottom:1px solid #E1E1E1;color:#4d4d4d;text-indent:20px;background:-webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f9f9f9));background:-moz-linear-gradient(top,#fcfcfc,#f9f9f9);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');background:-o-linear-gradient(top,#fcfcfc,#f9f9f9);background:linear-gradient(top,#fcfcfc,#f9f9f9)}.ui-dialog-container{padding:15px 20px 20px;font-size:12px}.ui-dialog-message{margin-bottom:15px}.ui-dialog-operation{zoom:1}.ui-dialog-confirm,.ui-dialog-cancel{display:inline}.ui-dialog-operation .ui-dialog-confirm{margin-right:4px}.ui-dialog-button-orange,.ui-dialog-button-white{display:inline-block;*display:inline;*zoom:1;text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;font-family:verdana,Hiragino Sans GB;font-size:12px;font-weight:700;border-radius:2px;padding:0 12px;line-height:23px;height:23px;*overflow:visible}a.ui-dialog-button-orange:hover,a.ui-dialog-button-white:hover{text-decoration:none}.ui-dialog-button-orange{border:1px solid #E5810E;color:#fff;background-color:#F5AA2B;background:-webkit-gradient(linear,left top,left bottom,from(#F5A620),to(#F09611));background:-moz-linear-gradient(top,#F5A620,#F09611);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5A620', endColorstr='#F09611');background:-o-linear-gradient(top,#F5A620,#F09611);background:linear-gradient(top,#F5A620,#F09611);box-shadow:0 -2px 2px rgba(255,255,255,.33) inset}.ui-dialog-button-orange:hover{background-color:#F5AA2B;background:-webkit-gradient(linear,left top,left bottom,from(#F7B73B),to(#F4A626));background:-moz-linear-gradient(top,#F7B73B,#F4A626);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7B73B', endColorstr='#F4A626');background:-o-linear-gradient(top,#F7B73B,#F4A626);background:linear-gradient(top,#F7B73B,#F4A626);box-shadow:0 -2px 2px rgba(255,255,255,.4) inset}.ui-dialog-button-white{border:1px solid #B3B3B3;color:#595959;background-color:#F2F2F2;background:-webkit-gradient(linear,left top,left bottom,from(#FEFEFE),to(#ECECEC));background:-moz-linear-gradient(top,#FEFEFE,#ECECEC);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#ECECEC');background:-o-linear-gradient(top,#FEFEFE,#ECECEC);background:linear-gradient(top,#FEFEFE,#ECECEC);box-shadow:0 -2px 2px rgba(255,255,255,.33) inset}.ui-dialog-button-white:hover{border:1px solid #999;background-color:#F6F6F6;background:-webkit-gradient(linear,left top,left bottom,from(#FEFEFE),to(#F0F0F0));background:-moz-linear-gradient(top,#FEFEFE,#F0F0F0);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F0F0F0');background:-o-linear-gradient(top,#FEFEFE,#F0F0F0);background:linear-gradient(top,#FEFEFE,#F0F0F0)}");
 });
