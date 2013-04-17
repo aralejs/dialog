@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.2
+
+`tag:fixed` [pull/24](pull/24) 修复 ConfirmBox 静态方法生成的对象销毁失效的问题。
+
 ## 1.0.1
 
 `tag:fixed` [#21](https://github.com/aralejs/dialog/issues/21) 修复 IE6 下内容区域的高度撑不开的问题。
@@ -11,6 +15,8 @@
 `tag:changed` 去掉 close 自定义事件，可以用 before/after('hide') 来代替。
 
 `tag:improved` 对 arale/overlay 的依赖升级到 1.0.1。
+
+`tag:unresolved` 去掉 close 自定义事件导致 ConfirmBox.alert 等静态方法产生的对话框无法销毁自身。
 
 ## 1.0.0
 
