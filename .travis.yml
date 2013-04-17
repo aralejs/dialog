@@ -13,3 +13,4 @@ before_script:
 
 script:
   - node _theme/server.js _site node_modules/.bin/mocha-phantomjs http://127.0.0.1:8000/tests/runner.html
+  - node _theme/server.js _site node_modules/.bin/mocha-phantomjs http://127.0.0.1:8000/tests/runner.html?src
