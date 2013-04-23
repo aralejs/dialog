@@ -6,6 +6,8 @@
 
 `tag:fixed` [pull/24](pull/24) 修复 ConfirmBox 静态方法生成的对象销毁失效的问题。
 
+`tag:fixed` 修复 ConfirmBox 由于 1.0.1 版本的 dist 文件打包错误导致无法使用的问题。
+
 ## 1.0.1
 
 `tag:fixed` [#21](https://github.com/aralejs/dialog/issues/21) 修复 IE6 下内容区域的高度撑不开的问题。
