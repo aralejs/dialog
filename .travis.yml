@@ -16,5 +16,6 @@ script:
   - node _theme/server.js _site node_modules/.bin/mocha-phantomjs http://127.0.0.1:8000/tests/runner.html?src
 
 after_script:
-  - node_modules/.bin/jscoverage --encoding=utf8 src _site/src-cov
+  - node_modules/.bin/jscoverage --encoding=utf8 src/dialog.js _site/src-cov/dialog.js
+  - node_modules/.bin/jscoverage --encoding=utf8 src/confirmbox.js _site/src-cov/confirmbox.js
   - node _theme/server.js _site node_modules/.bin/mocha-phantomjs --reporter=json-cov http://127.0.0.1:8000/tests/runner.html?cov  | node _theme/lcov.js | ./node_modules/.bin/coveralls
