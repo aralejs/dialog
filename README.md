@@ -4,6 +4,7 @@
 ---
 
 [![Build Status](https://secure.travis-ci.org/aralejs/dialog.png)](https://travis-ci.org/aralejs/dialog)
+[![Coverage Status](https://coveralls.io/repos/aralejs/dialog/badge.png?branch=master)](https://coveralls.io/r/aralejs/dialog)
 
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
