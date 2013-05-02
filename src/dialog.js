@@ -135,7 +135,7 @@ define(function(require, exports, module) {
             }
             $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
-            mask.hide();
+            this.get('hasMask') && mask.hide();
             clearInterval(this._interval);
             return Dialog.superclass.destroy.call(this);
         },
@@ -196,11 +196,6 @@ define(function(require, exports, module) {
             }
         },
 
-        _onRenderZIndex: function(val) {
-            mask.set('zIndex', parseInt(val, 10) - 1);
-            return Dialog.superclass._onRenderZIndex.call(this, val);
-        },
-
         // 私有方法
         // ---
 
@@ -217,11 +212,20 @@ define(function(require, exports, module) {
 
         // 绑定遮罩层事件
         _setupMask: function() {
+            var hasMask = this.get('hasMask');
+            var zIndex = parseInt(this.get('zIndex'), 10);
+            var oldZIndex;
+
             this.before('show', function() {
-                this.get('hasMask') && mask.show();
+                if (hasMask) {
+                    oldZIndex =  mask.get('zIndex');
+                    mask.set('zIndex', zIndex - 1).show();
+                }
             });
             this.after('hide', function() {
-                this.get('hasMask') && mask.hide();
+                if (hasMask) {
+                    mask.set('zIndex', oldZIndex).hide();
+                }
             });
         },
 

@@ -4,6 +4,8 @@
 
 ## 1.0.2
 
+`tag:fixed` [#25](https://github.com/aralejs/dialog/issues/25) 使得 dialog 对 mask 的 z-index 的处理不影响其他实例。
+
 `tag:fixed` [pull/24](pull/24) 修复 ConfirmBox 静态方法生成的对象销毁失效的问题。
 
 `tag:fixed` 修复 ConfirmBox 由于 1.0.1 版本的 dist 文件打包错误导致无法使用的问题。
