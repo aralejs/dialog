@@ -130,7 +130,7 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            if (this.get('trigger')) { 
+            if (this.get('trigger')) {
                 this.get('trigger').off('click' + EVENT_NS + this.cid);
             }
             $(document).off('keyup.' + EVENT_NS + this.cid);
