@@ -68,8 +68,6 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
     $('#trigger13').click(function() {
         ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
             alert('点击了确定按钮');
-        }, function() {
-            alert('点击了取消按钮');
         });
     });
 
@@ -94,7 +92,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
         ConfirmBox.alert('静态方法ConfirmBox.confirm', function() {
             alert('点击了确定按钮');
         }, {
-            onClose: function() {
+            beforeHide: function() {
                 alert('点击了取消按钮');
             },
             width: 300
@@ -105,7 +103,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
         ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
             alert('点击了确定按钮');
         }, {
-            onClose: function() {
+            beforeHide: function() {
                 alert('点击了取消按钮');
             },
             title: '改过的自定义标题',
@@ -117,7 +115,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
         ConfirmBox.show('静态方法ConfirmBox.confirm', function() {
             alert('点击了确定按钮');
         }, {
-            onClose: function() {
+            beforeHide: function() {
                 alert('即将关闭');
             },
             hasMask: false

@@ -95,7 +95,7 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
 ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
     console.log('点击了确认按钮');
 }, {
-    onClose: function() {
+    beforeHide: function() {
         console.log('点击了确认按钮');
     },
     closeTpl: '',       // 关闭的按钮设置为空
