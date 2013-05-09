@@ -15,6 +15,5 @@ script:
 
 after_success:
   - npm install jscoverage coveralls
-  - cp -rf src _site/src-cov
-  - node_modules/.bin/jscoverage --encoding=utf8 src _site/src-cov --exclude dialog.tpl dialog.css confirmbox.tpl
+  - node_modules/.bin/jscoverage --encoding=utf8 src _site/src-cov
   - node_modules/.bin/mocha-browser _site/tests/runner.html?cov -S -R lcov | node_modules/.bin/coveralls
