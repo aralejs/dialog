@@ -1,5 +1,5 @@
 define(function(require) {
-    var ConfirmBox = require('../src/confirmbox.js');
+    var ConfirmBox = require('confirmbox');
     var expect = require('puerh');
     var sinon = require('sinon');    
     var $ = require('$');
