@@ -111,14 +111,13 @@ define(function(require, exports, module) {
             message: message,
             title: '',
             confirmTpl: false,
-            cancelTpl: false,
-            onConfirm: function() {
-                callback && callback();
-                this.hide();
-            }
+            cancelTpl: false
         };
         new ConfirmBox($.extend(null, defaults, options))
         .show()
+        .before('hide', function() {
+            callback && callback();            
+        })
         .after('hide', function() {
             this.destroy();
         });

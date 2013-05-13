@@ -89,7 +89,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 
     $('#trigger1').click(function() {
-        ConfirmBox.alert('静态方法ConfirmBox.confirm', function() {
+        ConfirmBox.alert('静态方法ConfirmBox.alert', function() {
             alert('点击了确定按钮');
         }, {
             beforeHide: function() {
@@ -112,12 +112,9 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
     });
 
     $('#trigger3').click(function() {
-        ConfirmBox.show('静态方法ConfirmBox.confirm', function() {
-            alert('点击了确定按钮');
+        ConfirmBox.show('静态方法ConfirmBox.show', function() {
+            alert('点击了关闭按钮');
         }, {
-            beforeHide: function() {
-                alert('即将关闭');
-            },
             hasMask: false
         });
     });
