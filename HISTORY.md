@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.3
+
+`tag:fixed` 修复 ConfirmBox.show 的回调失效问题。
+
 ## 1.0.2
 
 `tag:fixed` [#25](https://github.com/aralejs/dialog/issues/25) 使得 dialog 对 mask 的 z-index 的处理不影响其他实例。
