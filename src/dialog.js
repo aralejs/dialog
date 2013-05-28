@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
         attrs: {
             // 模板
-            template: require('./dialog-tpl.js'),
+            template: require('./dialog.handlebars'),
 
             // 对话框触发点
             trigger: {
@@ -71,12 +71,19 @@ define(function(require, exports, module) {
                 baseXY: ['50%', '50%']
             }
         },
-
         parseElement: function() {
-            this.model = {
+            this.set("model", {
                 classPrefix: this.get('classPrefix')
-            };
-            Dialog.superclass.parseElement.call(this);
+            });
+
+            var fn = this.get('template');
+            // 如果模板是 handlebars , 不依靠 Widget 的 parseElement
+            if ($.isFunction(fn)) {
+                this.element =$(fn(this.get('model')));
+            } else {
+                Dialog.superclass.parseElement.call(this);
+            }
+
             this.contentElement = this.$('[data-role=content]');
             // 必要的样式
             this.contentElement.css({
