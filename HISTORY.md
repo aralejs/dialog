@@ -2,6 +2,15 @@
 
 ---
 
+## 1.1.0
+
+`tag:changed` 对 arale/overlay 的依赖从 1.0.1 升级到 1.1.0 。
+`tag:changed` 对 arale/mask 的依赖从 1.0.1 升级到 1.1.0 。
+`tag:changed` 对 arale/events 的依赖从 1.0.0 升级到 1.1.0 。
+`tag:changed` 对 templatable 的依赖从 arale/widget/1.0.3/templatable 升级到 arale/templatable/0.9.0/templatable 。
+`tag:changed` 对 handlebars 的依赖从 gallery/handlebars/1.0.0/handlebars 升级到 gallery/handlebars/1.0.1/runtime 。
+
+
 ## 1.0.2
 
 `tag:fixed` [#25](https://github.com/aralejs/dialog/issues/25) 使得 dialog 对 mask 的 z-index 的处理不影响其他实例。
