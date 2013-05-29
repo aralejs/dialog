@@ -5,7 +5,6 @@ define(function(require, exports, module) {
         mask = require('mask'),
         Events = require('events'),
         Templatable = require('templatable'),
-        EVENT_NS = '.dialog',
         DEFAULT_HEIGHT = '300px';
 
     // Dialog
@@ -131,10 +130,6 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            if (this.get('trigger')) {
-                this.get('trigger').off('click' + EVENT_NS + this.cid);
-            }
-            $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
             this.get('hasMask') && mask.hide();
             clearInterval(this._interval);
@@ -202,7 +197,7 @@ define(function(require, exports, module) {
 
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            this.delegateEvents(this.get('trigger'), 'click' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get('trigger'), 'click', function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
                 this.activeTrigger = $(e.currentTarget);
@@ -243,7 +238,7 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents($(document), 'keyup.' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(document, 'keyup', function(e) {
                 if (e.keyCode === 27) {
                     this.get('visible') && this.hide();
                 }
