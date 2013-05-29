@@ -1,4 +1,4 @@
-define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
+define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
     var $ = require("$-debug"), Dialog = require("./dialog-debug");
     var template = require("./confirmbox-debug.handlebars");
     require("./dialog-debug.css");
@@ -94,8 +94,8 @@ define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
     module.exports = ConfirmBox;
 });
 
-define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.0/overlay-debug"), mask = require("arale/overlay/1.1.0/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.0/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.0/overlay-debug"), mask = require("arale/overlay/1.1.0/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.0/templatable-debug"), DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -197,10 +197,6 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
             return this;
         },
         destroy: function() {
-            if (this.get("trigger")) {
-                this.get("trigger").off("click" + EVENT_NS + this.cid);
-            }
-            $(document).off("keyup." + EVENT_NS + this.cid);
             this.element.remove();
             this.get("hasMask") && mask.hide();
             clearInterval(this._interval);
@@ -259,7 +255,7 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
         // ---
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            this.delegateEvents(this.get("trigger"), "click" + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get("trigger"), "click", function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
                 this.activeTrigger = $(e.currentTarget);
@@ -296,7 +292,7 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
         },
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents($(document), "keyup." + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(document, "keyup", function(e) {
                 if (e.keyCode === 27) {
                     this.get("visible") && this.hide();
                 }
