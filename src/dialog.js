@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
         attrs: {
             // 模板
-            template: require('./dialog-tpl.js'),
+            template: require('./dialog.handlebars'),
 
             // 对话框触发点
             trigger: {
@@ -71,12 +71,13 @@ define(function(require, exports, module) {
                 baseXY: ['50%', '50%']
             }
         },
-
         parseElement: function() {
-            this.model = {
+            this.set("model", {
                 classPrefix: this.get('classPrefix')
-            };
+            });
+
             Dialog.superclass.parseElement.call(this);
+
             this.contentElement = this.$('[data-role=content]');
             // 必要的样式
             this.contentElement.css({
@@ -201,12 +202,11 @@ define(function(require, exports, module) {
 
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            var that = this;
-            this.get('trigger').on('click' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get('trigger'), 'click' + EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.show();
+                this.activeTrigger = $(e.currentTarget);
+                this.show();
             });
         },
 
@@ -243,10 +243,9 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            var that = this;
-            $(document).on('keyup.' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents($(document), 'keyup.' + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    that.get('visible') && that.hide();
+                    this.get('visible') && this.hide();
                 }
             });
         },

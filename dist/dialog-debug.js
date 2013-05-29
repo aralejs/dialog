@@ -1,5 +1,5 @@
-define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-tpl-debug.js" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.0.1/overlay-debug"), mask = require("arale/overlay/1.0.1/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.0/overlay-debug"), mask = require("arale/overlay/1.1.0/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.0/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -8,7 +8,7 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         Implements: Templatable,
         attrs: {
             // 模板
-            template: require("./dialog-tpl-debug"),
+            template: require("./dialog-debug.handlebars"),
             // 对话框触发点
             trigger: {
                 value: null,
@@ -50,9 +50,9 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
             }
         },
         parseElement: function() {
-            this.model = {
+            this.set("model", {
                 classPrefix: this.get("classPrefix")
-            };
+            });
             Dialog.superclass.parseElement.call(this);
             this.contentElement = this.$("[data-role=content]");
             // 必要的样式
@@ -163,12 +163,11 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         // ---
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            var that = this;
-            this.get("trigger").on("click" + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get("trigger"), "click" + EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.show();
+                this.activeTrigger = $(e.currentTarget);
+                this.show();
             });
         },
         // 绑定遮罩层事件
@@ -201,10 +200,9 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         },
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            var that = this;
-            $(document).on("keyup." + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents($(document), "keyup." + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    that.get("visible") && that.hide();
+                    this.get("visible") && this.hide();
                 }
             });
         },
@@ -318,47 +316,48 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
     }
 });
 
-define("arale/dialog/1.0.3/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
-    var Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug");
-    (function() {
-        var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-        module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
-            this.compilerInfo = [ 2, ">= 1.0.0-rc.3" ];
-            helpers = helpers || Handlebars.helpers;
-            data = data || {};
-            var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression;
-            buffer += '<div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '">\n    <div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '-close" title="关闭本框" data-role="close"></div>\n    <div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '-content" data-role="content"></div>\n</div>\n';
-            return buffer;
-        });
-    })();
+define("arale/dialog/1.1.0/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+    var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
+    var template = Handlebars.template;
+    module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
+        this.compilerInfo = [ 3, ">= 1.0.0-rc.4" ];
+        helpers = helpers || {};
+        for (var key in Handlebars.helpers) {
+            helpers[key] = helpers[key] || Handlebars.helpers[key];
+        }
+        data = data || {};
+        var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression;
+        buffer += '<div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '">\n    <div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-close" title="关闭本框" data-role="close"></div>\n    <div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-content" data-role="content"></div>\n</div>\n';
+        return buffer;
+    });
 });

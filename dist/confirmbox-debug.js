@@ -1,14 +1,14 @@
-define("arale/dialog/1.0.3/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "./dialog-tpl-debug.js", "./dialog-debug.css", "./confirmbox-debug.tpl" ], function(require, exports, module) {
-    var $ = require("$-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug"), Dialog = require("./dialog-debug");
+define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
+    var $ = require("$-debug"), Dialog = require("./dialog-debug");
+    var template = require("./confirmbox-debug.handlebars");
     require("./dialog-debug.css");
     // ConfirmBox
     // -------
     // ConfirmBox 是一个有基础模板和样式的对话框组件。
     var ConfirmBox = Dialog.extend({
-        Implements: Templatable,
         attrs: {
             // 指定内容模板
-            content: require("./confirmbox-debug.tpl"),
+            content: "",
             title: "默认标题",
             confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
             cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
@@ -23,7 +23,6 @@ define("arale/dialog/1.0.3/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/t
                 cancelTpl: this.get("cancelTpl"),
                 hasFoot: this.get("confirmTpl") || this.get("cancelTpl")
             };
-            var template = Handlebars.compile(this.get("content"));
             this.set("content", template(model));
             ConfirmBox.superclass.parseElement.call(this);
         },
@@ -95,8 +94,8 @@ define("arale/dialog/1.0.3/confirmbox-debug", [ "$-debug", "arale/widget/1.0.3/t
     module.exports = ConfirmBox;
 });
 
-define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug", "arale/overlay/1.0.1/mask-debug", "arale/widget/1.0.3/templatable-debug", "gallery/handlebars/1.0.0/handlebars-debug", "./dialog-tpl-debug.js" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.0.1/overlay-debug"), mask = require("arale/overlay/1.0.1/mask-debug"), Events = require("arale/events/1.0.0/events-debug"), Templatable = require("arale/widget/1.0.3/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.1/handlebars-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.0/overlay-debug"), mask = require("arale/overlay/1.1.0/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.0/templatable-debug"), EVENT_NS = ".dialog", DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -105,7 +104,7 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         Implements: Templatable,
         attrs: {
             // 模板
-            template: require("./dialog-tpl-debug"),
+            template: require("arale/dialog/1.1.0/dialog-debug.handlebars"),
             // 对话框触发点
             trigger: {
                 value: null,
@@ -147,9 +146,9 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
             }
         },
         parseElement: function() {
-            this.model = {
+            this.set("model", {
                 classPrefix: this.get("classPrefix")
-            };
+            });
             Dialog.superclass.parseElement.call(this);
             this.contentElement = this.$("[data-role=content]");
             // 必要的样式
@@ -260,12 +259,11 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         // ---
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            var that = this;
-            this.get("trigger").on("click" + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get("trigger"), "click" + EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.show();
+                this.activeTrigger = $(e.currentTarget);
+                this.show();
             });
         },
         // 绑定遮罩层事件
@@ -298,10 +296,9 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
         },
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            var that = this;
-            $(document).on("keyup." + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents($(document), "keyup." + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    that.get("visible") && that.hide();
+                    this.get("visible") && this.hide();
                 }
             });
         },
@@ -415,53 +412,239 @@ define("arale/dialog/1.0.3/dialog-debug", [ "$-debug", "arale/overlay/1.0.1/over
     }
 });
 
-define("arale/dialog/1.0.3/dialog-tpl-debug", [ "gallery/handlebars/1.0.0/handlebars-debug" ], function(require, exports, module) {
-    var Handlebars = require("gallery/handlebars/1.0.0/handlebars-debug");
-    (function() {
-        var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-        module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
-            this.compilerInfo = [ 2, ">= 1.0.0-rc.3" ];
-            helpers = helpers || Handlebars.helpers;
-            data = data || {};
-            var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression;
-            buffer += '<div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '">\n    <div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '-close" title="关闭本框" data-role="close"></div>\n    <div class="';
-            if (stack1 = helpers.classPrefix) {
-                stack1 = stack1.call(depth0, {
-                    hash: {},
-                    data: data
-                });
-            } else {
-                stack1 = depth0.classPrefix;
-                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-            }
-            buffer += escapeExpression(stack1) + '-content" data-role="content"></div>\n</div>\n';
-            return buffer;
-        });
-    })();
+define("arale/dialog/1.1.0/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+    var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
+    var template = Handlebars.template;
+    module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
+        this.compilerInfo = [ 3, ">= 1.0.0-rc.4" ];
+        helpers = helpers || {};
+        for (var key in Handlebars.helpers) {
+            helpers[key] = helpers[key] || Handlebars.helpers[key];
+        }
+        data = data || {};
+        var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression;
+        buffer += '<div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '">\n    <div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-close" title="关闭本框" data-role="close"></div>\n    <div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-content" data-role="content"></div>\n</div>\n';
+        return buffer;
+    });
 });
 
-define("arale/dialog/1.0.3/dialog-debug.css", [], function() {
+define("arale/dialog/1.1.0/confirmbox-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+    var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
+    var template = Handlebars.template;
+    module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
+        this.compilerInfo = [ 3, ">= 1.0.0-rc.4" ];
+        helpers = helpers || {};
+        for (var key in Handlebars.helpers) {
+            helpers[key] = helpers[key] || Handlebars.helpers[key];
+        }
+        data = data || {};
+        var buffer = "", stack1, functionType = "function", escapeExpression = this.escapeExpression, self = this;
+        function program1(depth0, data) {
+            var buffer = "", stack1;
+            buffer += '\n<div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-title" data-role="title">';
+            if (stack1 = helpers.title) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.title;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            if (stack1 || stack1 === 0) {
+                buffer += stack1;
+            }
+            buffer += "</div>\n";
+            return buffer;
+        }
+        function program3(depth0, data) {
+            var buffer = "", stack1;
+            buffer += '\n    <div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-operation" data-role="foot">\n        ';
+            stack1 = helpers["if"].call(depth0, depth0.confirmTpl, {
+                hash: {},
+                inverse: self.noop,
+                fn: self.program(4, program4, data),
+                data: data
+            });
+            if (stack1 || stack1 === 0) {
+                buffer += stack1;
+            }
+            buffer += "\n        ";
+            stack1 = helpers["if"].call(depth0, depth0.cancelTpl, {
+                hash: {},
+                inverse: self.noop,
+                fn: self.program(6, program6, data),
+                data: data
+            });
+            if (stack1 || stack1 === 0) {
+                buffer += stack1;
+            }
+            buffer += "\n    </div>\n    ";
+            return buffer;
+        }
+        function program4(depth0, data) {
+            var buffer = "", stack1;
+            buffer += '\n        <div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-confirm" data-role="confirm">\n            ';
+            if (stack1 = helpers.confirmTpl) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.confirmTpl;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            if (stack1 || stack1 === 0) {
+                buffer += stack1;
+            }
+            buffer += "\n        </div>\n        ";
+            return buffer;
+        }
+        function program6(depth0, data) {
+            var buffer = "", stack1;
+            buffer += '\n        <div class="';
+            if (stack1 = helpers.classPrefix) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.classPrefix;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            buffer += escapeExpression(stack1) + '-cancel" data-role="cancel">\n            ';
+            if (stack1 = helpers.cancelTpl) {
+                stack1 = stack1.call(depth0, {
+                    hash: {},
+                    data: data
+                });
+            } else {
+                stack1 = depth0.cancelTpl;
+                stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+            }
+            if (stack1 || stack1 === 0) {
+                buffer += stack1;
+            }
+            buffer += "\n        </div>\n        ";
+            return buffer;
+        }
+        stack1 = helpers["if"].call(depth0, depth0.title, {
+            hash: {},
+            inverse: self.noop,
+            fn: self.program(1, program1, data),
+            data: data
+        });
+        if (stack1 || stack1 === 0) {
+            buffer += stack1;
+        }
+        buffer += '\n<div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-container">\n    <div class="';
+        if (stack1 = helpers.classPrefix) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.classPrefix;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        buffer += escapeExpression(stack1) + '-message" data-role="message">';
+        if (stack1 = helpers.message) {
+            stack1 = stack1.call(depth0, {
+                hash: {},
+                data: data
+            });
+        } else {
+            stack1 = depth0.message;
+            stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+        }
+        if (stack1 || stack1 === 0) {
+            buffer += stack1;
+        }
+        buffer += "</div>\n    ";
+        stack1 = helpers["if"].call(depth0, depth0.hasFoot, {
+            hash: {},
+            inverse: self.noop,
+            fn: self.program(3, program3, data),
+            data: data
+        });
+        if (stack1 || stack1 === 0) {
+            buffer += stack1;
+        }
+        buffer += "\n</div>\n";
+        return buffer;
+    });
+});
+
+define("arale/dialog/1.1.0/dialog-debug.css", [], function() {
     seajs.importStyle(".ui-dialog{background-color:rgba(0,0,0,.5);border:0;FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);padding:6px}:root .ui-dialog{FILTER:none\\9}.ui-dialog-close{color:#999;cursor:pointer;display:block;font-family:tahoma;font-size:24px;font-weight:700;height:18px;line-height:14px;position:absolute;right:16px;text-decoration:none;top:16px;z-index:10}.ui-dialog-close:hover{color:#666;text-shadow:0 0 2px #aaa}.ui-dialog-title{height:45px;font-size:16px;font-family:'微软雅黑','黑体',Arial;line-height:46px;border-bottom:1px solid #E1E1E1;color:#4d4d4d;text-indent:20px;background:-webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f9f9f9));background:-moz-linear-gradient(top,#fcfcfc,#f9f9f9);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');background:-o-linear-gradient(top,#fcfcfc,#f9f9f9);background:linear-gradient(top,#fcfcfc,#f9f9f9)}.ui-dialog-container{padding:15px 20px 20px;font-size:12px}.ui-dialog-message{margin-bottom:15px}.ui-dialog-operation{zoom:1}.ui-dialog-confirm,.ui-dialog-cancel{display:inline}.ui-dialog-operation .ui-dialog-confirm{margin-right:4px}.ui-dialog-button-orange,.ui-dialog-button-white{display:inline-block;*display:inline;*zoom:1;text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;font-family:verdana,Hiragino Sans GB;font-size:12px;font-weight:700;border-radius:2px;padding:0 12px;line-height:23px;height:23px;*overflow:visible}a.ui-dialog-button-orange:hover,a.ui-dialog-button-white:hover{text-decoration:none}.ui-dialog-button-orange{border:1px solid #F67600;color:#fff;background-color:#F5AA2B;background:-webkit-gradient(linear,left top,left bottom,from(#FFA600),to(#FE9200));background:-moz-linear-gradient(top,#FFA600,#FE9200);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA600', endColorstr='#FE9200');background:-o-linear-gradient(top,#FFA600,#FE9200);background:linear-gradient(top,#FFA600,#FE9200);box-shadow:0 -2px 2px rgba(255,255,255,.33) inset}.ui-dialog-button-orange:hover{border:1px solid #F26600;background-color:#F5AA2B;background:-webkit-gradient(linear,left top,left bottom,from(#FFB91C),to(#FFA700));background:-moz-linear-gradient(top,#FFB91C,#FFA700);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFB91C', endColorstr='#FFA700');background:-o-linear-gradient(top,#FFB91C,#FFA700);background:linear-gradient(top,#FFB91C,#FFA700);box-shadow:0 -2px 2px rgba(255,255,255,.4) inset}.ui-dialog-button-white{border:1px solid #B3B3B3;color:#595959;background-color:#F2F2F2;background:-webkit-gradient(linear,left top,left bottom,from(#FEFEFE),to(#ECECEC));background:-moz-linear-gradient(top,#FEFEFE,#ECECEC);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#ECECEC');background:-o-linear-gradient(top,#FEFEFE,#ECECEC);background:linear-gradient(top,#FEFEFE,#ECECEC);box-shadow:0 -2px 2px rgba(255,255,255,.33) inset}.ui-dialog-button-white:hover{border:1px solid #999;background-color:#F6F6F6;background:-webkit-gradient(linear,left top,left bottom,from(#FEFEFE),to(#F0F0F0));background:-moz-linear-gradient(top,#FEFEFE,#F0F0F0);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F0F0F0');background:-o-linear-gradient(top,#FEFEFE,#F0F0F0);background:linear-gradient(top,#FEFEFE,#F0F0F0)}");
 });
-
-define("arale/dialog/1.0.3/confirmbox-debug.tpl", [], '{{#if title}}\n<div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>\n{{/if}}\n<div class="{{classPrefix}}-container">\n    <div class="{{classPrefix}}-message" data-role="message">{{{message}}}</div>\n    {{#if hasFoot}}\n    <div class="{{classPrefix}}-operation" data-role="foot">\n        {{#if confirmTpl}}\n        <div class="{{classPrefix}}-confirm" data-role="confirm">\n            {{{confirmTpl}}}\n        </div>\n        {{/if}}\n        {{#if cancelTpl}}\n        <div class="{{classPrefix}}-cancel" data-role="cancel">\n            {{{cancelTpl}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/if}}\n</div>\n');
