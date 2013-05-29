@@ -196,7 +196,7 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
         },
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents(document, "keyup", function(e) {
+            this.delegateEvents($(document), "keyup", function(e) {
                 if (e.keyCode === 27) {
                     this.get("visible") && this.hide();
                 }
