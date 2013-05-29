@@ -76,13 +76,7 @@ define(function(require, exports, module) {
                 classPrefix: this.get('classPrefix')
             });
 
-            var fn = this.get('template');
-            // 如果模板是 handlebars , 不依靠 Widget 的 parseElement
-            if ($.isFunction(fn)) {
-                this.element =$(fn(this.get('model')));
-            } else {
-                Dialog.superclass.parseElement.call(this);
-            }
+            Dialog.superclass.parseElement.call(this);
 
             this.contentElement = this.$('[data-role=content]');
             // 必要的样式
@@ -208,12 +202,11 @@ define(function(require, exports, module) {
 
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            var that = this;
-            this.get('trigger').on('click' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get('trigger'), 'click' + EVENT_NS + this.cid, function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.show();
+                this.activeTrigger = $(e.currentTarget);
+                this.show();
             });
         },
 
@@ -250,10 +243,9 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            var that = this;
-            $(document).on('keyup.' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents($(document), 'keyup.' + EVENT_NS + this.cid, function(e) {
                 if (e.keyCode === 27) {
-                    that.get('visible') && that.hide();
+                    this.get('visible') && this.hide();
                 }
             });
         },
