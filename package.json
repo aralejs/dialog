@@ -6,7 +6,11 @@
     "keywords": [
         "widget"
     ],
-    "author": "afc163 <afc163@gmail.com>",
+    "author": "偏右 <afc163@gmail.com>",
+    "maintainers": [
+        "偏右 <afc163@gmail.com>",
+        "贯高 <sakura9515@gmail.com>"
+    ],
     "homepage": "http://aralejs.org/dialog",
     "repository": {
         "type": "git",
