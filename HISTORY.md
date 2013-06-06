@@ -6,6 +6,8 @@
 
 `tag:improved` 对 arale/overlay 的依赖从 1.0.1 升级到 1.1.0 。
 
+`tag:improved` 对 arale/position 的依赖从 1.0.0 升级到 1.0.1 。
+
 `tag:improved` 对 arale/mask 的依赖从 1.0.1 升级到 1.1.0 。
 
 `tag:improved` 对 arale/events 的依赖从 1.0.0 升级到 1.1.0 。

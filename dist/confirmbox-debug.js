@@ -1,4 +1,4 @@
-define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
+define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
     var $ = require("$-debug"), Dialog = require("./dialog-debug");
     var template = require("./confirmbox-debug.handlebars");
     require("./dialog-debug.css");
@@ -94,7 +94,7 @@ define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
     module.exports = ConfirmBox;
 });
 
-define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug" ], function(require, exports, module) {
+define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.0/mask-debug", "arale/templatable/0.9.0/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.0/overlay-debug"), mask = require("arale/overlay/1.1.0/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.0/templatable-debug"), DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
