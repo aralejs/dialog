@@ -20,7 +20,7 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
             classPrefix: "ui-dialog",
             // 指定内容元素，可以是 url 地址
             content: {
-                value: "",
+                value: null,
                 setter: function(val) {
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {

@@ -7,14 +7,13 @@ define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
     // ConfirmBox 是一个有基础模板和样式的对话框组件。
     var ConfirmBox = Dialog.extend({
         attrs: {
-            // 指定内容模板
-            content: "",
             title: "默认标题",
             confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
             cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
             message: "默认内容"
         },
-        parseElement: function() {
+        setup: function() {
+            ConfirmBox.superclass.setup.call(this);
             var model = {
                 classPrefix: this.get("classPrefix"),
                 message: this.get("message"),
@@ -24,7 +23,6 @@ define("arale/dialog/1.1.0/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
                 hasFoot: this.get("confirmTpl") || this.get("cancelTpl")
             };
             this.set("content", template(model));
-            ConfirmBox.superclass.parseElement.call(this);
         },
         events: {
             "click [data-role=confirm]": function(e) {
@@ -116,7 +114,7 @@ define("arale/dialog/1.1.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.0/over
             classPrefix: "ui-dialog",
             // 指定内容元素，可以是 url 地址
             content: {
-                value: "",
+                value: null,
                 setter: function(val) {
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {

@@ -13,9 +13,6 @@ define(function(require, exports, module) {
     var ConfirmBox = Dialog.extend({
 
         attrs: {
-            // 指定内容模板
-            content: '',
-
             title: '默认标题',
 
             confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
@@ -25,7 +22,9 @@ define(function(require, exports, module) {
             message: '默认内容'
         },
 
-        parseElement: function() {
+        setup: function() {
+            ConfirmBox.superclass.setup.call(this);
+
             var model = {
                 classPrefix: this.get('classPrefix'),
                 message: this.get('message'),
@@ -35,7 +34,6 @@ define(function(require, exports, module) {
                 hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
             };
             this.set('content', template(model));
-            ConfirmBox.superclass.parseElement.call(this);
         },
 
         events: {
