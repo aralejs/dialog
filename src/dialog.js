@@ -33,7 +33,7 @@ define(function(require, exports, module) {
 
             // 指定内容元素，可以是 url 地址
             content: {
-                value: '',
+                value: null,
                 setter: function(val) {
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {
@@ -70,6 +70,8 @@ define(function(require, exports, module) {
                 baseXY: ['50%', '50%']
             }
         },
+
+
         parseElement: function() {
             this.set("model", {
                 classPrefix: this.get('classPrefix')
