@@ -84,6 +84,7 @@
     line-height:23px;
     height:23px;
     *overflow: visible; /* for a ie6/7 bug http://blog.csdn.net/jyy_12/article/details/6636099 */ 
+    background-image: none;
 }
 
 a.ui-dialog-button-orange:hover,
@@ -92,46 +93,23 @@ a.ui-dialog-button-white:hover {
 }
 
 .ui-dialog-button-orange {
-    border:1px solid #F67600;
-    color:#fff;
-    background-color: #F5AA2B;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFA600), to(#FE9200));
-    background: -moz-linear-gradient(top, #FFA600, #FE9200);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA600', endColorstr='#FE9200');
-    background: -o-linear-gradient(top, #FFA600, #FE9200);
-    background: linear-gradient(top, #FFA600, #FE9200);
-    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.33) inset;
+    color: #fff;
+    border:1px solid #d66500;
+    background-color: #f57403;
 }
 
 .ui-dialog-button-orange:hover {
-    border: 1px solid #F26600;
-    background-color: #F5AA2B;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFB91C), to(#FFA700));
-    background: -moz-linear-gradient(top, #FFB91C, #FFA700);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFB91C', endColorstr='#FFA700');
-    background:-o-linear-gradient(top, #FFB91C, #FFA700);
-    background: linear-gradient(top, #FFB91C, #FFA700);
-    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.4) inset;
+    background-color: #fb8318;
 }
 
 .ui-dialog-button-white {
-    border:1px solid #B3B3B3;
-    color:#595959;
-    background-color: #F2F2F2;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#ECECEC));
-    background: -moz-linear-gradient(top, #FEFEFE, #ECECEC);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#ECECEC');
-    background: -o-linear-gradient(top, #FEFEFE, #ECECEC);
-    background: linear-gradient(top, #FEFEFE, #ECECEC);
-    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.33) inset;
+    border:1px solid #afafaf;
+    background-color: #f3f3f3;
+    color: #777;
 }
 
 .ui-dialog-button-white:hover {
-    border: 1px solid #999;
-    background-color: #F6F6F6;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#F0F0F0));
-    background: -moz-linear-gradient(top, #FEFEFE, #F0F0F0);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F0F0F0');
-    background: -o-linear-gradient(top, #FEFEFE, #F0F0F0);
-    background: linear-gradient(top, #FEFEFE, #F0F0F0);
+    border: 1px solid #8e8e8e;
+    background-color: #fcfbfb;
+    color: #676d70;
 }
