@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.1
+
+`tag:fixed` #32 修复由于本地缓存导致 position 依赖打包重复的问题。
+
 ## 1.1.0
 
 `tag:improved` 对 arale/overlay 的依赖从 1.0.1 升级到 1.1.0 。
