@@ -3,8 +3,9 @@ define(function(require) {
     var expect = require('puerh');
     var sinon = require('sinon');    
     var $ = require('$');
+    var ua = (window.navigator.userAgent || "").toLowerCase();
     
-    if ($.browser.msie) {
+    if (ua.indexOf("msie") !== -1) {
         mocha.setup({ignoreLeaks: true});
     }
 
