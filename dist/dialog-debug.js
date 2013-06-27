@@ -310,6 +310,7 @@ define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/over
             return D.body.scrollHeight;
         }
     }
+    module.exports.outerBoxClass = "arale-dialog-1_1_2";
 });
 
 define("arale/dialog/1.1.2/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {

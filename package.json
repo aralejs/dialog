@@ -29,6 +29,7 @@
             "events": "arale/events/1.1.0/events",
             "templatable": "arale/templatable/0.9.1/templatable"
         },
-        "output": ["dialog.js", "confirmbox.js", "dialog.css"]
+        "output": ["dialog.js", "confirmbox.js", "dialog.css"],
+        "styleBox": true
     }
 }

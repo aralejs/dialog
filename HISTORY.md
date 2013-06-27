@@ -6,6 +6,8 @@
 
 `tag:improved` overlay 升级到 1.1.1, mask 升级到 1.1.1, templatable 升级到 0.9.1
 
+`tag:improved` 添加 styleBox, 已解决样式冲突问题
+
 ## 1.1.1
 
 `tag:fixed` #32 修复由于本地缓存导致 position 依赖打包重复的问题。
