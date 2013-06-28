@@ -6,6 +6,10 @@
 
 `tag:improved` overlay 升级到 1.1.1, mask 升级到 1.1.1, templatable 升级到 0.9.1
 
+`tag:fixed` #33 修复 firefox 下确定取消按钮文字偏下的问题。
+
+`tag:add` #34 添加点击遮罩层时关闭对话框的特性。
+
 `tag:improved` 添加 styleBox, 已解决样式冲突问题
 
 ## 1.1.1
