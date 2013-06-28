@@ -171,10 +171,14 @@ define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/over
             var hasMask = this.get("hasMask");
             var zIndex = parseInt(this.get("zIndex"), 10);
             var oldZIndex;
+            var that = this;
             this.before("show", function() {
                 if (hasMask) {
                     oldZIndex = mask.get("zIndex");
                     mask.set("zIndex", zIndex - 1).show();
+                    mask.element.one("click", function() {
+                        that.hide();
+                    });
                 }
             });
             this.after("hide", function() {
