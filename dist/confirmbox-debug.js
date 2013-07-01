@@ -125,7 +125,10 @@ define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/over
                 }
             },
             // 是否有背景遮罩层
-            hasMask: true,
+            // 可设为 false
+            hasMask: {
+                hideOnClick: true
+            },
             // 关闭按钮可以自定义
             closeTpl: "×",
             // 默认宽度
@@ -271,9 +274,12 @@ define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/over
                 if (hasMask) {
                     oldZIndex = mask.get("zIndex");
                     mask.set("zIndex", zIndex - 1).show();
-                    mask.element.one("click", function() {
-                        that.hide();
-                    });
+                    // 点击遮罩关闭对话框
+                    if (hasMask.hideOnClick) {
+                        mask.element.one("click", function() {
+                            that.hide();
+                        });
+                    }
                 }
             });
             this.after("hide", function() {
