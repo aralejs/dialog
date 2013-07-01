@@ -326,7 +326,7 @@ define(function(require) {
 
         });
 
-        describe('other attributes', function() {
+        describe('mask', function() {
             
             it('should have mask', function() {
                 example = new Dialog({
@@ -379,7 +379,24 @@ define(function(require) {
                 expect(example.element.is(':visible')).to.be(true)                
             });
             
-        });        
+        });
+
+        describe('other attributes', function() {
+            it('fade effect should work', function(done) {
+                example = new Dialog({
+                    content: 'xxx',
+                    effect: 'fade',
+                    duration: 1000
+                });
+                expect(example.get('effect')).to.be('fade');
+                example.show();
+                setTimeout(function() {
+                    expect(example.element.css('opacity')).to.be.within(0, 1);
+                    done();
+                }, 30);
+            });
+
+        });     
 
     });
 });
