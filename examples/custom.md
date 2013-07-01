@@ -105,3 +105,18 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 });
 ````
 
+### 6. 点击遮罩不关闭对话框
+
+<button id="example6">打开对话框</button>
+
+````javascript
+seajs.use(['dialog','$'], function(Dialog, $) {
+    var example = new Dialog({
+        trigger: '#example6',
+        height: 450,
+        hasMask: {
+            hideOnClick: false
+        }
+    });
+});
+````

@@ -352,7 +352,7 @@ define(function(require) {
                 example.show();
                 expect(example.element.is(':visible')).to.be(true);
                 mask.element.click();
-                expect(example.element.is(':visible')).to.be(false);                
+                expect(example.element.is(':visible')).to.be(false); 
             });
 
             it('should bind click events once when show mask', function() {
@@ -363,6 +363,20 @@ define(function(require) {
                 expect($._data(mask.element[0], "events").click.length).to.be(1);
                 mask.element.click();
                 expect($._data(mask.element[0], "events")).to.be(undefined);
+            });
+
+            it('should not disappear when click mask', function() {
+                example = new Dialog({
+                    content: 'xxx',
+                    hasMask: {
+                        hideOnClick: false
+                    }
+                });
+                example.show();
+                expect($._data(mask.element[0], "events")).to.be(undefined);
+                expect(example.element.is(':visible')).to.be(true);
+                mask.element.click();
+                expect(example.element.is(':visible')).to.be(true)                
             });
             
         });        

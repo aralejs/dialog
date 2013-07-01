@@ -8,7 +8,7 @@
 
 `tag:fixed` #33 修复 firefox 下确定取消按钮文字偏下的问题。
 
-`tag:add` #34 添加点击遮罩层时关闭对话框的特性。
+`tag:add` #34 #35 添加点击遮罩层时关闭对话框的特性，并改变了 hasMask 的默认值为 `{hideOnClick: true}`。
 
 `tag:improved` 添加 styleBox, 已解决样式冲突问题
 
