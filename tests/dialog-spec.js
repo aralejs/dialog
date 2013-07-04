@@ -305,7 +305,7 @@ define(function(require) {
 
                 setTimeout(function() {
                     expect(syncHeight).to.be.called.once();
-                    expect(setPosition.callCount).to.above(2);
+                    expect(setPosition.callCount).to.be(3);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
                 }, 600);

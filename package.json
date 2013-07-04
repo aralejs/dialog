@@ -23,7 +23,7 @@
     "spm": {
         "alias": {
             "$": "$",
-            "overlay": "arale/overlay/1.1.1/overlay",
+            "overlay": "arale/overlay/1.1.2/overlay",
             "mask": "arale/overlay/1.1.1/mask",
             "easing": "arale/easing/1.0.0/easing",
             "events": "arale/events/1.1.0/events",
