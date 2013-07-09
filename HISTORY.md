@@ -2,6 +2,12 @@
 
 ---
 
+## 1.1.3
+
+`tag:fixed` 修复 1.1.2 版本中 overlay 版本冗余的问题。
+
+`tag:change` 修改 confirmbox 的 hasMask 默认值，使其点击遮罩层默认不关闭。
+
 ## 1.1.2
 
 `tag:improved` overlay 升级到 1.1.1, mask 升级到 1.1.1, templatable 升级到 0.9.1

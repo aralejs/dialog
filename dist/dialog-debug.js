@@ -1,5 +1,5 @@
-define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.1/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.1/overlay-debug"), mask = require("arale/overlay/1.1.1/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug"), DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/position/1.0.0/position-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.2/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.2/overlay-debug"), mask = require("arale/overlay/1.1.2/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug"), DEFAULT_HEIGHT = "300px";
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -320,10 +320,10 @@ define("arale/dialog/1.1.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.1/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_1_2";
+    module.exports.outerBoxClass = "arale-dialog-1_1_3";
 });
 
-define("arale/dialog/1.1.2/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.1.3/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
