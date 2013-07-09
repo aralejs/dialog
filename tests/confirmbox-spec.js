@@ -4,6 +4,7 @@ define(function(require) {
     var sinon = require('sinon');    
     var $ = require('$');
     var ua = (window.navigator.userAgent || "").toLowerCase();
+    var mask = require('mask');    
     
     if (ua.indexOf("msie") !== -1) {
         mocha.setup({ignoreLeaks: true});
@@ -122,6 +123,30 @@ define(function(require) {
             $('.ui-dialog [data-role="confirm"]').click();
             expect(msg).to.be('点击了确认按钮');
             expect($('.ui-dialog').length).to.be(0);
+        });
+
+        it('should not disappear when click mask', function() {
+            example = new ConfirmBox({
+                content: 'xxx'
+            });
+            example.show();
+            expect($._data(mask.element[0], "events")).to.be(undefined);            
+            expect(example.element.is(':visible')).to.be(true);
+            mask.element.click();
+            expect(example.element.is(':visible')).to.be(true);
+        });
+
+        it('should disappear when click mask', function() {
+            example = new ConfirmBox({
+                content: 'xxx',
+                hasMask: {
+                    hideOnClick: true
+                }
+            });
+            example.show();
+            expect(example.element.is(':visible')).to.be(true);
+            mask.element.click();
+            expect(example.element.is(':visible')).to.be(false);
         });
 
     });

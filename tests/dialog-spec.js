@@ -65,14 +65,14 @@ define(function(require) {
 
             it('is absolute url', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'https://app.alipay.com/container/web/index.htm'
                 });
                 example.render().show();
 
                 var iframe = example.$('iframe');
                 expect(iframe.length).to.be(1);
                 expect(iframe.attr('src').replace(/\?t=\d*$/, ''))
-                    .to.be('https://www.alipay.com');
+                    .to.be('https://app.alipay.com/container/web/index.htm');
             });
 
             it('is invalid url', function() {
@@ -178,7 +178,7 @@ define(function(require) {
 
             it('should be fixed height when set height', function(done) {
                 example = new Dialog({
-                    content: 'https://www.alipay.com',
+                    content: 'https://app.alipay.com/container/web/index.htm',
                     height: 200,
                     autoFit: true
                 });
@@ -222,7 +222,7 @@ define(function(require) {
 
             it('click close to hide', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'https://app.alipay.com/container/web/index.htm'
                 });
                 expect(example.get('visible')).not.to.be.ok();
                 example.show();
@@ -233,7 +233,7 @@ define(function(require) {
 
             it('bind close event', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'https://app.alipay.com/container/web/index.htm'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
@@ -257,7 +257,7 @@ define(function(require) {
 
             it('bind key close event when iframe', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'https://app.alipay.com/container/web/index.htm'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
