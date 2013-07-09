@@ -10,7 +10,10 @@ define("arale/dialog/1.1.3/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
             title: "默认标题",
             confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
             cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
-            message: "默认内容"
+            message: "默认内容",
+            hasMask: {
+                hideOnClick: false
+            }
         },
         setup: function() {
             ConfirmBox.superclass.setup.call(this);
