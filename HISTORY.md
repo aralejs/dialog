@@ -6,7 +6,7 @@
 
 `tag:improved` overlay 升级到 1.1.2，从而修复一个 IE 冗余调用 resize 的问题。
 
-`tag:change` 修改 confirmbox 的 hasMask 默认值，使其点击遮罩层默认不关闭。
+`tag:changed` 修改 confirmbox 的 hasMask 默认值，使其点击遮罩层默认不关闭。
 
 ## 1.1.2
 
@@ -14,7 +14,7 @@
 
 `tag:fixed` #33 修复 firefox 下确定取消按钮文字偏下的问题。
 
-`tag:add` #34 #35 添加点击遮罩层时关闭对话框的特性，并改变了 hasMask 的默认值为 `{hideOnClick: true}`。
+`tag:new` #34 #35 添加点击遮罩层时关闭对话框的特性，并改变了 hasMask 的默认值为 `{hideOnClick: true}`。
 
 `tag:improved` 添加 styleBox, 已解决样式冲突问题
 
