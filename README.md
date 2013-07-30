@@ -41,30 +41,34 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 对话框宽度，默认 500px。
 
-
 ### height *number|string*
 
-对话框高度，当设置这个属性时，下面的 autoFit 强制为 false。
+对话框高度。当设置了这个属性时，对话框高度会固定，
+下面的 autoFit 强制为 false，initHeight 失效。
 
 ### zIndex *number*
 
 对话框 z-index 层级，默认 999。
 
-### autoFit *boolean*
-
-内嵌 Iframe 页面时是否自适应高度，默认为 true。
-
 ### effect *string*
 
 简单的动画效果，none 为无动画，fade 为渐入效果。默认为 none。
 
+### autoFit *boolean*
 
-其他配置如定位参数 `align` 等请参照[overlay](http://aralejs.org/overlay/)。
+内嵌 Iframe 页面时是否自适应高度，默认为 true。`iframe 类型时有效`
+
+### initHeight *number|string*
+
+内嵌 Iframe 页面时对话框的初始高度，默认为 300px 。`iframe 类型时有效`
+
+
+> 其他配置如定位参数 `align` 等请参照 [overlay](http://aralejs.org/overlay/)。
 
 
 ## 实例方法
 
-主要有 show、hide、render 等方法，请参照[overlay](http://aralejs.org/overlay/)。
+主要有 show、hide、render 等方法，请参照 [overlay](http://aralejs.org/overlay/)。
 
 
 ## 事件说明
@@ -79,7 +83,7 @@ dialogInstanse.on('complete:show', function() {
 });
 ```
 
-> close 事件已经删除，可以使用 `after('hide', function() {})` 来代替。
+> close 事件已经删除，可以使用 `.after('hide', function() {})` 来代替。
 
 ---
 
@@ -89,7 +93,7 @@ dialogInstanse.on('complete:show', function() {
 seajs.use('dialog', function(Dialog) {
     var o = new Dialog({
         trigger: '#trigger',
-        content: '<div>这是 dialog 容器的内容</div>',
+        content: '<div>这是 dialog 容器的内容</div>'
     });
 };
 ```
@@ -100,7 +104,7 @@ seajs.use('dialog', function(Dialog) {
 seajs.use('dialog', function(Dialog) {
     var o = new Dialog({
         trigger: '#trigger',
-        content: 'https://www.alipay.com/',
+        content: 'https://www.alipay.com/'
     });
 };
 ```

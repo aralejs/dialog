@@ -135,3 +135,17 @@ seajs.use(['dialog'], function(Dialog) {
 });
 ````
 
+
+### 8. 初始化高度 initialHeight
+
+<button id="example8">打开初始高度 150px 的对话框</button>
+
+````javascript
+seajs.use(['dialog','$'], function(Dialog, $) {
+    var example = new Dialog({
+        trigger: '#example8',
+        content: './iframe.html',
+        initialHeight: 150
+    });
+});
+````

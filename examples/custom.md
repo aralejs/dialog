@@ -120,3 +120,4 @@ seajs.use(['dialog','$'], function(Dialog, $) {
     });
 });
 ````
+

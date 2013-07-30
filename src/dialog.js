@@ -4,8 +4,7 @@ define(function(require, exports, module) {
         Overlay = require('overlay'),
         mask = require('mask'),
         Events = require('events'),
-        Templatable = require('templatable'),
-        DEFAULT_HEIGHT = '300px';
+        Templatable = require('templatable');
 
     // Dialog
     // ---
@@ -58,6 +57,9 @@ define(function(require, exports, module) {
             // 默认高度
             height: null,
 
+            // iframe 类型时，dialog 的最初高度
+            initialHeight: 300,
+
             // 简单的动画效果 none | fade
             effect: 'none',
 
@@ -108,7 +110,7 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                !this.get('height') && this.element.css('height', DEFAULT_HEIGHT);
+                !this.get('height') && this.element.css('height', this.get('initialHeight'));
                 this._showIframe();
             }
 
@@ -337,7 +339,7 @@ define(function(require, exports, module) {
                     if (this._errCount >= 6) {
                         // 获取失败则给默认高度 300px
                         // 跨域会抛错进入这个流程
-                        h = DEFAULT_HEIGHT;
+                        h = this.get('initialHeight');
                         clearInterval(this._interval);
                         delete this._interval;
                     }

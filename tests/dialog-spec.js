@@ -137,6 +137,7 @@ define(function(require) {
                 });
 
                 example.show();
+                expect(example.element.height()).to.be(300);
 
                 setTimeout(function() {
                     example.$('iframe')[0].contentWindow.document
@@ -144,8 +145,25 @@ define(function(require) {
                     example._syncHeight();
                     expect(example.element.height()).to.be(400);
                     done();
-                }, 800);
+                }, 700);
             });
+
+            it('should be initialHeight when iframe is not loaded yet', function(done) {
+                var h, isComplete = false;
+                example = new Dialog({
+                    content: './height300px.html',
+                    initialHeight: 100
+                });
+
+                example.show();
+                expect(example.element.height()).to.be(100);
+
+                setTimeout(function() {
+                    expect(example.element.height()).to.be(300);
+                    done();
+                }, 700);
+            });
+
         });
 
         describe('interval', function() {
