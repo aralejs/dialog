@@ -1,5 +1,5 @@
-define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.2/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.2/overlay-debug"), mask = require("arale/overlay/1.1.2/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug"), DEFAULT_HEIGHT = "300px";
+define("arale/dialog/1.1.4/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.2/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.2/overlay-debug"), mask = require("arale/overlay/1.1.2/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug");
     // Dialog
     // ---
     // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
@@ -40,6 +40,8 @@ define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
             width: 500,
             // 默认高度
             height: null,
+            // iframe 类型时，dialog 的最初高度
+            initialHeight: 300,
             // 简单的动画效果 none | fade
             effect: "none",
             // 不用解释了吧
@@ -81,7 +83,7 @@ define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
             // iframe 要在载入完成才显示
             if (this._type === "iframe") {
                 // iframe 还未请求完，先设置一个固定高度
-                !this.get("height") && this.element.css("height", DEFAULT_HEIGHT);
+                !this.get("height") && this.element.css("height", this.get("initialHeight"));
                 this._showIframe();
             }
             Dialog.superclass.show.call(this);
@@ -285,7 +287,7 @@ define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
                     if (this._errCount >= 6) {
                         // 获取失败则给默认高度 300px
                         // 跨域会抛错进入这个流程
-                        h = DEFAULT_HEIGHT;
+                        h = this.get("initialHeight");
                         clearInterval(this._interval);
                         delete this._interval;
                     }
@@ -320,10 +322,10 @@ define("arale/dialog/1.1.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_1_3";
+    module.exports.outerBoxClass = "arale-dialog-1_1_4";
 });
 
-define("arale/dialog/1.1.3/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.1.4/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
