@@ -370,7 +370,7 @@ define(function(require) {
                 example.show();
                 expect(example.element.is(':visible')).to.be(true);
                 mask.element.click();
-                expect(example.element.is(':visible')).to.be(true)                
+                expect(example.element.is(':visible')).to.be(true);
             });
             
         });
