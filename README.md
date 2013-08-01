@@ -25,9 +25,9 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 容器的内容，可以是纯字符串、dom对象、jQuery对象、html标签字符串、以及 URL 地址。当 content 为 URL 地址时，本组件将内嵌目标页面的 Iframe。
 
-### hasMask *boolean|object*
+### hasMask *boolean*
 
-是否有背景遮罩层。默认为 `{ hideOnClick: true }`，可设置为 `false` 表示无遮罩层，或者 `{ hideOnClick: false }` 表示点击遮罩不关闭对话框。
+是否有背景遮罩层。默认为 `true`。
 
 ### classPrefix *string*
 
