@@ -212,19 +212,35 @@ define(function(require, exports, module) {
         // 绑定遮罩层事件
         _setupMask: function() {
             var hasMask = this.get('hasMask');
-            var zIndex = parseInt(this.get('zIndex'), 10);
-            var oldZIndex;
             var that = this;
 
-            this.before('show', function() {
-                if (hasMask) {
-                    oldZIndex =  mask.get('zIndex');
-                    mask.set('zIndex', zIndex - 1).show();
+            // 存放 mask 对应的对话框            
+            mask._dialogs = mask._dialogs || [];
+
+            this.after('show', function() {
+                if (!hasMask) {
+                    return;
                 }
+                // not using the z-index
+                // because multiable dialogs may share same mask
+                mask.set('zIndex', that.get('zIndex')).show();
+                mask.element.insertBefore(that.element);
+
+                // 依次存放对应的对话框
+                mask._dialogs.push(that.element);
             });
+
             this.after('hide', function() {
-                if (hasMask) {
-                    mask.set('zIndex', oldZIndex).hide();
+                if (!hasMask) {
+                    return;
+                }
+                mask._dialogs.pop();
+                if (mask._dialogs.length > 0) {
+                    var last = mask._dialogs[mask._dialogs.length - 1];
+                    mask.set('zIndex', last.get('zIndex'));
+                    mask.element.insertBefore(last);
+                } else {
+                    mask.hide();
                 }
             });
         },

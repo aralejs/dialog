@@ -8,6 +8,10 @@
 
 `tag:changed` 移除 hasMask.hideOnClick 属性。
 
+`tag:changed` 去掉对 mask 的 z-index 设置，改为调整 mask 的 dom 位置。
+
+`tag:improved` #37 支持多个对话框共享同一个 mask 的[情况](examples/two-dialog.html)。
+
 ## 1.1.3
 
 `tag:improved` overlay 升级到 1.1.2，从而修复一个 IE 冗余调用 resize 的问题。

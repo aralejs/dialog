@@ -372,6 +372,34 @@ define(function(require) {
                 mask.element.click();
                 expect(example.element.is(':visible')).to.be(true);
             });
+
+            it('should not hide the mast when last dialog hide', function() {
+                example = new Dialog({
+                    content: '1111'
+                });
+                example.show();
+                expect(mask._dialogs.length).to.be(1);
+                expect(mask.element.is(':visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example.element[0]);
+                example2 = new Dialog({
+                    content: '2222'
+                });
+                example2.show();
+                expect(mask._dialogs.length).to.be(2);
+                expect(mask.element.is(':visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example2.element[0]);
+
+                example2.hide();
+                expect(mask._dialogs.length).to.be(1);
+                expect(mask.element.is(':visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example.element[0]);
+
+                example.hide();
+                expect(mask._dialogs.length).to.be(0);
+                expect(mask.element.is(':visible')).to.be(false);
+
+                example2.destroy();
+            });
             
         });
 
