@@ -12,6 +12,7 @@ define(function(require) {
 
         afterEach(function() {
             if (example) {
+                example.hide();
                 example.destroy();
                 example = null;
             }

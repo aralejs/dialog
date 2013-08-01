@@ -227,7 +227,7 @@ define(function(require, exports, module) {
                 mask.element.insertBefore(that.element);
 
                 // 依次存放对应的对话框
-                mask._dialogs.push(that.element);
+                mask._dialogs.push(that);
             });
 
             this.after('hide', function() {
@@ -238,7 +238,7 @@ define(function(require, exports, module) {
                 if (mask._dialogs.length > 0) {
                     var last = mask._dialogs[mask._dialogs.length - 1];
                     mask.set('zIndex', last.get('zIndex'));
-                    mask.element.insertBefore(last);
+                    mask.element.insertBefore(last.element);
                 } else {
                     mask.hide();
                 }
