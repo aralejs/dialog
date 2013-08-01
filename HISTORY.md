@@ -2,11 +2,11 @@
 
 ---
 
-## 1.1.4
+## 1.2.0
 
 `tag:new` 新增 initialHeight 属性，用于设置 iframe 对话框的初始化高度。
 
-`tag:change` 移除 hasMask.hideOnClick 属性。
+`tag:changed` 移除 hasMask.hideOnClick 属性。
 
 ## 1.1.3
 
