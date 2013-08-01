@@ -6,6 +6,8 @@
 
 `tag:new` 新增 initialHeight 属性，用于设置 iframe 对话框的初始化高度。
 
+`tag:change` 移除 hasMask.hideOnClick 属性。
+
 ## 1.1.3
 
 `tag:improved` overlay 升级到 1.1.2，从而修复一个 IE 冗余调用 resize 的问题。

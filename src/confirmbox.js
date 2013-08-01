@@ -19,11 +19,7 @@ define(function(require, exports, module) {
 
             cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
 
-            message: '默认内容',
-
-            hasMask: {
-                hideOnClick: false
-            }
+            message: '默认内容'
         },
 
         setup: function() {

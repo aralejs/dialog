@@ -43,10 +43,7 @@ define(function(require, exports, module) {
             },
 
             // 是否有背景遮罩层
-            // 可设为 false
-            hasMask: {
-                hideOnClick: true
-            },
+            hasMask: true,
 
             // 关闭按钮可以自定义
             closeTpl: '×',
@@ -223,13 +220,6 @@ define(function(require, exports, module) {
                 if (hasMask) {
                     oldZIndex =  mask.get('zIndex');
                     mask.set('zIndex', zIndex - 1).show();
-                    
-                    // 点击遮罩关闭对话框
-                    if (hasMask.hideOnClick) {
-                        mask.element.one('click', function() {
-                            that.hide();
-                        });
-                    }
                 }
             });
             this.after('hide', function() {
