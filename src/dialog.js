@@ -211,14 +211,13 @@ define(function(require, exports, module) {
 
         // 绑定遮罩层事件
         _setupMask: function() {
-            var hasMask = this.get('hasMask');
             var that = this;
 
-            // 存放 mask 对应的对话框            
+            // 存放 mask 对应的对话框
             mask._dialogs = mask._dialogs || [];
 
             this.after('show', function() {
-                if (!hasMask) {
+                if (!this.get('hasMask')) {
                     return;
                 }
                 // not using the z-index
@@ -231,7 +230,7 @@ define(function(require, exports, module) {
             });
 
             this.after('hide', function() {
-                if (!hasMask) {
+                if (!this.get('hasMask')) {
                     return;
                 }
                 mask._dialogs.pop();

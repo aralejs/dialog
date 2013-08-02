@@ -401,6 +401,23 @@ define(function(require) {
 
                 example2.destroy();
             });
+
+            it('set hasMask works', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                expect($('.ui-mask').is(':visible')).to.be(true);
+                example.hide();
+                example.set('hasMask', false);
+                example.show();
+                expect($('.ui-mask').is(':visible')).to.be(false);
+                example.hide();
+                example.set('hasMask', true);
+                example.show();
+                expect($('.ui-mask').is(':visible')).to.be(true);
+                example.hide();
+            });
             
         });
 
