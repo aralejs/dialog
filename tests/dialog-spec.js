@@ -12,7 +12,6 @@ define(function(require) {
 
         afterEach(function() {
             if (example) {
-                example.hide();
                 example.destroy();
                 example = null;
             }
@@ -66,14 +65,14 @@ define(function(require) {
 
             it('is absolute url', function() {
                 example = new Dialog({
-                    content: 'https://app.alipay.com/container/web/index.htm'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.render().show();
 
                 var iframe = example.$('iframe');
                 expect(iframe.length).to.be(1);
                 expect(iframe.attr('src').replace(/\?t=\d*$/, ''))
-                    .to.be('https://app.alipay.com/container/web/index.htm');
+                    .to.be('http://jsfiddle.net/afc163/CzQKp/show/');
             });
 
             it('is invalid url', function() {
@@ -197,7 +196,7 @@ define(function(require) {
 
             it('should be fixed height when set height', function(done) {
                 example = new Dialog({
-                    content: 'https://app.alipay.com/container/web/index.htm',
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/',
                     height: 200,
                     autoFit: true
                 });
@@ -214,7 +213,7 @@ define(function(require) {
                 var isComplete = false;
                 example = new Dialog({
                     autoFit: false,
-                    content: 'http://www.baidu.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 }).show();
 
                 setTimeout(function() {
@@ -241,7 +240,7 @@ define(function(require) {
 
             it('click close to hide', function() {
                 example = new Dialog({
-                    content: 'https://app.alipay.com/container/web/index.htm'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 expect(example.get('visible')).not.to.be.ok();
                 example.show();
@@ -252,7 +251,7 @@ define(function(require) {
 
             it('bind close event', function() {
                 example = new Dialog({
-                    content: 'https://app.alipay.com/container/web/index.htm'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
@@ -276,7 +275,7 @@ define(function(require) {
 
             it('bind key close event when iframe', function() {
                 example = new Dialog({
-                    content: 'https://app.alipay.com/container/web/index.htm'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
@@ -302,11 +301,11 @@ define(function(require) {
 
             it('fixUrl support hash #25', function() {
                 example = new Dialog({
-                    content: 'http://baidu.com/index.html?param=aa#'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/?param=aa#'
                 }).render().show();
 
                 var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
-                expect(url).to.be('http://baidu.com/index.html?param=aa#');
+                expect(url).to.be('http://jsfiddle.net/afc163/CzQKp/show/?param=aa#');
             });
 
             it('should call onload once', function(done) {
@@ -374,7 +373,7 @@ define(function(require) {
                 expect(example.element.is(':visible')).to.be(true);
             });
 
-            it('should not hide the mast when last dialog hide', function() {
+            it('should not hide the mask when last dialog hide', function() {
                 example = new Dialog({
                     content: '1111'
                 });
