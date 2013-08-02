@@ -170,12 +170,11 @@ define("arale/dialog/1.2.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
         },
         // 绑定遮罩层事件
         _setupMask: function() {
-            var hasMask = this.get("hasMask");
             var that = this;
-            // 存放 mask 对应的对话框            
+            // 存放 mask 对应的对话框
             mask._dialogs = mask._dialogs || [];
             this.after("show", function() {
-                if (!hasMask) {
+                if (!this.get("hasMask")) {
                     return;
                 }
                 // not using the z-index
@@ -186,7 +185,7 @@ define("arale/dialog/1.2.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
                 mask._dialogs.push(that);
             });
             this.after("hide", function() {
-                if (!hasMask) {
+                if (!this.get("hasMask")) {
                     return;
                 }
                 mask._dialogs.pop();
