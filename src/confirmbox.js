@@ -15,9 +15,9 @@ define(function(require, exports, module) {
         attrs: {
             title: '默认标题',
 
-            confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
+            confirmTpl: '<a class="ui-dialog-button-orange" href="javascript:;">确定</a>',
 
-            cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
+            cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
 
             message: '默认内容'
         },

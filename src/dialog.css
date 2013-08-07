@@ -3,6 +3,8 @@
     border: none;
     FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
     padding: 6px;
+    outline: none;
+    /* http://ued.taobao.com/blog/2011/04/onfocus-this-blur/ */
 }
 
 :root .ui-dialog {

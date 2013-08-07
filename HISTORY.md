@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.1
+
+`tag:improved` 去掉了对话框的虚线框，并优化了无障碍体验。
+
 ## 1.2.0
 
 `tag:new` 新增 initialHeight 属性，用于设置 iframe 对话框的初始化高度。
