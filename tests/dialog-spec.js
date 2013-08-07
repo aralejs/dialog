@@ -418,7 +418,7 @@ define(function(require) {
                 expect(mask.get('visible')).to.be(true);
                 example.hide();
             });
-            
+
         });
 
         describe('other attributes', function() {
@@ -436,7 +436,7 @@ define(function(require) {
                 }, 30);
             });
 
-        });     
+        });
 
     });
 });

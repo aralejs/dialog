@@ -107,7 +107,8 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                !this.get('height') && this.element.css('height', this.get('initialHeight'));
+                !this.get('height') &&
+                    this.contentElement.css('height', this.get('initialHeight'));
                 this._showIframe();
             }
 
@@ -349,7 +350,7 @@ define(function(require, exports, module) {
                         delete this._interval;
                     }
                 }
-                this.element.css('height', h);
+                this.contentElement.css('height', h);
                 // force to reflow in ie6
                 // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
                 this.element[0].className = this.element[0].className;
