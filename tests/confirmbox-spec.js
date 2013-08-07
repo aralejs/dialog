@@ -1,10 +1,10 @@
 define(function(require) {
     var ConfirmBox = require('confirmbox');
-    var expect = require('puerh');
-    var sinon = require('sinon');    
+    var expect = require('expect');
+    var sinon = require('sinon');
     var $ = require('$');
     var ua = (window.navigator.userAgent || "").toLowerCase();
-    var mask = require('mask');    
+    var mask = require('mask');
     
     if (ua.indexOf("msie") !== -1) {
         mocha.setup({ignoreLeaks: true});

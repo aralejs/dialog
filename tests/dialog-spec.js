@@ -1,10 +1,10 @@
 define(function(require) {
     var Dialog = require('dialog');
-    var expect = require('puerh');
+    var expect = require('expect');
     var sinon = require('sinon');
     var $ = require('$');
     var mask = require('mask');
-    
+
     mocha.setup({ignoreLeaks: true});
 
     describe('dialog', function() {
@@ -12,7 +12,7 @@ define(function(require) {
 
         afterEach(function() {
             if (example) {
-                example.hide();            
+                example.hide();
                 example.destroy();
                 example = null;
             }
@@ -98,7 +98,7 @@ define(function(require) {
                 var spy = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
-                expect(example._onRenderHeight).not.to.be.called();
+                expect(example._onRenderHeight.called).not.to.be(true);
                 spy.restore();
             });
 
@@ -111,7 +111,7 @@ define(function(require) {
                 var spy = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
-                expect(spy).to.be.called.withArgs('300px');
+                expect(spy.withArgs('300px').called).to.be.ok();
                 spy.restore();
             });
 
@@ -125,7 +125,7 @@ define(function(require) {
 
                 example.show();
                 setTimeout(function() {
-                    expect(spy).to.be.called.withArgs('200px');
+                    expect(spy.withArgs('200px').called).to.be.ok();
                     spy.restore();
                     done();
                 }, 500);
@@ -323,7 +323,7 @@ define(function(require) {
                 example.show();
 
                 setTimeout(function() {
-                    expect(syncHeight).to.be.called.once();
+                    expect(syncHeight.callCount).to.be(1);
                     expect(setPosition.callCount).to.be(3);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
@@ -339,14 +339,14 @@ define(function(require) {
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);
                 example.set('closeTpl', 'X');
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
-                example.set('closeTpl', '');            
+                example.set('closeTpl', '');
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);            
             });
 
         });
 
         describe('mask', function() {
-            
+
             it('should have mask', function() {
                 example = new Dialog({
                     content: 'xxx'
