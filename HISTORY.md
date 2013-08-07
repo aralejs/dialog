@@ -4,7 +4,7 @@
 
 ## 1.2.1
 
-`tag:improved` 去掉了对话框的虚线框，并优化了无障碍体验。
+`tag:improved` 去掉了对话框的虚线框，并优化了无障碍体验。[参考](http://ued.taobao.com/blog/2011/04/onfocus-this-blur/)
 
 ## 1.2.0
 
