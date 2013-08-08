@@ -68,8 +68,22 @@ define(function(require, exports, module) {
 
             // 默认定位居中
             align: {
-                selfXY: ['50%', '50%'],
-                baseXY: ['50%', '50%']
+                value: {
+                    selfXY: ['50%', '50%'],
+                    baseXY: ['50%', '50%']
+                },
+                getter: function(val) {
+                    // 高度超过一屏的情况
+                    // https://github.com/aralejs/dialog/issues/41
+                    if (this.element.height() > $(window).height()) {
+                        return {
+                            selfXY: ['50%', '0'],
+                            baseXY: ['50%', '0']
+                        };
+                    }
+                    console.log(1);
+                    return val;
+                }
             }
         },
 

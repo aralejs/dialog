@@ -8,6 +8,9 @@
 
 `tag:fixed` #40 修复一个 iframe 对话框设置高度的问题。
 
+`tag:changed` #41 增加了高度超过一屏时的位置处理。
+
+
 ## 1.2.0
 
 `tag:new` 新增 initialHeight 属性，用于设置 iframe 对话框的初始化高度。

@@ -165,6 +165,16 @@ define(function(require) {
                 }, 700);
             });
 
+            it('should be align top when dialog element is very high', function() {
+                example = new Dialog({
+                    content: 'xxx',
+                    height: 5000
+                });
+
+                example.show();
+                expect(example.element.offset().top).to.be($(document).scrollTop());
+            });
+
         });
 
         describe('interval', function() {
