@@ -142,8 +142,22 @@ define("arale/dialog/1.2.1/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
             autoFit: true,
             // 默认定位居中
             align: {
-                selfXY: [ "50%", "50%" ],
-                baseXY: [ "50%", "50%" ]
+                value: {
+                    selfXY: [ "50%", "50%" ],
+                    baseXY: [ "50%", "50%" ]
+                },
+                getter: function(val) {
+                    // 高度超过一屏的情况
+                    // https://github.com/aralejs/dialog/issues/41
+                    if (this.element.height() > $(window).height()) {
+                        return {
+                            selfXY: [ "50%", "0" ],
+                            baseXY: [ "50%", "0" ]
+                        };
+                    }
+                    console.log(1);
+                    return val;
+                }
             }
         },
         parseElement: function() {
@@ -175,7 +189,7 @@ define("arale/dialog/1.2.1/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
             // iframe 要在载入完成才显示
             if (this._type === "iframe") {
                 // iframe 还未请求完，先设置一个固定高度
-                !this.get("height") && this.element.css("height", this.get("initialHeight"));
+                !this.get("height") && this.contentElement.css("height", this.get("initialHeight"));
                 this._showIframe();
             }
             Dialog.superclass.show.call(this);
@@ -390,7 +404,7 @@ define("arale/dialog/1.2.1/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
                         delete this._interval;
                     }
                 }
-                this.element.css("height", h);
+                this.contentElement.css("height", h);
                 // force to reflow in ie6
                 // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
                 this.element[0].className = this.element[0].className;
