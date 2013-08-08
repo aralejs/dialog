@@ -81,7 +81,6 @@ define(function(require, exports, module) {
                             baseXY: ['50%', '0']
                         };
                     }
-                    console.log(1);
                     return val;
                 }
             }

@@ -60,7 +60,6 @@ define("arale/dialog/1.2.1/dialog-debug", [ "$-debug", "arale/overlay/1.1.2/over
                             baseXY: [ "50%", "0" ]
                         };
                     }
-                    console.log(1);
                     return val;
                 }
             }
