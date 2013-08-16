@@ -172,7 +172,7 @@ define(function(require) {
                 });
 
                 example.show();
-                expect(example.element.offset().top).to.be($(document).scrollTop());
+                expect(example.element.offset().top).to.be(0);
             });
 
         });
