@@ -429,6 +429,17 @@ define(function(require) {
                 example.hide();
             });
 
+            it('should hide mask', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                example.show();
+                expect(mask.get('visible')).to.be(true);
+                example.hide();
+                expect(mask.get('visible')).to.be(false);
+            });
+
         });
 
         describe('other attributes', function() {

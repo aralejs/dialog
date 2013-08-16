@@ -239,8 +239,17 @@ define(function(require, exports, module) {
                 mask.set('zIndex', that.get('zIndex')).show();
                 mask.element.insertBefore(that.element);
 
+                // 避免重复存放
+                var existed = false;
+                for(var i=0; i<mask._dialogs.length; i++) {
+                    if (mask._dialogs[i] === that) {
+                        existed = true;
+                    }
+                }
                 // 依次存放对应的对话框
-                mask._dialogs.push(that);
+                if (!existed) {
+                    mask._dialogs.push(that);
+                }
             });
 
             this.after('hide', function() {
