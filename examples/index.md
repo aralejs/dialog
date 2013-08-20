@@ -27,7 +27,10 @@ seajs.use(['dialog'], function(Dialog) {
 });
 ````
 
-
+<select></select>
+<select></select>
+<select></select>
+<select></select>
 
 ### 2. 内容可传入 DOM 对象
 

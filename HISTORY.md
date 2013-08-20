@@ -8,6 +8,8 @@
 
 `tag:fixed` #40 修复一个 iframe 对话框设置高度的问题。
 
+`tag:fixed` 升级 overlay 到 1.1.3，修复遮罩层无法挡住 select 的问题。
+
 `tag:fixed` 修复同一个实例多次调用 show 后无法隐藏遮罩层的问题。（这个问题在 1.2.0 时引入）
 
 `tag:changed` #41 增加了高度超过一屏时的位置处理。
