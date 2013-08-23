@@ -11,7 +11,7 @@
 
 Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs.org/dialog/src/dialog.css)。
 
-![对话框图](https://raw.github.com/slowhost/upload/1355909213528/123.png)
+![对话框图](https://i.alipayobjects.com/e/201308/xqEbLhq3p.png)
 
 ---
 
