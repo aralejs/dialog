@@ -149,7 +149,6 @@ define(function(require, exports, module) {
 
         destroy: function() {
             this.element.remove();
-            this.get('hasMask') && mask.hide();
             clearInterval(this._interval);
             return Dialog.superclass.destroy.call(this);
         },

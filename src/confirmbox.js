@@ -110,7 +110,7 @@ define(function(require, exports, module) {
         new ConfirmBox($.extend(null, defaults, options))
         .show()
         .before('hide', function() {
-            callback && callback();            
+            callback && callback();
         })
         .after('hide', function() {
             this.destroy();

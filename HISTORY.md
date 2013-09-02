@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.2
+
+`tag:fixed` #40 修复一个 iframe 对话框设置高度的问题。
+
 ## 1.2.1
 
 `tag:improved` 去掉了对话框的虚线框，并优化了无障碍体验。[参考](http://ued.taobao.com/blog/2011/04/onfocus-this-blur/)

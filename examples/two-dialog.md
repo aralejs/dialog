@@ -12,7 +12,7 @@
 <button id="example2" style="display: none">打开第二个对话框</button>
 
 ````javascript
-seajs.use(['dialog', '$'], function(Dialog, $) {
+seajs.use(['dialog', '$', 'confirmbox'], function(Dialog, $, Confirmbox) {
     var d1 = new Dialog({
         trigger: '#example1',
         height: 400,
@@ -22,11 +22,9 @@ seajs.use(['dialog', '$'], function(Dialog, $) {
         $('#example2').show();
     });
 
-    var d2 = new Dialog({
-        trigger: '#example2',
-        width: 380,
-        height: 100,
-        content: '第二个对话框，此时应遮罩住对话框一'
+    $('#example2').click(function() {
+        Confirmbox.alert('xxx');
     });
+
 });
 ````

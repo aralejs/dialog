@@ -440,6 +440,16 @@ define(function(require) {
                 expect(mask.get('visible')).to.be(false);
             });
 
+            it('destroy not trigger mask hide', function() {
+                var spy = sinon.spy(mask, 'hide');
+                example2 = new Dialog({
+                    content: 'xxx'
+                });
+                example2.destroy();
+                expect(spy.callCount).to.be(0);
+                spy.restore();
+            });
+
         });
 
         describe('other attributes', function() {
