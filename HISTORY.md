@@ -4,7 +4,7 @@
 
 ## 1.2.2
 
-`tag:fixed` #40 修复一个 iframe 对话框设置高度的问题。
+`tag:fixed` #43 多个对话框共享一个 mask 的后续 confirmbox 问题。
 
 ## 1.2.1
 
