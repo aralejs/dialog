@@ -15,6 +15,8 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 ---
 
+Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
+
 ## 配置说明
 
 ### trigger *element*
