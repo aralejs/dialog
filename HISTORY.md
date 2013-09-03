@@ -4,6 +4,8 @@
 
 ## 1.2.2
 
+`tag:fixed` #44 #38 修改 content 内容导致高度变化应重新定位对话框。
+
 `tag:fixed` #43 多个对话框共享一个 mask 的后续 confirmbox 问题。
 
 ## 1.2.1

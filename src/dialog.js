@@ -184,6 +184,8 @@ define(function(require, exports, module) {
                 } else {
                     this.contentElement.empty().html(val);
                 }
+                // #38 #44
+                this._setPosition();
             }
         },
 

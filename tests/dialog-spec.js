@@ -87,6 +87,16 @@ define(function(require) {
                 expect(example.$('.ui-dialog-content').html())
                     .to.be('demo.html');
             });
+
+            it('changing content should reset position', function() {
+                example = new Dialog({
+                    content: 'xxxx'
+                });
+                example.show();
+                var top = example.element.css('top');
+                example.set('content', '<p>xxxx</p><p>xxxx</p>');
+                expect(top).not.to.be(example.element.css('top'));
+            });
         });
 
         describe('Height', function() {
