@@ -242,6 +242,8 @@ define("arale/dialog/1.2.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
                 } else {
                     this.contentElement.empty().html(val);
                 }
+                // #38 #44
+                this._setPosition();
             }
         },
         _onRenderCloseTpl: function(val) {
