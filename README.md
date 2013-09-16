@@ -46,7 +46,7 @@ Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 
 ### height *number|string*
 
 对话框高度。当设置了这个属性时，对话框高度会固定，
-下面的 autoFit 强制为 false，initHeight 失效。
+下面的 autoFit 强制为 false，initialHeight 失效。
 
 ### zIndex *number*
 
@@ -60,7 +60,7 @@ Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 
 
 内嵌 Iframe 页面时是否自适应高度，默认为 true。`iframe 类型时有效`
 
-### initHeight *number|string*
+### initialHeight *number|string*
 
 内嵌 Iframe 页面时对话框的初始高度，默认为 300px 。`iframe 类型时有效`
 
