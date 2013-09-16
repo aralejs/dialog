@@ -5,7 +5,10 @@ define(function(require) {
     var $ = require('$');
     var mask = require('mask');
 
-    mocha.setup({ignoreLeaks: true});
+    mocha.setup({
+        ignoreLeaks: true,
+        timeout: 0
+    });
 
     describe('dialog', function() {
         var example;
