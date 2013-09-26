@@ -1,9 +1,9 @@
-
 # Dialog
 
 ---
 
 [![Build Status](https://secure.travis-ci.org/aralejs/dialog.png)](https://travis-ci.org/aralejs/dialog)
+[![Coverage Status](https://coveralls.io/repos/aralejs/dialog/badge.png?branch=master)](https://coveralls.io/r/aralejs/dialog)
 
 基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。
 
@@ -11,9 +11,11 @@
 
 Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs.org/dialog/src/dialog.css)。
 
-![对话框图](https://raw.github.com/slowhost/upload/1355909213528/123.png)
+![对话框图](https://i.alipayobjects.com/e/201308/xqEbLhq3p.png)
 
 ---
+
+Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
 
 ## 配置说明
 
@@ -27,7 +29,7 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 ### hasMask *boolean*
 
-是否有背景遮罩层。
+是否有背景遮罩层。默认为 `true`。
 
 ### classPrefix *string*
 
@@ -41,30 +43,34 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 对话框宽度，默认 500px。
 
-
 ### height *number|string*
 
-对话框高度，当设置这个属性时，下面的 autoFit 强制为 false。
+对话框高度。当设置了这个属性时，对话框高度会固定，
+下面的 autoFit 强制为 false，initialHeight 失效。
 
 ### zIndex *number*
 
 对话框 z-index 层级，默认 999。
 
-### autoFit *boolean*
-
-内嵌 Iframe 页面时是否自适应高度，默认为 true。
-
 ### effect *string*
 
 简单的动画效果，none 为无动画，fade 为渐入效果。默认为 none。
 
+### autoFit *boolean*
 
-其他配置如定位参数 `align` 等请参照[overlay](http://aralejs.org/overlay/)。
+内嵌 Iframe 页面时是否自适应高度，默认为 true。`iframe 类型时有效`
+
+### initialHeight *number|string*
+
+内嵌 Iframe 页面时对话框的初始高度，默认为 300px 。`iframe 类型时有效`
+
+
+> 其他配置如定位参数 `align` 等请参照 [overlay](http://aralejs.org/overlay/)。
 
 
 ## 实例方法
 
-主要有 show、hide、render 等方法，请参照[overlay](http://aralejs.org/overlay/)。
+主要有 show、hide、render 等方法，请参照 [overlay](http://aralejs.org/overlay/)。
 
 
 ## 事件说明
@@ -79,7 +85,7 @@ dialogInstanse.on('complete:show', function() {
 });
 ```
 
-> close 事件已经删除，可以使用 `after('hide', function() {})` 来代替。
+> close 事件已经删除，可以使用 `.after('hide', function() {})` 来代替。
 
 ---
 
@@ -89,7 +95,7 @@ dialogInstanse.on('complete:show', function() {
 seajs.use('dialog', function(Dialog) {
     var o = new Dialog({
         trigger: '#trigger',
-        content: '<div>这是 dialog 容器的内容</div>',
+        content: '<div>这是 dialog 容器的内容</div>'
     });
 };
 ```
@@ -100,7 +106,7 @@ seajs.use('dialog', function(Dialog) {
 seajs.use('dialog', function(Dialog) {
     var o = new Dialog({
         trigger: '#trigger',
-        content: 'https://www.alipay.com/',
+        content: 'https://www.alipay.com/'
     });
 };
 ```

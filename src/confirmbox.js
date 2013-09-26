@@ -1,10 +1,9 @@
 define(function(require, exports, module) {
 
     var $ = require('$'),
-        Templatable = require('templatable'),
-        Handlebars = require('handlebars'),
         Dialog = require('./dialog');
 
+    var template = require('./confirmbox.handlebars');
     require('./dialog.css');
 
     // ConfirmBox
@@ -13,22 +12,19 @@ define(function(require, exports, module) {
 
     var ConfirmBox = Dialog.extend({
 
-        Implements: Templatable,
-
         attrs: {
-            // 指定内容模板
-            content: require('./confirmbox.tpl'),
-
             title: '默认标题',
 
-            confirmTpl: '<a class="ui-dialog-button-orange">确定</a>',
+            confirmTpl: '<a class="ui-dialog-button-orange" href="javascript:;">确定</a>',
 
-            cancelTpl: '<a class="ui-dialog-button-white">取消</a>',
+            cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
 
             message: '默认内容'
         },
 
-        parseElement: function() {
+        setup: function() {
+            ConfirmBox.superclass.setup.call(this);
+
             var model = {
                 classPrefix: this.get('classPrefix'),
                 message: this.get('message'),
@@ -37,9 +33,7 @@ define(function(require, exports, module) {
                 cancelTpl: this.get('cancelTpl'),
                 hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
             };
-            var template = Handlebars.compile(this.get('content'));
             this.set('content', template(model));
-            ConfirmBox.superclass.parseElement.call(this);
         },
 
         events: {
@@ -111,14 +105,13 @@ define(function(require, exports, module) {
             message: message,
             title: '',
             confirmTpl: false,
-            cancelTpl: false,
-            onConfirm: function() {
-                callback && callback();
-                this.hide();
-            }
+            cancelTpl: false
         };
         new ConfirmBox($.extend(null, defaults, options))
         .show()
+        .before('hide', function() {
+            callback && callback();
+        })
         .after('hide', function() {
             this.destroy();
         });

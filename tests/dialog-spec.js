@@ -1,16 +1,21 @@
 define(function(require) {
-    var Dialog = require('../src/dialog');
-    var expect = require('puerh');
+    var Dialog = require('dialog');
+    var expect = require('expect');
     var sinon = require('sinon');
     var $ = require('$');
-    
-    mocha.setup({ignoreLeaks: true});
+    var mask = require('mask');
+
+    mocha.setup({
+        ignoreLeaks: true,
+        timeout: 0
+    });
 
     describe('dialog', function() {
         var example;
 
         afterEach(function() {
             if (example) {
+                example.hide();
                 example.destroy();
                 example = null;
             }
@@ -64,14 +69,14 @@ define(function(require) {
 
             it('is absolute url', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.render().show();
 
                 var iframe = example.$('iframe');
                 expect(iframe.length).to.be(1);
                 expect(iframe.attr('src').replace(/\?t=\d*$/, ''))
-                    .to.be('https://www.alipay.com');
+                    .to.be('http://jsfiddle.net/afc163/CzQKp/show/');
             });
 
             it('is invalid url', function() {
@@ -85,6 +90,16 @@ define(function(require) {
                 expect(example.$('.ui-dialog-content').html())
                     .to.be('demo.html');
             });
+
+            it('changing content should reset position', function() {
+                example = new Dialog({
+                    content: 'xxxx'
+                });
+                example.show();
+                var top = example.element.css('top');
+                example.set('content', '<p>xxxx</p><p>xxxx</p>');
+                expect(top).not.to.be(example.element.css('top'));
+            });
         });
 
         describe('Height', function() {
@@ -96,7 +111,7 @@ define(function(require) {
                 var spy = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
-                expect(example._onRenderHeight).not.to.be.called();
+                expect(example._onRenderHeight.called).not.to.be(true);
                 spy.restore();
             });
 
@@ -109,7 +124,7 @@ define(function(require) {
                 var spy = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
-                expect(spy).to.be.called.withArgs('300px');
+                expect(spy.withArgs('300px').called).to.be.ok();
                 spy.restore();
             });
 
@@ -123,7 +138,7 @@ define(function(require) {
 
                 example.show();
                 setTimeout(function() {
-                    expect(spy).to.be.called.withArgs('200px');
+                    expect(spy.withArgs('200px').called).to.be.ok();
                     spy.restore();
                     done();
                 }, 500);
@@ -136,6 +151,7 @@ define(function(require) {
                 });
 
                 example.show();
+                expect(example.element.height()).to.be(300);
 
                 setTimeout(function() {
                     example.$('iframe')[0].contentWindow.document
@@ -143,8 +159,35 @@ define(function(require) {
                     example._syncHeight();
                     expect(example.element.height()).to.be(400);
                     done();
-                }, 800);
+                }, 700);
             });
+
+            it('should be initialHeight when iframe is not loaded yet', function(done) {
+                var h, isComplete = false;
+                example = new Dialog({
+                    content: './height300px.html',
+                    initialHeight: 100
+                });
+
+                example.show();
+                expect(example.element.height()).to.be(100);
+
+                setTimeout(function() {
+                    expect(example.element.height()).to.be(300);
+                    done();
+                }, 700);
+            });
+
+            it('should be align top when dialog element is very high', function() {
+                example = new Dialog({
+                    content: 'xxx',
+                    height: 5000
+                });
+
+                example.show();
+                expect(example.element.offset().top).to.be(0);
+            });
+
         });
 
         describe('interval', function() {
@@ -177,7 +220,7 @@ define(function(require) {
 
             it('should be fixed height when set height', function(done) {
                 example = new Dialog({
-                    content: 'https://www.alipay.com',
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/',
                     height: 200,
                     autoFit: true
                 });
@@ -194,7 +237,7 @@ define(function(require) {
                 var isComplete = false;
                 example = new Dialog({
                     autoFit: false,
-                    content: 'http://www.baidu.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 }).show();
 
                 setTimeout(function() {
@@ -221,7 +264,7 @@ define(function(require) {
 
             it('click close to hide', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 expect(example.get('visible')).not.to.be.ok();
                 example.show();
@@ -232,7 +275,7 @@ define(function(require) {
 
             it('bind close event', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
@@ -256,7 +299,7 @@ define(function(require) {
 
             it('bind key close event when iframe', function() {
                 example = new Dialog({
-                    content: 'https://www.alipay.com'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 });
                 example.show();
                 expect(example.get('visible')).to.be.ok();
@@ -282,11 +325,11 @@ define(function(require) {
 
             it('fixUrl support hash #25', function() {
                 example = new Dialog({
-                    content: 'http://baidu.com/index.html?param=aa#'
+                    content: 'http://jsfiddle.net/afc163/CzQKp/show/?param=aa#'
                 }).render().show();
 
                 var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
-                expect(url).to.be('http://baidu.com/index.html?param=aa#');
+                expect(url).to.be('http://jsfiddle.net/afc163/CzQKp/show/?param=aa#');
             });
 
             it('should call onload once', function(done) {
@@ -303,8 +346,8 @@ define(function(require) {
                 example.show();
 
                 setTimeout(function() {
-                    expect(syncHeight).to.be.called.once();
-                    expect(setPosition.callCount).to.above(2);
+                    expect(syncHeight.callCount).to.be(1);
+                    expect(setPosition.callCount).to.be(3);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
                 }, 600);
@@ -319,14 +362,14 @@ define(function(require) {
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);
                 example.set('closeTpl', 'X');
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
-                example.set('closeTpl', '');            
+                example.set('closeTpl', '');
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);            
             });
 
         });
 
-        describe('other attributes', function() {
-            
+        describe('mask', function() {
+
             it('should have mask', function() {
                 example = new Dialog({
                     content: 'xxx'
@@ -344,8 +387,100 @@ define(function(require) {
                 expect($('.ui-mask').is(':visible')).to.be(false);
             });
 
-            
-        });        
+            it('should not disappear when click mask', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                expect(example.element.is(':visible')).to.be(true);
+                mask.element.click();
+                expect(example.element.is(':visible')).to.be(true);
+            });
+
+            it('should not hide the mask when last dialog hide', function() {
+                example = new Dialog({
+                    content: '1111'
+                });
+                example.show();
+                expect(mask._dialogs.length).to.be(1);
+                expect(mask.get('visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example.element[0]);
+                example2 = new Dialog({
+                    content: '2222'
+                });
+                example2.show();
+                expect(mask._dialogs.length).to.be(2);
+                expect(mask.get('visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example2.element[0]);
+
+                example2.hide();
+                expect(mask._dialogs.length).to.be(1);
+                expect(mask.get('visible')).to.be(true);
+                expect(mask.element.next()[0]).to.be(example.element[0]);
+
+                example.hide();
+                expect(mask._dialogs.length).to.be(0);
+                expect(mask.get('visible')).to.be(false);
+
+                example2.destroy();
+            });
+
+            it('set hasMask works', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                expect(mask.get('visible')).to.be(true);
+                example.hide();
+                example.set('hasMask', false);
+                example.show();
+                expect(mask.get('visible')).to.be(false);
+                example.hide();
+                example.set('hasMask', true);
+                example.show();
+                expect(mask.get('visible')).to.be(true);
+                example.hide();
+            });
+
+            it('should hide mask', function() {
+                example = new Dialog({
+                    content: 'xxx'
+                });
+                example.show();
+                example.show();
+                expect(mask.get('visible')).to.be(true);
+                example.hide();
+                expect(mask.get('visible')).to.be(false);
+            });
+
+            it('destroy not trigger mask hide', function() {
+                var spy = sinon.spy(mask, 'hide');
+                example2 = new Dialog({
+                    content: 'xxx'
+                });
+                example2.destroy();
+                expect(spy.callCount).to.be(0);
+                spy.restore();
+            });
+
+        });
+
+        describe('other attributes', function() {
+            it('fade effect should work', function(done) {
+                example = new Dialog({
+                    content: 'xxx',
+                    effect: 'fade',
+                    duration: 1000
+                });
+                expect(example.get('effect')).to.be('fade');
+                example.show();
+                setTimeout(function() {
+                    expect(example.element.css('opacity')).to.be.within(0, 1);
+                    done();
+                }, 30);
+            });
+
+        });
 
     });
 });

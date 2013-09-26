@@ -1,10 +1,12 @@
 define(function(require) {
-    var ConfirmBox = require('../src/confirmbox.js');
-    var expect = require('puerh');
-    var sinon = require('sinon');    
+    var ConfirmBox = require('confirmbox');
+    var expect = require('expect');
+    var sinon = require('sinon');
     var $ = require('$');
+    var ua = (window.navigator.userAgent || "").toLowerCase();
+    var mask = require('mask');
     
-    if ($.browser.msie) {
+    if (ua.indexOf("msie") !== -1) {
         mocha.setup({ignoreLeaks: true});
     }
 
@@ -62,6 +64,74 @@ define(function(require) {
             expect($.trim(example.element.find('[data-role=cancel]').html())).to.be(cancelTpl);
             example.set('cancelTpl', 'changed cancelTpl');
             expect($.trim(example.element.find('[data-role=cancel]').html())).to.be('changed cancelTpl');
+        });
+
+        it('should be confirm dialog: click confirm', function() {
+            var msg = '';
+            ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+                msg = '点击了确认按钮';
+            });
+            expect($('.ui-dialog').length).to.be(1);
+            expect($('.ui-dialog [data-role="message"]').html()).to.be('是否要删除这个类目');
+            expect($('.ui-dialog [data-role="title"]').html()).to.be('确认删除框');
+            expect($('.ui-dialog [data-role="confirm"]').length).to.be(1);
+            expect($('.ui-dialog [data-role="cancel"]').length).to.be(1);
+
+            $('.ui-dialog [data-role="confirm"]').click();
+            expect(msg).to.be('点击了确认按钮');
+            expect($('.ui-dialog').length).to.be(0);
+        });
+
+        it('should be confirm dialog: click cancel', function() {
+            var msg = '';
+            ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+                msg = '点击了确认按钮';
+            });
+
+            $('.ui-dialog [data-role="cancel"]').click();
+            expect(msg).to.be('');
+            expect($('.ui-dialog').length).to.be(0);
+        });
+
+        it('should be msg dialog', function() {
+            var msg = '';
+            ConfirmBox.show('是否要删除这个类目 - show', function() {
+                msg = '点击了x按钮';
+            });
+            expect($('.ui-dialog').length).to.be(1);
+            expect($('.ui-dialog [data-role="message"]').html()).to.be('是否要删除这个类目 - show');
+            expect($('.ui-dialog [data-role="title"]').length).to.be(0);
+            expect($('.ui-dialog [data-role="confirm"]').length).to.be(0);
+            expect($('.ui-dialog [data-role="cancel"]').length).to.be(0);
+
+            $('.ui-dialog [data-role="close"]').click();
+            expect(msg).to.be('点击了x按钮');            
+            expect($('.ui-dialog').length).to.be(0);
+        });
+
+        it('should be alert dialog', function() {
+            var msg = '';
+            ConfirmBox.alert('是否要删除这个类目 - alert', function() {
+                msg = '点击了确认按钮';
+            });
+            expect($('.ui-dialog').length).to.be(1);
+            expect($('.ui-dialog [data-role="message"]').html()).to.be('是否要删除这个类目 - alert');
+            expect($('.ui-dialog [data-role="title"]').length).to.be(0);
+            expect($('.ui-dialog [data-role="confirm"]').length).to.be(1);
+            expect($('.ui-dialog [data-role="cancel"]').length).to.be(0);
+
+            $('.ui-dialog [data-role="confirm"]').click();
+            expect(msg).to.be('点击了确认按钮');
+            expect($('.ui-dialog').length).to.be(0);
+        });
+
+        it('should not disappear when click mask', function() {
+            example = new ConfirmBox({
+                content: 'xxx'
+            });
+            example.show();
+            mask.element.click();
+            expect(example.element.is(':visible')).to.be(true);
         });
 
     });

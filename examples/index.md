@@ -27,13 +27,17 @@ seajs.use(['dialog'], function(Dialog) {
 });
 ````
 
+<select></select>
+<select></select>
+<select></select>
+<select></select>
 
 ### 2. 内容可传入 DOM 对象
 
 <button id="example2">内容传入DOM 对象</button>
-<div class="fn-hide">
-    <div id="example2-dom" style="padding:50px">传入了DOM</div>
-</div>
+
+<div class="fn-hide"><div id="example2-dom" style="padding:50px">传入了DOM</div></div>
+
 
 ````javascript
 seajs.use(['dialog','$'], function(Dialog, $) {
@@ -134,3 +138,17 @@ seajs.use(['dialog'], function(Dialog) {
 });
 ````
 
+
+### 8. 初始化高度 initialHeight
+
+<button id="example8">打开初始高度 150px 的对话框</button>
+
+````javascript
+seajs.use(['dialog','$'], function(Dialog, $) {
+    var example = new Dialog({
+        trigger: '#example8',
+        content: './iframe.html',
+        initialHeight: 150
+    });
+});
+````

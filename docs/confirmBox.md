@@ -4,7 +4,7 @@
 
 ---
 
-ConfirmBox 继承自 Dialog 组件，是具有默认样式和完善功能的对话框，可直接使用。
+ConfirmBox 继承自 Dialog 组件，是具有默认样式和完善功能的对话框，可直接使用。（与 dialog 不同，confirmbox 点击遮罩层默认不关闭对话框）
 
 [演示](http://aralejs.org/dialog/examples/confirmbox.html)
 
@@ -95,7 +95,7 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
 ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
     console.log('点击了确认按钮');
 }, {
-    onClose: function() {
+    beforeHide: function() {
         console.log('点击了确认按钮');
     },
     closeTpl: '',       // 关闭的按钮设置为空

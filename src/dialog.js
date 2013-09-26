@@ -4,9 +4,7 @@ define(function(require, exports, module) {
         Overlay = require('overlay'),
         mask = require('mask'),
         Events = require('events'),
-        Templatable = require('templatable'),
-        EVENT_NS = '.dialog',
-        DEFAULT_HEIGHT = '300px';
+        Templatable = require('templatable');
 
     // Dialog
     // ---
@@ -19,7 +17,7 @@ define(function(require, exports, module) {
 
         attrs: {
             // 模板
-            template: require('./dialog-tpl.js'),
+            template: require('./dialog.handlebars'),
 
             // 对话框触发点
             trigger: {
@@ -34,7 +32,7 @@ define(function(require, exports, module) {
 
             // 指定内容元素，可以是 url 地址
             content: {
-                value: '',
+                value: null,
                 setter: function(val) {
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {
@@ -56,6 +54,9 @@ define(function(require, exports, module) {
             // 默认高度
             height: null,
 
+            // iframe 类型时，dialog 的最初高度
+            initialHeight: 300,
+
             // 简单的动画效果 none | fade
             effect: 'none',
 
@@ -67,16 +68,32 @@ define(function(require, exports, module) {
 
             // 默认定位居中
             align: {
-                selfXY: ['50%', '50%'],
-                baseXY: ['50%', '50%']
+                value: {
+                    selfXY: ['50%', '50%'],
+                    baseXY: ['50%', '50%']
+                },
+                getter: function(val) {
+                    // 高度超过一屏的情况
+                    // https://github.com/aralejs/dialog/issues/41
+                    if (this.element.height() > $(window).height()) {
+                        return {
+                            selfXY: ['50%', '0'],
+                            baseXY: ['50%', '0']
+                        };
+                    }
+                    return val;
+                }
             }
         },
 
+
         parseElement: function() {
-            this.model = {
+            this.set("model", {
                 classPrefix: this.get('classPrefix')
-            };
+            });
+
             Dialog.superclass.parseElement.call(this);
+
             this.contentElement = this.$('[data-role=content]');
             // 必要的样式
             this.contentElement.css({
@@ -103,7 +120,8 @@ define(function(require, exports, module) {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
                 // iframe 还未请求完，先设置一个固定高度
-                !this.get('height') && this.element.css('height', DEFAULT_HEIGHT);
+                !this.get('height') &&
+                    this.contentElement.css('height', this.get('initialHeight'));
                 this._showIframe();
             }
 
@@ -130,12 +148,7 @@ define(function(require, exports, module) {
         },
 
         destroy: function() {
-            if (this.get('trigger')) { 
-                this.get('trigger').off('click' + EVENT_NS + this.cid);
-            }
-            $(document).off('keyup.' + EVENT_NS + this.cid);
             this.element.remove();
-            mask.hide();
             clearInterval(this._interval);
             return Dialog.superclass.destroy.call(this);
         },
@@ -171,6 +184,8 @@ define(function(require, exports, module) {
                 } else {
                     this.contentElement.empty().html(val);
                 }
+                // #38 #44
+                this._setPosition();
             }
         },
 
@@ -196,32 +211,60 @@ define(function(require, exports, module) {
             }
         },
 
-        _onRenderZIndex: function(val) {
-            mask.set('zIndex', parseInt(val, 10) - 1);
-            return Dialog.superclass._onRenderZIndex.call(this, val);
-        },
-
         // 私有方法
         // ---
 
         // 绑定触发对话框出现的事件
         _setupTrigger: function() {
-            var that = this;
-            this.get('trigger').on('click' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents(this.get('trigger'), 'click', function(e) {
                 e.preventDefault();
                 // 标识当前点击的元素
-                that.activeTrigger = $(this);
-                that.show();
+                this.activeTrigger = $(e.currentTarget);
+                this.show();
             });
         },
 
         // 绑定遮罩层事件
         _setupMask: function() {
-            this.before('show', function() {
-                this.get('hasMask') && mask.show();
+            var that = this;
+
+            // 存放 mask 对应的对话框
+            mask._dialogs = mask._dialogs || [];
+
+            this.after('show', function() {
+                if (!this.get('hasMask')) {
+                    return;
+                }
+                // not using the z-index
+                // because multiable dialogs may share same mask
+                mask.set('zIndex', that.get('zIndex')).show();
+                mask.element.insertBefore(that.element);
+
+                // 避免重复存放
+                var existed = false;
+                for(var i=0; i<mask._dialogs.length; i++) {
+                    if (mask._dialogs[i] === that) {
+                        existed = true;
+                    }
+                }
+                // 依次存放对应的对话框
+                if (!existed) {
+                    mask._dialogs.push(that);
+                }
             });
+
             this.after('hide', function() {
-                this.get('hasMask') && mask.hide();
+                if (!this.get('hasMask')) {
+                    return;
+                }
+                mask._dialogs.pop();
+                if (mask._dialogs.length > 0) {
+                    var last = mask._dialogs[mask._dialogs.length - 1];
+                    mask.set('zIndex', last.get('zIndex'));
+                    mask.element.insertBefore(last.element);
+                } else {
+                    mask.hide();
+                }
             });
         },
 
@@ -239,10 +282,9 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            var that = this;
-            $(document).on('keyup.' + EVENT_NS + this.cid, function(e) {
+            this.delegateEvents($(document), 'keyup', function(e) {
                 if (e.keyCode === 27) {
-                    that.get('visible') && that.hide();
+                    this.get('visible') && this.hide();
                 }
             });
         },
@@ -326,12 +368,12 @@ define(function(require, exports, module) {
                     if (this._errCount >= 6) {
                         // 获取失败则给默认高度 300px
                         // 跨域会抛错进入这个流程
-                        h = DEFAULT_HEIGHT;
+                        h = this.get('initialHeight');
                         clearInterval(this._interval);
                         delete this._interval;
                     }
                 }
-                this.element.css('height', h);
+                this.contentElement.css('height', h);
                 // force to reflow in ie6
                 // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
                 this.element[0].className = this.element[0].className;

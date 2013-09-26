@@ -68,8 +68,6 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
     $('#trigger13').click(function() {
         ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
             alert('点击了确定按钮');
-        }, function() {
-            alert('点击了取消按钮');
         });
     });
 
@@ -91,10 +89,10 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 
     $('#trigger1').click(function() {
-        ConfirmBox.alert('静态方法ConfirmBox.confirm', function() {
+        ConfirmBox.alert('静态方法ConfirmBox.alert', function() {
             alert('点击了确定按钮');
         }, {
-            onClose: function() {
+            beforeHide: function() {
                 alert('点击了取消按钮');
             },
             width: 300
@@ -105,7 +103,7 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
         ConfirmBox.confirm('静态方法ConfirmBox.confirm', '自定义标题', function() {
             alert('点击了确定按钮');
         }, {
-            onClose: function() {
+            beforeHide: function() {
                 alert('点击了取消按钮');
             },
             title: '改过的自定义标题',
@@ -114,12 +112,9 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
     });
 
     $('#trigger3').click(function() {
-        ConfirmBox.show('静态方法ConfirmBox.confirm', function() {
-            alert('点击了确定按钮');
+        ConfirmBox.show('静态方法ConfirmBox.show', function() {
+            alert('点击了关闭按钮');
         }, {
-            onClose: function() {
-                alert('即将关闭');
-            },
             hasMask: false
         });
     });
