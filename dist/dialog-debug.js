@@ -1,4 +1,4 @@
-define("arale/dialog/1.2.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.3/overlay-debug"), mask = require("arale/overlay/1.1.3/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug");
     // Dialog
     // ---
@@ -117,6 +117,7 @@ define("arale/dialog/1.2.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
         },
         destroy: function() {
             this.element.remove();
+            this._hideMask();
             clearInterval(this._interval);
             return Dialog.superclass.destroy.call(this);
         },
@@ -207,19 +208,21 @@ define("arale/dialog/1.2.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
                     mask._dialogs.push(that);
                 }
             });
-            this.after("hide", function() {
-                if (!this.get("hasMask")) {
-                    return;
-                }
-                mask._dialogs.pop();
-                if (mask._dialogs.length > 0) {
-                    var last = mask._dialogs[mask._dialogs.length - 1];
-                    mask.set("zIndex", last.get("zIndex"));
-                    mask.element.insertBefore(last.element);
-                } else {
-                    mask.hide();
-                }
-            });
+            this.after("hide", this._hideMask);
+        },
+        // 隐藏 mask
+        _hideMask: function() {
+            if (!this.get("hasMask")) {
+                return;
+            }
+            mask._dialogs.pop();
+            if (mask._dialogs.length > 0) {
+                var last = mask._dialogs[mask._dialogs.length - 1];
+                mask.set("zIndex", last.get("zIndex"));
+                mask.element.insertBefore(last.element);
+            } else {
+                mask.hide();
+            }
         },
         // 绑定元素聚焦状态
         _setupFocus: function() {
@@ -348,10 +351,10 @@ define("arale/dialog/1.2.2/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_2_2";
+    module.exports.outerBoxClass = "arale-dialog-1_2_3";
 });
 
-define("arale/dialog/1.2.2/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.2.3/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
