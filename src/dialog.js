@@ -149,6 +149,7 @@ define(function(require, exports, module) {
 
         destroy: function() {
             this.element.remove();
+            this._hideMask();
             clearInterval(this._interval);
             return Dialog.superclass.destroy.call(this);
         },
@@ -253,19 +254,22 @@ define(function(require, exports, module) {
                 }
             });
 
-            this.after('hide', function() {
-                if (!this.get('hasMask')) {
-                    return;
-                }
-                mask._dialogs.pop();
-                if (mask._dialogs.length > 0) {
-                    var last = mask._dialogs[mask._dialogs.length - 1];
-                    mask.set('zIndex', last.get('zIndex'));
-                    mask.element.insertBefore(last.element);
-                } else {
-                    mask.hide();
-                }
-            });
+            this.after('hide', this._hideMask);
+        },
+
+        // 隐藏 mask
+        _hideMask: function(){
+            if (!this.get('hasMask')) {
+                return;
+            }
+            mask._dialogs.pop();
+            if (mask._dialogs.length > 0) {
+                var last = mask._dialogs[mask._dialogs.length - 1];
+                mask.set('zIndex', last.get('zIndex'));
+                mask.element.insertBefore(last.element);
+            } else {
+                mask.hide();
+            }
         },
 
         // 绑定元素聚焦状态
