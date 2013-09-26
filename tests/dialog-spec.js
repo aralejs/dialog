@@ -469,7 +469,34 @@ define(function(require) {
                     done();
                 }, 30);
             });
+        });
 
+        describe('issues', function() {
+            it('#43', function() {
+                example = new Dialog({
+                    content: 'xx'
+                });
+                example.show();
+                example2 = new Dialog({
+                    content: 'xx'
+                });
+                example2.show();
+                example.destroy();
+                expect(mask.element.is(':visible')).to.be(true);
+                example2.hide();
+                expect(mask.element.is(':visible')).to.be(false);
+                example2.destroy();
+            });
+
+            it('#47', function() {
+                example = new Dialog({
+                    content: 'xx'
+                });
+                example.show();
+                expect(mask.element.is(':visible')).to.be(true);
+                example.destroy();
+                expect(mask.element.is(':visible')).to.be(false);
+            });
         });
 
     });
