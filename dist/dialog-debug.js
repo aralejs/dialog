@@ -215,8 +215,8 @@ define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
             if (!this.get("hasMask")) {
                 return;
             }
-            mask._dialogs.pop();
-            if (mask._dialogs.length > 0) {
+            mask._dialogs && mask._dialogs.pop();
+            if (mask._dialogs && mask._dialogs.length > 0) {
                 var last = mask._dialogs[mask._dialogs.length - 1];
                 mask.set("zIndex", last.get("zIndex"));
                 mask.element.insertBefore(last.element);
