@@ -481,11 +481,12 @@ define(function(require) {
                     content: 'xx'
                 });
                 example2.show();
-                example.destroy();
                 expect(mask.element.is(':visible')).to.be(true);
-                example2.hide();
-                expect(mask.element.is(':visible')).to.be(false);
                 example2.destroy();
+                expect(mask.element.is(':visible')).to.be(true);
+                example.hide();
+                expect(mask.element.is(':visible')).to.be(false);
+                example.destroy();
             });
 
             it('#47', function() {
