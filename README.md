@@ -13,9 +13,31 @@ Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs
 
 ![对话框图](https://i.alipayobjects.com/e/201308/xqEbLhq3p.png)
 
+Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
+
 ---
 
-Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
+## 最佳实践
+
+```js
+seajs.use('dialog', function(Dialog) {
+    var o = new Dialog({
+        trigger: '#trigger',
+        content: '<div>这是 dialog 容器的内容</div>'
+    });
+});
+```
+
+内嵌 Iframe：
+
+```js
+seajs.use('dialog', function(Dialog) {
+    var o = new Dialog({
+        trigger: '#trigger',
+        content: 'https://www.alipay.com/'
+    });
+});
+```
 
 ## 配置说明
 
@@ -86,28 +108,3 @@ dialogInstanse.on('complete:show', function() {
 ```
 
 > close 事件已经删除，可以使用 `.after('hide', function() {})` 来代替。
-
----
-
-## 最佳实践
-
-```js
-seajs.use('dialog', function(Dialog) {
-    var o = new Dialog({
-        trigger: '#trigger',
-        content: '<div>这是 dialog 容器的内容</div>'
-    });
-};
-```
-
-内嵌 Iframe：
-
-```js
-seajs.use('dialog', function(Dialog) {
-    var o = new Dialog({
-        trigger: '#trigger',
-        content: 'https://www.alipay.com/'
-    });
-};
-```
-
