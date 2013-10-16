@@ -91,13 +91,11 @@ define(function(require, exports, module) {
             this.set("model", {
                 classPrefix: this.get('classPrefix')
             });
-
             Dialog.superclass.parseElement.call(this);
-
             this.contentElement = this.$('[data-role=content]');
+
             // 必要的样式
             this.contentElement.css({
-                background: '#fff',
                 height: '100%',
                 zoom: 1
             });
