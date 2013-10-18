@@ -1,4 +1,4 @@
-define("arale/dialog/1.2.3/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
+define("arale/dialog/1.2.4/confirmbox-debug", [ "$-debug", "./dialog-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars", "./confirmbox-debug.handlebars", "./dialog-debug.css" ], function(require, exports, module) {
     var $ = require("$-debug"), Dialog = require("./dialog-debug");
     var template = require("./confirmbox-debug.handlebars");
     require("./dialog-debug.css");
@@ -90,10 +90,10 @@ define("arale/dialog/1.2.3/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
         });
     };
     module.exports = ConfirmBox;
-    module.exports.outerBoxClass = "arale-dialog-1_2_3";
+    module.exports.outerBoxClass = "arale-dialog-1_2_4";
 });
 
-define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug" ], function(require, exports, module) {
+define("arale/dialog/1.2.4/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.3/mask-debug", "arale/templatable/0.9.1/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.3/overlay-debug"), mask = require("arale/overlay/1.1.3/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.1/templatable-debug");
     // Dialog
     // ---
@@ -103,7 +103,7 @@ define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
         Implements: Templatable,
         attrs: {
             // 模板
-            template: require("arale/dialog/1.2.3/dialog-debug.handlebars"),
+            template: require("arale/dialog/1.2.4/dialog-debug.handlebars"),
             // 对话框触发点
             trigger: {
                 value: null,
@@ -167,7 +167,6 @@ define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
             this.contentElement = this.$("[data-role=content]");
             // 必要的样式
             this.contentElement.css({
-                background: "#fff",
                 height: "100%",
                 zoom: 1
             });
@@ -446,10 +445,10 @@ define("arale/dialog/1.2.3/dialog-debug", [ "$-debug", "arale/overlay/1.1.3/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_2_3";
+    module.exports.outerBoxClass = "arale-dialog-1_2_4";
 });
 
-define("arale/dialog/1.2.3/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.2.4/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
@@ -495,7 +494,7 @@ define("arale/dialog/1.2.3/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2
     });
 });
 
-define("arale/dialog/1.2.3/confirmbox-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.2.4/confirmbox-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
@@ -682,6 +681,6 @@ define("arale/dialog/1.2.3/confirmbox-debug.handlebars", [ "gallery/handlebars/1
     });
 });
 
-define("arale/dialog/1.2.3/dialog-debug.css", [], function() {
-    seajs.importStyle(".arale-dialog-1_2_3 .ui-dialog{background-color:rgba(0,0,0,.5);border:0;FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);padding:6px;outline:0}:root .arale-dialog-1_2_3 .ui-dialog{FILTER:none\\9}.arale-dialog-1_2_3 .ui-dialog-close{color:#999;cursor:pointer;display:block;font-family:tahoma;font-size:24px;font-weight:700;height:18px;line-height:14px;position:absolute;right:16px;text-decoration:none;top:16px;z-index:10}.arale-dialog-1_2_3 .ui-dialog-close:hover{color:#666;text-shadow:0 0 2px #aaa}.arale-dialog-1_2_3 .ui-dialog-title{height:45px;font-size:16px;font-family:'微软雅黑','黑体',Arial;line-height:46px;border-bottom:1px solid #E1E1E1;color:#4d4d4d;text-indent:20px;background:-webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f9f9f9));background:-moz-linear-gradient(top,#fcfcfc,#f9f9f9);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');background:-o-linear-gradient(top,#fcfcfc,#f9f9f9);background:linear-gradient(top,#fcfcfc,#f9f9f9)}.arale-dialog-1_2_3 .ui-dialog-container{padding:15px 20px 20px;font-size:12px}.arale-dialog-1_2_3 .ui-dialog-message{margin-bottom:15px}.arale-dialog-1_2_3 .ui-dialog-operation{zoom:1}.arale-dialog-1_2_3 .ui-dialog-confirm,.arale-dialog-1_2_3 .ui-dialog-cancel{display:inline}.arale-dialog-1_2_3 .ui-dialog-operation .ui-dialog-confirm{margin-right:4px}.arale-dialog-1_2_3 .ui-dialog-button-orange,.arale-dialog-1_2_3 .ui-dialog-button-white{display:inline-block;*display:inline;*zoom:1;text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;font-size:12px;font-weight:700;border-radius:2px;padding:0 12px;line-height:23px;height:23px;*overflow:visible;background-image:none}.arale-dialog-1_2_3 a.ui-dialog-button-orange:hover,.arale-dialog-1_2_3 a.ui-dialog-button-white:hover{text-decoration:none}.arale-dialog-1_2_3 .ui-dialog-button-orange{color:#fff;border:1px solid #d66500;background-color:#f57403}.arale-dialog-1_2_3 .ui-dialog-button-orange:hover{background-color:#fb8318}.arale-dialog-1_2_3 .ui-dialog-button-white{border:1px solid #afafaf;background-color:#f3f3f3;color:#777}.arale-dialog-1_2_3 .ui-dialog-button-white:hover{border:1px solid #8e8e8e;background-color:#fcfbfb;color:#676d70}");
+define("arale/dialog/1.2.4/dialog-debug.css", [], function() {
+    seajs.importStyle(".arale-dialog-1_2_4 .ui-dialog{background-color:rgba(0,0,0,.5);border:0;FILTER:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);padding:6px;outline:0}:root .arale-dialog-1_2_4 .ui-dialog{FILTER:none\\9}.arale-dialog-1_2_4 .ui-dialog-close{color:#999;cursor:pointer;display:block;font-family:tahoma;font-size:24px;font-weight:700;height:18px;line-height:14px;position:absolute;right:16px;text-decoration:none;top:16px;z-index:10}.arale-dialog-1_2_4 .ui-dialog-close:hover{color:#666;text-shadow:0 0 2px #aaa}.arale-dialog-1_2_4 .ui-dialog-title{height:45px;font-size:16px;font-family:'微软雅黑','黑体',Arial;line-height:46px;border-bottom:1px solid #E1E1E1;color:#4d4d4d;text-indent:20px;background:-webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f9f9f9));background:-moz-linear-gradient(top,#fcfcfc,#f9f9f9);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');background:-o-linear-gradient(top,#fcfcfc,#f9f9f9);background:linear-gradient(top,#fcfcfc,#f9f9f9)}.arale-dialog-1_2_4 .ui-dialog-container{padding:15px 20px 20px;font-size:12px}.arale-dialog-1_2_4 .ui-dialog-message{margin-bottom:15px}.arale-dialog-1_2_4 .ui-dialog-operation{zoom:1}.arale-dialog-1_2_4 .ui-dialog-confirm,.arale-dialog-1_2_4 .ui-dialog-cancel{display:inline}.arale-dialog-1_2_4 .ui-dialog-operation .ui-dialog-confirm{margin-right:4px}.arale-dialog-1_2_4 .ui-dialog-button-orange,.arale-dialog-1_2_4 .ui-dialog-button-white{display:inline-block;*display:inline;*zoom:1;text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;font-size:12px;font-weight:700;border-radius:2px;padding:0 12px;line-height:23px;height:23px;*overflow:visible;background-image:none}.arale-dialog-1_2_4 a.ui-dialog-button-orange:hover,.arale-dialog-1_2_4 a.ui-dialog-button-white:hover{text-decoration:none}.arale-dialog-1_2_4 .ui-dialog-button-orange{color:#fff;border:1px solid #d66500;background-color:#f57403}.arale-dialog-1_2_4 .ui-dialog-button-orange:hover{background-color:#fb8318}.arale-dialog-1_2_4 .ui-dialog-button-white{border:1px solid #afafaf;background-color:#f3f3f3;color:#777}.arale-dialog-1_2_4 .ui-dialog-button-white:hover{border:1px solid #8e8e8e;background-color:#fcfbfb;color:#676d70}");
 });

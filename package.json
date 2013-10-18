@@ -1,7 +1,7 @@
 {
     "name": "dialog",
     "family": "arale",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Dialog 是通用对话框容器，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义以及模态对话框等功能。",
     "keywords": [
         "widget",
