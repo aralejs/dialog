@@ -8,6 +8,10 @@
     /* http://ued.taobao.com/blog/2011/04/onfocus-this-blur/ */
 }
 
+.ui-dialog-content {
+    background: #fff;
+}
+
 :root .ui-dialog {
     FILTER: none\9;
 }
