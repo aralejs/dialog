@@ -2,6 +2,14 @@
 
 ---
 
+## 1.2.5
+
+`improved` 升级 overlay 到 1.1.4。
+
+`improved` 关闭按钮的 title 调整为英文。
+
+`improved` 向上微调了对话框的出现位置。
+
 ## 1.2.4
 
 `tag:fixed` 去掉了 JS 代码中写死的 content 的白色背景。

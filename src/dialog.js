@@ -70,7 +70,7 @@ define(function(require, exports, module) {
             align: {
                 value: {
                     selfXY: ['50%', '50%'],
-                    baseXY: ['50%', '50%']
+                    baseXY: ['50%', '42%']
                 },
                 getter: function(val) {
                     // 高度超过一屏的情况
