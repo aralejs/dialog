@@ -10,6 +10,8 @@
 
 `improved` 向上微调了对话框的出现位置。
 
+`new` ConfirmBox 增加 cancel 事件，并且支持 ConfirmBox.confirm(msg, title, onConfirm, onCancel, options) 的调用方式。
+
 ## 1.2.4
 
 `tag:fixed` 去掉了 JS 代码中写死的 content 的白色背景。
