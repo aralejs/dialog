@@ -95,6 +95,7 @@ define(function(require) {
 
         it('should support confirm(msg, title, onConfirm, onCancel, options)', function() {
             var msg = '';
+            $('.ui-mask').remove();
             ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
                 msg = '点击了确认按钮';
             }, function() {
@@ -151,5 +152,3 @@ define(function(require) {
     });
 
 });
-
-            });
