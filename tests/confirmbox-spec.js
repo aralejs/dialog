@@ -93,6 +93,20 @@ define(function(require) {
             expect($('.ui-dialog').length).to.be(0);
         });
 
+        it('should support confirm(msg, title, onConfirm, onCancel, options)', function() {
+            var msg = '';
+            ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+                msg = '点击了确认按钮';
+            }, function() {
+                msg = '点击了取消按钮';
+            }, {
+                hasMask: false
+            });
+            expect($('.ui-mask').length).to.be(0);
+            $('.ui-dialog [data-role="cancel"]').click();
+            expect(msg).to.be('点击了取消按钮');
+        });
+
         it('should be msg dialog', function() {
             var msg = '';
             ConfirmBox.show('是否要删除这个类目 - show', function() {
@@ -105,7 +119,7 @@ define(function(require) {
             expect($('.ui-dialog [data-role="cancel"]').length).to.be(0);
 
             $('.ui-dialog [data-role="close"]').click();
-            expect(msg).to.be('点击了x按钮');            
+            expect(msg).to.be('点击了x按钮');
             expect($('.ui-dialog').length).to.be(0);
         });
 
@@ -138,3 +152,4 @@ define(function(require) {
 
 });
 
+            });

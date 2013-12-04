@@ -50,7 +50,15 @@ confirmBox.on('confirm', function() {
 });
 ```
 
-### close *继承自 Dialog*
+### cancel
+
+点击取消按钮时触发。
+
+```js
+confirmBox.on('cancel', function() {
+
+});
+```
 
 ## 最佳实践
 
@@ -61,7 +69,7 @@ new ConfirmBox({
     trigger: '#trigger',
     title: '我是标题',
     message: '我是内容',
-    onConfirm: function() {            
+    onConfirm: function() {
         this.hide();
     }
 }).show();
@@ -73,9 +81,9 @@ new ConfirmBox({
 
 弹出信息确认框。
 
-### ConfirmBox.confirm(msg, title, callback, options?) `static`
+### ConfirmBox.confirm(msg, title, onConfirm, onCancel?, options?) `static`
 
-弹出信息确认取消框。
+弹出信息确认取消框，confirm 方法支持第二个 callback 参数 `onCancel`，可以忽略。
 
 ### ConfirmBox.show(msg, callback, options?) `static`
 
@@ -89,6 +97,14 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
 });
 ```
 
+```js
+ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
+    console.log('点击了确认按钮');
+}, function() {
+    console.log('点击了取消按钮');
+});
+```
+
 还可以利用 options 参数进行一些个性化定制，options 和 ConfirmBox 的配置项一致，并且优先级大于静态方法前面的参数。
 
 ```js
@@ -96,7 +112,7 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
     console.log('点击了确认按钮');
 }, {
     beforeHide: function() {
-        console.log('点击了确认按钮');
+        console.log('关闭时触发');
     },
     closeTpl: '',       // 关闭的按钮设置为空
     hasMask: false,     // 没有遮罩层
@@ -107,7 +123,7 @@ ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() 
 ```js
 ConfirmBox.confirm('是否要删除这个类目', '确认删除框', function() {
     console.log('点击了确认按钮');
-}, {    
+}, {
     title: '对话框' // 标题将改为 对话框
 });
 ```

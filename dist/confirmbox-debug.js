@@ -31,6 +31,7 @@ define("arale/dialog/1.2.5/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
             },
             "click [data-role=cancel]": function(e) {
                 e.preventDefault();
+                this.trigger("cancel");
                 this.hide();
             }
         },
@@ -62,13 +63,21 @@ define("arale/dialog/1.2.5/confirmbox-debug", [ "$-debug", "./dialog-debug", "ar
             this.destroy();
         });
     };
-    ConfirmBox.confirm = function(message, title, callback, options) {
+    ConfirmBox.confirm = function(message, title, onConfirm, onCancel, options) {
+        // support confirm(message, title, onConfirm, options)
+        if (typeof onCancel === "object" && !options) {
+            options = onCancel;
+        }
         var defaults = {
             message: message,
             title: title || "确认框",
             closeTpl: "",
             onConfirm: function() {
-                callback && callback();
+                onConfirm && onConfirm();
+                this.hide();
+            },
+            onCancel: function() {
+                onCancel && onCancel();
                 this.hide();
             }
         };

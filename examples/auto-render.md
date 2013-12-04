@@ -1,6 +1,6 @@
 # Dialog - DATA-API方式
 
-- order: 5
+- order: 4
 
 ---
 
