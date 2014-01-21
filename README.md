@@ -84,7 +84,7 @@ seajs.use('dialog', function(Dialog) {
 
 ### initialHeight *number|string*
 
-内嵌 Iframe 页面时对话框的初始高度，默认为 300px 。`iframe 类型时有效`
+内嵌 Iframe 页面时对话框的初始高度（onload 后会发生变化），默认为 300px 。`只有当对话框是 iframe 类型时有效`
 
 
 > 其他配置如定位参数 `align` 等请参照 [overlay](http://aralejs.org/overlay/)。
