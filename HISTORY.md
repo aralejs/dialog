@@ -6,7 +6,7 @@
 
 `improved` 升级 templatable 到 0.9.2 。
 
-`improved` 在文档中增加取消 ESC 关闭浮层的功能说明。
+`improved` 在文档中增加取消 ESC 关闭浮层的[功能说明](http://aralejs.org/dialog/examples/custom.html#6-%E5%8F%96%E6%B6%88-esc-%E5%85%B3%E9%97%AD%E6%B5%AE%E5%B1%82%E7%9A%84%E5%8A%9F%E8%83%BD)。
 
 ## 1.2.5
 
