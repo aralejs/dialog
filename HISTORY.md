@@ -2,6 +2,12 @@
 
 ---
 
+## 1.2.6
+
+`improved` 升级 templatable 到 0.9.2 。
+
+`improved` 在文档中增加取消 ESC 关闭浮层的功能说明。
+
 ## 1.2.5
 
 `improved` 升级 overlay 到 1.1.4。

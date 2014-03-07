@@ -1,7 +1,7 @@
 {
     "name": "dialog",
     "family": "arale",
-    "version": "1.2.5",
+    "version": "1.2.6",
     "description": "Dialog 是通用对话框容器，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义以及模态对话框等功能。",
     "keywords": [
         "widget",
@@ -31,7 +31,7 @@
             "mask": "arale/overlay/1.1.4/mask",
             "easing": "arale/easing/1.0.0/easing",
             "events": "arale/events/1.1.0/events",
-            "templatable": "arale/templatable/0.9.1/templatable"
+            "templatable": "arale/templatable/0.9.2/templatable"
         },
         "output": ["dialog.js", "confirmbox.js", "dialog.css"],
         "styleBox": true

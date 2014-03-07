@@ -285,7 +285,7 @@ define(function(require, exports, module) {
 
         // 绑定键盘事件，ESC关闭窗口
         _setupKeyEvents: function() {
-            this.delegateEvents($(document), 'keyup', function(e) {
+            this.delegateEvents($(document), 'keyup.esc', function(e) {
                 if (e.keyCode === 27) {
                     this.get('visible') && this.hide();
                 }
