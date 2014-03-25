@@ -37,6 +37,10 @@ define(function(require, exports, module) {
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {
                         this._type = 'iframe';
+                        // 用 ajax 的方式而不是 iframe 进行载入
+                        if (val.indexOf('?ajax') > 0 || val.indexOf('&ajax') > 0) {
+                            this._ajax = true;
+                        }
                     }
                     return val;
                 }
@@ -117,10 +121,15 @@ define(function(require, exports, module) {
         show: function() {
             // iframe 要在载入完成才显示
             if (this._type === 'iframe') {
-                // iframe 还未请求完，先设置一个固定高度
-                !this.get('height') &&
-                    this.contentElement.css('height', this.get('initialHeight'));
-                this._showIframe();
+                // ajax 读入内容并 append 到容器中
+                if (this._ajax) {
+                    this._ajaxHtml();
+                } else {
+                    // iframe 还未请求完，先设置一个固定高度
+                    !this.get('height') &&
+                        this.contentElement.css('height', this.get('initialHeight'));
+                    this._showIframe();
+                }
             }
 
             Dialog.superclass.show.call(this);
@@ -384,6 +393,15 @@ define(function(require, exports, module) {
                 clearInterval(this._interval);
                 delete this._interval;
             }
+        },
+
+        _ajaxHtml: function() {
+            var that = this;
+            $.get(this.get('content'), function(data) {
+                that.contentElement.html(data);
+                that._setPosition();
+                that.trigger('complete:show');
+            });
         }
 
     });

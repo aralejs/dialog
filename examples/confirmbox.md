@@ -1,6 +1,6 @@
 # ConfirmBox - 标准模态对话框
 
-- order: 5
+- order: 6
 
 ---
 
