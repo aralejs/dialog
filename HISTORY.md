@@ -2,6 +2,11 @@
 
 ---
 
+## 1.3.0
+
+`new` 增加了 ajax 载入页面内容的[方式](http://aralejs.org/dialog/examples/ajax.html)。
+
+
 ## 1.2.6
 
 `improved` 升级 templatable 到 0.9.2 。
