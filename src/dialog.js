@@ -397,8 +397,7 @@ define(function(require, exports, module) {
 
         _ajaxHtml: function() {
             var that = this;
-            $.get(this.get('content'), function(data) {
-                that.contentElement.html(data);
+            this.contentElement.load(this.get('content'), function() {
                 that._setPosition();
                 that.trigger('complete:show');
             });

@@ -137,11 +137,11 @@ define(function(require) {
                 var spy = sinon.spy(example, '_onRenderHeight');
 
                 example.show();
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(spy.withArgs('200px').called).to.be.ok();
                     spy.restore();
                     done();
-                }, 500);
+                });
             });
 
             it('should init without height when type is iframe', function(done) {
@@ -153,13 +153,13 @@ define(function(require) {
                 example.show();
                 expect(example.element.height()).to.be(300);
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     example.$('iframe')[0].contentWindow.document
                         .getElementById('container').style.height = '400px';
                     example._syncHeight();
                     expect(example.element.height()).to.be(400);
                     done();
-                }, 700);
+                });
             });
 
             it('should be initialHeight when iframe is not loaded yet', function(done) {
@@ -172,10 +172,10 @@ define(function(require) {
                 example.show();
                 expect(example.element.height()).to.be(100);
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(example.element.height()).to.be(300);
                     done();
-                }, 700);
+                });
             });
 
             it('should be align top when dialog element is very high', function() {
@@ -197,12 +197,12 @@ define(function(require) {
                     content: './height300px.html'
                 }).show();
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(example._interval).to.be.ok();
                     example.hide();
                     expect(example._interval).to.be(undefined);
                     done();
-                }, 600);
+                });
             });
 
             it('should stop when set height', function(done) {
@@ -212,10 +212,10 @@ define(function(require) {
                     content: './height300px.html'
                 }).show();
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(example._interval).to.be(undefined);
                     done();
-                }, 500);
+                });
             });
 
             it('should be fixed height when set height', function(done) {
@@ -227,10 +227,10 @@ define(function(require) {
                 expect(example.get('height')).to.be(200);
                 example.show();
                 expect(example.element.height()).to.be(200);
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(example.element.height()).to.be(200);
                     done();
-                }, 500);
+                });
             });
 
             it('should stop when autoFit is false', function(done) {
@@ -240,10 +240,10 @@ define(function(require) {
                     content: 'http://jsfiddle.net/afc163/CzQKp/show/'
                 }).show();
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(example._interval).to.be(undefined);
                     done();
-                }, 500);
+                });
             });
         });
 
@@ -345,12 +345,12 @@ define(function(require) {
 
                 example.show();
 
-                setTimeout(function() {
+                example.on('complete:show', function() {
                     expect(syncHeight.callCount).to.be(1);
                     expect(setPosition.callCount).to.be(3);
                     expect(onRenderHeight.callCount).to.be(0);
                     done();
-                }, 600);
+                });
             });
 
             it('should hide close link', function() {
@@ -364,6 +364,18 @@ define(function(require) {
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(true);
                 example.set('closeTpl', '');
                 expect(example.element.find('[data-role=close]').is(':visible')).to.be(false);            
+            });
+
+            it('should have a worked complete:show event', function(done) {
+                example = new Dialog({
+                    content: './height200px.html'
+                });
+                example.on('complete:show', function() {
+                    expect(example.$('iframe').data('events')).to.be(undefined);
+                    done();
+                });
+                example.show();
+                expect(example.$('iframe').data('events').load).to.be.a('object');
             });
 
         });
@@ -468,6 +480,23 @@ define(function(require) {
                     expect(example.element.css('opacity')).to.be.within(0, 1);
                     done();
                 }, 30);
+            });
+        });
+
+        describe('ajax', function(done) {
+            it('ajax load page', function(done) {
+                example = new Dialog({
+                    content: './height300px.html?ajax'
+                });
+                expect(example._type).to.be('iframe');
+                expect(example._ajax).to.be(true);
+
+                example.on('complete:show', function() {
+                    expect(example.$('iframe').length).to.be(0); // no iframe but ajax
+                    expect(example.$('#container').length).to.be(1);
+                    done();
+                });
+                example.render().show();
             });
         });
 

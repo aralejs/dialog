@@ -1,4 +1,4 @@
-define("arale/dialog/1.2.6/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.4/mask-debug", "arale/templatable/0.9.2/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+define("arale/dialog/1.3.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.4/mask-debug", "arale/templatable/0.9.2/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.4/overlay-debug"), mask = require("arale/overlay/1.1.4/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.2/templatable-debug");
     // Dialog
     // ---
@@ -25,6 +25,10 @@ define("arale/dialog/1.2.6/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
                     // 判断是否是 url 地址
                     if (/^(https?:\/\/|\/|\.\/|\.\.\/)/.test(val)) {
                         this._type = "iframe";
+                        // 用 ajax 的方式而不是 iframe 进行载入
+                        if (val.indexOf("?ajax") > 0 || val.indexOf("&ajax") > 0) {
+                            this._ajax = true;
+                        }
                     }
                     return val;
                 }
@@ -91,9 +95,14 @@ define("arale/dialog/1.2.6/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
         show: function() {
             // iframe 要在载入完成才显示
             if (this._type === "iframe") {
-                // iframe 还未请求完，先设置一个固定高度
-                !this.get("height") && this.contentElement.css("height", this.get("initialHeight"));
-                this._showIframe();
+                // ajax 读入内容并 append 到容器中
+                if (this._ajax) {
+                    this._ajaxHtml();
+                } else {
+                    // iframe 还未请求完，先设置一个固定高度
+                    !this.get("height") && this.contentElement.css("height", this.get("initialHeight"));
+                    this._showIframe();
+                }
             }
             Dialog.superclass.show.call(this);
             return this;
@@ -328,6 +337,13 @@ define("arale/dialog/1.2.6/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
                 clearInterval(this._interval);
                 delete this._interval;
             }
+        },
+        _ajaxHtml: function() {
+            var that = this;
+            this.contentElement.load(this.get("content"), function() {
+                that._setPosition();
+                that.trigger("complete:show");
+            });
         }
     });
     module.exports = Dialog;
@@ -350,10 +366,10 @@ define("arale/dialog/1.2.6/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_2_6";
+    module.exports.outerBoxClass = "arale-dialog-1_3_0";
 });
 
-define("arale/dialog/1.2.6/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.3.0/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
