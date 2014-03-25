@@ -444,8 +444,10 @@ define("arale/dialog/1.3.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
         },
         _ajaxHtml: function() {
             var that = this;
+            this.contentElement.css("height", this.get("initialHeight"));
             this.contentElement.load(this.get("content"), function() {
                 that._setPosition();
+                that.contentElement.css("height", "");
                 that.trigger("complete:show");
             });
         }
