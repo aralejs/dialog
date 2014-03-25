@@ -105,7 +105,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 });
 ````
 
-### 6. 点击遮罩不关闭对话框
+### 6. 取消 ESC 关闭浮层的功能
 
 <button id="example6">打开对话框</button>
 
@@ -113,11 +113,9 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 seajs.use(['dialog','$'], function(Dialog, $) {
     var example = new Dialog({
         trigger: '#example6',
-        height: 450,
-        hasMask: {
-            hideOnClick: false
-        }
+        content: '按 ESC 将无法关闭这个对话框',
+        height: 200
     });
+    example.undelegateEvents(document, 'keyup.esc');
 });
 ````
-
