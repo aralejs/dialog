@@ -2,6 +2,10 @@
 
 ---
 
+## 1.4.0
+
+迁移到 spm@3.x
+
 ## 1.3.0
 
 `new` 增加了 ajax 载入页面内容的[方式](http://aralejs.org/dialog/examples/ajax.html)。
