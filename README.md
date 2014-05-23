@@ -2,6 +2,7 @@
 
 ---
 
+[![spm package](http://spmjs.io/badge/arale-dialog)](http://spmjs.io/package/arale-dialog)
 [![Build Status](https://secure.travis-ci.org/aralejs/dialog.png)](https://travis-ci.org/aralejs/dialog)
 [![Coverage Status](https://coveralls.io/repos/aralejs/dialog/badge.png?branch=master)](https://coveralls.io/r/aralejs/dialog)
 
