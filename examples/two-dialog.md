@@ -12,7 +12,8 @@
 <button id="example2" style="display: none">打开第二个对话框</button>
 
 ````javascript
-seajs.use(['dialog', '$', 'confirmbox'], function(Dialog, $, Confirmbox) {
+seajs.use(['dialog', 'jquery'], function(Dialog, $) {
+    var Confirmbox = Dialog.ConfirmBox;
     var d1 = new Dialog({
         trigger: '#example1',
         height: 400,
@@ -25,6 +26,5 @@ seajs.use(['dialog', '$', 'confirmbox'], function(Dialog, $, Confirmbox) {
     $('#example2').click(function() {
         Confirmbox.alert('xxx');
     });
-
 });
 ````

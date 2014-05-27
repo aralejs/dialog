@@ -40,7 +40,7 @@ seajs.use(['dialog'], function(Dialog) {
 
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     new Dialog({
         trigger: '#example2',
         content: $('#example2-dom')
@@ -54,7 +54,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 <button id="example3">传入了 html 标签</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     new Dialog({
         trigger: '#example3',
         content: '<div style="padding:20px;">传入了 html 标签</div>'
@@ -67,7 +67,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 <button id="example4">内嵌 iframe</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     new Dialog({
         trigger: '#example4',
         content: './iframe.html'
@@ -92,7 +92,7 @@ document.getElementById('close').onclick = function(){
 </div>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     new Dialog({
         trigger: '#example5 button',
         height: '400px'
@@ -112,7 +112,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 </div>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     new Dialog({
         trigger: '#example6 button',
         height: '160px',
@@ -144,7 +144,7 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example8">打开初始高度 150px 的对话框</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     var example = new Dialog({
         trigger: '#example8',
         content: './iframe.html',

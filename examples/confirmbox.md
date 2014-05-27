@@ -15,7 +15,8 @@
 <input type="button" id="trigger1" value="默认样式对话框" />
 
 <script>
-seajs.use(['confirmbox'], function(ConfirmBox) {
+seajs.use(['dialog'], function(Dialog) {
+    var ConfirmBox = Dialog.ConfirmBox;
     var cb = new ConfirmBox({
         trigger: '#trigger1',
         title: '我真是标题啊',
@@ -40,7 +41,8 @@ seajs.use(['confirmbox'], function(ConfirmBox) {
 <input type="button" id="trigger2" value="自定义按钮对话框" />
 
 <script>
-seajs.use(['confirmbox'], function(ConfirmBox) {
+seajs.use(['dialog'], function(Dialog) {
+    var ConfirmBox = Dialog.ConfirmBox;
     var cb = new ConfirmBox({
         trigger: '#trigger2',
         title: '我真是标题啊',
@@ -61,7 +63,8 @@ seajs.use(['confirmbox'], function(ConfirmBox) {
 <input type="button" id="trigger14" value="ConfirmBox.show()" />
 
 <script>
-seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
+seajs.use(['dialog', 'jquery'], function(Dialog, $) {
+    var ConfirmBox = Dialog.ConfirmBox;
     $('#trigger12').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.alert');
     });
@@ -95,7 +98,8 @@ seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
 <input type="button" id="trigger3" value="ConfirmBox.show() 没有mask" />
 
 <script>
-seajs.use(['confirmbox', '$'], function(ConfirmBox, $) {
+seajs.use(['dialog', 'jquery'], function(Dialog, $) {
+  var ConfirmBox = Dialog.ConfirmBox;
 
     $('#trigger1').click(function() {
         ConfirmBox.alert('静态方法ConfirmBox.alert', function() {

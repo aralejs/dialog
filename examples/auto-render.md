@@ -15,7 +15,7 @@
 ````
 
 ````js
-seajs.use(['arale/widget/1.1.1/widget'], function(Widget) {
+seajs.use(['arale-widget'], function(Widget) {
     Widget.autoRenderAll();
 });
 ````

@@ -91,7 +91,7 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example5-2">还可以动态改变它</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     var example = new Dialog({
         trigger: '#example5-1',
         closeTpl: '点我可以关闭对话框',
@@ -110,7 +110,7 @@ seajs.use(['dialog','$'], function(Dialog, $) {
 <button id="example6">打开对话框</button>
 
 ````javascript
-seajs.use(['dialog','$'], function(Dialog, $) {
+seajs.use(['dialog','jquery'], function(Dialog, $) {
     var example = new Dialog({
         trigger: '#example6',
         content: '按 ESC 将无法关闭这个对话框',
