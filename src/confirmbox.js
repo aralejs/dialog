@@ -2,7 +2,6 @@ var $ = require('jquery'),
     Dialog = require('./dialog');
 
 var template = require('./confirmbox.handlebars');
-require('./dialog.css');
 
 // ConfirmBox
 // -------

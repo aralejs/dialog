@@ -12,6 +12,7 @@
 
 
 ````iframe:250
+<link href="../src/dialog.css" rel="stylesheet">
 <input type="button" id="trigger1" value="默认样式对话框" />
 
 <script>
@@ -38,6 +39,7 @@ seajs.use(['dialog'], function(Dialog) {
 
 
 ````iframe:250
+<link href="../src/dialog.css" rel="stylesheet">
 <input type="button" id="trigger2" value="自定义按钮对话框" />
 
 <script>
@@ -57,6 +59,7 @@ seajs.use(['dialog'], function(Dialog) {
 ## ConfirmBox 的静态方法 `常用`
 
 ````iframe:250
+<link href="../src/dialog.css" rel="stylesheet">
 <input type="button" id="trigger12" value="ConfirmBox.alert()" />
 <input type="button" id="trigger13" value="ConfirmBox.confirm()" />
 <input type="button" id="trigger13-1" value="ConfirmBox.confirm() with onCancel" />
@@ -93,6 +96,7 @@ seajs.use(['dialog', 'jquery'], function(Dialog, $) {
 ## ConfirmBox 的静态方法自定义参数
 
 ````iframe:250
+<link href="../src/dialog.css" rel="stylesheet">
 <input type="button" id="trigger1" value="ConfirmBox.alert() 宽度300" />
 <input type="button" id="trigger2" value="ConfirmBox.confirm() 有关闭的X" />
 <input type="button" id="trigger3" value="ConfirmBox.show() 没有mask" />

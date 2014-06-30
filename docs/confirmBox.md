@@ -4,7 +4,7 @@
 
 ---
 
-ConfirmBox 继承自 Dialog 组件，是具有默认样式和完善功能的对话框，可直接使用。（与 dialog 不同，confirmbox 点击遮罩层默认不关闭对话框）
+ConfirmBox 继承自 Dialog 组件，是具有默认模板和完善功能的对话框，可直接使用。（与 dialog 不同，confirmbox 点击遮罩层默认不关闭对话框）
 
 [演示](http://aralejs.org/dialog/examples/confirmbox.html)
 
