@@ -5,6 +5,8 @@ var $ = require('jquery');
 var ua = (window.navigator.userAgent || "").toLowerCase();
 var mask = require('arale-overlay').Mask;
 
+require('../src/dialog.css');
+
 if (ua.indexOf("msie") !== -1) {
   mocha.setup({
     ignoreLeaks: true
