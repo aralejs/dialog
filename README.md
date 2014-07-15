@@ -111,5 +111,19 @@ dialogInstanse.on('complete:show', function() {
 > close 事件已经删除，可以使用 `.after('hide', function() {})` 来代替。
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aralejs/dialog/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+## 委托绑定
+
+需要动态加载 trigger 时，可以使用如下方式进行委托绑定。
+
+```js
+// 不初始化 trigger
+var d = new Dialog({
+  content: '内容'
+});
+
+$('document').on('click', '.selector', function() {
+  d.activeTrigger = $(this);
+  d.show();
+});
+```
 
