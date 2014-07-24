@@ -10,7 +10,7 @@
 
 本模块分为两个子组件：Dialog 和 ConfirmBox，前者提供抽象的基础容器功能，无绑定 UI 样式，后者在前者的基础上提供模态对话框的功能并提供完善的 UI 样式。
 
-Dialog 组件预设了默认样式，请单独引用 [dialog.css](http://aralejs.org/dialog/src/dialog.css)。
+Dialog 组件提供了默认样式，请单独引用 [dialog.css](https://github.com/aralejs/dialog/blob/master/src/dialog.css)。
 
 ![对话框图](https://i.alipayobjects.com/e/201308/xqEbLhq3p.png)
 
