@@ -1,4 +1,4 @@
-define("arale/dialog/1.3.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.4/mask-debug", "arale/templatable/0.9.2/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
+define("arale/dialog/1.3.1/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug", "arale/overlay/1.1.4/mask-debug", "arale/templatable/0.9.2/templatable-debug", "gallery/handlebars/1.0.2/handlebars-debug", "./dialog-debug.handlebars" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("arale/overlay/1.1.4/overlay-debug"), mask = require("arale/overlay/1.1.4/mask-debug"), Events = require("arale/events/1.1.0/events-debug"), Templatable = require("arale/templatable/0.9.2/templatable-debug");
     // Dialog
     // ---
@@ -56,9 +56,9 @@ define("arale/dialog/1.3.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
                     baseXY: [ "50%", "42%" ]
                 },
                 getter: function(val) {
-                    // 高度超过一屏的情况
+                    // 高度超过窗口的 42/50 浮层头部顶住窗口
                     // https://github.com/aralejs/dialog/issues/41
-                    if (this.element.height() > $(window).height()) {
+                    if (this.element.height() > $(window).height() * .84) {
                         return {
                             selfXY: [ "50%", "0" ],
                             baseXY: [ "50%", "0" ]
@@ -368,10 +368,10 @@ define("arale/dialog/1.3.0/dialog-debug", [ "$-debug", "arale/overlay/1.1.4/over
             return D.body.scrollHeight;
         }
     }
-    module.exports.outerBoxClass = "arale-dialog-1_3_0";
+    module.exports.outerBoxClass = "arale-dialog-1_3_1";
 });
 
-define("arale/dialog/1.3.0/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
+define("arale/dialog/1.3.1/dialog-debug.handlebars", [ "gallery/handlebars/1.0.2/runtime-debug" ], function(require, exports, module) {
     var Handlebars = require("gallery/handlebars/1.0.2/runtime-debug");
     var template = Handlebars.template;
     module.exports = template(function(Handlebars, depth0, helpers, partials, data) {
