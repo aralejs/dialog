@@ -2,6 +2,10 @@
 
 ---
 
+## 1.3.1
+
+`tag:fixed` #80 修复 top 为负数的场景
+
 ## 1.3.0
 
 `new` 增加了 ajax 载入页面内容的[方式](http://aralejs.org/dialog/examples/ajax.html)。
