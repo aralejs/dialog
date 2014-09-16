@@ -74,9 +74,9 @@ var Dialog = Overlay.extend({
         baseXY: ['50%', '42%']
       },
       getter: function (val) {
-        // 高度超过一屏的情况
+        // 高度超过窗口的 42/50 浮层头部顶住窗口
         // https://github.com/aralejs/dialog/issues/41
-        if (this.element.height() > $(window).height()) {
+        if (this.element.height() > $(window).height() * 0.84) {
           return {
             selfXY: ['50%', '0'],
             baseXY: ['50%', '0']
