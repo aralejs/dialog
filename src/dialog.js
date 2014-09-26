@@ -67,7 +67,7 @@ var Dialog = Overlay.extend({
     // 是否自适应高度
     autoFit: true,
 
-    // 默认定位居中
+    // 默认定位左右居中，略微靠上
     align: {
       value: {
         selfXY: ['50%', '50%'],
