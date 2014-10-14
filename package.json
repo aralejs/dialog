@@ -35,10 +35,6 @@
       "expect.js": "0.3.1",
       "sinon": "1.6.0"
     },
-    "engines": {
-      "seajs": "2.2.1",
-      "seajs-text": "1.1.0"
-    },
     "buildArgs": "--ignore jquery --styleBox"
   }
 }
