@@ -12,7 +12,7 @@
 
 Dialog 组件提供了默认样式，请单独引用 [dialog.css](https://github.com/aralejs/dialog/blob/master/src/dialog.css)。
 
-![对话框图](https://t.alipayobjects.com/images/T1bexeXgxiXXXXXXXX.png)
+<img width="600" src="https://t.alipayobjects.com/images/T1bexeXgxiXXXXXXXX.png">
 
 Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
 
