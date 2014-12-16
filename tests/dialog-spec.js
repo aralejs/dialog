@@ -404,7 +404,7 @@ describe('dialog', function () {
       expect(example.element.is(':visible')).to.be(true);
     });
 
-    it('should not hide the mask when last dialog hide', function () {
+    it('should hide the mask when last dialog hide', function () {
       example = new Dialog({
         content: '1111'
       });
