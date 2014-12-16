@@ -2,6 +2,12 @@
 
 ---
 
+## 1.4.1
+
+`fixed` [#87](https://github.com/aralejs/dialog/pull/87) 修复两个对话框关闭时的遮罩显示问题。
+`fixed` #80 修复 top 为负数的场景。
+`fixed` #71 删除了多余的 arale-easing 依赖。
+
 ## 1.4.0
 
 `changed` 迁移到 spm@3.x
@@ -10,7 +16,6 @@
 ## 1.3.0
 
 `new` 增加了 ajax 载入页面内容的[方式](http://aralejs.org/dialog/examples/ajax.html)。
-
 
 ## 1.2.6
 
