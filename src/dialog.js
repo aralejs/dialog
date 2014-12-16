@@ -264,12 +264,11 @@ var Dialog = Overlay.extend({
       return;
     }
 
-    if (mask._dialogs) {
-      // 当且仅当最后一个 dialog 是当前 dialog 时，才移除
-      // 因为 hide 与 destroy 都会调用 _hideMask，此举用于避免错误移除
-      if (mask._dialogs[mask._dialogs.length - 1] === this) {
-        mask._dialogs.pop();
-      }
+    // 当且仅当最后一个 dialog 是当前 dialog 时，才移除
+    // 因为 hide 与 destroy 都会调用 _hideMask，此举用于避免错误移除
+    if (mask._dialogs &&
+        mask._dialogs[mask._dialogs.length - 1] === this) {
+      mask._dialogs.pop();
     }
 
     if (mask._dialogs && mask._dialogs.length > 0) {
