@@ -7,6 +7,7 @@ var mask = require('arale-overlay').Mask;
 require('../src/dialog.css');
 
 mocha.setup({
+  timeout: null,
   ignoreLeaks: true
 });
 

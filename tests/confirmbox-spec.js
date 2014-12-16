@@ -9,6 +9,7 @@ require('../src/dialog.css');
 
 if (ua.indexOf("msie") !== -1) {
   mocha.setup({
+    timeout: null,
     ignoreLeaks: true
   });
 }
