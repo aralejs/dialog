@@ -69,13 +69,13 @@ describe('dialog', function () {
 
     it('is absolute url', function () {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/'
+        content: 'http://spmjs.io/'
       });
       example.render().show();
 
       var iframe = example.$('iframe');
       expect(iframe.length).to.be(1);
-      expect(iframe.attr('src').replace(/\?t=\d*$/, '')).to.be('http://jsfiddle.net/afc163/CzQKp/show/');
+      expect(iframe.attr('src').replace(/\?t=\d*$/, '')).to.be('http://spmjs.io/');
     });
 
     it('is invalid url', function () {
@@ -217,7 +217,7 @@ describe('dialog', function () {
 
     it('should be fixed height when set height', function (done) {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/',
+        content: 'http://spmjs.io',
         height: 200,
         autoFit: true
       });
@@ -234,7 +234,7 @@ describe('dialog', function () {
       var isComplete = false;
       example = new Dialog({
         autoFit: false,
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/'
+        content: 'http://spmjs.io/'
       }).show();
 
       example.on('complete:show', function () {
@@ -261,7 +261,7 @@ describe('dialog', function () {
 
     it('click close to hide', function () {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/'
+        content: 'http://spmjs.io/'
       });
       expect(example.get('visible')).not.to.be.ok();
       example.show();
@@ -272,7 +272,7 @@ describe('dialog', function () {
 
     it('bind close event', function () {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/'
+        content: 'http://spmjs.io/'
       });
       example.show();
       expect(example.get('visible')).to.be.ok();
@@ -296,7 +296,7 @@ describe('dialog', function () {
 
     it('bind key close event when iframe', function () {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/'
+        content: 'http://spmjs.io/'
       });
       example.show();
       expect(example.get('visible')).to.be.ok();
@@ -321,11 +321,11 @@ describe('dialog', function () {
 
     it('fixUrl support hash #25', function () {
       example = new Dialog({
-        content: 'http://jsfiddle.net/afc163/CzQKp/show/?param=aa#'
+        content: 'http://spmjs.io/?param=aa#'
       }).render().show();
 
       var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
-      expect(url).to.be('http://jsfiddle.net/afc163/CzQKp/show/?param=aa#');
+      expect(url).to.be('http://spmjs.io/?param=aa#');
     });
 
     it('should call onload once', function (done) {
