@@ -432,6 +432,37 @@ describe('dialog', function () {
       example2.destroy();
     });
 
+    it('should not hide the mask when other dialog is visible', function() {
+      example = new Dialog({
+        content: 'foo'
+      });
+      example.show();
+
+      expect(mask._dialogs.length).to.be(1);
+      expect(mask.get('visible')).to.be(true);
+      expect(mask.element.next()[0]).to.be(example.element[0]);
+
+      var example2 = new Dialog({
+        content: 'bar'
+      }).after('hide', function() {
+        this.destroy();
+      });
+
+      example2.show();
+      expect(mask._dialogs.length).to.be(2);
+      expect(mask.get('visible')).to.be(true);
+      expect(mask.element.next()[0]).to.be(example2.element[0]);
+
+      example2.hide(); // will destroy example2
+      expect(mask._dialogs.length).to.be(1);
+      expect(mask.get('visible')).to.be(true);
+      expect(mask.element.next()[0]).to.be(example.element[0]);
+
+      example.hide();
+      expect(mask._dialogs.length).to.be(0);
+      expect(mask.get('visible')).to.be(false);
+    });
+
     it('set hasMask works', function () {
       example = new Dialog({
         content: 'xxx'
