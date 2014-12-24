@@ -40,7 +40,7 @@ new Dialog({
 
 ````javascript
 var $ = require('jquery');
-var Dialog = require('dialog');
+var Dialog = require('../dialog');
 
 new Dialog({
     trigger: '#example2',
