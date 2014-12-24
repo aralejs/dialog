@@ -21,22 +21,22 @@ Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 
 ## 最佳实践
 
 ```js
-seajs.use('dialog', function(Dialog) {
-    var o = new Dialog({
-        trigger: '#trigger',
-        content: '<div>这是 dialog 容器的内容</div>'
-    });
+var Dialog = require('dialog');
+
+var o = new Dialog({
+    trigger: '#trigger',
+    content: '<div>这是 dialog 容器的内容</div>'
 });
 ```
 
 内嵌 Iframe：
 
 ```js
-seajs.use('dialog', function(Dialog) {
-    var o = new Dialog({
-        trigger: '#trigger',
-        content: 'https://www.alipay.com/'
-    });
+var Dialog = require('dialog');
+
+var o = new Dialog({
+    trigger: '#trigger',
+    content: 'https://www.alipay.com/'
 });
 ```
 

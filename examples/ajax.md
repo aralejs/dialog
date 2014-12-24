@@ -12,22 +12,20 @@
 <button id="example1">打开对话框（ajax）</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example = new Dialog({
-        trigger: '#example1',
-        content: './ajax-page.html?ajax'
-    });
+var Dialog = require('dialog');
+var example = new Dialog({
+    trigger: '#example1',
+    content: './ajax-page.html?ajax'
 });
 ````
 
 <button id="example2">打开对话框（iframe）</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example = new Dialog({
-        trigger: '#example2',
-        content: './ajax-page.html'
-    });
+var Dialog = require('dialog');
+var example = new Dialog({
+    trigger: '#example2',
+    content: './ajax-page.html'
 });
 ````
 

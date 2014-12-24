@@ -12,19 +12,20 @@
 <button id="example2" style="display: none">打开第二个对话框</button>
 
 ````javascript
-seajs.use(['dialog', 'jquery'], function(Dialog, $) {
-    var Confirmbox = Dialog.ConfirmBox;
-    var d1 = new Dialog({
-        trigger: '#example1',
-        height: 400,
-        content: '#example2'
-    });
-    d1.after('show', function() {
-        $('#example2').show();
-    });
+var $ = require('jquery');
+var Dialog = require('dialog');
+var Confirmbox = Dialog.ConfirmBox;
 
-    $('#example2').click(function() {
-        Confirmbox.alert('xxx');
-    });
+var d1 = new Dialog({
+    trigger: '#example1',
+    height: 400,
+    content: '#example2'
+});
+d1.after('show', function() {
+    $('#example2').show();
+});
+
+$('#example2').click(function() {
+    Confirmbox.alert('xxx');
 });
 ````
