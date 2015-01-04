@@ -367,11 +367,11 @@ describe('dialog', function () {
         content: './height200px.html'
       });
       example.on('complete:show', function () {
-        expect(example.$('iframe').data('events')).to.be(undefined);
+        expect($._data(example.$('iframe')[0], "events")).to.be(undefined);
         done();
       });
       example.show();
-      expect(example.$('iframe').data('events').load).to.be.a('object');
+      expect($._data(example.$('iframe')[0], "events").load).to.be.a('object');
     });
 
   });
