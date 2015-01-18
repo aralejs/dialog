@@ -2,7 +2,9 @@ var $ = require('jquery'),
     Overlay = require('arale-overlay'),
     mask = Overlay.Mask,
     Events = require('arale-events'),
-    Templatable = require('arale-templatable');
+    Templatable = require('arale-templatable'),
+    Messenger = require('arale-messenger'),
+    JSON = require('json');
 
 // Dialog
 // ---
@@ -135,9 +137,12 @@ var Dialog = Overlay.extend({
   hide: function () {
     // 把 iframe 状态复原
     if (this._type === 'iframe' && this.iframe) {
-      this.iframe.attr({
-        src: 'javascript:\'\';'
-      });
+      // 如果是跨域iframe，会抛出异常
+      if (!isCrossDomainIframe(this.iframe)) {
+        this.iframe.attr({
+          src: 'javascript:\'\';'
+        });
+      }
       // 原来只是将 iframe 的状态复原
       // 但是发现在 IE6 下，将 src 置为 javascript:''; 会出现 404 页面
       this.iframe.remove();
@@ -321,14 +326,18 @@ var Dialog = Overlay.extend({
       if (!that.get('visible')) {
         return;
       }
-      // 绑定自动处理高度的事件
-      if (that.get('autoFit')) {
-        clearInterval(that._interval);
-        that._interval = setInterval(function () {
-          that._syncHeight();
-        }, 300);
+
+      if (!isCrossDomainIframe(that.iframe)) {
+        // 绑定自动处理高度的事件
+        if (that.get('autoFit')) {
+          clearInterval(that._interval);
+          that._interval = setInterval(function () {
+            that._syncHeight();
+          }, 300);
+        }
+        that._syncHeight();
       }
-      that._syncHeight();
+
       that._setPosition();
       that.trigger('complete:show');
     });
@@ -364,6 +373,31 @@ var Dialog = Overlay.extend({
     this.iframe[0].on('close', function () {
       that.hide();
     });
+
+    // 跨域则使用arale-messenger进行通信
+    var m = new Messenger('parent', 'arale-dialog');
+    m.addTarget(this.iframe[0].contentWindow, 'iframe1');
+    m.listen(function (data) {
+      data = JSON.parse(data);
+      switch (data.event) {
+        case 'close':
+          that.hide();
+          break;
+        case 'syncHeight':
+          that._setHeight(data.height.toString().slice(-2) === 'px' ? data.height : data.height + 'px');
+          break;
+        default:
+          break;
+      }
+    });
+
+  },
+
+  _setHeight: function (h) {
+    this.contentElement.css('height', h);
+    // force to reflow in ie6
+    // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
+    this.element[0].className = this.element[0].className;
   },
 
   _syncHeight: function () {
@@ -384,10 +418,8 @@ var Dialog = Overlay.extend({
           delete this._interval;
         }
       }
-      this.contentElement.css('height', h);
-      // force to reflow in ie6
-      // http://44ux.com/blog/2011/08/24/ie67-reflow-bug/
-      this.element[0].className = this.element[0].className;
+      this._setHeight(h);
+
     } else {
       clearInterval(this._interval);
       delete this._interval;
@@ -411,8 +443,6 @@ module.exports = Dialog;
 // Helpers
 // ----
 // 让目标节点可以被 Tab
-
-
 function toTabed(element) {
   if (element.attr('tabindex') == null) {
     element.attr('tabindex', '-1');
@@ -420,16 +450,25 @@ function toTabed(element) {
 }
 
 // 获取 iframe 内部的高度
-
-
 function getIframeHeight(iframe) {
   var D = iframe[0].contentWindow.document;
   if (D.body.scrollHeight && D.documentElement.scrollHeight) {
-    return Math.min(
-    D.body.scrollHeight, D.documentElement.scrollHeight);
+    return Math.min(D.body.scrollHeight, D.documentElement.scrollHeight);
   } else if (D.documentElement.scrollHeight) {
     return D.documentElement.scrollHeight;
   } else if (D.body.scrollHeight) {
     return D.body.scrollHeight;
   }
+}
+
+
+// iframe 是否和当前页面跨域
+function isCrossDomainIframe(iframe) {
+  var isCrossDomain = false;
+  try {
+    iframe[0].contentWindow.document;
+  } catch (e) {
+    isCrossDomain = true;
+  }
+  return isCrossDomain;
 }
