@@ -312,12 +312,12 @@ var Dialog = Overlay.extend({
       this._createIframe();
     }
 
-    this._isCrossDomainIframe = isCrossDomainIframe(this.iframe);
     // 开始请求 iframe
     this.iframe.attr({
       src: this._fixUrl(),
       name: 'dialog-iframe' + new Date().getTime()
     });
+
     // 因为在 IE 下 onload 无法触发
     // http://my.oschina.net/liangrockman/blog/24015
     // 所以使用 jquery 的 one 函数来代替 onload
@@ -327,6 +327,9 @@ var Dialog = Overlay.extend({
       if (!that.get('visible')) {
         return;
       }
+
+      // 是否跨域的判断需要放入iframe load之后
+      that._isCrossDomainIframe = isCrossDomainIframe(that.iframe);
 
       if (!that._isCrossDomainIframe) {
         // 绑定自动处理高度的事件
