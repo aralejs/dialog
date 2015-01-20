@@ -1,6 +1,10 @@
-tests/
-docs/
 dist
-examples
-coverage
+_site
+sea-modules
 spm_modules
+node_modules
+.git
+tests
+examples
+test
+coverage
