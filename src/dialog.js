@@ -247,14 +247,18 @@ var Dialog = Overlay.extend({
       mask.element.insertBefore(that.element);
 
       // 避免重复存放
-      var existed = false;
-      for (var i = 0; i < mask._dialogs.length; i++) {
+      var existed;
+      for (var i=0; i<mask._dialogs.length; i++) {
         if (mask._dialogs[i] === that) {
-          existed = true;
+          existed = mask._dialogs[i];
         }
       }
-      // 依次存放对应的对话框
-      if (!existed) {
+      if (existed) {
+        // 把已存在的对话框提到最后一个
+        mask._dialogs.splice(mask._dialogs.indexOf(existed), 1);
+        mask._dialogs.push(existed);
+      } else {
+        // 存放新的对话框
         mask._dialogs.push(that);
       }
     });
@@ -268,19 +272,25 @@ var Dialog = Overlay.extend({
       return;
     }
 
-    // 当且仅当最后一个 dialog 是当前 dialog 时，才移除
-    // 因为 hide 与 destroy 都会调用 _hideMask，此举用于避免错误移除
-    if (mask._dialogs &&
-        mask._dialogs[mask._dialogs.length - 1] === this) {
-      mask._dialogs.pop();
-    }
+    // 移除 mask._dialogs 当前实例对应的 dialog
+    var dialogLength = mask._dialogs.length;
+    for (var i=0; i<dialogLength; i++) {
+      if (mask._dialogs[i] === this) {
+        mask._dialogs.splice(mask._dialogs.indexOf(this), 1);
 
-    if (mask._dialogs && mask._dialogs.length > 0) {
-      var last = mask._dialogs[mask._dialogs.length - 1];
-      mask.set('zIndex', last.get('zIndex'));
-      mask.element.insertBefore(last.element);
-    } else {
-      mask.hide();
+        // 如果 _dialogs 为空了，表示没有打开的 dialog 了
+        // 则隐藏 mask
+        if (mask._dialogs.length === 0) {
+          mask.hide();
+        }
+        // 如果移除的是最后一个打开的 dialog
+        // 则相应向下移动 mask
+        else if (i === dialogLength - 1) {
+          var last = mask._dialogs[mask._dialogs.length - 1];
+          mask.set('zIndex', last.get('zIndex'));
+          mask.element.insertBefore(last.element);
+        }
+      }
     }
   },
 
