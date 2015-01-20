@@ -2,3 +2,5 @@ tests/
 docs/
 dist
 examples
+coverage
+spm_modules
