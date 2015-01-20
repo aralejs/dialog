@@ -18,12 +18,11 @@
 <button id="example1">内容传入字符串</button>
 
 ````javascript
-seajs.use(['dialog'], function(Dialog) {
-    new Dialog({
-        trigger: '#example1',
-        height: '100px',
-        content: '传入了字符串'
-    });
+var Dialog = require('dialog');
+new Dialog({
+    trigger: '#example1',
+    height: '100px',
+    content: '传入了字符串'
 });
 ````
 
@@ -40,11 +39,12 @@ seajs.use(['dialog'], function(Dialog) {
 
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    new Dialog({
-        trigger: '#example2',
-        content: $('#example2-dom')
-    });
+var $ = require('jquery');
+var Dialog = require('../dialog');
+
+new Dialog({
+    trigger: '#example2',
+    content: $('#example2-dom')
 });
 ````
 
@@ -54,11 +54,11 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 <button id="example3">传入了 html 标签</button>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    new Dialog({
-        trigger: '#example3',
-        content: '<div style="padding:20px;">传入了 html 标签</div>'
-    });
+var Dialog = require('dialog');
+
+new Dialog({
+    trigger: '#example3',
+    content: '<div style="padding:20px;">传入了 html 标签</div>'
 });
 ````
 
@@ -67,11 +67,11 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 <button id="example4">内嵌 iframe</button>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    new Dialog({
-        trigger: '#example4',
-        content: './iframe.html'
-    });
+var Dialog = require('dialog');
+
+new Dialog({
+    trigger: '#example4',
+    content: './iframe.html'
 });
 ````
 
@@ -79,7 +79,7 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 
 ```
 document.getElementById('close').onclick = function(){
-    window.frameElement.trigger('close'); 
+    window.frameElement.trigger('close');
 };
 ```
 
@@ -92,13 +92,13 @@ document.getElementById('close').onclick = function(){
 </div>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    new Dialog({
-        trigger: '#example5 button',
-        height: '400px'
-    }).before('show',function() {
-         this.set('content', this.activeTrigger.attr('data-src'));
-    });
+var Dialog = require('dialog');
+
+new Dialog({
+    trigger: '#example5 button',
+    height: '400px'
+}).before('show',function() {
+     this.set('content', this.activeTrigger.attr('data-src'));
 });
 ````
 
@@ -112,15 +112,15 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 </div>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    new Dialog({
-        trigger: '#example6 button',
-        height: '160px',
-        width: '160px'
-    }).before('show',function() {
-        var img = '<img src="https://i.alipayobjects.com/combo.jpg?d=apps/58&t='+ this.activeTrigger.attr('data-id') + '" />';
-        this.set('content', img);
-    });
+var Dialog = require('dialog');
+
+new Dialog({
+    trigger: '#example6 button',
+    height: '160px',
+    width: '160px'
+}).before('show',function() {
+    var img = '<img src="https://i.alipayobjects.com/combo.jpg?d=apps/58&t='+ this.activeTrigger.attr('data-id') + '" />';
+    this.set('content', img);
 });
 ````
 
@@ -130,11 +130,10 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 <button id="example7">打开一个高度变化的iframe</button>
 
 ````javascript
-seajs.use(['dialog'], function(Dialog) {
-    new Dialog({
-        trigger: '#example7',
-        content: './heightChange.html'
-    });
+var Dialog = require('dialog');
+new Dialog({
+    trigger: '#example7',
+    content: './heightChange.html'
 });
 ````
 
@@ -144,11 +143,10 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example8">打开初始高度 150px 的对话框</button>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    var example = new Dialog({
-        trigger: '#example8',
-        content: './iframe.html',
-        initialHeight: 150
-    });
+var Dialog = require('dialog');
+var example = new Dialog({
+    trigger: '#example8',
+    content: './iframe.html',
+    initialHeight: 150
 });
 ````

@@ -18,12 +18,11 @@
 <button id="example1">渐入动画效果</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example = new Dialog({
-        trigger: '#example1',
-        effect: 'fade',
-        content: '<div style="padding: 50px">渐变！FadeIn！</div>'
-    });
+var Dialog = require('dialog');
+var example = new Dialog({
+    trigger: '#example1',
+    effect: 'fade',
+    content: '<div style="padding: 50px">渐变！FadeIn！</div>'
 });
 ````
 
@@ -32,12 +31,11 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example2">没有遮罩层</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example = new Dialog({
-        trigger: '#example2',
-        hasMask: false,
-        content: '<div style="padding: 50px">没有遮罩层</div>'
-    });
+var Dialog = require('dialog');
+var example = new Dialog({
+    trigger: '#example2',
+    hasMask: false,
+    content: '<div style="padding: 50px">没有遮罩层</div>'
 });
 ````
 
@@ -47,25 +45,26 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example3-2">位置在本按钮下方</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example3_1 = new Dialog({
-        trigger: '#example3-1',
-        align: {
-            baseXY: ['50%', 0],
-            selfXY: ['50%', 0]
-        },
-        content: '<div style="padding: 50px">位置靠近顶部</div>'
-    });
-    var example3_2 = new Dialog({
-        trigger: '#example3-2',
-        hasMask: false,
-        align: {
-            baseElement: '#example3-2',
-            baseXY: [0, '100%'],
-            selfXY: [0, 0]
-        },
-        content: '<div style="padding: 50px">位置在本按钮下方</div>'
-    });
+var Dialog = require('dialog');
+
+var example3_1 = new Dialog({
+    trigger: '#example3-1',
+    align: {
+        baseXY: ['50%', 0],
+        selfXY: ['50%', 0]
+    },
+    content: '<div style="padding: 50px">位置靠近顶部</div>'
+});
+
+var example3_2 = new Dialog({
+    trigger: '#example3-2',
+    hasMask: false,
+    align: {
+        baseElement: '#example3-2',
+        baseXY: [0, '100%'],
+        selfXY: [0, 0]
+    },
+    content: '<div style="padding: 50px">位置在本按钮下方</div>'
 });
 ````
 
@@ -74,14 +73,14 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example4">complete:show 事件</button>
 
 ````js
-seajs.use(['dialog'], function(Dialog) {
-    var example = new Dialog({
-        trigger: '#example4',
-        content: 'http://www.baidu.com/'
-    });
-    example.on('complete:show', function() {
-        console.log('iframe 完全载入成功！');
-    });
+var Dialog = require('dialog');
+
+var example = new Dialog({
+    trigger: '#example4',
+    content: 'http://www.baidu.com/'
+});
+example.on('complete:show', function() {
+    console.log('iframe 完全载入成功！');
 });
 ````
 
@@ -91,17 +90,18 @@ seajs.use(['dialog'], function(Dialog) {
 <button id="example5-2">还可以动态改变它</button>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    var example = new Dialog({
-        trigger: '#example5-1',
-        closeTpl: '点我可以关闭对话框',
-        height: '450px'
-    });
+var $ = require('jquery');
+var Dialog = require('dialog');
 
-    $('#example5-2').click(function(e) {
-        e.preventDefault();
-        example.show().set('closeTpl', '改变后的关闭链接');
-    });
+var example = new Dialog({
+    trigger: '#example5-1',
+    closeTpl: '点我可以关闭对话框',
+    height: '450px'
+});
+
+$('#example5-2').click(function(e) {
+    e.preventDefault();
+    example.show().set('closeTpl', '改变后的关闭链接');
 });
 ````
 
@@ -110,12 +110,13 @@ seajs.use(['dialog','jquery'], function(Dialog, $) {
 <button id="example6">打开对话框</button>
 
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-    var example = new Dialog({
-        trigger: '#example6',
-        content: '按 ESC 将无法关闭这个对话框',
-        height: 200
-    });
-    example.undelegateEvents(document, 'keyup.esc');
+var $ = require('jquery');
+var Dialog = require('dialog');
+
+var example = new Dialog({
+    trigger: '#example6',
+    content: '按 ESC 将无法关闭这个对话框',
+    height: 200
 });
+example.undelegateEvents(document, 'keyup.esc');
 ````
