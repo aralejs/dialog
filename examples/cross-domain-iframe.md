@@ -6,10 +6,10 @@
 
 <button id="trigger-btn">跨域Iframe</button>
 ````javascript
-seajs.use(['dialog','jquery'], function(Dialog, $) {
-  new Dialog({
-    trigger: '#trigger-btn',
-    content: 'http://spmjs.io/docs/arale-dialog-iframe-helper/examples/index.html'
-  });
+var Dialog = require('dialog');
+var $ = require('jquery');
+new Dialog({
+  trigger: '#trigger-btn',
+  content: 'http://spmjs.io/docs/arale-dialog-iframe-helper/examples/index.html'
 });
 ````
