@@ -2,10 +2,18 @@
 
 ---
 
+## 1.5.0
+
+`new` #91 使用arale-messenger进行跨域支持。[演示](./examples/cross-domain-iframe.html)
+
+`fixed` #87 #88 彻底修复两个对话框关闭时的遮罩显示问题。
+
 ## 1.4.1
 
 `fixed` [#87](https://github.com/aralejs/dialog/pull/87) 修复两个对话框关闭时的遮罩显示问题。
+
 `fixed` #80 修复 top 为负数的场景。
+
 `fixed` #71 删除了多余的 arale-easing 依赖。
 
 ## 1.4.0
