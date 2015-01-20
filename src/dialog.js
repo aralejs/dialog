@@ -3,8 +3,7 @@ var $ = require('jquery'),
     mask = Overlay.Mask,
     Events = require('arale-events'),
     Templatable = require('arale-templatable'),
-    Messenger = require('arale-messenger'),
-    JSON = require('json');
+    Messenger = require('arale-messenger');
 
 // Dialog
 // ---
@@ -137,8 +136,8 @@ var Dialog = Overlay.extend({
   hide: function () {
     // 把 iframe 状态复原
     if (this._type === 'iframe' && this.iframe) {
-      // 如果是跨域iframe，会抛出异常
-      if (!isCrossDomainIframe(this.iframe)) {
+      // 如果是跨域iframe，会抛出异常，所以需要加一层判断
+      if (!this._isCrossDomainIframe) {
         this.iframe.attr({
           src: 'javascript:\'\';'
         });
@@ -312,6 +311,8 @@ var Dialog = Overlay.extend({
     if (!this.iframe) {
       this._createIframe();
     }
+
+    this._isCrossDomainIframe = isCrossDomainIframe(this.iframe);
     // 开始请求 iframe
     this.iframe.attr({
       src: this._fixUrl(),
@@ -327,7 +328,7 @@ var Dialog = Overlay.extend({
         return;
       }
 
-      if (!isCrossDomainIframe(that.iframe)) {
+      if (!that._isCrossDomainIframe) {
         // 绑定自动处理高度的事件
         if (that.get('autoFit')) {
           clearInterval(that._interval);
