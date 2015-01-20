@@ -13,6 +13,7 @@ var Dialog = require('dialog');
 var $ = require('jquery');
 new Dialog({
   trigger: '#trigger-btn',
+  autoFit: false,
   content: 'http://spmjs.io/docs/arale-dialog-iframe-helper/examples/index.html'
 });
 ````
