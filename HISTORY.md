@@ -4,7 +4,7 @@
 
 ## 1.5.0
 
-`new` #91 使用arale-messenger进行跨域支持。[演示](./examples/cross-domain-iframe.html)
+`new` #91 使用 arale-messenger 进行跨域支持。[演示](./examples/cross-domain-iframe.html)
 
 `fixed` #87 #88 彻底修复两个对话框关闭时的遮罩显示问题。
 
