@@ -255,7 +255,7 @@ var Dialog = Overlay.extend({
       }
       if (existed) {
         // 把已存在的对话框提到最后一个
-        mask._dialogs.splice(mask._dialogs.indexOf(existed), 1);
+        erase(existed, mask._dialogs);
         mask._dialogs.push(existed);
       } else {
         // 存放新的对话框
@@ -273,10 +273,10 @@ var Dialog = Overlay.extend({
     }
 
     // 移除 mask._dialogs 当前实例对应的 dialog
-    var dialogLength = mask._dialogs.length;
+    var dialogLength = mask._dialogs ? mask._dialogs.length : 0;
     for (var i=0; i<dialogLength; i++) {
       if (mask._dialogs[i] === this) {
-        mask._dialogs.splice(mask._dialogs.indexOf(this), 1);
+        erase(this, mask._dialogs);
 
         // 如果 _dialogs 为空了，表示没有打开的 dialog 了
         // 则隐藏 mask
@@ -485,4 +485,18 @@ function isCrossDomainIframe(iframe) {
     isCrossDomain = true;
   }
   return isCrossDomain;
+}
+
+// erase item from array
+function erase(item, array) {
+  var index = -1;
+  for (var i=0; i<array.length; i++) {
+    if (array[i] === item) {
+      index = i;
+      break;
+    }
+  }
+  if (index !== -1) {
+    array.splice(index, 1);
+  }
 }

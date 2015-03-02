@@ -2,6 +2,10 @@
 
 ---
 
+## 1.5.1
+
+`fixed` #92 修复 IE 低版本的 indexOf 的兼容问题。
+
 ## 1.5.0
 
 `new` #91 使用 arale-messenger 进行跨域支持。[演示](./examples/cross-domain-iframe.html)
