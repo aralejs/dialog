@@ -7,6 +7,7 @@
 主要演示传入各种 content，以及传入 url 的自动识别和高度管理。本页面载入了一份预设样式 [dialog.css](https://github.com/aralejs/dialog/blob/master/src/dialog.css)。
 
 <link href="../src/dialog.css" rel="stylesheet">
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 <style>
 .fn-hide {display:none;}
 </style>
@@ -18,7 +19,7 @@
 <button id="example1">内容传入字符串</button>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 new Dialog({
     trigger: '#example1',
     height: '100px',
@@ -39,8 +40,7 @@ new Dialog({
 
 
 ````javascript
-var $ = require('jquery');
-var Dialog = require('../dialog');
+var Dialog = require('arale-dialog');
 
 new Dialog({
     trigger: '#example2',
@@ -54,7 +54,7 @@ new Dialog({
 <button id="example3">传入了 html 标签</button>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 new Dialog({
     trigger: '#example3',
@@ -67,7 +67,7 @@ new Dialog({
 <button id="example4">内嵌 iframe</button>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 new Dialog({
     trigger: '#example4',
@@ -92,7 +92,7 @@ document.getElementById('close').onclick = function(){
 </div>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 new Dialog({
     trigger: '#example5 button',
@@ -112,7 +112,7 @@ new Dialog({
 </div>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 new Dialog({
     trigger: '#example6 button',
@@ -130,7 +130,7 @@ new Dialog({
 <button id="example7">打开一个高度变化的iframe</button>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 new Dialog({
     trigger: '#example7',
     content: './heightChange.html'
@@ -143,7 +143,7 @@ new Dialog({
 <button id="example8">打开初始高度 150px 的对话框</button>
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var example = new Dialog({
     trigger: '#example8',
     content: './iframe.html',

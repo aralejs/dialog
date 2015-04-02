@@ -16,21 +16,20 @@
 <input type="button" id="trigger1" value="默认样式对话框" />
 
 <script>
-seajs.use(['dialog'], function(Dialog) {
-    var ConfirmBox = Dialog.ConfirmBox;
-    var cb = new ConfirmBox({
-        trigger: '#trigger1',
-        title: '我真是标题啊',
-        message: '我是内容 我是内容',
-        onConfirm: function() {
-            var that = this;
-            this.set('title', '三秒后关闭对话框');
-            this.set('message', '不要啊！！');
-            setTimeout(function() {
-                that.hide();
-            }, 3000);
-        }
-    });
+var Dialog = require('arale-dialog');
+var ConfirmBox = Dialog.ConfirmBox;
+var cb = new ConfirmBox({
+    trigger: '#trigger1',
+    title: '我真是标题啊',
+    message: '我是内容 我是内容',
+    onConfirm: function() {
+        var that = this;
+        this.set('title', '三秒后关闭对话框');
+        this.set('message', '不要啊！！');
+        setTimeout(function() {
+            that.hide();
+        }, 3000);
+    }
 });
 </script>
 ````

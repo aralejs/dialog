@@ -5,6 +5,7 @@
 ---
 
 <link href="../src/dialog.css" rel="stylesheet">
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 
 > 这里要注意 mask 的表现。
 
@@ -12,8 +13,7 @@
 <button id="example2" style="display: none">打开第二个对话框</button>
 
 ````javascript
-var $ = require('jquery');
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var Confirmbox = Dialog.ConfirmBox;
 
 var d1 = new Dialog({

@@ -7,6 +7,7 @@
 主要演示各种属性的使用。本页面载入了一份预设样式 [dialog.css](../src/dialog.css)。
 
 <link href="../src/dialog.css" rel="stylesheet">
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 <style>
 .fn-hide {display:none;}
 </style>
@@ -18,7 +19,7 @@
 <button id="example1">渐入动画效果</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var example = new Dialog({
     trigger: '#example1',
     effect: 'fade',
@@ -31,7 +32,7 @@ var example = new Dialog({
 <button id="example2">没有遮罩层</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var example = new Dialog({
     trigger: '#example2',
     hasMask: false,
@@ -45,7 +46,7 @@ var example = new Dialog({
 <button id="example3-2">位置在本按钮下方</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 var example3_1 = new Dialog({
     trigger: '#example3-1',
@@ -73,7 +74,7 @@ var example3_2 = new Dialog({
 <button id="example4">complete:show 事件</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 var example = new Dialog({
     trigger: '#example4',
@@ -90,8 +91,7 @@ example.on('complete:show', function() {
 <button id="example5-2">还可以动态改变它</button>
 
 ````javascript
-var $ = require('jquery');
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 var example = new Dialog({
     trigger: '#example5-1',
@@ -110,8 +110,7 @@ $('#example5-2').click(function(e) {
 <button id="example6">打开对话框</button>
 
 ````javascript
-var $ = require('jquery');
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 
 var example = new Dialog({
     trigger: '#example6',
