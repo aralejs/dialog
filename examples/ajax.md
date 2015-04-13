@@ -12,7 +12,7 @@
 <button id="example1">打开对话框（ajax）</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var example = new Dialog({
     trigger: '#example1',
     content: './ajax-page.html?ajax'
@@ -22,7 +22,7 @@ var example = new Dialog({
 <button id="example2">打开对话框（iframe）</button>
 
 ````js
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var example = new Dialog({
     trigger: '#example2',
     content: './ajax-page.html'

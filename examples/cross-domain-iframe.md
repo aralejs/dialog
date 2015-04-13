@@ -9,7 +9,7 @@
 
 
 ````javascript
-var Dialog = require('dialog');
+var Dialog = require('arale-dialog');
 var $ = require('jquery');
 new Dialog({
   trigger: '#trigger-btn',
