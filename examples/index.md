@@ -77,7 +77,7 @@ new Dialog({
 
 在 iframe 页面可以这样绑定关闭按钮
 
-```
+```js
 document.getElementById('close').onclick = function(){
     window.frameElement.trigger('close');
 };
