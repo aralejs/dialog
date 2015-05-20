@@ -106,7 +106,7 @@ var Dialog = Overlay.extend({
     // 这样写是为了回避 arale.base 的一个问题：
     // 当属性初始值为''时，不会进入 onRender 方法
     // https://github.com/aralejs/base/issues/7
-    this.$('[data-role=close]').hide();
+    this.$('>[data-role=close]').hide();
   },
 
   events: {
@@ -198,9 +198,9 @@ var Dialog = Overlay.extend({
 
   _onRenderCloseTpl: function (val) {
     if (val === '') {
-      this.$('[data-role=close]').html(val).hide();
+      this.$('>[data-role=close]').html(val).hide();
     } else {
-      this.$('[data-role=close]').html(val).show();
+      this.$('>[data-role=close]').html(val).show();
     }
   },
 
