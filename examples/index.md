@@ -36,7 +36,7 @@ new Dialog({
 
 <button id="example2">内容传入DOM 对象</button>
 
-<div class="fn-hide"><div id="example2-dom" style="padding:50px">传入了DOM</div></div>
+<div class="fn-hide"><div id="example2-dom" style="padding:50px">传入了DOM，<button type="button" data-role="close">关闭</button></div></div>
 
 
 ````javascript
