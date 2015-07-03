@@ -7,7 +7,6 @@
 主要演示各种属性的使用。本页面载入了一份预设样式 [dialog.css](../src/dialog.css)。
 
 <link href="../src/dialog.css" rel="stylesheet">
-<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 <style>
 .fn-hide {display:none;}
 </style>
@@ -92,6 +91,7 @@ example.on('complete:show', function() {
 
 ````javascript
 var Dialog = require('arale-dialog');
+var $ = require('jquery');
 
 var example = new Dialog({
     trigger: '#example5-1',
