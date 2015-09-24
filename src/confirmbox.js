@@ -82,6 +82,7 @@ ConfirmBox.confirm = function (message, title, onConfirm, onCancel, options) {
   // support confirm(message, title, onConfirm, options)
   if (typeof onCancel === 'object' && !options) {
     options = onCancel;
+    onCancel = null;
   }
 
   var defaults = {
