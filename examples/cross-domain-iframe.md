@@ -14,6 +14,6 @@ var $ = require('jquery');
 new Dialog({
   trigger: '#trigger-btn',
   autoFit: false,
-  content: 'http://spmjs.io/docs/arale-dialog-iframe-helper/examples/index.html'
+  content: 'http://docs.spmjs.io/arale-dialog-iframe-helper/latest/examples/index.html'
 });
 ````

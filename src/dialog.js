@@ -390,21 +390,22 @@ var Dialog = Overlay.extend({
 
     // 跨域则使用arale-messenger进行通信
     var m = new Messenger('parent', 'arale-dialog');
-    m.addTarget(this.iframe[0].contentWindow, 'iframe1');
-    m.listen(function (data) {
-      data = JSON.parse(data);
-      switch (data.event) {
-        case 'close':
-          that.hide();
-          break;
-        case 'syncHeight':
-          that._setHeight(data.height.toString().slice(-2) === 'px' ? data.height : data.height + 'px');
-          break;
-        default:
-          break;
-      }
+    this.iframe.one('load', function () {
+      m.addTarget(that.iframe[0].contentWindow, 'iframe1');
+      m.listen(function (data) {
+        data = JSON.parse(data);
+        switch (data.event) {
+          case 'close':
+            that.hide();
+            break;
+          case 'syncHeight':
+            that._setHeight(data.height.toString().slice(-2) === 'px' ? data.height : data.height + 'px');
+            break;
+          default:
+            break;
+        }
+      });
     });
-
   },
 
   _setHeight: function (h) {
