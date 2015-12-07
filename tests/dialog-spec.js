@@ -12,7 +12,7 @@ mocha.setup({
 });
 
 describe('dialog', function () {
-  var example;
+  var example, example2;
 
   afterEach(function () {
     if (example) {
