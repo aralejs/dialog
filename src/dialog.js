@@ -1,4 +1,4 @@
-var $ = require('jquery'),
+var $ = require('spm-jquery'),
     Overlay = require('arale-overlay'),
     mask = Overlay.Mask,
     Events = require('arale-events'),
