@@ -91,7 +91,7 @@ example.on('complete:show', function() {
 
 ````javascript
 var Dialog = require('arale-dialog');
-var $ = require('jquery');
+var $ = require('spm-jquery');
 
 var example = new Dialog({
     trigger: '#example5-1',

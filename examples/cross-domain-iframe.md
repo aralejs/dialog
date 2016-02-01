@@ -10,7 +10,7 @@
 
 ````javascript
 var Dialog = require('arale-dialog');
-var $ = require('jquery');
+var $ = require('spm-jquery');
 new Dialog({
   trigger: '#trigger-btn',
   autoFit: false,

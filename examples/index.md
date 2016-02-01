@@ -40,7 +40,7 @@ new Dialog({
 
 ````javascript
 var Dialog = require('arale-dialog');
-var $ = require('jquery');
+var $ = require('spm-jquery');
 
 new Dialog({
     trigger: '#example2',

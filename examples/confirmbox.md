@@ -65,7 +65,7 @@ var cb = new ConfirmBox({
 
 <script type="text/spm">
 var Dialog = require('arale-dialog');
-var $ = require('jquery');
+var $ = require('spm-jquery');
 
 var ConfirmBox = Dialog.ConfirmBox;
 $('#trigger12').click(function() {
@@ -102,7 +102,7 @@ $('#trigger14').click(function() {
 
 <script type="text/spm">
 var Dialog = require('arale-dialog');
-var $ = require('jquery');
+var $ = require('spm-jquery');
 
   var ConfirmBox = Dialog.ConfirmBox;
 

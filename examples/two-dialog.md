@@ -14,7 +14,7 @@
 ````javascript
 var Dialog = require('arale-dialog');
 var Confirmbox = Dialog.ConfirmBox;
-var $ = require('jquery');
+var $ = require('spm-jquery');
 
 var d1 = new Dialog({
     trigger: '#example1',
