@@ -1,6 +1,6 @@
 {
   "name": "arale-dialog",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "Dialog 是通用对话框容器，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义以及模态对话框等功能。",
   "keywords": [
     "widget",
@@ -23,23 +23,36 @@
     "url": "https://github.com/aralejs/dialog/issues"
   },
   "spm": {
-    "buildArgs": "--ignore jquery --styleBox"
+    "build": {
+      "global": {
+        "jquery": "jQuery"
+      }
+    }
   },
-  "main": "dialog.js",
+  "main": "index.js",
   "dependencies": {
-    "arale-events": "1.2.0",
-    "arale-messenger": "2.1.0",
+    "arale-events": "~1.2.0",
+    "arale-messenger": "~2.1.0",
     "arale-overlay": "~1.2.2",
-    "spm-jquery": "1.7.2"
+    "arale-templatable": "~1.0.1",
+    "jquery": "1.7.2",
+    "spm-handlebars": "~1.3.1"
   },
   "devDependencies": {
+    "spm-jquery": "1.7.2",
     "arale-widget": "~1.2.1",
-    "spm-expect.js": "0.3.1",
-    "spm-sinon": "1.6.0",
-    "spm-webpack": "~1.0.0"
+    "atool-build": "~0.7.6",
+    "atool-doc": "^0.4.3",
+    "atool-test": "~0.4.3",
+    "expect.js": "^0.3.1",
+    "nico": "*",
+    "jscoverage": "~0.3.7",
+    "spm-sinon": "~1.6.0"
   },
   "scripts": {
-    "build": "spm-webpack -c"
+    "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}",
+    "test": "atool-test",
+    "doc": "atool-doc"
   },
   "engines": {
     "node": ">=4.0.0"

@@ -1,21 +1,25 @@
-var $ = require('spm-jquery'),
-    Overlay = require('arale-overlay'),
-    mask = Overlay.Mask,
-    Events = require('arale-events'),
-    Templatable = require('arale-templatable'),
-    Messenger = require('arale-messenger');
+import $ from 'jquery';
+import Overlay from 'arale-overlay';
+import Events from 'arale-events';
+import Templatable from 'arale-templatable';
+import Messenger from 'arale-messenger';
+
+const mask = Overlay.Mask;
 
 // Dialog
 // ---
 // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
 // 是所有对话框类型组件的基类。
-var Dialog = Overlay.extend({
+const Dialog = Overlay.extend({
 
   Implements: Templatable,
 
   attrs: {
     // 模板
-    template: require('./dialog.handlebars'),
+    template: `<div class="{{classPrefix}}">
+                  <a class="{{classPrefix}}-close" title="Close" href="javascript:;" data-role="close"></a>
+                  <div class="{{classPrefix}}-content" data-role="content"></div>
+              </div>`,
 
     // 对话框触发点
     trigger: {

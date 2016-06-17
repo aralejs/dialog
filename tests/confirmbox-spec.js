@@ -1,24 +1,16 @@
 var ConfirmBox = require('../src/confirmbox');
-var expect = require('spm-expect.js');
+var expect = require('expect.js');
 var sinon = require('spm-sinon');
 var $ = require('spm-jquery');
 var ua = (window.navigator.userAgent || "").toLowerCase();
 var mask = require('arale-overlay').Mask;
-
-require('../src/dialog.css');
-
-if (ua.indexOf("msie") !== -1) {
-  mocha.setup({
-    timeout: null,
-    ignoreLeaks: true
-  });
-}
 
 describe('ConfirmBox', function () {
   var example;
 
   afterEach(function () {
     if (example) {
+      example.hide();
       example.destroy();
       example = null;
     }
@@ -80,7 +72,6 @@ describe('ConfirmBox', function () {
     expect($('.ui-dialog [data-role="title"]').html()).to.be('确认删除框');
     expect($('.ui-dialog [data-role="confirm"]').length).to.be(1);
     expect($('.ui-dialog [data-role="cancel"]').length).to.be(1);
-
     $('.ui-dialog [data-role="confirm"]').click();
     expect(msg).to.be('点击了确认按钮');
     expect($('.ui-dialog').length).to.be(0);

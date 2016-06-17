@@ -2,7 +2,6 @@
 
 ---
 
-[![spm package](http://spmjs.io/badge/arale-dialog)](http://spmjs.io/package/arale-dialog)
 [![Build Status](https://img.shields.io/travis/aralejs/dialog.svg?style=flat)](https://travis-ci.org/aralejs/dialog)
 [![Coverage Status](https://img.shields.io/coveralls/aralejs/dialog.svg?style=flat)](https://coveralls.io/r/aralejs/dialog)
 
@@ -17,6 +16,12 @@ Dialog 组件提供了默认样式，请单独引用 [dialog.css](https://github
 Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 [widget](http://aralejs.org/widget/)、[base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
 
 ---
+
+## 组件演示
+
+```
+npm run doc
+```
 
 ## 最佳实践
 

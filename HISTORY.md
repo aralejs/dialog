@@ -1,6 +1,10 @@
 # 历史记录
 
 ---
+## 2.0.0
+`changed` 迁至atool
+`changed` fixed依赖templable问题
+
 ## 1.6.0
 
 修复example
