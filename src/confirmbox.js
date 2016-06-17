@@ -1,5 +1,5 @@
-import $ from 'jquery';
-import Dialog from './dialog';
+const $ = require('jquery');
+const Dialog = require('./dialog');
 const Handlebars = require('spm-handlebars')['default'];
 const template = Handlebars.compile(`{{#if title}}
                 <div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>
