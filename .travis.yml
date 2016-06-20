@@ -1,16 +1,10 @@
 language: node_js
 
 node_js:
-  - "0.11"
-
-install:
-  - npm install spm coveralls
-
+  - "4"
+  
 before_script:
-  - node_modules/spm/bin/spm-install
+  - npm install
 
 script:
-  - node_modules/spm/bin/spm-test
-
-after_success:
-  - node_modules/spm/bin/spm-test --coveralls | node_modules/.bin/coveralls
+  - npm run test

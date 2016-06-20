@@ -18,8 +18,8 @@ Thumbs.db
 *.pyo
 build
 _site
-sea-modules
 spm_modules
+node_modules
 .cache
 dist/
 coverage/

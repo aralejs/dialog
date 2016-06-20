@@ -1,15 +1,10 @@
-var Dialog = require('../src/dialog');
-var expect = require('spm-expect.js');
+var Dialog = require('../index');
+var expect = require('expect.js');
 var sinon = require('spm-sinon');
 var $ = require('spm-jquery');
 var mask = require('arale-overlay').Mask;
 
 require('../src/dialog.css');
-
-mocha.setup({
-  timeout: null,
-  ignoreLeaks: true
-});
 
 describe('dialog', function () {
   var example, example2;
