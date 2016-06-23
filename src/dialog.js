@@ -6,8 +6,6 @@ import Templatable from 'arale-templatable';
 import Messenger from 'arale-messenger';
 
 const mask = Overlay.Mask;
-
-console.log(Overlay, Templatable);
 // Dialog
 // ---
 // Dialog 是通用对话框组件，提供显隐关闭、遮罩层、内嵌iframe、内容区域自定义功能。
