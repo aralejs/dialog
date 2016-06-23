@@ -28,7 +28,6 @@
 
 // 1. 默认样式对话框
 import Dialog from '../index';
-import '../src/dialog.css';
 const ConfirmBox = Dialog.ConfirmBox;
 new ConfirmBox({
     trigger: '#trigger1',

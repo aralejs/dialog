@@ -11,7 +11,6 @@
 
 ```javascript
 import Dialog from '../index';
-import '../src/dialog.css';
 const Confirmbox = Dialog.ConfirmBox;
 
 var d1 = new Dialog({

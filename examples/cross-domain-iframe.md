@@ -11,7 +11,6 @@
 
 ````javascript
 import Dialog from '../index';
-import '../src/dialog.css';
 new Dialog({
   trigger: '#trigger-btn',
   autoFit: false,

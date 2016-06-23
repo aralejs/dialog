@@ -43,7 +43,6 @@
 
 ```javascript
 import Dialog from '../index';
-import '../src/dialog.css';
 
 // 1. 内容传入字符串
 new Dialog({

@@ -28,7 +28,6 @@
 
 ```javascript
 import Dialog from '../index';
-import '../src/dialog.css';
 
 // 1. 渐入效果
 new Dialog({
