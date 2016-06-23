@@ -1,7 +1,7 @@
 var ConfirmBox = require('../src/confirmbox');
 var expect = require('expect.js');
 var sinon = require('spm-sinon');
-var $ = require('spm-jquery');
+var $ = require('jquery');
 var ua = (window.navigator.userAgent || "").toLowerCase();
 var mask = require('arale-overlay').Mask;
 

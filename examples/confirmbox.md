@@ -3,7 +3,6 @@
 ## 带有默认样式的对话框
 
 ```html
-<link href="../src/dialog.css" rel="stylesheet">
 <script type="text/javascript" src="https://a.alipayobjects.com/jquery/jquery/1.7.2/jquery.js"></script>
 
 
@@ -29,6 +28,7 @@
 
 // 1. 默认样式对话框
 import Dialog from '../index';
+import '../src/dialog.css';
 const ConfirmBox = Dialog.ConfirmBox;
 new ConfirmBox({
     trigger: '#trigger1',
