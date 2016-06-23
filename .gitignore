@@ -18,8 +18,7 @@ Thumbs.db
 *.pyo
 build
 _site
-spm_modules
 node_modules
 .cache
 dist/
-coverage/
+npm-debug.log
