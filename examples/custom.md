@@ -2,7 +2,6 @@
 
 主要演示各种属性的使用。本页面载入了一份预设样式 [dialog.css](../src/dialog.css)。
 
-<link href="../src/dialog.css" rel="stylesheet">
 <style>
 .fn-hide {display:none;}
 </style>
@@ -29,6 +28,7 @@
 
 ```javascript
 import Dialog from '../index';
+import '../src/dialog.css';
 
 // 1. 渐入效果
 new Dialog({

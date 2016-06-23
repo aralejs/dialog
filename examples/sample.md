@@ -8,7 +8,6 @@
 </style>
 
 ```html
-<link href="../src/dialog.css" rel="stylesheet">
 <script type="text/javascript" src="https://a.alipayobjects.com/jquery/jquery/1.7.2/jquery.js"></script>
 
 <button id="example1">1. 内容传入字符串</button>
@@ -42,8 +41,9 @@
 
 ```
 
-````javascript
+```javascript
 import Dialog from '../index';
+import '../src/dialog.css';
 
 // 1. 内容传入字符串
 new Dialog({
@@ -106,4 +106,4 @@ new Dialog({
     content: './iframe.html',
     initialHeight: 150
 });
-````
+```

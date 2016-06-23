@@ -1,7 +1,7 @@
 var Dialog = require('../index');
 var expect = require('expect.js');
 var sinon = require('spm-sinon');
-var $ = require('spm-jquery');
+var $ = require('jquery');
 var mask = require('arale-overlay').Mask;
 
 require('../src/dialog.css');

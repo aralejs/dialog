@@ -1,7 +1,5 @@
 # 两个对话框共享遮罩层
 
-<link href="../src/dialog.css" rel="stylesheet">
-
 > 这里要注意 mask 的表现。
 
 ```html
@@ -13,6 +11,7 @@
 
 ```javascript
 import Dialog from '../index';
+import '../src/dialog.css';
 const Confirmbox = Dialog.ConfirmBox;
 
 var d1 = new Dialog({
