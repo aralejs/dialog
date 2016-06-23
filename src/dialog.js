@@ -1,8 +1,10 @@
-const $ = require('jquery');
-const Overlay = require('arale-overlay');
-const Events = require('arale-events');
-const Templatable = require('arale-templatable');
-const Messenger = require('arale-messenger');
+import './dialog.css';
+import $ from 'jquery';
+import Overlay from 'arale-overlay';
+import Events from 'arale-events';
+import Templatable from 'arale-templatable';
+import Messenger from 'arale-messenger';
+
 const mask = Overlay.Mask;
 
 console.log(Overlay, Templatable);

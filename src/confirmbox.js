@@ -1,7 +1,8 @@
-const $ = require('jquery');
-const Dialog = require('./dialog');
-const Handlebars = require('spm-handlebars')['default'];
-const template = Handlebars.compile(`{{#if title}}
+import $ from 'jquery';
+import Dialog from './dialog';
+import Handlebars from 'spm-handlebars';
+
+const template = Handlebars['default'].compile(`{{#if title}}
                 <div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>
                 {{/if}}
                 <div class="{{classPrefix}}-container">
@@ -25,8 +26,7 @@ const template = Handlebars.compile(`{{#if title}}
 // ConfirmBox
 // -------
 // ConfirmBox 是一个有基础模板和样式的对话框组件。
-var ConfirmBox = Dialog.extend({
-
+const ConfirmBox = Dialog.extend({
   attrs: {
     title: '默认标题',
 
@@ -78,7 +78,6 @@ var ConfirmBox = Dialog.extend({
   _onChangeCancelTpl: function (val) {
     this.$('[data-role=cancel]').html(val);
   }
-
 });
 
 ConfirmBox.alert = function (message, callback, options) {
