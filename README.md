@@ -22,28 +22,11 @@ Dialog 继承了 [overlay](http://aralejs.org/overlay/)，可使用其中包括 
 ```
 npm run doc
 ```
+访问 http://localhost:8002/
 
 ## 最佳实践
 
-```js
-var Dialog = require('dialog');
-
-var o = new Dialog({
-    trigger: '#trigger',
-    content: '<div>这是 dialog 容器的内容</div>'
-});
-```
-
-内嵌 Iframe：
-
-```js
-var Dialog = require('dialog');
-
-var o = new Dialog({
-    trigger: '#trigger',
-    content: 'https://www.alipay.com/'
-});
-```
+见 examples
 
 ## 配置说明
 
@@ -101,34 +84,4 @@ var o = new Dialog({
 主要有 show、hide、render 等方法，请参照 [overlay](http://aralejs.org/overlay/)。
 
 
-## 事件说明
-
-### complete:show
-
-本事件在当 content 为 URL 地址时 Iframe 载入完毕后触发。
-
-```js
-dialogInstanse.on('complete:show', function() {
-    // Iframe 载入完毕
-});
-```
-
-> close 事件已经删除，可以使用 `.after('hide', function() {})` 来代替。
-
-
-## 委托绑定
-
-需要动态加载 trigger 时，可以使用如下方式进行委托绑定。
-
-```js
-// 不初始化 trigger
-var d = new Dialog({
-  content: '内容'
-});
-
-$('document').on('click', '.selector', function() {
-  d.activeTrigger = $(this);
-  d.show();
-});
-```
 

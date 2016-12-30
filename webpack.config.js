@@ -5,6 +5,14 @@ module.exports = function(webpackConfig) {
     jquery: "jQuery",
   };
 
+  webpackConfig.htmlWebpackPlugin = {
+    files: {
+      js: [
+        'https://a.alipayobjects.com/jquery/jquery/1.7.2/jquery.js'
+      ]
+    }
+  };
+
   // disable common
   webpackConfig.plugins.some(function(plugin, i){
     if(plugin instanceof webpack.optimize.CommonsChunkPlugin) {

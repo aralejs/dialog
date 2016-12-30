@@ -5,7 +5,6 @@
 ```html
 <script type="text/javascript" src="https://a.alipayobjects.com/jquery/jquery/1.7.2/jquery.js"></script>
 
-
 <input type="button" id="trigger1" value="1. 默认样式对话框" />
 
 

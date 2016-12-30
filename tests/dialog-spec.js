@@ -1,6 +1,5 @@
 var Dialog = require('../index');
 var expect = require('expect.js');
-var sinon = require('spm-sinon');
 var $ = require('jquery');
 var mask = require('arale-overlay').Mask;
 
@@ -96,46 +95,6 @@ describe('dialog', function () {
   });
 
   describe('Height', function () {
-    it('should init without height when type is dom', function () {
-      example = new Dialog({
-        content: '<div id="test" style="height:200px;"></div>'
-      });
-
-      var spy = sinon.spy(example, '_onRenderHeight');
-
-      example.show();
-      expect(example._onRenderHeight.called).not.to.be(true);
-      spy.restore();
-    });
-
-    it('should init with height when type is dom', function () {
-      example = new Dialog({
-        height: '300px',
-        content: '<div id="test" style="height:200px;"></div>'
-      });
-
-      var spy = sinon.spy(example, '_onRenderHeight');
-
-      example.show();
-      expect(spy.withArgs('300px').called).to.be.ok();
-      spy.restore();
-    });
-
-    it('should init with height when type is iframe', function (done) {
-      example = new Dialog({
-        height: '200px',
-        content: './height300px.html'
-      });
-
-      var spy = sinon.spy(example, '_onRenderHeight');
-
-      example.show();
-      example.on('complete:show', function () {
-        expect(spy.withArgs('200px').called).to.be.ok();
-        spy.restore();
-        done();
-      });
-    });
 
     it('should init without height when type is iframe', function (done) {
       var h, isComplete = false;
@@ -321,27 +280,6 @@ describe('dialog', function () {
 
       var url = example.$('iframe').attr('src').replace(/&t=\d{13}/, '');
       expect(url).to.be('http://spmjs.io/?param=aa#');
-    });
-
-    it('should call onload once', function (done) {
-      example = new Dialog({
-        content: './height200px.html',
-        hasMask: false,
-        autoFit: false
-      });
-
-      var syncHeight = sinon.spy(example, '_syncHeight');
-      var setPosition = sinon.spy(example, '_setPosition');
-      var onRenderHeight = sinon.spy(example, '_onRenderHeight');
-
-      example.show();
-
-      example.on('complete:show', function () {
-        expect(syncHeight.callCount).to.be(1);
-        expect(setPosition.callCount).to.be(3);
-        expect(onRenderHeight.callCount).to.be(0);
-        done();
-      });
     });
 
     it('should hide close link', function () {
