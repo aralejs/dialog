@@ -28,7 +28,7 @@ const template = Handlebars['default'].compile(`{{#if title}}
 // ConfirmBox 是一个有基础模板和样式的对话框组件。
 const ConfirmBox = Dialog.extend({
   attrs: {
-    title: '默认标题',
+    title: '',
 
     confirmTpl: '<a class="ui-dialog-button-orange" href="javascript:;">确定</a>',
 
@@ -105,7 +105,7 @@ ConfirmBox.confirm = function (message, title, onConfirm, onCancel, options) {
 
   var defaults = {
     message: message,
-    title: title || '确认框',
+    title: title,
     closeTpl: '',
     onConfirm: function () {
       onConfirm && onConfirm();
